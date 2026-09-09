@@ -1,1 +1,10 @@
-{}
+{
+    "leaderboard_battlers": "vechters",
+    "lines": {
+        "battles": {
+            "battle": {
+                "no_egg": "Er zijn niet genoeg **Eieren** om het gevecht te starten!"
+            }
+        }
+    }
+}
