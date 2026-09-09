@@ -3,8 +3,40 @@
     "lines": {
         "battles": {
             "battle": {
-                "no_egg": "Er zijn niet genoeg **Eieren** om het gevecht te starten!"
+                "no_egg": "Er zijn niet genoeg **Eieren** om het gevecht te starten!",
+                "same_egg": "Beide vechters kunnen niet hetzelfde **Ei** zijn!",
+                "begin_random": "## Gevecht Begonnen!\n**__A__**: **Ei #{0}**\n**__B__**: **Ei #{1}**",
+                "begin_challenge": "## Gevecht begonnen!\n**__A__**: **Ei #{0}**, vecht voor {2}!\n**__B__**: **Ei #{1}**, vecht voor {3}!",
+                "eggn": "Ei #{0} ({1})",
+                "vote": "Stem{0}",
+                "voted": "Jouw stem werd geteld! Je kan van kant veranderen totdat het gevecht eindigt.",
+                "ended": "Dit gevecht is al geëindigd.",
+                "show": "Toon Bijlage voor {0}",
+                "result_win_title": "Ei #{0} wint!",
+                "result_win": "**Ei #{0}** claimt overwinning met **{1}** stemmen tegen **{2}**!",
+                "result_tie_title": "Gelijkspel!",
+                "result_tie": "Het gevecht is geëindigd **{0} - {1}**. Geen **Ei** claimt de overwinning.",
+                "finished": "**Gevecht geëindigd**!"
+            },
+            "challenge": {
+                "accept": "Accepteren",
+                "decline": "Weigeren",
+                "declined": "De challenge was **geweigerd**.",
+                "expired": "Deze challenge is verlopen zonder een antwoord.",
+                "modal_title": "Kies jouw vechter-Ei",
+                "modal_id": "Ei-ID"
             }
+        },
+        "config": {
+            "privacy": {
+                "success": "Privacy succesvol gezet op {0}.",
+                "public": "openbaar",
+                "private": "privé"
+            }
+        },
+        "common": {
+            "cancel": "Annuleer",
+            "not_found": "**Ei #{0}** bestaat niet."
         }
     }
 }
