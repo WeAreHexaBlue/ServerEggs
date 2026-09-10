@@ -14,14 +14,14 @@
                 "result_win_title": "El huevo #{0} gano!",
                 "result_win": "**El huevo #{0}** reclama la victoria con **{1}** votos contra **{2}**!",
                 "result_tie_title": "Empate!",
-                "result_tie": "La batalla termino **{0} - {1}**. Ningun **huevo** reclama la victoria.",
+                "result_tie": "La batalla terminó **{0} - {1}**. Ningun **Huevo** reclama la victoria.",
                 "finished": "**La batalla termino**!"
             },
             "challenge": {
                 "self": "No puedes desafiarte a ti mismo a una batalla!",
                 "bot": "No puedes desafiar un bot a la batalla!",
                 "not_your_egg": "El **Huevo#{0}** no fue creado ni coleccionado por ti, asi que no puede luchar por ti.",
-                "empty_pool": "No tienes ningun **Huevo**s que puedan luchar! Crea o colecciona algunos primero.",
+                "empty_pool": "No tienes ningun **Huevo** que pueda luchar! Crea o colecciona alguno primero.",
                 "prompt": "{0}, has sido desafiado a una **batalla de Huevos** por **{1}**!\nAcepta a continuacion, y elije cuales de tus **Huevo**s (creados o recolectados) lucharan, o deja que el azar decida.",
                 "sent": "Desafio enviado exitosamente.",
                 "accept": "Aceptar",
@@ -39,9 +39,9 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "Necesitaras el permiso de **Administrar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages de usuario, pero **siempre funcionara en MDs**.",
+                "missing_perms": "Necesitaras el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages de usuario, pero **siempre funcionara en MDs**.",
                 "no_default": "La opción \"Predeterminados del servidor\" es para usuarios, no para servidores.",
-                "success": "¡Se ha cambiado correctamente el idioma al \"**Ingles**\"!"
+                "success": "¡Se ha cambiado correctamente el idioma al \"**Español**\"!"
             },
             "allow-user-lang": {
                 "success": "¡Se ha modificado correctamente la configuración relativa al uso de idiomas de usuario (`{0}`)!"
@@ -50,7 +50,7 @@
                 "success": "Se ha establecido exitosamente la descripcion del servidor a:"
             },
             "privacy": {
-                "missing_guild_perms": "Necesitas el permiso de **Administrar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste cambiar **tu propia configuracion de privacidad**, ejecuta `/config privacy` en [mis MDs](<https://discord.com/users/886686500845138041>).",
+                "missing_guild_perms": "Necesitas el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste cambiar **tu propia configuracion de privacidad**, ejecuta `/config privacy` en [mis MDs](<https://discord.com/users/886686500845138041>).",
                 "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion."
             }
         }
