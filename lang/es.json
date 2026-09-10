@@ -1,1 +1,58 @@
-{}
+{
+    "lines": {
+        "battles": {
+            "battle": {
+                "no_egg": "No hay suficientes **Huevo**s para empezar una batalla!",
+                "same_egg": "Ambos luchadores no pueden ser el mismo **Huevo**!",
+                "begin_random": "## La batalla ha empezado!\n**__A__**: **Huevo #{0}**\n**__B__**: **Huevo #{1}**",
+                "begin_challenge": "## La batalla ha empezado!\n**__A__**: **Huevo #{0}**, luchando por {2}!\n**__B__**: **Huevo #{1}**, luchando por {3}!",
+                "eggn": "Huevo #{0} ({1})",
+                "vote": "Voto {0}",
+                "voted": "Tu voto fue contado! Puedes cambiar tu bando hasta que la batalla termine.",
+                "ended": "Esta batalla ya termino.",
+                "show": "Mostrar Archivo para {0}",
+                "result_win_title": "El huevo #{0} gano!",
+                "result_win": "**El huevo #{0}** reclama la victoria con **{1}** votos contra **{2}**!",
+                "result_tie_title": "Empate!",
+                "result_tie": "La batalla termino **{0} - {1}**. Ningun **huevo** reclama la victoria.",
+                "finished": "**La batalla termino**!"
+            },
+            "challenge": {
+                "self": "No puedes desafiarte a ti mismo a una batalla!",
+                "bot": "No puedes desafiar un bot a la batalla!",
+                "not_your_egg": "El **Huevo#{0}** no fue creado ni coleccionado por ti, asi que no puede luchar por ti.",
+                "empty_pool": "No tienes ningun **Huevo**s que puedan luchar! Crea o colecciona algunos primero.",
+                "prompt": "{0}, has sido desafiado a una **batalla de Huevos** por **{1}**!\nAcepta a continuacion, y elije cuales de tus **Huevo**s (creados o recolectados) lucharan, o deja que el azar decida.",
+                "sent": "Desafio enviado exitosamente.",
+                "accept": "Aceptar",
+                "decline": "Declinar",
+                "not_yours": "Solo el **usuario desafiado** puede responder a este desafio.",
+                "declined": "El desafio fue **rechazado**.",
+                "expired": "Este desafio ha expirado sin su respuesta.",
+                "modal_title": "Elije tu Huevo luchador.",
+                "modal_id": "ID del Huevo",
+                "modal_id_placeholder": "Dejalo vacio para elegir un huevo al azar de tu reserva.",
+                "invalid_egg": "**\"{0}\"** no es una **ID valida de Huevos**.",
+                "same_egg": "Ese es el mismo **Huevo** que tu oponente lleva! Elije otro diferente.",
+                "accepted": "El desafio fue **aceptado**: que la batalla comienze!"
+            }
+        },
+        "config": {
+            "lang": {
+                "missing_perms": "Necesitaras el permiso de **Administrar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages de usuario, pero **siempre funcionara en MDs**.",
+                "no_default": "La opción \"Predeterminados del servidor\" es para usuarios, no para servidores.",
+                "success": "¡Se ha cambiado correctamente el idioma al \"**Ingles**\"!"
+            },
+            "allow-user-lang": {
+                "success": "¡Se ha modificado correctamente la configuración relativa al uso de idiomas de usuario (`{0}`)!"
+            },
+            "server-description": {
+                "success": "Se ha establecido exitosamente la descripcion del servidor a:"
+            },
+            "privacy": {
+                "missing_guild_perms": "Necesitas el permiso de **Administrar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste cambiar **tu propia configuracion de privacidad**, ejecuta `/config privacy` en [mis MDs](<https://discord.com/users/886686500845138041>).",
+                "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion."
+            }
+        }
+    }
+}
