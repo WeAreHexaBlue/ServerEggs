@@ -24,7 +24,8 @@
                 "declined": "De challenge was **geweigerd**.",
                 "expired": "Deze challenge is verlopen zonder een antwoord.",
                 "modal_title": "Kies jouw vechter-Ei",
-                "modal_id": "Ei-ID"
+                "modal_id": "Ei-ID",
+                "invalid_egg": "**\"{0}\"** is geen geldig **Ei-ID**."
             }
         },
         "config": {
@@ -81,5 +82,10 @@
     "lay": "leg",
     "edit_secret": "geheim",
     "leaderboard_collections": "collecties",
-    "language_name": "Nederlands"
+    "language_name": "Nederlands",
+    "leaderboard_creations_description": "Zie wie de meeste Eieren heeft gecreëerd.",
+    "leaderboard_description": "Bekijk scoreboard voor verschillende stats.",
+    "lang_default": "Server Standaardinstelling",
+    "log_channel": "kanaal",
+    "log_channel_description": "Het kanaal waar nieuwe Eieren worden geregistreerd."
 }
