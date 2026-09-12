@@ -1,3 +1,4 @@
+import asyncio
 import collections
 import os
 
@@ -6,6 +7,7 @@ import dotenv
 from discord import app_commands as app
 from discord.ext import commands
 
+import utils
 import views
 from schema import Guild, Report, User
 
@@ -109,7 +111,7 @@ class Dev(commands.GroupCog):
 
         await ctx.followup.send(content=message.jump_url)
 
-    @app.command(name="reload", description="Reload a Cog.")
+    @app.command(name="reload-cog", description="Reload a Cog.")
     @app.check(is_dev)
     async def reload_cog(self, ctx: discord.Interaction, cog: str):
         await ctx.response.defer()
@@ -117,6 +119,16 @@ class Dev(commands.GroupCog):
         await self.bot.reload_extension(f"cogs.{cog}")
 
         await ctx.followup.send(f"Reloaded `{cog}` module successfully.")
+
+    @app.command(name="reload-locales", description="Reload the language files.")
+    @app.check(is_dev)
+    async def reload_locales(self, ctx: discord.Interaction):
+        await ctx.response.defer()
+
+        self.bot.locales = await asyncio.to_thread(utils.load_locales, "./lang")
+
+        display_locales = [f"`{locale}`" for locale in self.bot.locales]
+        await ctx.followup.send(f"Reloaded locales {", ".join(display_locales)} successfully.")
 
     @app.command(name="sync", description="Sync the Command Tree.")
     @app.describe(devguildonly="Only sync for the DEVELOPER_GUILD.")
