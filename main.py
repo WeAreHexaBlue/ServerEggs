@@ -1,6 +1,5 @@
 import asyncio
 import datetime
-import json
 import os
 import re
 import sys
@@ -24,39 +23,6 @@ VERSION = "2.3.1"
 
 DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 
-def resolve_lang_ref(value, root, seen):
-    if not isinstance(value, str) or not value.startswith("$"):
-        return value
-
-    if value in seen:
-        raise ValueError(f"Circular language reference: {value}")
-
-    seen.add(value)
-
-    node = root
-    for part in value[1:].split("."):
-        if not isinstance(node, dict) or part not in node:
-            raise KeyError(f"Unresolved language reference: {value}")
-        node = node[part]
-
-    return resolve_lang_ref(node, root, seen)
-
-def resolve_lang_refs(obj, root):
-    if isinstance(obj, dict):
-        return {key: resolve_lang_refs(val, root) for key, val in obj.items()}
-    if isinstance(obj, list):
-        return [resolve_lang_refs(val, root) for val in obj]
-
-    return resolve_lang_ref(obj, root, set())
-
-def load_lines_sync(file):
-    with open(f"./lang/{file}", "r", encoding="utf-8") as lines:
-        data = json.load(lines)
-
-    data["lines"] = resolve_lang_refs(data["lines"], data["lines"])
-
-    return data
-
 class ServerEggs(commands.Bot):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(commands.when_mentioned, intents=discord.Intents.default())
@@ -67,9 +33,7 @@ class ServerEggs(commands.Bot):
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
 
-        for file in os.listdir("./lang"):
-            if file.endswith(".json"):
-                self.locales[file[:-5]] = await asyncio.to_thread(load_lines_sync, file)
+        self.locales = await asyncio.to_thread(utils.load_locales, "./lang")
 
         await self.tree.set_translator(utils.UITranslator(self))
 

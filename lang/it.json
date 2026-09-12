@@ -1,4 +1,6 @@
 {
+    "language_name": "Italiano",
+
     "lines": {
         "battles": {
             "battle": {
@@ -47,6 +49,7 @@
             "lang": {
                 "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<https://discord.com/users/886686500845138041>).\n-# **Non tutti i server permettono** l'uso delle lingue personali, ma **nei DM funzionerà sempre**.",
                 "no_default": "L'opzione \"Predefinita dal Server\" è per gli utenti, non per i server.",
+                "invalid": "Lingua sconosciuta. Scegli una delle opzioni suggerite.",
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
             },
             "allow-user-lang": {

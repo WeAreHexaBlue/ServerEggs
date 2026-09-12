@@ -20,18 +20,34 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         return myloc, guild
 
+    async def lang_autocomplete(self, ctx: discord.Interaction, current: str) -> list[app.Choice[str]]:
+        default_name = utils.pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+        current = current.lower()
+
+        options = []
+        if not current or current in default_name.lower():
+            options.append(app.Choice(name=default_name, value=""))
+
+        for code, data in sorted(self.bot.locales.items()):
+            name = data.get("language_name", code)
+            if not current or current in name.lower() or current in code.lower():
+                options.append(app.Choice(name=name, value=code))
+
+        return options[:25]
+
     @app.command(name="lang", description="lang_description")
     @app.rename(code="lang_language")
     @app.describe(code="lang_language_description")
-    @app.choices(code=[
-        app.Choice(name=app.locale_str("lang_default"), value=""),
-        app.Choice(name="English", value="en"),
-        app.Choice(name="Italiano", value="it"),
-    ])
+    @app.autocomplete(code=lang_autocomplete)
     @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @utils.ratelimit("read")
     async def lang(self, ctx: discord.Interaction, code: str):
         await ctx.response.defer(ephemeral=True)
+
+        if code != "" and code not in self.bot.locales:
+            _, myloc = await self.bot.get_section(ctx, "config/lang")
+            await ctx.followup.send(myloc["invalid"], ephemeral=True)
+            return
 
         if ctx.guild:
             _, myloc = await self.bot.get_section(ctx, "config/lang")

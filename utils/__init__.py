@@ -3,6 +3,7 @@ from .battles import *
 from .dictfind import *
 from .eggs import *
 from .embed import *
+from .i18n import *
 from .leaderboard import *
 from .log import *
 from .misc import *
