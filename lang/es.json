@@ -54,5 +54,6 @@
                 "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion."
             }
         }
-    }
+    },
+    "language_name": "Español"
 }
