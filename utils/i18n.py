@@ -49,9 +49,6 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
     for key, value in base.items():
         path = f"{prefix}/{key}" if prefix else key
 
-        # Reference lines (e.g. "$common.not_found") resolve against the
-        # merged locale, so a missing key whose fallback value is a reference
-        # automatically works and should not count as missing.
         if isinstance(value, str) and value.startswith("$"):
             continue
 
@@ -78,16 +75,9 @@ def load_locales(lang_dir: str = "./lang") -> dict:
     if FALLBACK_LANG not in raw:
         raise FileNotFoundError(f"Fallback locale '{FALLBACK_LANG}.json' not found in {lang_dir}")
 
-    # Keep an unresolved copy of the fallback so missing reference keys can
-    # be merged as "$..." first and then resolved against the merged
-    # (translated) lines. This lets non-English files omit reference lines:
-    # they automatically resolve to the translated target, which is also how
-    # Weblate handles untranslated reference strings.
     fallback_unresolved = copy.deepcopy(raw[FALLBACK_LANG])
 
-    raw[FALLBACK_LANG]["lines"] = resolve_lang_refs(
-        raw[FALLBACK_LANG].get("lines", {}), raw[FALLBACK_LANG].get("lines", {})
-    )
+    raw[FALLBACK_LANG]["lines"] = resolve_lang_refs(raw[FALLBACK_LANG].get("lines", {}), raw[FALLBACK_LANG].get("lines", {}))
 
     locales = {FALLBACK_LANG: raw[FALLBACK_LANG]}
 
