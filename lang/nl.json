@@ -8,7 +8,7 @@
                 "begin_random": "## Gevecht Begonnen!\n**__A__**: **Ei #{0}**\n**__B__**: **Ei #{1}**",
                 "begin_challenge": "## Gevecht begonnen!\n**__A__**: **Ei #{0}**, vecht voor {2}!\n**__B__**: **Ei #{1}**, vecht voor {3}!",
                 "eggn": "Ei #{0} ({1})",
-                "vote": "Stem{0}",
+                "vote": "Stem {0}",
                 "voted": "Jouw stem werd geteld! Je kan van kant veranderen totdat het gevecht eindigt.",
                 "ended": "Dit gevecht is al geëindigd.",
                 "show": "Toon Bijlage voor {0}",
