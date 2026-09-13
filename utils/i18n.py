@@ -99,15 +99,15 @@ def pick_locale(locales: dict, code: str | None) -> dict:
 
     return locales[FALLBACK_LANG]
 
-async def lang_autocomplete(self, ctx: discord.Interaction, current: str) -> list[app.Choice[str]]:
-    default_name = pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+async def lang_autocomplete(ctx: discord.Interaction, current: str) -> list[app.Choice[str]]:
+    default_name = pick_locale(ctx.client.locales, ctx.locale.value).get("lang_default", "Server Default")
     current = current.lower()
 
     options = []
     if not current or current in default_name.lower():
         options.append(app.Choice(name=default_name, value=""))
 
-    for code, data in sorted(self.bot.locales.items()):
+    for code, data in sorted(ctx.client.locales.items()):
         name = data.get("language_name", code)
         if not current or current in name.lower() or current in code.lower():
             options.append(app.Choice(name=name, value=code))

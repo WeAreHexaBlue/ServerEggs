@@ -47,14 +47,14 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<https://discord.com/users/886686500845138041>).\n-# **Non tutti i server permettono** l'uso delle lingue personali, ma **nei DM funzionerà sempre**.",
+                "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<https://discord.com/users/886686500845138041>).\n-# **Non tutti i server permettono** l'uso delle lingue esterne, ma **nei DM funzionerà sempre**.",
                 "no_default": "L'opzione \"Predefinita dal Server\" è per gli utenti, non per i server.",
                 "invalid": "Lingua sconosciuta. Scegli una delle opzioni suggerite.",
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
             },
             "allow-ext-lang": {
                 "already": "$common.already",
-                "success": "Modificato il permesso di utilizzare le lingue personali con successo (`{0}`)!"
+                "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{0}`)!"
             },
             "server-description": {
                 "success": "Impostata la descrizione del server:"

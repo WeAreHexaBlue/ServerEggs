@@ -61,7 +61,7 @@ class ServerEggs(commands.Bot):
         if guild_lang_key not in self.lang_cache or guild_allow_key not in self.lang_cache:
             guild, _ = await Guild.get_or_create(id=ctx.guild.id)
             self.lang_cache[guild_lang_key] = guild.lang
-            self.lang_cache[guild_allow_key] = guild.allow_user_lang
+            self.lang_cache[guild_allow_key] = guild.allow_ext_lang
 
         if self.lang_cache[guild_allow_key]:
             user_key = f"user_{ctx.user.id}"
@@ -118,7 +118,7 @@ async def on_guild_join(guild: discord.Guild):
     )
     e.add_field(
         name="What to do now",
-        value="- Set an **enticing description** for your server with `/config server-description`.\n- If you **don't want strangers** to join this server through the Eggs, use `/config privacy public:False`.\n- Set your **language** with `/config lang`, if it's **not English**.\n- If you want to **enforce your server language**, use `/config allow-user-lang allow:False`.\n- If you want to **keep track of Egg creations and edits**, use `/config log`.",
+        value="- Set an **enticing description** for your server with `/config server-description`.\n- If you **don't want strangers** to join this server through the Eggs, use `/config privacy public:False`.\n- Set your **language** with `/config lang`, if it's **not English**.\n- If you want to **enforce your server language**, use `/config allow-ext-lang allow:False`.\n- If you want to **keep track of Egg creations and edits**, use `/config log`.",
         inline=False
     )
     e.add_field(
