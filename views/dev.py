@@ -31,7 +31,7 @@ async def guild_container(bot: commands.Bot, guild: discord.Guild | None, dbguil
         body.append(f"**Description**: {dbguild.description or "None"}")
         body.append(f"**Invite**: {dbguild.invite or "None"}")
         body.append(f"**Language**: `{dbguild.lang}`")
-        body.append(f"**User Languages**: {"Allowed" if dbguild.allow_user_lang else "Not allowed"}")
+        body.append(f"**External Languages**: {"Allowed" if dbguild.allow_ext_lang else "Not allowed"}")
         body.append(f"**Allows Joining Others**: {dbguild.view_join_button}")
         body.append(f"**Has log channel**: {f"Yes (`{dbguild.logch}`)" if dbguild.logch else "None"}")
         body.append(f"**Battle time:** {dbguild.battle_time}")
