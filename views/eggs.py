@@ -44,14 +44,15 @@ class PreEggify(discord.ui.View):
         if not await utils.ensure_not_ratelimited(ctx, "interact"):
             return
 
-        await ctx.response.send_modal(Eggify(self.bot, self.lines, self.text, self.file, self.link))
+        default_name = utils.pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+        await ctx.response.send_modal(Eggify(self.bot, self.lines, self.text, self.file, self.link, server_default=default_name))
 
     @discord.ui.button(style=discord.ButtonStyle.secondary)
     async def cancel(self, ctx: discord.Interaction, button: discord.ui.Button):
         await ctx.response.edit_message(content=self.myloc["cancelled"], embed=None, attachments=[], view=None)
 
 class Eggify(discord.ui.Modal):
-    def __init__(self, bot: commands.Bot, lines: dict, text: str | None, file: discord.Attachment | None, link: str | None):
+    def __init__(self, bot: commands.Bot, lines: dict, text: str | None, file: discord.Attachment | None, link: str | None, *, server_default: str = "Server Default"):
         self.bot = bot
         self.lines = lines
         self.myloc = bot.get_lines("eggs/eggify", lines)
@@ -89,8 +90,25 @@ class Eggify(discord.ui.Modal):
             )
         )
 
+        self.lang = discord.ui.Label(
+            text=self.myloc["lang"],
+            description=self.myloc["lang_desc"],
+            component=discord.ui.Select(
+                placeholder=self.myloc["lang_placeholder"],
+                options=[
+                    discord.SelectOption(label=server_default, value="", default=True),
+                    *[
+                        discord.SelectOption(label=data.get("language_name", code), value=code)
+                        for code, data in sorted(bot.locales.items())
+                    ][:24],
+                ]
+            )
+        )
+
         self.add_item(self.eggtext)
+        self.add_item(self.secret)
         self.add_item(self.rating)
+        self.add_item(self.lang)
 
     async def on_submit(self, ctx: discord.Interaction):
         if not await utils.ensure_not_ratelimited(ctx, "create"):
@@ -98,8 +116,16 @@ class Eggify(discord.ui.Modal):
 
         await ctx.response.edit_message(content=self.myloc["continued"], view=None)
 
+        lang_raw = self.lang.component.values[0] if self.lang.component.values else ""
+        lang = lang_raw or None
+
+        if lang is not None and lang not in self.bot.locales:
+            bad_lang = self.bot.get_lines("eggs/create_edit", self.lines)["bad_lang"]
+            await ctx.followup.send(bad_lang)
+            return
+
         cog = self.bot.get_cog("Eggs")
-        await cog.create_or_edit(ctx, None, self.eggtext.value, self.file, self.link, Rating(self.rating.component.values[0]), self.secret.component.value, skip_ratelimit=True)
+        await cog.create_or_edit(ctx, None, self.eggtext.value, self.file, self.link, Rating(self.rating.component.values[0]), self.secret.component.value, lang=lang, skip_ratelimit=True)
 
 class GetEgg(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, lines: dict, egg, guild, creator: discord.User, container: discord.ui.Container, file=None, link=None):
@@ -331,8 +357,11 @@ class ReportEgg(discord.ui.Modal):
         reporter, _ = await User.get_or_create(id=ctx.user.id)
 
         reason = self.reason.component.values[0]
+        extra = (self.specify.value or "").strip()
         if reason == self.myloc["rules"]["other"]:
-            reason = self.specify.value
+            reason = extra
+        elif extra:
+            reason = utils.truncate(f"{reason}: {extra}", 200)
 
         try:
             report = await Report.create(

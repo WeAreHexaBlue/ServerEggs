@@ -4,7 +4,13 @@ from discord.ext import commands
 import utils
 from schema import Egg, Report
 
-from .base import ExtraAttachmentButton, RatingModal, action_button, text_view
+from .base import (
+    ExtraAttachmentButton,
+    LangModal,
+    RatingModal,
+    action_button,
+    text_view,
+)
 
 
 class ReportActions(discord.ui.LayoutView):
@@ -30,6 +36,7 @@ class ReportActions(discord.ui.LayoutView):
         self.add_item(discord.ui.ActionRow(
             action_button("Ignore", discord.ButtonStyle.secondary, self.ignore),
             action_button("Change Rating", discord.ButtonStyle.primary, self.change_rating),
+            action_button("Change Language", discord.ButtonStyle.primary, self.change_language),
             action_button("Delete", discord.ButtonStyle.danger, self.delete),
             action_button("Delete and Ban", discord.ButtonStyle.danger, self.delete_ban),
         ))
@@ -69,7 +76,15 @@ class ReportActions(discord.ui.LayoutView):
         await ctx.response.send_modal(RatingModal(self.bot.get_lines("rating", self.lines), egg, after_set=self.after_rating))
 
     async def after_rating(self, ctx: discord.Interaction, egg: Egg, rating):
-        await self.delete_reports(ctx, f"Change Rating to {rating.value}", egg.id)
+        await self.delete_reports(ctx, f"Change Rating to `{rating.value}`", egg.id)
+
+    async def change_language(self, ctx: discord.Interaction):
+        egg = await self.report.egg
+
+        await ctx.response.send_modal(LangModal(self.bot, self.bot.get_lines("lang", self.lines), egg, after_set=self.after_language))
+
+    async def after_language(self, ctx: discord.Interaction, egg: Egg, lang):
+        await self.delete_reports(ctx, f"Change Language to `{lang}`", egg.id)
 
     async def delete(self, ctx: discord.Interaction):
         await ctx.response.defer()

@@ -3,7 +3,13 @@ from discord.ext import commands
 
 import utils
 
-from .base import ExtraAttachmentButton, RatingModal, action_button, text_view
+from .base import (
+    ExtraAttachmentButton,
+    LangModal,
+    RatingModal,
+    action_button,
+    text_view,
+)
 from .eggs import ReportEgg
 
 
@@ -30,12 +36,16 @@ class ModLogActions(discord.ui.LayoutView):
 
         self.add_item(discord.ui.ActionRow(
             action_button(self.myloc["change_rating"], discord.ButtonStyle.primary, self.change_rating),
+            action_button(self.myloc["change_lang"], discord.ButtonStyle.primary, self.change_language),
             action_button(self.myloc["delete"], discord.ButtonStyle.danger, self.delete),
             action_button(self.myloc["report"], discord.ButtonStyle.danger, self.report),
         ))
 
     async def change_rating(self, ctx: discord.Interaction):
         await ctx.response.send_modal(RatingModal(self.bot.get_lines("rating", self.lines), self.egg))
+
+    async def change_language(self, ctx: discord.Interaction):
+        await ctx.response.send_modal(LangModal(self.bot, self.bot.get_lines("lang", self.lines), self.egg))
 
     async def delete(self, ctx: discord.Interaction):
         await ctx.response.defer(ephemeral=True)

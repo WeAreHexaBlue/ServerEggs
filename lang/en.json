@@ -135,6 +135,9 @@
                 "rating_safe": "$rating.safe",
                 "rating_questionable": "$rating.questionable",
                 "rating_explicit": "$rating.explicit",
+                "lang": "$lang.lang",
+                "lang_desc": "$lang.lang_desc",
+                "lang_placeholder": "$lang.lang_placeholder",
                 "continued": "Continued to **Egg** creation from this message."
             },
             "send": {
@@ -304,6 +307,7 @@
             "afterdel": "**{0}** ({1}) had {2} **Egg #{3}**, but it was deleted.",
             "show_extra_attachment": "$common.show_extra_attachment",
             "change_rating": "$rating.title",
+            "change_lang": "$lang.title",
             "delete": "Delete",
             "report": "$common.report",
             "deleted": "Deleted **Egg #{0}**."
@@ -328,7 +332,16 @@
             "safe": "Safe",
             "questionable": "Questionable",
             "explicit": "Explicit",
+            "invalid": "Unknown rating. Pick one of the suggested options.",
             "success": "Changed **Egg #{0}**'s rating to **{1}**."
+        },
+        "lang": {
+            "title": "Change Language",
+            "lang": "Language",
+            "lang_desc": "Which language is this Egg's content in?",
+            "lang_placeholder": "Select the language...",
+            "invalid": "Unknown language. Pick one of the suggested options.",
+            "success": "Changed **Egg #{0}**'s language to **{1}**."
         },
         "common": {
             "show_extra_attachment": "Show Extra Attachment",
