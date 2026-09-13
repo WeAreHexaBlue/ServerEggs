@@ -56,7 +56,7 @@ class ServerEggs(commands.Bot):
             return self.lang_cache[cache_key] or "en"
 
         guild_lang_key = f"guild_{ctx.guild.id}"
-        guild_allow_key = f"guild_{ctx.guild.id}_allowuserlang"
+        guild_allow_key = f"guild_{ctx.guild.id}_allowextlang"
 
         if guild_lang_key not in self.lang_cache or guild_allow_key not in self.lang_cache:
             guild, _ = await Guild.get_or_create(id=ctx.guild.id)

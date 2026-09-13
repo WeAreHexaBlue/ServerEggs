@@ -52,7 +52,7 @@
                 "invalid": "Lingua sconosciuta. Scegli una delle opzioni suggerite.",
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
             },
-            "allow-user-lang": {
+            "allow-ext-lang": {
                 "already": "$common.already",
                 "success": "Modificato il permesso di utilizzare le lingue personali con successo (`{0}`)!"
             },
@@ -371,10 +371,10 @@
     "lang_language_description": "La lingua da impostare.",
     "lang_default": "Predefinita dal Server",
 
-    "allow-user-lang": "permetti-lingua-personale",
-    "allow-user-lang_description": "Modifica l'impostazione riguardante l'utilizzo delle lingue personali nel server.",
-    "allow-user-lang_allow": "permetti",
-    "allow-user-lang_allow_description": "Vuoi permettere l'utilizzo delle lingue personali in questo server.",
+    "allow-ext-lang": "permetti-lingua-personale",
+    "allow-ext-lang_description": "Modifica l'impostazione riguardante l'utilizzo delle lingue esterne al server.",
+    "allow-ext-lang_allow": "permetti",
+    "allow-ext-lang_allow_description": "Vuoi permettere l'utilizzo delle lingue esterne a questo server.",
 
     "server-description": "descrizione-server",
     "server-description_description": "Imposta una descrizione accattivante del server che convinca la gente a unirsi.",

@@ -35,6 +35,7 @@ class Egg(models.Model):
     attach_hash = fields.CharField(64, null=True, index=True)
     attach_link = fields.TextField(null=True)
 
+    lang = fields.CharField(5, default="en")
     rating = fields.CharEnumField(enum_type=Rating, default=Rating.SAFE)
 
     secret = fields.BooleanField(default=False)
@@ -58,7 +59,7 @@ class Guild(models.Model):
     invite = fields.TextField(null=True)
 
     lang = fields.CharField(5, default="en")
-    allow_user_lang = fields.BooleanField(default=True)
+    allow_ext_lang = fields.BooleanField(default=True)
     view_join_button = fields.BooleanField(default=True)
 
     ratings = fields.JSONField(default=default_ratings)

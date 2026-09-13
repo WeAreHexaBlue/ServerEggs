@@ -2,6 +2,9 @@ import copy
 import json
 import os
 
+import discord
+from discord import app_commands as app
+
 FALLBACK_LANG = "en"
 
 def resolve_lang_ref(value, root, seen):
@@ -95,3 +98,18 @@ def pick_locale(locales: dict, code: str | None) -> dict:
             return locales[short]
 
     return locales[FALLBACK_LANG]
+
+async def lang_autocomplete(self, ctx: discord.Interaction, current: str) -> list[app.Choice[str]]:
+    default_name = pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+    current = current.lower()
+
+    options = []
+    if not current or current in default_name.lower():
+        options.append(app.Choice(name=default_name, value=""))
+
+    for code, data in sorted(self.bot.locales.items()):
+        name = data.get("language_name", code)
+        if not current or current in name.lower() or current in code.lower():
+            options.append(app.Choice(name=name, value=code))
+
+    return options[:25]

@@ -43,9 +43,6 @@
                 "no_default": "La opción \"Predeterminados del servidor\" es para usuarios, no para servidores.",
                 "success": "¡Se ha cambiado correctamente el idioma al \"**Español**\"!"
             },
-            "allow-user-lang": {
-                "success": "¡Se ha modificado correctamente la configuración relativa al uso de idiomas de usuario (`{0}`)!"
-            },
             "server-description": {
                 "success": "Se ha establecido exitosamente la descripcion del servidor a:"
             },

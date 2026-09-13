@@ -20,25 +20,10 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         return myloc, guild
 
-    async def lang_autocomplete(self, ctx: discord.Interaction, current: str) -> list[app.Choice[str]]:
-        default_name = utils.pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
-        current = current.lower()
-
-        options = []
-        if not current or current in default_name.lower():
-            options.append(app.Choice(name=default_name, value=""))
-
-        for code, data in sorted(self.bot.locales.items()):
-            name = data.get("language_name", code)
-            if not current or current in name.lower() or current in code.lower():
-                options.append(app.Choice(name=name, value=code))
-
-        return options[:25]
-
     @app.command(name="lang", description="lang_description")
     @app.rename(code="lang_language")
     @app.describe(code="lang_language_description")
-    @app.autocomplete(code=lang_autocomplete)
+    @app.autocomplete(code=utils.lang_autocomplete)
     @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @utils.ratelimit("read")
     async def lang(self, ctx: discord.Interaction, code: str):
@@ -71,25 +56,25 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         await ctx.followup.send(myloc["success"], ephemeral=True)
 
-    @app.command(name="allow-user-lang", description="allow-user-lang_description")
-    @app.rename(allow="allow-user-lang_allow")
-    @app.describe(allow="allow-user-lang_allow_description")
+    @app.command(name="allow-ext-lang", description="allow-ext-lang_description")
+    @app.rename(allow="allow-ext-lang_allow")
+    @app.describe(allow="allow-ext-lang_allow_description")
     @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
-    async def allow_user_lang(self, ctx: discord.Interaction, allow: bool):
-        myloc, guild = await self.guild_setting(ctx, "allow-user-lang")
+    async def allow_ext_lang(self, ctx: discord.Interaction, allow: bool):
+        myloc, guild = await self.guild_setting(ctx, "allow-ext-lang")
 
-        cache_key = f"guild_{ctx.guild.id}_allowuserlang"
+        cache_key = f"guild_{ctx.guild.id}_allowextlang"
 
-        if guild.allow_user_lang == allow:
+        if guild.allow_ext_lang == allow:
             self.bot.lang_cache[cache_key] = allow
             await ctx.followup.send(myloc["already"], ephemeral=True)
             return
 
-        guild.allow_user_lang = allow
-        await guild.save(update_fields=["allow_user_lang"])
-        self.bot.lang_cache[cache_key] = guild.allow_user_lang
+        guild.allow_ext_lang = allow
+        await guild.save(update_fields=["allow_ext_lang"])
+        self.bot.lang_cache[cache_key] = guild.allow_ext_lang
 
         await ctx.followup.send(myloc["success"].format(allow), ephemeral=True)
 
