@@ -31,6 +31,9 @@ async def random_fight_egg(user: User, guild: Guild | None = None, channel=None,
         if filtered:
             query = query.exclude(id__in=filtered)
 
+        if not guild.allow_ext_lang:
+            query = query.filter(lang=guild.lang)
+
     count = await query.count()
 
     if count == 0:

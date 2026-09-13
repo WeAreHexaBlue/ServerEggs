@@ -33,6 +33,9 @@ async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exc
         filtered = await Egg.filter(filtered_in__id=guild.id).values_list("id", flat=True)
         if filtered:
             query = query.filter(id__not_in=filtered)
+        
+        if not guild.allow_ext_lang:
+            query = query.filter(lang=guild.lang)
 
     allowed = misc.channel_ratings(guild, channel)
 

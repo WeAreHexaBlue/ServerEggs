@@ -123,12 +123,16 @@ def fuzzy_score(query: str, text: str) -> float:
 FUZZY_LIMIT = 50
 FUZZY_THRESHOLD = 0.2
 
-async def fuzzy_ids(query: str, guild_id: int | None = None, allowed_ratings: list[Rating] | None = None) -> list[int]:
+async def fuzzy_ids(query: str, guild_id: int | None = None, allowed_ratings: list[Rating] | None = None, lang: str | None = None) -> list[int]:
     where = ["secret = false"]
 
     if allowed_ratings:
         values = ", ".join(f"'{rating.value if hasattr(rating, 'value') else rating}'" for rating in allowed_ratings)
         where.append(f"rating IN ({values})")
+
+    if lang is not None:
+        lang_literal = lang.replace("'", "''")
+        where.append(f"lang = '{lang_literal}'")
 
     if guild_id is not None:
         where.append(f"id NOT IN (SELECT egg_id FROM guild_filtered_eggs WHERE guild_id = {guild_id})")
@@ -178,6 +182,10 @@ class Eggstras(commands.Cog):
                 await ctx.followup.send(myloc["rating_not_allowed"].format(check))
                 return
 
+            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+                await ctx.followup.send(myloc["lang_not_allowed"].format(check))
+                return
+
             loop = [egg]
         else:
             query = field.all().prefetch_related("creator", "origin")
@@ -193,6 +201,9 @@ class Eggstras(commands.Cog):
 
             if secret:
                 query = query.filter(secret=True)
+
+            if guild and not guild.allow_ext_lang:
+                query = query.filter(lang=guild.lang)
 
             loop = await query
 
@@ -261,6 +272,9 @@ class Eggstras(commands.Cog):
         base = base.filter(secret=False)
         base = base.filter(rating__in=allowed)
 
+        if guild and not guild.allow_ext_lang:
+            base = base.filter(lang=guild.lang)
+
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
             if filtered:
@@ -282,7 +296,8 @@ class Eggstras(commands.Cog):
                 egg.id,
             ))
         else:
-            ids = await fuzzy_ids(query, ctx.guild.id if ctx.guild else None, allowed)
+            lang_filter = guild.lang if (guild and not guild.allow_ext_lang) else None
+            ids = await fuzzy_ids(query, ctx.guild.id if ctx.guild else None, allowed, lang_filter)
 
             if ids:
                 fetched = {egg.id: egg for egg in await base.filter(id__in=ids)}

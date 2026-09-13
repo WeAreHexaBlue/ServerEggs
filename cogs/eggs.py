@@ -28,6 +28,7 @@ class Eggs(commands.Cog):
         link: str | None = None,
         rating: Rating | None = None,
         secret: bool | None = None,
+        lang: str | None = None,
         skip_ratelimit: bool = False
     ):
         rating = utils.coerce_rating(rating)
@@ -45,7 +46,7 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["empty_create"])
                 return
         else:
-            if text is None and file is None and link is None and secret is None and rating is None:
+            if text is None and file is None and link is None and secret is None and rating is None and lang is None:
                 await ctx.followup.send(myloc["empty_edit"])
                 return
 
@@ -68,6 +69,14 @@ class Eggs(commands.Cog):
         if file and link:
             await ctx.followup.send(myloc["toomanyattach"])
             return
+
+        if lang:
+            if lang not in self.bot.locales:
+                await ctx.followup.send(myloc["bad_lang"])
+                return
+            if guild and not guild.allow_ext_lang and lang != guild.lang:
+                await ctx.followup.send(myloc["lang_not_allowed"])
+                return
 
         user, _ = await User.get_or_create(id=ctx.user.id)
         if user.banned:
@@ -177,6 +186,7 @@ class Eggs(commands.Cog):
                 attach_path=attach_path,
                 attach_hash=attach_hash,
                 attach_link=attach_link,
+                lang=lang or (guild.lang if guild else "en"),
                 rating=rating,
                 secret=secret or False,
                 creator=user,
@@ -196,6 +206,7 @@ class Eggs(commands.Cog):
                 egg.attach_link = attach_link
             if rating is not None: egg.rating = rating
             if secret is not None: egg.secret = secret
+            if lang is not None: egg.lang = lang
 
             await egg.save()
 
@@ -215,13 +226,14 @@ class Eggs(commands.Cog):
         )
 
     @app.command(name="create", description="create_description")
-    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating", secret="create_secret")
-    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description", secret="create_secret_description")
+    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating", secret="create_secret", lang="create_lang")
+    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description", secret="create_secret_description", lang="create_lang_description")
     @app.choices(rating=[
         app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
         app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
         app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
     ])
+    @app.autocomplete(lang=utils.lang_autocomplete)
     @app.allowed_installs(guilds=True, users=False)
     @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     async def create(
@@ -231,18 +243,20 @@ class Eggs(commands.Cog):
         file: discord.Attachment | None,
         link: str | None,
         rating: Rating | None,
-        secret: bool | None
+        secret: bool | None,
+        lang: str | None
     ):
-        await self.create_or_edit(ctx, None, text, file, link, rating, secret)
+        await self.create_or_edit(ctx, None, text, file, link, rating, secret, lang)
 
     @app.command(name="lay", description="create_description")
-    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating")
-    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description")
+    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating", secret="create_secret", lang="create_lang")
+    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description", secret="create_secret_description", lang="create_lang_description")
     @app.choices(rating=[
         app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
         app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
         app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
     ])
+    @app.autocomplete(lang=utils.lang_autocomplete)
     @app.allowed_installs(guilds=True, users=False)
     @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     async def lay(
@@ -252,9 +266,10 @@ class Eggs(commands.Cog):
         file: discord.Attachment | None,
         link: str | None,
         rating: Rating | None,
-        secret: bool | None
+        secret: bool | None,
+        lang: str | None
     ):
-        await self.create_or_edit(ctx, None, text, file, link, rating, secret)
+        await self.create_or_edit(ctx, None, text, file, link, rating, secret, lang)
 
     async def send(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         if not await utils.ensure_not_ratelimited(ctx, "read"):
@@ -284,8 +299,12 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["secret"].format(id))
                 return
 
-            if ctx.guild and await egg.filtered_in.filter(id=ctx.guild.id).exists():
+            if guild and await egg.filtered_in.filter(id=ctx.guild.id).exists():
                 await ctx.followup.send(myloc["filtered"].format(id, ctx.guild.name))
+                return
+            
+            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+                await ctx.followup.send(myloc["lang_not_allowed"].format(id))
                 return
         else:
             if rating and rating not in allowed:
@@ -348,7 +367,7 @@ class Eggs(commands.Cog):
 
         await ctx.response.defer()
 
-        lines = await self.bot.fetch_lines(ctx)
+        lines, myloc = await self.bot.get_section(ctx, "eggs/send")
 
         guild = await Guild.get_or_none(id=ctx.guild.id) if ctx.guild else None
         allowed = utils.channel_ratings(guild, ctx.channel)
@@ -357,7 +376,16 @@ class Eggs(commands.Cog):
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
 
-        egg = await Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False).order_by("-created_at").prefetch_related("creator", "origin").first()
+        query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False)
+
+        if guild and not guild.allow_ext_lang:
+            query = query.filter(lang=guild.lang)
+
+        egg = await query.order_by("-created_at").prefetch_related("creator", "origin").first()
+
+        if egg is None:
+            await ctx.followup.send(myloc["no_egg"])
+            return
 
         creator = await utils.get_or_fetch_user(self.bot, egg.creator.id)
 
@@ -369,13 +397,14 @@ class Eggs(commands.Cog):
         )
 
     @app.command(name="edit", description="edit_description")
-    @app.rename(id="edit_id", text="edit_text", file="edit_file", link="edit_link", rating="edit_rating", secret="edit_secret")
-    @app.describe(id="edit_id_description", text="edit_text_description", file="edit_file_description", link="edit_link_description", rating="edit_rating_description", secret="edit_secret_description")
+    @app.rename(id="edit_id", text="edit_text", file="edit_file", link="edit_link", rating="edit_rating", secret="edit_secret", lang="edit_lang")
+    @app.describe(id="edit_id_description", text="edit_text_description", file="edit_file_description", link="edit_link_description", rating="edit_rating_description", secret="edit_secret_description", lang="edit_lang_description")
     @app.choices(rating=[
         app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
         app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
         app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
     ])
+    @app.autocomplete(lang=utils.lang_autocomplete)
     @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
     async def edit(
         self,
@@ -384,9 +413,10 @@ class Eggs(commands.Cog):
         file: discord.Attachment | None,
         link: str | None,
         rating: Rating | None,
-        secret: bool | None
+        secret: bool | None,
+        lang: str | None
     ):
-        await self.create_or_edit(ctx, id, text, file, link, rating, secret)
+        await self.create_or_edit(ctx, id, text, file, link, rating, secret, lang)
 
     async def confirm_flow(self, ctx: discord.Interaction, path: str, id: int, view_class, *, check_manage: bool = False):
         if not await utils.ensure_not_ratelimited(ctx, "report"):
