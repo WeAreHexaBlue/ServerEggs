@@ -4,14 +4,10 @@
         "battles": {
             "battle": {
                 "no_egg": "Non ci sono abbastanza **Uova** per iniziare una battaglia!",
-                "not_found": "$common.not_found",
-                "rating_not_allowed": "$eggstras.loop.rating_not_allowed",
                 "same_egg": "Non puoi usare lo stesso **Uovo** per entrambi i combattenti!",
                 "begin_random": "## Inizia la battaglia!\n**__A__**: **Uovo n. {0}**\n**__B__**: **Uovo n. {1}**",
                 "begin_challenge": "## Inizia la battaglia!\n**__A__**: **Uovo n. {0}**, che combatte per {2}!\n**__B__**: **Uovo n. {1}**, che combatte per {3}!",
                 "eggn": "Uovo n. {0} ({1})",
-                "creator": "$eggs.send.creator",
-                "unknown_creator": "$eggs.send.unknown_creator",
                 "vote": "Vota {0}",
                 "voted": "Il tuo voto è stato registrato! Puoi cambiarlo fino alla fine della battaglia.",
                 "ended": "Questa battaglia è già finita.",
@@ -25,9 +21,7 @@
             "challenge": {
                 "self": "Non puoi sfidarti da solo!",
                 "bot": "Non puoi sfidare un bot!",
-                "not_found": "$common.not_found",
                 "not_your_egg": "Non hai né creato né collezionato l'**Uovo n. {0}**, quindi non puoi usarlo per combattere.",
-                "rating_not_allowed": "$eggstras.loop.rating_not_allowed",
                 "empty_pool": "Non hai alcun **Uovo** che possa combattere! Creane o collezionane.",
                 "prompt": "{0}, sei statə sfidatə a una **battaglia tra Uova** da **{1}**!\nAccetta qui sotto, e scegli quale delle tue **Uova** (create o collezionate) combatterà, oppure lascialo al caso.",
                 "sent": "Sfida inviata con successo.",
@@ -52,14 +46,12 @@
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
             },
             "allow-ext-lang": {
-                "already": "$common.already",
                 "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{0}`)!"
             },
             "server-description": {
                 "success": "Impostata la descrizione del server:"
             },
             "privacy": {
-                "already": "$common.already",
                 "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/configura privacy` nei [miei DM](<https://discord.com/users/886686500845138041>).",
                 "missing_invite_perms": "A **Server Eggs** manca il permesso **Creare Invito**, che è necessario per questa operazione.",
                 "success": "Privacy impostata su {0} con successo.",
@@ -67,26 +59,21 @@
                 "private": "privato"
             },
             "log": {
-                "already": "$common.already",
                 "missing_perms": "Non ho il permesso di scrivere i registri lì!",
                 "success": "Canale di registro Uova impostato su {0} con successo."
             },
             "allowed-ratings": {
-                "already": "$common.already",
                 "no_changes": "Non specificato alcuna modifica.",
                 "no_explicit_in_normal": "Non puoi permettere le **Uova** **Esplicite** nei **canali per tutte le età**.",
                 "success": "Modifiche applicate con successo."
             },
             "join-button": {
-                "already": "$common.already",
                 "success": "Visibilità del tasto \"Unisciti al Server d'Origine\" impostata su `{0}` con successo."
             },
             "battle-time": {
-                "already": "$common.already",
                 "success": "Impostato il tempo di scadenza delle battaglie a `{0}` minuti con successo."
             },
             "channel-rating": {
-                "already": "$common.already",
                 "success": "Impostata la classificazione predefinita per {0} su `{1}`."
             }
         },
@@ -97,8 +84,6 @@
                 "rating_not_allowed": "Non è possibile creare o modificare un **Uovo** con questa **classificazione** in questo canale.",
                 "toomanyattach": "Non puoi usare sia `file` che `link` allo stesso tempo.\nScegli tra i due.",
                 "banned": "Ti è stato **tolto il permesso** di creare o modificare **Uova**.\n*Al momento* non è possibile fare ricorso.",
-                "not_found": "$common.not_found",
-                "cannot": "$common.cannot",
                 "supported_only": "Puoi **solo** allegare **immagini** (`gif`, `png`, `jpg`, `jpeg`, `webp`), **video** (`mp4`, `webm`), o **audio** (`mp3`, `ogg`, `wav`, `opus`, `m4a`).",
                 "invalid_url": "Il parametro `link` specificato *non* porta a nessun **formato multimediale supportato** (immagine, video, audio).",
                 "could_not_scan": "Non è stato possibile ottenere il contenuto multimediale per il controllo dei contenuti illegali.",
@@ -111,7 +96,6 @@
                 "title": "Uovo n. {0} {1}!",
                 "created": "creato",
                 "edited": "modificato",
-                "show_extra_attachment": "$common.show_extra_attachment",
                 "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate](https://hosted.weblate.org/projects/seggs)!",
                 "lang_not_allowed": "**Non puoi** usare una lingua che non sia l'**Italiano** in questo server."
             },
@@ -126,12 +110,6 @@
                 "text_placeholder": "Inserisci il testo dell'Uovo qui...",
                 "secret": "Segna come Segreto",
                 "secret_desc": "Fare sì che questo Uovo sia ottenibile solo casualmente?",
-                "rating": "$rating.rating",
-                "rating_desc": "$rating.rating_desc",
-                "rating_placeholder": "$rating.rating_placeholder",
-                "rating_safe": "$rating.safe",
-                "rating_questionable": "$rating.questionable",
-                "rating_explicit": "$rating.explicit",
                 "continued": "Passato alla creazione dell'**Uovo** da questo messaggio."
             },
             "send": {
@@ -155,42 +133,26 @@
                 "origin_desc": "Descrizione",
                 "button": {
                     "origin": "Unisciti al Server d'Origine",
-                    "creator": "Visualizza il Profilo del Creatore",
-                    "show_extra_attachment": "$common.show_extra_attachment",
-                    "report": "$common.report"
+                    "creator": "Visualizza il Profilo del Creatore"
                 },
                 "lang_not_allowed": "L'**Uovo n. {0}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**."
             },
             "delete": {
-                "not_found": "$common.not_found",
-                "cannot": "$common.cannot",
                 "ready": {
                     "title": "Elimina Uovo #{0}",
-                    "question": "Sei sicuro di voler eliminare questo **Uovo**?",
-                    "content": "$common.ready.content",
-                    "no_content": "$common.ready.no_content",
-                    "link": "$common.ready.link"
+                    "question": "Sei sicuro di voler eliminare questo **Uovo**?"
                 },
                 "confirm": "Conferma Eliminazione",
-                "show_extra_attachment": "$common.show_extra_attachment",
-                "cancel": "$common.cancel",
                 "success": "L'**Uovo n. {0}** è stato eliminato con successo.",
                 "cancelled": "Eliminazione annullata."
             },
             "report": {
-                "not_found": "$common.not_found",
                 "ready": {
                     "title": "Segnala l'Uovo n. {0}",
-                    "question": "Sei sicuro di voler segnalare questo **Uovo**?",
-                    "content": "$common.ready.content",
-                    "no_content": "$common.ready.no_content",
-                    "link": "$common.ready.link"
+                    "question": "Sei sicuro di voler segnalare questo **Uovo**?"
                 },
                 "confirm": "Inizia Segnalazione",
-                "show_extra_attachment": "$common.show_extra_attachment",
-                "cancel": "$common.cancel",
                 "cancelled": "Segnalazione annullata.",
-                "title": "$eggs.report.ready.title",
                 "rule": "Motivo della Segnalazione",
                 "rule_desc": "Quale regola infrange quest'Uovo?",
                 "rule_placeholder": "Seleziona il motivo della segnalazione...",
@@ -215,14 +177,10 @@
                 "rating_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **classificazione** non è permessa in questo canale.",
                 "rating_not_allowed_filter": "Non puoi filtrare per questa **classificazione** in questo canale.",
                 "empty": "Non ci sono **Uova** con questi criteri!",
-                "show_extra_attachment": "$common.show_extra_attachment",
-                "not_yours": "$common.not_yours",
                 "lang_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **lingua** non è permessa in questo server."
             },
             "search": {
-                "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{0}\"**.",
-                "show_extra_attachment": "$common.show_extra_attachment",
-                "not_yours": "$common.not_yours"
+                "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{0}\"**."
             },
             "leaderboard": {
                 "you": " **__[TU]__**",
@@ -299,15 +257,11 @@
         "log": {
             "log": "**{0}** ({1}) ha {2} l'**Uovo n. {3}**",
             "afterdel": "**{0}** ({1}) aveva {2} l'**Uovo n. {3}**, ma è stato eliminato.",
-            "show_extra_attachment": "$common.show_extra_attachment",
-            "change_rating": "$rating.title",
             "delete": "Elimina",
-            "report": "$common.report",
             "deleted": "Eliminato l'**Uovo n. {0}**."
         },
         "mod": {
             "filter": {
-                "not_found": "$common.not_found",
                 "unfiltered": "**Rimossi i filtri** dall'**Uovo n. {0}** con successo!\nOra può **tornare ad apparire** in questo server.",
                 "filtered": "**Filtrato** l'**Uovo n. {0}** con successo!\nOra **non potrà più apparire** in questo server."
             }
