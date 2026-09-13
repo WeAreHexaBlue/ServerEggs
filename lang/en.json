@@ -397,7 +397,7 @@
 
     "server-description": "server-description",
     "server-description_description": "Set an enticing server description to convince people to join.",
-    "server-description_desc": "desc",
+    "server-description_desc": "description",
     "server-description_desc_description": "The new description.",
 
     "privacy": "privacy",
