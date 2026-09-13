@@ -8,7 +8,7 @@
                 "begin_random": "## Gevecht Begonnen!\n**__A__**: **Ei #{0}**\n**__B__**: **Ei #{1}**",
                 "begin_challenge": "## Gevecht begonnen!\n**__A__**: **Ei #{0}**, vecht voor {2}!\n**__B__**: **Ei #{1}**, vecht voor {3}!",
                 "eggn": "Ei #{0} ({1})",
-                "vote": "Stem{0}",
+                "vote": "Stem {0}",
                 "voted": "Jouw stem werd geteld! Je kan van kant veranderen totdat het gevecht eindigt.",
                 "ended": "Dit gevecht is al geëindigd.",
                 "show": "Toon Bijlage voor {0}",
@@ -24,7 +24,8 @@
                 "declined": "De challenge was **geweigerd**.",
                 "expired": "Deze challenge is verlopen zonder een antwoord.",
                 "modal_title": "Kies jouw vechter-Ei",
-                "modal_id": "Ei-ID"
+                "modal_id": "Ei-ID",
+                "invalid_egg": "**\"{0}\"** is geen geldig **Ei-ID**."
             }
         },
         "config": {
@@ -81,5 +82,10 @@
     "lay": "leg",
     "edit_secret": "geheim",
     "leaderboard_collections": "collecties",
-    "language_name": "Nederlands"
+    "language_name": "Nederlands",
+    "leaderboard_creations_description": "Zie wie de meeste Eieren heeft gecreëerd.",
+    "leaderboard_description": "Bekijk scoreboard voor verschillende stats.",
+    "lang_default": "Server Standaardinstelling",
+    "log_channel": "kanaal",
+    "log_channel_description": "Het kanaal waar nieuwe Eieren worden geregistreerd."
 }
