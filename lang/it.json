@@ -1,6 +1,5 @@
 {
     "language_name": "Italiano",
-
     "lines": {
         "battles": {
             "battle": {
@@ -339,61 +338,49 @@
             "not_yours": "Solo l'**utente che ha eseguito il comando** può navigare il loop delle **Uova**."
         }
     },
-
     "help": "aiuto",
     "help_description": "Ottieni informazioni riguardanti Server Eggs o un comando.",
     "help_about": "riguardo-a",
     "help_about_description": "Il comando di cui ricevere informazioni a riguardo.",
-
     "donate": "dona",
     "donate_description": "Sostieni lo sviluppo di Server Eggs!",
-
     "battle": "battaglia",
     "battle_description": "Fai iniziare una battaglia casuale tra Uova.",
     "battle_a": "a",
     "battle_a_description": "L'ID del primo Uovo in battaglia.",
     "battle_b": "b",
     "battle_b_description": "L'ID del secondo Uovo in battaglia.",
-
     "challenge": "sfida",
     "challenge_description": "Sfida un altro utente a una battaglia tra Uova.",
     "challenge_against": "contro",
     "challenge_against_description": "L'utente che vuoi sfidare.",
     "challenge_using": "con",
     "challenge_using_description": "L'ID di un Uovo che hai creato o collezionato da portare in battaglia.",
-
     "config": "configura",
     "config_description": "Comandi di configurazione.",
-
     "lang": "lingua",
     "lang_description": "Imposta la lingua delle risposte. Nei server occorre il permesso Gestisci Server.",
     "lang_language": "lingua",
     "lang_language_description": "La lingua da impostare.",
     "lang_default": "Predefinita dal Server",
-
     "allow-ext-lang": "permetti-lingua-personale",
     "allow-ext-lang_description": "Modifica l'impostazione riguardante l'utilizzo delle lingue esterne al server.",
     "allow-ext-lang_allow": "permetti",
     "allow-ext-lang_allow_description": "Vuoi permettere l'utilizzo delle lingue esterne a questo server.",
-
     "server-description": "descrizione-server",
     "server-description_description": "Imposta una descrizione accattivante del server che convinca la gente a unirsi.",
     "server-description_desc": "desc",
     "server-description_desc_description": "La nuova descrizione.",
-
     "privacy": "privacy",
     "privacy_description": "Modifica l'impostazione della privacy. Nei server occorre il permesso Gestisci Server.",
     "privacy_public": "pubblico",
     "privacy_public_description": "Vuoi impostare il server o l'utente su pubblico.",
-
     "log": "registro",
     "log_description": "Imposta un canale da usare come registro delle Uova create qui.",
     "log_channel": "canale",
     "log_channel_description": "Il canale da utilizzare come registro.",
-
     "allowed-ratings": "classificazioni-permesse",
     "allowed-ratings_description": "Impostazioni per permettere certe classificazioni in certi canali.",
-
     "allowed-ratings_normal": "per-tutte-le-età",
     "allowed-ratings_normal_description": "Modifica le classificazioni permesse nei canali per tutte le età.",
     "allowed-ratings_normal_s": "per-tutti",
@@ -402,7 +389,6 @@
     "allowed-ratings_normal_q_description": "Vuoi permettere le Uova dubbiose.",
     "allowed-ratings_normal_e": "esplicite",
     "allowed-ratings_normal_e_description": "Vuoi permettere le Uova esplicite.",
-
     "allowed-ratings_nsfw": "per-maggiorenni",
     "allowed-ratings_nsfw_description": "Modifica le classificazioni permesse nei canali per maggiorenni.",
     "allowed-ratings_nsfw_s": "per-tutti",
@@ -411,24 +397,20 @@
     "allowed-ratings_nsfw_q_description": "Vuoi permettere le Uova dubbiose.",
     "allowed-ratings_nsfw_e": "esplicite",
     "allowed-ratings_nsfw_e_description": "Vuoi permettere le Uova esplicite.",
-
     "join-button": "tasto-unisciti",
     "join-button_description": "Modifica la visibilità del tasto \"Unisciti al Server d'Origine\" sulle Uova.",
     "join-button_viewable": "visibile",
     "join-button_viewable_description": "Vuoi che il tasto sia visibile.",
-
     "battle-time": "scadenza-battaglie",
     "battle-time_description": "Modifica il tempo di scadenza delle battaglie.",
     "battle-time_minutes": "minuti",
     "battle-time_minutes_description": "Quanti minuti dovrebbe durare una battaglia?",
-
     "channel-rating": "classificazione-canale",
     "channel-rating_description": "Imposta la classificazione predefinita per le Uova create in un canale.",
     "channel-rating_channel": "canale",
     "channel-rating_channel_description": "Il canale per cui impostare la classificazione.",
     "channel-rating_rating": "classificazione",
     "channel-rating_rating_description": "La nuova classificazione predefinita per quel canale.",
-
     "create": "crea",
     "create_description": "Crea un Uovo.",
     "create_text": "testo",
@@ -441,30 +423,22 @@
     "create_rating_description": "La classificazione del contenuto dell'Uovo.",
     "create_secret": "segreto",
     "create_secret_description": "L'Uovo deve apparire solo casualmente.",
-
     "lay": "deponi",
-
     "eggify": "Uov-izza",
-
     "rating_safe": "Per tutti",
     "rating_questionable": "Dubbioso",
     "rating_explicit": "Esplicito (18+)",
-
     "get": "ricevi",
     "get_description": "Ricevi un Uovo.",
     "get_id": "id",
     "get_id_description": "L'ID di un Uovo specifico che stai cercando. Se lasciato vuoto, l'Uovo sarà random.",
     "get_rating": "classificazione",
     "get_rating_description": "Filtra per una classificazione dei contenuti specifica.",
-
     "egg": "uovo",
-
     "nsfw": "vm18",
     "nsfw_description": "Ricevi un Uovo Esplicito casuale.",
-
     "latest": "recente",
     "latest_description": "Ricevi l'Uovo creato più recentemente (senza collezionarlo).",
-
     "edit": "modifica",
     "edit_description": "Modifica un Uovo che ti è permesso gestire.",
     "edit_id": "id",
@@ -479,19 +453,15 @@
     "edit_rating_description": "La classificazione del contenuto dell'Uovo.",
     "edit_secret": "segreto",
     "edit_secret_description": "L'Uovo deve apparire solo casualmente.",
-
     "report": "segnala",
     "report_description": "Segnala un Uovo.",
     "report_id": "id",
     "report_id_description": "L'ID dell'Uovo da segnalare.",
-
     "delete": "elimina",
     "delete_description": "Elimina un Uovo che ti è permesso gestire.",
     "delete_id": "id",
     "delete_id_description": "L'ID dell'Uovo da eliminare.",
-
     "crack": "rompi",
-
     "collected": "collezione",
     "collected_description": "Osserva la tua collezione di Uova, o controlla se hai già collezionato un Uovo specifico.",
     "collected_check": "controlla",
@@ -500,7 +470,6 @@
     "collected_rating_description": "Vuoi filtrare la tua collezione per una classificazione specifica.",
     "collected_secret": "solo-segreti",
     "collected_secret_description": "Vuoi filtrare la tua collezione per \"solo segreti\".",
-
     "my-eggs": "le-mie-uova",
     "my-eggs_description": "Osserva le Uova che hai creato, o controlla un Uovo specifico creato da te.",
     "my-eggs_check": "controlla",
@@ -509,32 +478,24 @@
     "my-eggs_rating_description": "Vuoi filtrare le tue creazioni per una classificazione specifica.",
     "my-eggs_secret": "solo-segreti",
     "my-eggs_secret_description": "Vuoi filtrare le tue creazioni per \"solo segreti\".",
-
     "search": "cerca",
     "search_description": "Cerca un Uovo dal suo testo.",
     "search_text": "testo",
     "search_text_description": "Il testo da cercare.",
-
     "leaderboard": "classifica",
     "leaderboard_description": "Vedi le classifiche per varie statistiche",
-
     "leaderboard_collections": "collezioni",
     "leaderboard_collections_description": "Vedi chi ha collezionato più Uova",
-
     "leaderboard_creations": "creazioni",
     "leaderboard_creations_description": "Vedi chi ha creato più Uova.",
-
     "leaderboard_battles": "battaglie",
     "leaderboard_battles_description": "Vedi quali Uova hanno vinto più battaglie.",
-
     "leaderboard_battlers": "combattenti",
     "leaderboard_battlers_description": "Vedi chi ha vinto più battaglie.",
-
     "filter": "filtra",
     "filter_description": "Vieta a un Uovo specifico di apparire in questo server.",
     "filter_id": "id",
     "filter_id_description": "L'ID dell'Uovo per cui commutare lo stato del filtro.",
-
     "ping": "ping",
     "ping_description": "Ottiene il ritardo di connessione di Server Eggs."
 }
