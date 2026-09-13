@@ -111,7 +111,9 @@
                 "title": "Uovo n. {0} {1}!",
                 "created": "creato",
                 "edited": "modificato",
-                "show_extra_attachment": "$common.show_extra_attachment"
+                "show_extra_attachment": "$common.show_extra_attachment",
+                "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate](https://hosted.weblate.org/projects/seggs)!",
+                "lang_not_allowed": "**Non puoi** usare una lingua che non sia l'**Italiano** in questo server."
             },
             "eggify": {
                 "no_attach": "Non puoi **Uovizzare** un messaggio che non contiene né un **allegato** né un **link**.",
@@ -156,7 +158,8 @@
                     "creator": "Visualizza il Profilo del Creatore",
                     "show_extra_attachment": "$common.show_extra_attachment",
                     "report": "$common.report"
-                }
+                },
+                "lang_not_allowed": "L'**Uovo n. {0}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**."
             },
             "delete": {
                 "not_found": "$common.not_found",
@@ -213,7 +216,8 @@
                 "rating_not_allowed_filter": "Non puoi filtrare per questa **classificazione** in questo canale.",
                 "empty": "Non ci sono **Uova** con questi criteri!",
                 "show_extra_attachment": "$common.show_extra_attachment",
-                "not_yours": "$common.not_yours"
+                "not_yours": "$common.not_yours",
+                "lang_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **lingua** non è permessa in questo server."
             },
             "search": {
                 "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{0}\"**.",
@@ -321,7 +325,8 @@
             "safe": "Sicuro",
             "questionable": "Dubbio",
             "explicit": "Esplicito",
-            "success": "Classificazione dell'**Uovo n. {0}** cambiata a **{1}**."
+            "success": "Classificazione dell'**Uovo n. {0}** cambiata a **{1}**.",
+            "invalid": "Classificazione sconosciuta. Scegli tra le opzioni suggerite."
         },
         "common": {
             "show_extra_attachment": "Mostra Allegato Extra",
@@ -336,6 +341,14 @@
                 "link": "Link Allegato"
             },
             "not_yours": "Solo l'**utente che ha eseguito il comando** può navigare il loop delle **Uova**."
+        },
+        "lang": {
+            "title": "Cambia Lingua",
+            "lang": "Lingua",
+            "lang_desc": "In che lingua è il contenuto di questo Uovo?",
+            "lang_placeholder": "Seleziona la lingua...",
+            "invalid": "Lingua sconosciuta. Scegli tra le opzioni suggerite.",
+            "success": "Lingua dell'**Uovo #{0}** cambiata a **{1}**."
         }
     },
     "help": "aiuto",
@@ -369,7 +382,7 @@
     "allow-ext-lang_allow_description": "Vuoi permettere l'utilizzo delle lingue esterne a questo server.",
     "server-description": "descrizione-server",
     "server-description_description": "Imposta una descrizione accattivante del server che convinca la gente a unirsi.",
-    "server-description_desc": "desc",
+    "server-description_desc": "descrizione",
     "server-description_desc_description": "La nuova descrizione.",
     "privacy": "privacy",
     "privacy_description": "Modifica l'impostazione della privacy. Nei server occorre il permesso Gestisci Server.",
@@ -497,5 +510,9 @@
     "filter_id": "id",
     "filter_id_description": "L'ID dell'Uovo per cui commutare lo stato del filtro.",
     "ping": "ping",
-    "ping_description": "Ottiene il ritardo di connessione di Server Eggs."
+    "ping_description": "Ottiene il ritardo di connessione di Server Eggs.",
+    "create_lang": "lingua",
+    "create_lang_description": "La lingua usata nel contenuto dell'Uovo.",
+    "edit_lang": "lingua",
+    "edit_lang_description": "La lingua usata nel contenuto dell'Uovo."
 }
