@@ -26,30 +26,47 @@ async def egg_delete(egg):
 
     await egg.delete()
 
-async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exclude_ids = None):
-    query = Egg.all()
-
+async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exclude_ids = None, secret_chance: float = 0.0):
+    filtered_ids: list[int] = []
     if guild:
-        filtered = await Egg.filter(filtered_in__id=guild.id).values_list("id", flat=True)
-        if filtered:
-            query = query.filter(id__not_in=filtered)
-        
-        if not guild.allow_ext_lang:
-            query = query.filter(lang=guild.lang)
+        filtered_ids = list(await Egg.filter(filtered_in__id=guild.id).values_list("id", flat=True))
 
-    allowed = misc.channel_ratings(guild, channel)
+    def build_query(secret: bool):
+        query = Egg.all()
 
-    if rating:
-        query = query.filter(rating=rating)
-    else:
-        query = query.filter(rating__in=allowed)
+        if guild:
+            if filtered_ids:
+                query = query.filter(id__not_in=filtered_ids)
 
-    if exclude_ids:
-        query = query.exclude(id__in=list(exclude_ids))
+            if not guild.allow_ext_lang:
+                query = query.filter(lang=guild.lang)
 
-    count = await query.count()
+        allowed = misc.channel_ratings(guild, channel)
 
-    if count == 0:
-        return None
+        if rating:
+            query = query.filter(rating=rating)
+        else:
+            query = query.filter(rating__in=allowed)
 
-    return await query.offset(random.randint(0, count - 1)).prefetch_related("creator", "origin").first()
+        query = query.filter(secret=secret)
+
+        if exclude_ids:
+            query = query.exclude(id__in=list(exclude_ids))
+
+        return query
+
+    async def pick(secret: bool):
+        query = build_query(secret)
+        count = await query.count()
+
+        if count == 0:
+            return None
+
+        return await query.offset(random.randint(0, count - 1)).prefetch_related("creator", "origin").first()
+
+    if secret_chance > 0 and random.random() < secret_chance:
+        secret_egg = await pick(True)
+        if secret_egg is not None:
+            return secret_egg
+
+    return await pick(False)

@@ -10,4 +10,5 @@ from .misc import *
 from .mod import *
 from .ratelimit import *
 from .scan import *
+from .sku import *
 from .translator import *

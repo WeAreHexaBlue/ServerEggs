@@ -311,7 +311,8 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["rating_not_allowed"])
                 return
 
-            egg = await utils.random_egg(guild, ctx.channel, rating=rating)
+            is_supporter = await utils.is_user_supporter(ctx)
+            egg = await utils.random_egg(guild, ctx.channel, rating=rating, secret_chance=0.25 if is_supporter else 0.02)
 
             if egg is None:
                 await ctx.followup.send(myloc["no_egg"])
