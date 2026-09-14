@@ -39,7 +39,7 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "Necesitaras el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages de usuario, pero **siempre funcionara en MDs**.",
+                "missing_perms": "Necesitaras el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages externos, pero **siempre funcionara en MDs**.",
                 "no_default": "La opción \"Predeterminados del servidor\" es para usuarios, no para servidores.",
                 "success": "¡Se ha cambiado correctamente el idioma al \"**Español**\"!"
             },
@@ -48,7 +48,22 @@
             },
             "privacy": {
                 "missing_guild_perms": "Necesitas el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste cambiar **tu propia configuracion de privacidad**, ejecuta `/config privacy` en [mis MDs](<https://discord.com/users/886686500845138041>).",
-                "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion."
+                "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion.",
+                "success": "La privacidad ha sido exitosamente cambiada a {0}.",
+                "public": "publico",
+                "private": "privado"
+            },
+            "log": {
+                "missing_perms": "No tengo permiso para escribir registros ahi!",
+                "success": "El canal de registros ha sido exitosamente cambiado a {0}."
+            },
+            "allowed-ratings": {
+                "no_changes": "No has especificado ningun cambio.",
+                "no_explicit_in_normal": "No permitiras **Huevo**s **Explicitos** en **Canales SFW**.",
+                "success": "Tus cambios han sido aplicados exitosamente."
+            },
+            "join-button": {
+                "success": "Se ha establecido correctamente la visibilidad del boton \"Unirse al servidor de Origen\" en `{0}`."
             }
         }
     },
