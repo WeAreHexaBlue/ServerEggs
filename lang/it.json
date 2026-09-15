@@ -274,7 +274,7 @@
         "rating": {
             "title": "Cambia Classificazione",
             "rating": "Classificazione",
-            "rating_desc": "Che classificazione del contenuto deve avere questo Uovo? La mancata etichettatura corretta comporterà una sanzione.",
+            "rating_desc": "Che classificazione deve avere questo Uovo? Un'etichettatura errata sarà punita.",
             "rating_placeholder": "Seleziona la classificazione...",
             "safe": "Sicuro",
             "questionable": "Dubbio",

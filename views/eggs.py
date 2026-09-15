@@ -52,6 +52,8 @@ class PreEggify(discord.ui.View):
         await ctx.response.edit_message(content=self.myloc["cancelled"], embed=None, attachments=[], view=None)
 
 class Eggify(discord.ui.Modal):
+    SERVER_DEFAULT_VALUE = "server_default"
+
     def __init__(self, bot: commands.Bot, lines: dict, text: str | None, file: discord.Attachment | None, link: str | None, *, server_default: str = "Server Default"):
         self.bot = bot
         self.lines = lines
@@ -96,7 +98,7 @@ class Eggify(discord.ui.Modal):
             component=discord.ui.Select(
                 placeholder=self.myloc["lang_placeholder"],
                 options=[
-                    discord.SelectOption(label=server_default, value="", default=True),
+                    discord.SelectOption(label=server_default, value=self.SERVER_DEFAULT_VALUE, default=True),
                     *[
                         discord.SelectOption(label=data.get("language_name", code), value=code)
                         for code, data in sorted(bot.locales.items())
@@ -116,8 +118,8 @@ class Eggify(discord.ui.Modal):
 
         await ctx.response.edit_message(content=self.myloc["continued"], view=None)
 
-        lang_raw = self.lang.component.values[0] if self.lang.component.values else ""
-        lang = lang_raw or None
+        lang_raw = self.lang.component.values[0] if self.lang.component.values else self.SERVER_DEFAULT_VALUE
+        lang = None if lang_raw in ("", self.SERVER_DEFAULT_VALUE) else lang_raw
 
         if lang is not None and lang not in self.bot.locales:
             bad_lang = self.bot.get_lines("eggs/create_edit", self.lines)["bad_lang"]
