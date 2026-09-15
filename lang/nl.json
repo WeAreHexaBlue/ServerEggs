@@ -82,10 +82,11 @@
     "lay": "leg",
     "edit_secret": "geheim",
     "leaderboard_collections": "collecties",
-    "language_name": "Nederlands",
+    "language_name": "Engels",
     "leaderboard_creations_description": "Zie wie de meeste Eieren heeft gecreëerd.",
     "leaderboard_description": "Bekijk scoreboard voor verschillende stats.",
     "lang_default": "Server Standaardinstelling",
     "log_channel": "kanaal",
-    "log_channel_description": "Het kanaal waar nieuwe Eieren worden geregistreerd."
+    "log_channel_description": "Het kanaal waar nieuwe Eieren worden geregistreerd.",
+    "leaderboard_collections_description": "Zie wie de grootste Ei collectie heeft."
 }
