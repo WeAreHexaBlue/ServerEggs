@@ -19,7 +19,7 @@ from tortoise_config import TORTOISE_ORM
 
 dotenv.load_dotenv()
 
-VERSION = "2.3.1"
+VERSION = "2.3.2"
 
 DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 

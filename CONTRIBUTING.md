@@ -11,7 +11,7 @@ We ask that you generally **adhere** to the same **coding style** as the other c
 LLM contributions are **allowed**, *but*:
 - The **human** submitter takes **full responsibility** for the LLM's code, and declares that they **have thoroughly reviewed and tested** the resulting codebase.
 - You must **disclose information** about the **LLM that was used** on the **last paragraph** of the **commit message**, and **in your Pull Request text**:
-    - The **format** is: `LLM [<amount of help: Assist | Major>]: <model>, <effort>, <harness>, <inference provider>`
+    - The **format** is: `LLM [<amount of help: Assist | Equal | Major>]: <model>, <effort>, <harness>, <inference provider>`
     - Examples:
         ```sh
         git commit -m "feat: added something" -m "LLM [Assist]: Claude Opus 5, Ultracode, Claude Code, Anthropic"
