@@ -121,8 +121,8 @@
             "eggify": {
                 "no_attach": "You may not **Eggify** a message without an **attachment** or **link**.",
                 "ready": "Create an **Egg** from this message?",
-                "confirm": "Yes",
-                "cancel": "No",
+                "confirm": "$common.affirm",
+                "cancel": "$common.negate",
                 "cancelled": "Creation cancelled.",
                 "title": "Create Egg from Message",
                 "text": "Egg Text (optional)",
@@ -319,6 +319,18 @@
                 "filtered": "Successfully **filtered** **Egg #{0}**.\nIt will **no longer appear** in this server."
             }
         },
+        "supporter": {
+            "daily": {
+                "title": "Daily Egg #{0}"
+            },
+            "consent": {
+                "prompt": "As a **Supporter**, you get a **new Egg** in your DMs every day!\nBut, by default, **Explicit Eggs** are not part of the pool. Would you like to **include them** in your daily **Egg**s?\n\n-# By saying \"*Yes*\", you confirm that you are over 18.",
+                "allow": "$common.affirm",
+                "decline": "$common.negate",
+                "allowed": "Got it! **Explicit Eggs** may now show up in your daily **Egg**s.",
+                "declined": "Got it! Your daily **Egg**s will never feature **Explicit Eggs**."
+            }
+        },
         "utility": {
             "ping": {
                 "latency": "Latency"
@@ -355,7 +367,9 @@
                 "no_content": "[No content]",
                 "link": "Link Attachment"
             },
-            "not_yours": "Only the **original command user** can read through the **Egg** loop."
+            "not_yours": "Only the **original command user** can read through the **Egg** loop.",
+            "affirm": "Yes",
+            "negate": "No"
         }
     },
 

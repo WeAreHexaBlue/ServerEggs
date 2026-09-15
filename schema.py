@@ -80,6 +80,9 @@ class User(models.Model):
     banned = fields.BooleanField(default=False)
     public = fields.BooleanField(default=True)
 
+    allow_explicit_dms = fields.BooleanField(default=False)
+    last_daily_at = fields.DatetimeField(null=True, db_index=True)
+
     collected: fields.ManyToManyRelation["Egg"] = fields.ManyToManyField("eggs.Egg", related_name="collectors", through="user_collected_eggs")
 
     eggs = fields.ReverseRelation["Egg"]

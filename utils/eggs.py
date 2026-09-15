@@ -26,7 +26,7 @@ async def egg_delete(egg):
 
     await egg.delete()
 
-async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exclude_ids = None, secret_chance: float = 0.0):
+async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exclude_ids = None, secret_chance: float = 0.0, allowed_ratings: list[Rating] | None = None):
     filtered_ids: list[int] = []
     if guild:
         filtered_ids = list(await Egg.filter(filtered_in__id=guild.id).values_list("id", flat=True))
@@ -41,7 +41,7 @@ async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exc
             if not guild.allow_ext_lang:
                 query = query.filter(lang=guild.lang)
 
-        allowed = misc.channel_ratings(guild, channel)
+        allowed = allowed_ratings if allowed_ratings is not None else misc.channel_ratings(guild, channel)
 
         if rating:
             query = query.filter(rating=rating)

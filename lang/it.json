@@ -102,8 +102,8 @@
             "eggify": {
                 "no_attach": "Non puoi **Uovizzare** un messaggio che non contiene né un **allegato** né un **link**.",
                 "ready": "Creare un **Uovo** a partire da questo messaggio?",
-                "confirm": "Sì",
-                "cancel": "No",
+                "confirm": "$common.affirm",
+                "cancel": "$common.negate",
                 "cancelled": "Creazione annullata.",
                 "title": "Crea Uovo da un Messaggio",
                 "text": "Testo dell'Uovo (facoltativo)",
@@ -196,7 +196,7 @@
         },
         "embed": {
             "author": "Server Eggs",
-            "footer": "Server Eggs di **HexaBlue"
+            "footer": "Server Eggs di HexaBlue"
         },
         "help": {
             "general": {
@@ -266,6 +266,18 @@
                 "filtered": "**Filtrato** l'**Uovo n. {0}** con successo!\nOra **non potrà più apparire** in questo server."
             }
         },
+        "supporter": {
+            "daily": {
+                "title": "Uovo Giornaliero n. {0}"
+            },
+            "consent": {
+                "prompt": "Come **Sostenitore**, hai il diritto ad un **nuovo Uovo** nei tuoi DM ogni giorno!\nMa, di default, le **Uova** con classificazione **Esplicita** non possono apparire. Vorresti **includerle** nelle tue **Uova** giornaliere?\n\n-# Dicendo \"*Sì*\", confermi di avere almeno 18 anni.",
+                "allow": "$common.affirm",
+                "decline": "$common.negate",
+                "allowed": "Capito! D'ora in poi le **Uova Esplicite** potrebbero apparire nelle tue **Uova** giornaliere.",
+                "declined": "Capito! Le tue **Uova** giornaliere non saranno mai **Esplicite**."
+            }
+        },
         "utility": {
             "ping": {
                 "latency": "Ritardo"
@@ -294,7 +306,9 @@
                 "no_content": "[Nessun contenuto]",
                 "link": "Link Allegato"
             },
-            "not_yours": "Solo l'**utente che ha eseguito il comando** può navigare il loop delle **Uova**."
+            "not_yours": "Solo l'**utente che ha eseguito il comando** può navigare il loop delle **Uova**.",
+            "affirm": "Sì",
+            "negate": "No"
         },
         "lang": {
             "title": "Cambia Lingua",
