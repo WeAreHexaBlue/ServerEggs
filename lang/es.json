@@ -29,9 +29,9 @@
                 "not_yours": "Solo el **usuario desafiado** puede responder a este desafio.",
                 "declined": "El desafio fue **rechazado**.",
                 "expired": "Este desafio ha expirado sin su respuesta.",
-                "modal_title": "Elije tu Huevo luchador.",
+                "modal_title": "Elije tu Huevo luchador",
                 "modal_id": "ID del Huevo",
-                "modal_id_placeholder": "Dejalo vacio para elegir un huevo al azar de tu reserva.",
+                "modal_id_placeholder": "Dejalo vacio para elegir un huevo al azar de tu reserva",
                 "invalid_egg": "**\"{0}\"** no es una **ID valida de Huevos**.",
                 "same_egg": "Ese es el mismo **Huevo** que tu oponente lleva! Elije otro diferente.",
                 "accepted": "El desafio fue **aceptado**: que la batalla comienze!"
