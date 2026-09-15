@@ -1,8 +1,14 @@
 # Server Eggs Contribution Guide
 
-To **contribute to Server Eggs**, simply open a [Pull Request](https://github.com/ActuallyFlamey/ServerEggs/pulls)!
+## Contributing Code
+
+To **contribute code** to **Server Eggs**, simply open a [Pull Request](https://github.com/ActuallyFlamey/ServerEggs/pulls)!
 
 We ask that you generally **adhere** to the same **coding style** as the other contributions.
+
+## Contributing Translations
+
+To **help localize Server Eggs** in more languages, head over to [our Weblate page](https://hosted.weblate.org/projects/seggs).
 
 ## LLM Contribution Policy
 
