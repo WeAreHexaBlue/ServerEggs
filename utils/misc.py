@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
 
-from schema import Rating, default_ratings
+from schema import Rating, User, default_ratings
+
+from . import sku
 
 
 def channel_is_nsfw(channel) -> bool:
@@ -36,8 +38,14 @@ async def get_or_fetch_user(bot: commands.Bot, user_id: int):
     except (discord.NotFound, discord.HTTPException):
         return None
 
-async def beg(myloc: dict, user: discord.User):
-    try:
-        await user.send(myloc["beg"].format(user.display_name))
-    except discord.HTTPException:
-        pass
+async def beg(myloc: dict, ctx: discord.Interaction, user: User):
+    is_supporter = await sku.is_ctx_supporter(ctx)
+
+    line = myloc["beg"] if not is_supporter else myloc["beg_supporter"]
+
+    count = await user.eggs.all().count()
+    if (is_supporter and count % 90 == 0) or (not is_supporter and count % 20 == 0):
+        try:
+            await ctx.user.send(line.format(ctx.user.display_name))
+        except discord.HTTPException:
+            pass
