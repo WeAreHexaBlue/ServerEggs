@@ -5,6 +5,8 @@ import time
 import discord
 from discord import app_commands as app
 
+from . import sku
+
 
 class RateLimited(Exception):
     def __init__(self, retry_after: float, scope: str, tier: str):
@@ -13,13 +15,31 @@ class RateLimited(Exception):
         self.tier = tier
         super().__init__(f"Rate limited ({scope}/{tier}): retry in {retry_after:.1f}s")
 
-LIMITS: dict[str, dict[str, tuple[int, int]]] = {
-    "create": {"user": (3, 300), "guild": (10, 300)},
-    "search": {"user": (5, 60), "guild": (15, 60)},
-    "battle": {"user": (3, 60), "guild": (10, 60)},
-    "read": {"user": (8, 30), "guild": (30, 30)},
-    "interact": {"user": (5, 15), "guild": (20, 15)},
-    "report": {"user": (3, 300), "guild": (10, 300)},
+LIMITS = {
+    "create": {
+        "user": {"normal": (3, 300), "supporter": (6, 300)},
+        "guild": (10, 300)
+    },
+    "search": {
+        "user": {"normal": (5, 60), "supporter": (10, 60)},
+        "guild": (15, 60)
+    },
+    "battle": {
+        "user": {"normal": (3, 60), "supporter": (6, 60)},
+        "guild": (10, 60)
+    },
+    "read": {
+        "user": {"normal": (8, 30), "supporter": (16, 30)},
+        "guild": (30, 30)
+    },
+    "interact": {
+        "user": {"normal": (5, 15), "supporter": (10, 15)},
+        "guild": (20, 15)
+    },
+    "report": {
+        "user": {"normal": (3, 300), "supporter": (6, 300)}, 
+        "guild": (10, 300)
+    }
 }
 
 buckets: dict[tuple[str, str, str], collections.deque] = {}
@@ -37,12 +57,12 @@ def prune(key: tuple[str, str, str], window: int, now: float) -> collections.deq
 
     return dq
 
-def check_and_consume(user_id: int, guild_id: int | None, tier: str) -> tuple[bool, float, str]:
+def check_and_consume(user_id: int, guild_id: int | None, tier: str, is_supporter: bool = False) -> tuple[bool, float, str]:
     limits = LIMITS[tier]
     now = time.monotonic()
 
     user_key = ("user", str(user_id), tier)
-    user_max, user_window = limits["user"]
+    user_max, user_window = limits["user"]["normal"] if not is_supporter else limits["user"]["supporter"]
     user_dq = prune(user_key, user_window, now)
     if len(user_dq) >= user_max:
         return False, max(0.0, user_dq[0] + user_window - now), "user"
@@ -97,7 +117,7 @@ async def ensure_not_ratelimited(ctx: discord.Interaction, tier: str) -> bool:
         return True
 
     guild_id = ctx.guild.id if ctx.guild else None
-    allowed, retry_after, _ = check_and_consume(ctx.user.id, guild_id, tier)
+    allowed, retry_after, _ = check_and_consume(ctx.user.id, guild_id, tier, is_supporter=await sku.is_ctx_supporter(ctx))
 
     if not allowed:
         await send_ratelimited(ctx, retry_after)
@@ -111,7 +131,7 @@ def ratelimit(tier: str):
             return True
 
         guild_id = ctx.guild.id if ctx.guild else None
-        allowed, retry_after, scope = check_and_consume(ctx.user.id, guild_id, tier)
+        allowed, retry_after, scope = check_and_consume(ctx.user.id, guild_id, tier, is_supporter=await sku.is_ctx_supporter(ctx))
 
         if not allowed:
             raise RateLimited(retry_after, scope, tier)
