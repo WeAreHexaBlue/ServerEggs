@@ -1,9 +1,9 @@
 {
-    "language_name": "",
+    "language_name": "Deutsch",
     "lines": {
         "battles": {
             "battle": {
-                "no_egg": "",
+                "no_egg": "Es gibt nicht genug **Eier**, um einen Kampf zu starten!",
                 "not_found": "",
                 "rating_not_allowed": "",
                 "lang_not_allowed": "",
