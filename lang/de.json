@@ -1,0 +1,539 @@
+{
+    "language_name": "",
+    "lines": {
+        "battles": {
+            "battle": {
+                "no_egg": "",
+                "not_found": "",
+                "rating_not_allowed": "",
+                "lang_not_allowed": "",
+                "same_egg": "",
+                "begin_random": "",
+                "begin_challenge": "",
+                "eggn": "",
+                "creator": "",
+                "unknown_creator": "",
+                "vote": "",
+                "voted": "",
+                "ended": "",
+                "show": "",
+                "result_win_title": "",
+                "result_win": "",
+                "result_tie_title": "",
+                "result_tie": "",
+                "finished": ""
+            },
+            "challenge": {
+                "self": "",
+                "bot": "",
+                "not_found": "",
+                "not_your_egg": "",
+                "rating_not_allowed": "",
+                "lang_not_allowed": "",
+                "empty_pool": "",
+                "prompt": "",
+                "sent": "",
+                "accept": "",
+                "decline": "",
+                "not_yours": "",
+                "declined": "",
+                "expired": "",
+                "modal_title": "",
+                "modal_id": "",
+                "modal_id_placeholder": "",
+                "invalid_egg": "",
+                "same_egg": "",
+                "accepted": ""
+            }
+        },
+        "config": {
+            "lang": {
+                "missing_perms": "",
+                "no_default": "",
+                "invalid": "",
+                "success": ""
+            },
+            "allow-ext-lang": {
+                "already": "",
+                "success": ""
+            },
+            "server-description": {
+                "success": ""
+            },
+            "privacy": {
+                "already": "",
+                "missing_guild_perms": "",
+                "missing_invite_perms": "",
+                "success": "",
+                "public": "",
+                "private": ""
+            },
+            "log": {
+                "already": "",
+                "missing_perms": "",
+                "success": ""
+            },
+            "allowed-ratings": {
+                "already": "",
+                "no_changes": "",
+                "no_explicit_in_normal": "",
+                "success": ""
+            },
+            "join-button": {
+                "already": "",
+                "success": ""
+            },
+            "battle-time": {
+                "already": "",
+                "success": ""
+            },
+            "channel-rating": {
+                "already": "",
+                "success": ""
+            }
+        },
+        "eggs": {
+            "create_edit": {
+                "empty_create": "",
+                "empty_edit": "",
+                "rating_not_allowed": "",
+                "toomanyattach": "",
+                "bad_lang": "",
+                "lang_not_allowed": "",
+                "banned": "",
+                "not_found": "",
+                "cannot": "",
+                "supported_only": "",
+                "invalid_url": "",
+                "could_not_scan": "",
+                "processing": "",
+                "too_big": "",
+                "convert_failed": "",
+                "illegal": "",
+                "duplicate": "",
+                "beg": "",
+                "beg_supporter": "",
+                "title": "",
+                "created": "",
+                "edited": "",
+                "show_extra_attachment": ""
+            },
+            "eggify": {
+                "no_attach": "",
+                "ready": "",
+                "confirm": "",
+                "cancel": "",
+                "cancelled": "",
+                "title": "",
+                "text": "",
+                "text_placeholder": "",
+                "secret": "",
+                "secret_desc": "",
+                "rating": "",
+                "rating_desc": "",
+                "rating_placeholder": "",
+                "rating_safe": "",
+                "rating_questionable": "",
+                "rating_explicit": "",
+                "lang": "",
+                "lang_desc": "",
+                "lang_placeholder": "",
+                "continued": ""
+            },
+            "send": {
+                "not_found": "",
+                "id_rating_not_allowed": "",
+                "secret": "",
+                "filtered": "",
+                "lang_not_allowed": "",
+                "rating_not_allowed": "",
+                "no_egg": "",
+                "collection_status": "",
+                "collected": "",
+                "collections": "",
+                "battle_wins": "",
+                "wins": "",
+                "eggn": "",
+                "creator": "",
+                "unknown_creator": "",
+                "origin": "",
+                "unknown_origin": "",
+                "origin_name": "",
+                "origin_desc": "",
+                "button": {
+                    "origin": "",
+                    "creator": "",
+                    "show_extra_attachment": "",
+                    "report": ""
+                }
+            },
+            "delete": {
+                "not_found": "",
+                "cannot": "",
+                "ready": {
+                    "title": "",
+                    "question": "",
+                    "content": "",
+                    "no_content": "",
+                    "link": ""
+                },
+                "confirm": "",
+                "show_extra_attachment": "",
+                "cancel": "",
+                "success": "",
+                "cancelled": ""
+            },
+            "report": {
+                "not_found": "",
+                "ready": {
+                    "title": "",
+                    "question": "",
+                    "content": "",
+                    "no_content": "",
+                    "link": ""
+                },
+                "confirm": "",
+                "show_extra_attachment": "",
+                "cancel": "",
+                "cancelled": "",
+                "title": "",
+                "rule": "",
+                "rule_desc": "",
+                "rule_placeholder": "",
+                "rules": {
+                    "bad_rating": "",
+                    "bad_rating_desc": "",
+                    "hateful": "",
+                    "hateful_desc": "",
+                    "other": "",
+                    "other_desc": ""
+                },
+                "other": "",
+                "other_placeholder": "",
+                "success": "",
+                "already": ""
+            }
+        },
+        "eggstras": {
+            "loop": {
+                "not_collected": "",
+                "not_created": "",
+                "rating_not_allowed": "",
+                "lang_not_allowed": "",
+                "rating_not_allowed_filter": "",
+                "empty": "",
+                "show_extra_attachment": "",
+                "not_yours": ""
+            },
+            "search": {
+                "empty": "",
+                "show_extra_attachment": "",
+                "not_yours": ""
+            },
+            "leaderboard": {
+                "you": "",
+                "collections": "",
+                "creations": "",
+                "battles": "",
+                "battlers": ""
+            }
+        },
+        "error": {
+            "title": "",
+            "ratelimited": ""
+        },
+        "embed": {
+            "author": "",
+            "footer": ""
+        },
+        "help": {
+            "general": {
+                "title": "",
+                "desc": "",
+                "about": "",
+                "about_desc": "",
+                "how": "",
+                "how_desc": "",
+                "donate": "",
+                "donate_desc": "",
+                "credits": "",
+                "credits_desc": "",
+                "versions": "",
+                "versions_desc": ""
+            },
+            "create": {
+                "title": "",
+                "desc": ""
+            },
+            "get": {
+                "title": "",
+                "desc": ""
+            },
+            "edit": {
+                "title": "",
+                "desc": ""
+            },
+            "report": {
+                "title": "",
+                "desc": ""
+            },
+            "delete": {
+                "title": "",
+                "desc": ""
+            },
+            "eggify": {
+                "title": "",
+                "desc": ""
+            },
+            "collected": {
+                "title": "",
+                "desc": ""
+            },
+            "leaderboard": {
+                "title": "",
+                "desc": ""
+            },
+            "config": {
+                "title": "",
+                "desc": ""
+            },
+            "filter": {
+                "title": "",
+                "desc": ""
+            }
+        },
+        "log": {
+            "log": "",
+            "afterdel": "",
+            "show_extra_attachment": "",
+            "change_rating": "",
+            "change_lang": "",
+            "delete": "",
+            "report": "",
+            "deleted": ""
+        },
+        "mod": {
+            "filter": {
+                "not_found": "",
+                "unfiltered": "",
+                "filtered": ""
+            }
+        },
+        "supporter": {
+            "daily": {
+                "title": ""
+            },
+            "consent": {
+                "prompt": "",
+                "allow": "",
+                "decline": "",
+                "allowed": "",
+                "declined": ""
+            }
+        },
+        "utility": {
+            "ping": {
+                "latency": ""
+            }
+        },
+        "rating": {
+            "title": "",
+            "rating": "",
+            "rating_desc": "",
+            "rating_placeholder": "",
+            "safe": "",
+            "questionable": "",
+            "explicit": "",
+            "invalid": "",
+            "success": ""
+        },
+        "lang": {
+            "title": "",
+            "lang": "",
+            "lang_desc": "",
+            "lang_placeholder": "",
+            "invalid": "",
+            "success": ""
+        },
+        "common": {
+            "show_extra_attachment": "",
+            "cancel": "",
+            "not_found": "",
+            "cannot": "",
+            "already": "",
+            "report": "",
+            "ready": {
+                "content": "",
+                "no_content": "",
+                "link": ""
+            },
+            "not_yours": "",
+            "affirm": "",
+            "negate": ""
+        }
+    },
+    "help": "",
+    "help_description": "",
+    "help_about": "",
+    "help_about_description": "",
+    "donate": "",
+    "donate_description": "",
+    "battle": "",
+    "battle_description": "",
+    "battle_a": "",
+    "battle_a_description": "",
+    "battle_b": "",
+    "battle_b_description": "",
+    "challenge": "",
+    "challenge_description": "",
+    "challenge_against": "",
+    "challenge_against_description": "",
+    "challenge_using": "",
+    "challenge_using_description": "",
+    "config": "",
+    "config_description": "",
+    "lang": "",
+    "lang_description": "",
+    "lang_language": "",
+    "lang_language_description": "",
+    "lang_default": "",
+    "allow-ext-lang": "",
+    "allow-ext-lang_description": "",
+    "allow-ext-lang_allow": "",
+    "allow-ext-lang_allow_description": "",
+    "server-description": "",
+    "server-description_description": "",
+    "server-description_desc": "",
+    "server-description_desc_description": "",
+    "privacy": "",
+    "privacy_description": "",
+    "privacy_public": "",
+    "privacy_public_description": "",
+    "log": "",
+    "log_description": "",
+    "log_channel": "",
+    "log_channel_description": "",
+    "allowed-ratings": "",
+    "allowed-ratings_description": "",
+    "allowed-ratings_normal": "",
+    "allowed-ratings_normal_description": "",
+    "allowed-ratings_normal_s": "",
+    "allowed-ratings_normal_s_description": "",
+    "allowed-ratings_normal_q": "",
+    "allowed-ratings_normal_q_description": "",
+    "allowed-ratings_normal_e": "",
+    "allowed-ratings_normal_e_description": "",
+    "allowed-ratings_nsfw": "",
+    "allowed-ratings_nsfw_description": "",
+    "allowed-ratings_nsfw_s": "",
+    "allowed-ratings_nsfw_s_description": "",
+    "allowed-ratings_nsfw_q": "",
+    "allowed-ratings_nsfw_q_description": "",
+    "allowed-ratings_nsfw_e": "",
+    "allowed-ratings_nsfw_e_description": "",
+    "join-button": "",
+    "join-button_description": "",
+    "join-button_viewable": "",
+    "join-button_viewable_description": "",
+    "battle-time": "",
+    "battle-time_description": "",
+    "battle-time_minutes": "",
+    "battle-time_minutes_description": "",
+    "channel-rating": "",
+    "channel-rating_description": "",
+    "channel-rating_channel": "",
+    "channel-rating_channel_description": "",
+    "channel-rating_rating": "",
+    "channel-rating_rating_description": "",
+    "create": "",
+    "create_description": "",
+    "create_text": "",
+    "create_text_description": "",
+    "create_file": "",
+    "create_file_description": "",
+    "create_link": "",
+    "create_link_description": "",
+    "create_rating": "",
+    "create_rating_description": "",
+    "create_secret": "",
+    "create_secret_description": "",
+    "create_lang": "",
+    "create_lang_description": "",
+    "lay": "",
+    "eggify": "",
+    "rating_safe": "",
+    "rating_questionable": "",
+    "rating_explicit": "",
+    "get": "",
+    "get_description": "",
+    "get_id": "",
+    "get_id_description": "",
+    "get_rating": "",
+    "get_rating_description": "",
+    "egg": "",
+    "nsfw": "",
+    "nsfw_description": "",
+    "latest": "",
+    "latest_description": "",
+    "edit": "",
+    "edit_description": "",
+    "edit_id": "",
+    "edit_id_description": "",
+    "edit_text": "",
+    "edit_text_description": "",
+    "edit_file": "",
+    "edit_file_description": "",
+    "edit_link": "",
+    "edit_link_description": "",
+    "edit_rating": "",
+    "edit_rating_description": "",
+    "edit_secret": "",
+    "edit_secret_description": "",
+    "edit_lang": "",
+    "edit_lang_description": "",
+    "report": "",
+    "report_description": "",
+    "report_id": "",
+    "report_id_description": "",
+    "delete": "",
+    "delete_description": "",
+    "delete_id": "",
+    "delete_id_description": "",
+    "crack": "",
+    "collected": "",
+    "collected_description": "",
+    "collected_check": "",
+    "collected_check_description": "",
+    "collected_rating": "",
+    "collected_rating_description": "",
+    "collected_secret": "",
+    "collected_secret_description": "",
+    "my-eggs": "",
+    "my-eggs_description": "",
+    "my-eggs_check": "",
+    "my-eggs_check_description": "",
+    "my-eggs_rating": "",
+    "my-eggs_rating_description": "",
+    "my-eggs_secret": "",
+    "my-eggs_secret_description": "",
+    "search": "",
+    "search_description": "",
+    "search_text": "",
+    "search_text_description": "",
+    "leaderboard": "",
+    "leaderboard_description": "",
+    "leaderboard_collections": "",
+    "leaderboard_collections_description": "",
+    "leaderboard_creations": "",
+    "leaderboard_creations_description": "",
+    "leaderboard_battles": "",
+    "leaderboard_battles_description": "",
+    "leaderboard_battlers": "",
+    "leaderboard_battlers_description": "",
+    "filter": "",
+    "filter_description": "",
+    "filter_id": "",
+    "filter_id_description": "",
+    "ping": "",
+    "ping_description": ""
+}
