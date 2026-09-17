@@ -206,7 +206,7 @@
                 "about": "Cosa sono le Uova?",
                 "about_desc": "Un **Uovo** è un testo, un allegato (sotto forma di file o URL), or both.\nQuando viene creato un **Uovo**, è accessibile da qualunque server che abbia **Server Eggs**.",
                 "how": "Come usare Server Eggs",
-                "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un Uovo, usa `/ricevi`.",
+                "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un **Uovo**, usa `/ricevi`.",
                 "donate": "Sostieni Server Eggs",
                 "donate_desc": "Puoi:\n- **Comprare qualcosa** nel nostro [**Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donare** al [**Ko-fi di HexaBlue**](https://ko-fi.com/hexablue)!",
                 "credits": "Riconoscimenti",

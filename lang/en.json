@@ -254,7 +254,7 @@
                 "about": "What are Eggs?",
                 "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible from any server with **Server Eggs**.",
                 "how": "How to use Server Eggs",
-                "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an Egg, use `/get`.",
+                "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
                 "donate": "Support Server Eggs",
                 "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donate** to [**HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
                 "credits": "Credits",
