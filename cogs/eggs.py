@@ -33,6 +33,8 @@ class Eggs(commands.Cog):
     ):
         rating = utils.coerce_rating(rating)
 
+        if lang == "": lang = None
+
         if not skip_ratelimit and not await utils.ensure_not_ratelimited(ctx, "create"):
             return
 
