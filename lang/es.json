@@ -65,6 +65,18 @@
             "join-button": {
                 "success": "Se ha establecido correctamente la visibilidad del boton \"Unirse al servidor de Origen\" en `{0}`."
             }
+        },
+        "eggs": {
+            "create_edit": {
+                "invalid_url": "El parametro `link` especificado *no* corresponde a ningun **formato multimedia compatible** (imagen, video o audio).",
+                "could_not_scan": "No se pudo recuperar la media para el analisis de contenido dañino.",
+                "processing": "Procesando tu **Huevo**...\n-# Esto tomara un momento! Solo estamos chequeando que no hayas puesto nada ilegal.",
+                "too_big": "Tu archivo es **muy grande**! El limite es **15 MB**.",
+                "convert_failed": "No se pudo convertir el **archivo** a un formato compatible. Es posible que este dañado o utilice un codec no soportado.",
+                "illegal": "**CONTENIDO ILEGAL DETECTADO**. Se te ha **prohibido* el crear **Huevo**s.",
+                "duplicate": "Un **Huevo** con esas especificaciones **ya existe**.\nMiralo con: `/get id:{0}`",
+                "beg": "Hey **{0}**! Si te gusto **Server Eggs** y te gustaria que continue su desarrollo y  que sus servidores sigan en linea, considere [**comprar algo de nuestra Tienda de Discord**](https://discord.com/discovery/applications/886686500845138041/store) or [**donando a nuestro Ko-fi**](https://ko-fi.com/hexablue)! \nRecuerda que **Server Eggs** es un projecto de *software de fuente abierta*, y por lo tanto desarrollado por *voluntarios*. Sin ayuda de gente como *tu*, no podria existir..\n\n-# Has recibido este mensaje porque has creado varios **Huevo**s."
+            }
         }
     },
     "language_name": "Español"
