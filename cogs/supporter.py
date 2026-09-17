@@ -100,9 +100,6 @@ class Supporter(commands.Cog):
     @tasks.loop(minutes=10)
     async def send_daily_eggs(self):
         try:
-            if not utils.USER_SUPPORTER_SKU_ID:
-                return
-
             try:
                 supporter_ids = await utils.fetch_supporter_ids(self.bot)
             except (discord.HTTPException, discord.Forbidden) as e:
