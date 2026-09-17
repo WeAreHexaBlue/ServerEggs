@@ -62,7 +62,7 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
                     else:
                         print(f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
                         return False, False, scanbytes
-        except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+        except (TimeoutError, aiohttp.ClientError) as e:
             print(f"ERROR: Arachnid Shield connection error: {e}")
             return False, False, scanbytes
 
@@ -84,7 +84,7 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
                 else:
                     print(f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
                     return False, False, scanbytes
-    except (aiohttp.ClientError, asyncio.TimeoutError) as e:
+    except (TimeoutError, aiohttp.ClientError) as e:
         print(f"ERROR: Arachnid Shield connection error: {e}")
         return False, False, scanbytes
 
