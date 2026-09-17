@@ -13,7 +13,7 @@ from schema import Guild, Report, User
 
 dotenv.load_dotenv()
 
-DEVELOPER_GUILD = discord.Object(id=os.getenv("DEVELOPER_GUILD_ID"))
+DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 
 def is_dev(ctx: discord.Interaction):
     if not ctx.guild or ctx.guild.id != DEVELOPER_GUILD.id: return False
