@@ -1,3 +1,23 @@
+[project]
+name = "seggs"
+version = "2.3.2"
+description = "Server Eggs lets your Discord community create and share content called Eggs containing text, media, or both."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.14.3",
+    "asyncpg>=0.31.0",
+    "cachetools>=7.1.7",
+    "discord.py>=2.7.1",
+    "ImageHash>=4.3.2",
+    "jishaku>=2.7.5",
+    "numpy>=2.5.2",
+    "pdqhash>=0.2.8",
+    "pillow>=12.3.0",
+    "python-dotenv>=1.2.3",
+    "tortoise-orm>=1.1.8",
+]
+
 [tool.tortoise]
 tortoise_orm = "tortoise_config.TORTOISE_ORM"
 location = "./migrations"

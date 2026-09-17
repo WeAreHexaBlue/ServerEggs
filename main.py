@@ -3,7 +3,10 @@ import datetime
 import os
 import re
 import sys
+import tomllib
 import traceback
+from importlib import metadata as importlib_metadata
+from pathlib import Path
 
 import discord
 import dotenv
@@ -19,7 +22,19 @@ from tortoise_config import TORTOISE_ORM
 
 dotenv.load_dotenv()
 
-VERSION = "2.3.2"
+def get_version() -> str:
+    try:
+        return importlib_metadata.version("seggs")
+    except importlib_metadata.PackageNotFoundError:
+        pass
+
+    try:
+        with open(Path(__file__).with_name("pyproject.toml"), "rb") as f:
+            return tomllib.load(f)["project"]["version"]
+    except (OSError, KeyError, tomllib.TOMLDecodeError):
+        return "unknown"
+
+VERSION = get_version()
 
 DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 
@@ -95,7 +110,7 @@ bot = ServerEggs(intents=discord.Intents.default())
 
 @bot.event
 async def on_ready():
-    bot.launch_time = datetime.datetime.now(tz=datetime.timezone.utc)
+    bot.launch_time = datetime.datetime.now(tz=datetime.UTC)
 
     logch = bot.get_channel(int(os.getenv("DEVELOPER_LOG_CHANNEL")))
     await logch.send(f"**Server Eggs** has started on **discord.py {discord.__version__}**")
