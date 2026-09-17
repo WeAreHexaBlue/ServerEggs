@@ -115,6 +115,8 @@ async def on_ready():
     logch = bot.get_channel(int(os.getenv("DEVELOPER_LOG_CHANNEL")))
     await logch.send(f"**Server Eggs** has started on **discord.py {discord.__version__}**")
 
+    await utils.grant_dev_entitlements(bot)
+
 @bot.event
 async def on_guild_join(guild: discord.Guild):
     invite_url = None
