@@ -105,14 +105,14 @@ class Supporter(commands.Cog):
 
             try:
                 supporter_ids = await utils.fetch_supporter_ids(self.bot)
-            except discord.HTTPException as e:
+            except (discord.HTTPException, discord.Forbidden) as e:
                 print(f"ERROR: Supporter entitlement fetch failed: {e}")
                 return
 
             if not supporter_ids:
                 return
 
-            now = datetime.datetime.now(datetime.timezone.utc)
+            now = datetime.datetime.now(tz=datetime.UTC)
             ids = list(supporter_ids)
 
             due = list(await User.filter(id__in=ids, last_daily_at__isnull=True).limit(DAILY_BATCH_SIZE))
