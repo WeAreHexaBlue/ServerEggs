@@ -19,7 +19,7 @@ dotenv.load_dotenv()
 
 SUPPORTED_FILETYPE_REGEX = r'\.(gif|png|jpg|jpeg|webp|mp4|webm|mp3|ogg|wav|opus|m4a)(?:[?#].*)?$'
 
-UPLOAD_LIMIT = 10 * 1024 * 1024
+UPLOAD_LIMIT = 20 * 1024 * 1024
 
 NATIVE_VIDEO_CODECS = {"h264", "vp8", "vp9", "av1"}
 NATIVE_AUDIO_CODECS = {"aac", "mp3", "opus", "vorbis"}

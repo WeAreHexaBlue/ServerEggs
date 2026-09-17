@@ -88,7 +88,7 @@
                 "invalid_url": "Il parametro `link` specificato *non* porta a nessun **formato multimediale supportato** (immagine, video, audio).",
                 "could_not_scan": "Non è stato possibile ottenere il contenuto multimediale per il controllo dei contenuti illegali.",
                 "processing": "Stiamo elaborando il tuo **Uovo**...\n-# Potrebbe volerci un po'! Stiamo solo controllando che tu non abbia allegato niente di illegale.",
-                "too_big": "Il tuo allegato è **troppo grande**! Il limite è di **15 MB**.",
+                "too_big": "Il tuo allegato è **troppo grande**! Il limite è di **20 MB**.",
                 "convert_failed": "Non è stato possibile convertire il tuo **allegato** in un formato supportato. Potrebbe essere danneggiato o usare un codec non supportato.",
                 "illegal": "**RILEVATI CONTENUTI ILLEGALI**. Ti è appena stato **tolto il permesso** di creare o modificare **Uova**.",
                 "duplicate": "Un **Uovo** con queste specifiche **esiste già**.\nOsservalo con: `/ricevi id:{0}`",

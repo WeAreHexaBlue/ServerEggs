@@ -108,7 +108,7 @@
                 "invalid_url": "The specified `link` parameter does *not* resolve to any **supported media format** (image, video, audio).",
                 "could_not_scan": "Failed to retrieve the media for the harmful content scan.",
                 "processing": "Processing your **Egg**...\n-# This may take a while! We're just checking you didn't attach anything illegal.",
-                "too_big": "Your attachment is **too large**! The limit is **15 MB**.",
+                "too_big": "Your attachment is **too large**! The limit is **20 MB**.",
                 "convert_failed": "Failed to convert your **attachment** to a supported format. It may be corrupted or use an unsupported codec.",
                 "illegal": "**ILLEGAL CONTENT DETECTED**. You have now been **banned** from creating **Egg**s.",
                 "duplicate": "An **Egg** with these specifics **already exists**.\nView it with: `/get id:{0}`",
