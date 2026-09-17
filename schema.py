@@ -69,7 +69,7 @@ class Guild(models.Model):
 
     battle_time = fields.TimeDeltaField(default=timedelta(minutes=10))
 
-    filtered: fields.ManyToManyField["Egg"] = fields.ManyToManyField("eggs.Egg", related_name="filtered_in", through="guild_filtered_eggs")
+    filtered: fields.ManyToManyRelation["Egg"] = fields.ManyToManyField("eggs.Egg", related_name="filtered_in", through="guild_filtered_eggs")
 
     eggs = fields.ReverseRelation["Egg"]
 
