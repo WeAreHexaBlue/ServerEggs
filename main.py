@@ -232,7 +232,8 @@ async def help(ctx: discord.Interaction, about: str | None):
 @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
 @utils.ratelimit("read")
 async def donate(ctx: discord.Interaction):
-    await ctx.response.send_message("https://ko-fi.com/hexablue")
+    _, myloc = await bot.get_section(ctx, "donate")
+    await ctx.response.send_message(myloc["both"] if not await utils.is_ctx_supporter(ctx) else myloc["kofi"])
 
 @bot.tree.context_menu(name="eggify")
 @app.allowed_contexts(guilds=True, dms=False, private_channels=False)

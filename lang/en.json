@@ -93,6 +93,10 @@
                 "success": "Successfully set the default rating for {0} to `{1}`."
             }
         },
+        "donate": {
+            "both": "To **support Server Eggs**, you can either [**buy something from our Discord Store**](https://discord.com/discovery/applications/886686500845138041/store) or [**donate to HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
+            "kofi": "To **support Server Eggs**, you can [**donate to HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!"
+        },
         "eggs": {
             "create_edit": {
                 "empty_create": "Cannot create an **empty Egg**.\nPlease try again and include some text, an attachment, or both.",
