@@ -1,6 +1,6 @@
 [project]
 name = "seggs"
-version = "2.4.1"
+version = "2.4.2"
 description = "Server Eggs lets your Discord community create and share content called Eggs containing text, media, or both."
 readme = "README.md"
 requires-python = ">=3.12"
