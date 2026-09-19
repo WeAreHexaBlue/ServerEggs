@@ -83,6 +83,8 @@
                 "empty_edit": "Non hai specificato alcuna modifica.",
                 "rating_not_allowed": "Non è possibile creare o modificare un **Uovo** con questa **classificazione** in questo canale.",
                 "toomanyattach": "Non puoi usare sia `file` che `link` allo stesso tempo.\nScegli tra i due.",
+                "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate](https://hosted.weblate.org/projects/seggs)!",
+                "lang_not_allowed": "**Non puoi** usare una lingua che non sia l'**Italiano** in questo server.",
                 "banned": "Ti è stato **tolto il permesso** di creare o modificare **Uova**.\n*Al momento* non è possibile fare ricorso.",
                 "supported_only": "Puoi **solo** allegare **immagini** (`gif`, `png`, `jpg`, `jpeg`, `webp`), **video** (`mp4`, `webm`), o **audio** (`mp3`, `ogg`, `wav`, `opus`, `m4a`).",
                 "invalid_url": "Il parametro `link` specificato *non* porta a nessun **formato multimediale supportato** (immagine, video, audio).",
@@ -96,9 +98,7 @@
                 "beg_supporter": "Ehi **{0}**! So che ci stai già **Sostenendo**, e perciò ricevi questo messaggio **meno spesso**, ma ci teniamo a farti presente che, in qualsiasi momento, puoi **donare di più** di quanto tu non stia già facendo (di cui siamo grati) sulla nostra [**pagina Ko-fi**](https://ko-fi.com/hexablue).\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
                 "title": "Uovo n. {0} {1}!",
                 "created": "creato",
-                "edited": "modificato",
-                "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate](https://hosted.weblate.org/projects/seggs)!",
-                "lang_not_allowed": "**Non puoi** usare una lingua che non sia l'**Italiano** in questo server."
+                "edited": "modificato"
             },
             "eggify": {
                 "no_attach": "Non puoi **Uovizzare** un messaggio che non contiene né un **allegato** né un **link**.",
@@ -118,6 +118,7 @@
                 "id_rating_not_allowed": "Ho trovato l'**Uovo n. {0}**, ma la sua **classificazione** non è permessa in questo canale.",
                 "secret": "L'**Uovo n. {0}** è segreto!\nPuoi trovarlo solo casualmente...",
                 "filtered": "L'**Uovo n. {0}** esiste, ma i moderatori di **{1}** hanno deciso di **bloccarlo** dall'apparire qui.\nRiprova **altrove**, tipo un **server diverso** o **i miei DM**.",
+                "lang_not_allowed": "L'**Uovo n. {0}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**.",
                 "rating_not_allowed": "Non puoi cercare **Uova** con questa **classificazione** in questo canale.",
                 "no_egg": "Non è stato trovato nessun **Uovo**.",
                 "collection_status": "Stato Collezionamento",
@@ -135,8 +136,7 @@
                 "button": {
                     "origin": "Unisciti al Server d'Origine",
                     "creator": "Visualizza il Profilo del Creatore"
-                },
-                "lang_not_allowed": "L'**Uovo n. {0}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**."
+                }
             },
             "delete": {
                 "ready": {
@@ -176,9 +176,9 @@
                 "not_collected": "Non hai collezionato l'**Uovo n. {0}**.",
                 "not_created": "Non hai creato tu l'**Uovo n. {0}**.",
                 "rating_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **classificazione** non è permessa in questo canale.",
+                "lang_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **lingua** non è permessa in questo server.",
                 "rating_not_allowed_filter": "Non puoi filtrare per questa **classificazione** in questo canale.",
-                "empty": "Non ci sono **Uova** con questi criteri!",
-                "lang_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **lingua** non è permessa in questo server."
+                "empty": "Non ci sono **Uova** con questi criteri!"
             },
             "search": {
                 "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{0}\"**."
@@ -199,60 +199,62 @@
             "author": "Server Eggs",
             "footer": "Server Eggs di HexaBlue"
         },
-        "help": {
-            "general": {
-                "title": "Informazioni su Server Eggs",
-                "desc": "**Server Eggs** è un bot di Discord creato da **HexaBlue**.\nÈ un modo creativo di condividere contenuti attraverso i quali uno potrebbe decidere di unirsi al suo server d'origine.",
-                "about": "Cosa sono le Uova?",
-                "about_desc": "Un **Uovo** è un testo, un allegato (sotto forma di file o URL), or both.\nQuando viene creato un **Uovo**, è accessibile da qualunque server che abbia **Server Eggs**.",
-                "how": "Come usare Server Eggs",
-                "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un **Uovo**, usa `/ricevi`.",
-                "donate": "Sostieni Server Eggs",
-                "donate_desc": "Puoi:\n- **Comprare qualcosa** nel nostro [**Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donare** al [**Ko-fi di HexaBlue**](https://ko-fi.com/hexablue)!",
-                "credits": "Riconoscimenti",
-                "credits_desc": "**__Programmazione__**\n- **Flamey** (actuallyflamey)\n**__Localizzazione__**:\n- **Flamey** (actuallyflamey): *Inglese*, *Italiano*.",
-                "versions": "Versioni",
-                "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
-            },
-            "create": {
-                "title": "Informazioni sul Creare Uova",
-                "desc": "**Comandi**: `/crea`, `/deponi`\n\nCon questi comandi, puoi **creare un Uovo**. L'**Uovo** che crei sarà poi disponibile **ovunque ci sia Server Eggs**.\n\n**Parametri**:\n- `testo`: [Facoltativo] Aggiungi un **testo** all'**Uovo**.\n  - Apparirà come descrizione dell'Embed.\n- `file`: [Facoltativo] Aggiungi un **allegato** all'**Uovo**, come file.\n- `link`: [Facoltativo] Aggiungi un **allegato** all'**Uovo**, come URL.\n  - Utile se vuoi usare librerie di GIF come Klipy.\n  - ***Nota**: Non puoi usare sia `file` che `link` allo stesso tempo.*\n- `segreto`: [Facoltativo] Segna un **Uovo** come **Segreto**!\n  - Significa che **non sarà possibile** vedere quest'**Uovo** con l'ID: solo casualmente!\n- `classificazione`: [Facoltativo] La **classificazione del contenuto** dell'**Uovo**.\n  - `Per tutti`, `Dubbioso` o `Esplicito`.\n    - Le **classificazioni più esplicite** sono permesse solo nei **canali vietati ai minori**. Dipende dalle impostazioni del server."
-            },
-            "get": {
-                "title": "Informazioni sull'Ottenere Uova",
-                "desc": "**Comandi**: `/ricevi`, `/uovo`\n\nCon questi comandi, **riceverai an Uovo**. Se il parametro `id` non è specificato, l'**Uovo** verrà **pescato a caso dal mucchio globale** e **aggiunto alla tua collezione** se non l'hai già visto.\n\n**Parametri**:\n- `id`: [Facoltativo] Osserva un **Uovo** specifico cercando il suo ID."
-            },
-            "edit": {
-                "title": "Informazioni sul Modificare Uova",
-                "desc": "**Comandi**: `/modifica`\n\nCon questo comando, puoi **modificare un Uovo**. Devi avere il permesso di modificarlo: perciò devi **essere il suo creatore** o **un Gestore del Server dov'è stato creato**.\n**Sovrascrivi solo i parametri che selezioni**, quindi, se hai creato un **Uovo** di solo testo e vuoi renderlo Segreto, basta che imposti `segreto` su `Vero` here, senza toccare `testo`.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi modificare.\n- Gli altri parametri sono gli stessi di `/crea`/`/deponi`."
-            },
-            "report": {
-                "title": "Informazioni sul Segnalare Uova",
-                "desc": "**Comandi**: `/segnala`\n\nCon questo comando, o col tasto \"Segnala\" quando ricevi un **Uovo**, puoi **segnalare un Uovo**. Questo lo manderà ai **Moderatori di Uova** globali, che decideranno cosa fare. Se sospetti che un **Uovo** stia infrangendo qualche regola, non esitare a segnalarlo!\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi segnalare."
-            },
-            "delete": {
-                "title": "Informazioni sull'Eliminare Uova",
-                "desc": "**Comandi**: `/elimina`\n\nCon questo comando, puoi **eliminare un Uovo**. Devi avere il permesso di modificarlo: perciò devi **essere il suo creatore** o **un Gestore del Server dov'è stato creato**.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi eliminare."
-            },
-            "eggify": {
-                "title": "Informazioni sull'Uov-izzare i Messaggi",
-                "desc": "Puoi **trasformare un messaggio in un Uovo** cliccandolo col tasto destro (o premendolo, da disp. mobile), andando sul menu *App*, e scegliendo ***Uov-izza***.\nDa lì, puoi **modificare il testo** (di base, sarà il *contenuto del messaggio originale*), impostare il suo **stato Segreto** e scegliere la sua **classificazione**."
-            },
-            "collected": {
-                "title": "Informazioni sulle Collezioni di Uova",
-                "desc": "**Comandi**: `/collezione`\n\nCon questo comando, puoi **vedere la tua collezione di Uova**, che è composta da tutte le **Uova** che hai trovato casualmente. Alternativamente, puoi usare il parametro `controlla` per vedere se hai collezionato un **Uovo** specifico.\n\n**Parametri**:\n- `controlla`: [Facoltativo] L'ID di un **Uovo**, per vedere se l'hai collezionato.\n- `classificazione`: [Facoltativo] Filtra la tua collezione per una **classificazione** specifica.\n- `solo-segreti`: [Facoltativo] Filtra la tua collezione, e ti mostra solo le **Uova Segrete** che hai trovato."
-            },
-            "leaderboard": {
-                "title": "Informazioni sulle Classifiche",
-                "desc": "**Comandi**: `/classifica collezioni`, `/classifica creazioni`, `/classifica battaglie`, `/classifica combattenti`\n\nI comandi delle classifiche ti mostrano la **Top 15** di una categoria.\nLe categorie sono:\n- **Collezioni**: Gli utenti che hanno collezionato più **Uova**.\n- **Creazioni**: Gli utenti che hanno creato più **Uova**.\n- **Battaglie**: Le **Uova** che hanno vinto più battaglie.\n- **Combattenti**: Gli utenti che hanno vinto più battaglie."
-            },
-            "config": {
-                "title": "Informazioni sul Configurare Server Eggs",
-                "desc": "**Comandi**: `/configura lingua`, `/configura permetti-lingua-personale`, `/configura privacy`, `/configura registro`, `/configura classificazioni-permesse`, `/configura tasto-unisciti`, `/configura scadenza-battaglie`, `/configura classificazione-canale`\n\nI comandi di configuarazione permettono ai Gestori dei Server di impostare **Server Eggs** come preferiscono.\n\n- `/configura lingua`: Imposta la **lingua delle risposte** in questo server (o per un utente, se usato nei DM).\n  - Parametro `lingua`: La lingua da impostare.\n- `/configura permetti-lingua-personale`: Permetti l'uso delle **lingue esterne** a questo server.\n  - Parametro `permetti`: Vero o Falso.\n- `/configura privacy`: Imposta la **privacy** del server (o per un utente, se usato nei DM).\n  - Parametro `pubblico`: Vero o Falso.\n    - **Nei server**: Permetti a **chiunque** di **unirsi a questo server** attraverso le **Uova** create in esso.\n    - **Nei DM**: Permetti a chiunque **veda un tuo Uovo** di vedere il tuo **username** e **profilo**.\n- `/configura registro`: Imposta un **canale dove registrare** le **creazioni** e le **modifiche alle Uova** che accadono in questo server.\n  - Parametro `canale`: Il canale da usare.\n- `/configura classificazioni-permesse per-tutte-le-età`: Cambia quali **classificazioni** sono permesse nei **canali per tutte le età**.\n  - Parametri `per-tutti`, `dubbiose`, `esplicite`: Se permettere ogni classificazione. Quelli omessi mantengono il valore attuale.\n- `/configura classificazioni-permesse per-maggiorenni`: Cambia quali **classificazioni** sono permesse nei **canali per maggiorenni**.\n  - Parametri `per-tutti`, `dubbiose`, `esplicite`: Se permettere ogni classificazione. Quelli omessi mantengono il valore attuale.\n- `/configura tasto-unisciti`: Cambia se il tasto **\"Unisciti al Server d'Origine\"** appare sulle **Uova** ottenute in questo server.\n  - Parametro `visibile`: Vero o Falso.\n- `/configura scadenza-battaglie`: Cambia quanto tempo passa prima che le **battaglie** scadano.\n  - Parametro `minuti`: Quanti minuti dovrebbe durare una battaglia.\n- `/configura classificazione-canale`: Imposta la **classificazione predefinita** per le **Uova** create in un canale.\n  - Parametro `canale`: Il canale per cui impostare la classificazione.\n  - Parametro `classificazione`: La nuova classificazione predefinita per quel canale."
-            },
-            "filter": {
-                "title": "Informazioni sul Filtrare Uova",
-                "desc": "**Comandi**: `/filtra`\n\nCon questo comando, i Gestori dei Server possono **commutare lo stato del filtro** per un **Uovo**. È utile qualora un **Uovo** non infranga le regole *globali*, e perciò è permesso dai **Moderatori di Uova**, ma i moderatori *locali* del server trovano che sia inappropriato per i loro membri.\nSe un **Uovo** era **già stato filtrato**, utilizzare questo comando su di esso un'altra volta gli **toglierà il filtro**.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** per cui commutare lo stato del filtro."
+        "misc": {
+            "help": {
+                "general": {
+                    "title": "Informazioni su Server Eggs",
+                    "desc": "**Server Eggs** è un bot di Discord creato da **HexaBlue**.\nÈ un modo creativo di condividere contenuti attraverso i quali uno potrebbe decidere di unirsi al suo server d'origine.",
+                    "about": "Cosa sono le Uova?",
+                    "about_desc": "Un **Uovo** è un testo, un allegato (sotto forma di file o URL), or both.\nQuando viene creato un **Uovo**, è accessibile da qualunque server che abbia **Server Eggs**.",
+                    "how": "Come usare Server Eggs",
+                    "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un **Uovo**, usa `/ricevi`.",
+                    "donate": "Sostieni Server Eggs",
+                    "donate_desc": "Puoi:\n- **Comprare qualcosa** nel nostro [**Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donare** al [**Ko-fi di HexaBlue**](https://ko-fi.com/hexablue)!",
+                    "credits": "Riconoscimenti",
+                    "credits_desc": "**__Programmazione__**\n- **Flamey** (actuallyflamey)\n**__Localizzazione__**:\n- **Flamey** (actuallyflamey): *Inglese*, *Italiano*.",
+                    "versions": "Versioni",
+                    "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
+                },
+                "create": {
+                    "title": "Informazioni sul Creare Uova",
+                    "desc": "**Comandi**: `/crea`, `/deponi`\n\nCon questi comandi, puoi **creare un Uovo**. L'**Uovo** che crei sarà poi disponibile **ovunque ci sia Server Eggs**.\n\n**Parametri**:\n- `testo`: [Facoltativo] Aggiungi un **testo** all'**Uovo**.\n  - Apparirà come descrizione dell'Embed.\n- `file`: [Facoltativo] Aggiungi un **allegato** all'**Uovo**, come file.\n- `link`: [Facoltativo] Aggiungi un **allegato** all'**Uovo**, come URL.\n  - Utile se vuoi usare librerie di GIF come Klipy.\n  - ***Nota**: Non puoi usare sia `file` che `link` allo stesso tempo.*\n- `segreto`: [Facoltativo] Segna un **Uovo** come **Segreto**!\n  - Significa che **non sarà possibile** vedere quest'**Uovo** con l'ID: solo casualmente!\n- `classificazione`: [Facoltativo] La **classificazione del contenuto** dell'**Uovo**.\n  - `Per tutti`, `Dubbioso` o `Esplicito`.\n    - Le **classificazioni più esplicite** sono permesse solo nei **canali vietati ai minori**. Dipende dalle impostazioni del server."
+                },
+                "get": {
+                    "title": "Informazioni sull'Ottenere Uova",
+                    "desc": "**Comandi**: `/ricevi`, `/uovo`\n\nCon questi comandi, **riceverai an Uovo**. Se il parametro `id` non è specificato, l'**Uovo** verrà **pescato a caso dal mucchio globale** e **aggiunto alla tua collezione** se non l'hai già visto.\n\n**Parametri**:\n- `id`: [Facoltativo] Osserva un **Uovo** specifico cercando il suo ID."
+                },
+                "edit": {
+                    "title": "Informazioni sul Modificare Uova",
+                    "desc": "**Comandi**: `/modifica`\n\nCon questo comando, puoi **modificare un Uovo**. Devi avere il permesso di modificarlo: perciò devi **essere il suo creatore** o **un Gestore del Server dov'è stato creato**.\n**Sovrascrivi solo i parametri che selezioni**, quindi, se hai creato un **Uovo** di solo testo e vuoi renderlo Segreto, basta che imposti `segreto` su `Vero` here, senza toccare `testo`.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi modificare.\n- Gli altri parametri sono gli stessi di `/crea`/`/deponi`."
+                },
+                "report": {
+                    "title": "Informazioni sul Segnalare Uova",
+                    "desc": "**Comandi**: `/segnala`\n\nCon questo comando, o col tasto \"Segnala\" quando ricevi un **Uovo**, puoi **segnalare un Uovo**. Questo lo manderà ai **Moderatori di Uova** globali, che decideranno cosa fare. Se sospetti che un **Uovo** stia infrangendo qualche regola, non esitare a segnalarlo!\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi segnalare."
+                },
+                "delete": {
+                    "title": "Informazioni sull'Eliminare Uova",
+                    "desc": "**Comandi**: `/elimina`\n\nCon questo comando, puoi **eliminare un Uovo**. Devi avere il permesso di modificarlo: perciò devi **essere il suo creatore** o **un Gestore del Server dov'è stato creato**.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** che vuoi eliminare."
+                },
+                "eggify": {
+                    "title": "Informazioni sull'Uov-izzare i Messaggi",
+                    "desc": "Puoi **trasformare un messaggio in un Uovo** cliccandolo col tasto destro (o premendolo, da disp. mobile), andando sul menu *App*, e scegliendo ***Uov-izza***.\nDa lì, puoi **modificare il testo** (di base, sarà il *contenuto del messaggio originale*), impostare il suo **stato Segreto** e scegliere la sua **classificazione**."
+                },
+                "collected": {
+                    "title": "Informazioni sulle Collezioni di Uova",
+                    "desc": "**Comandi**: `/collezione`\n\nCon questo comando, puoi **vedere la tua collezione di Uova**, che è composta da tutte le **Uova** che hai trovato casualmente. Alternativamente, puoi usare il parametro `controlla` per vedere se hai collezionato un **Uovo** specifico.\n\n**Parametri**:\n- `controlla`: [Facoltativo] L'ID di un **Uovo**, per vedere se l'hai collezionato.\n- `classificazione`: [Facoltativo] Filtra la tua collezione per una **classificazione** specifica.\n- `solo-segreti`: [Facoltativo] Filtra la tua collezione, e ti mostra solo le **Uova Segrete** che hai trovato."
+                },
+                "leaderboard": {
+                    "title": "Informazioni sulle Classifiche",
+                    "desc": "**Comandi**: `/classifica collezioni`, `/classifica creazioni`, `/classifica battaglie`, `/classifica combattenti`\n\nI comandi delle classifiche ti mostrano la **Top 15** di una categoria.\nLe categorie sono:\n- **Collezioni**: Gli utenti che hanno collezionato più **Uova**.\n- **Creazioni**: Gli utenti che hanno creato più **Uova**.\n- **Battaglie**: Le **Uova** che hanno vinto più battaglie.\n- **Combattenti**: Gli utenti che hanno vinto più battaglie."
+                },
+                "config": {
+                    "title": "Informazioni sul Configurare Server Eggs",
+                    "desc": "**Comandi**: `/configura lingua`, `/configura permetti-lingua-personale`, `/configura privacy`, `/configura registro`, `/configura classificazioni-permesse`, `/configura tasto-unisciti`, `/configura scadenza-battaglie`, `/configura classificazione-canale`\n\nI comandi di configuarazione permettono ai Gestori dei Server di impostare **Server Eggs** come preferiscono.\n\n- `/configura lingua`: Imposta la **lingua delle risposte** in questo server (o per un utente, se usato nei DM).\n  - Parametro `lingua`: La lingua da impostare.\n- `/configura permetti-lingua-personale`: Permetti l'uso delle **lingue esterne** a questo server.\n  - Parametro `permetti`: Vero o Falso.\n- `/configura privacy`: Imposta la **privacy** del server (o per un utente, se usato nei DM).\n  - Parametro `pubblico`: Vero o Falso.\n    - **Nei server**: Permetti a **chiunque** di **unirsi a questo server** attraverso le **Uova** create in esso.\n    - **Nei DM**: Permetti a chiunque **veda un tuo Uovo** di vedere il tuo **username** e **profilo**.\n- `/configura registro`: Imposta un **canale dove registrare** le **creazioni** e le **modifiche alle Uova** che accadono in questo server.\n  - Parametro `canale`: Il canale da usare.\n- `/configura classificazioni-permesse per-tutte-le-età`: Cambia quali **classificazioni** sono permesse nei **canali per tutte le età**.\n  - Parametri `per-tutti`, `dubbiose`, `esplicite`: Se permettere ogni classificazione. Quelli omessi mantengono il valore attuale.\n- `/configura classificazioni-permesse per-maggiorenni`: Cambia quali **classificazioni** sono permesse nei **canali per maggiorenni**.\n  - Parametri `per-tutti`, `dubbiose`, `esplicite`: Se permettere ogni classificazione. Quelli omessi mantengono il valore attuale.\n- `/configura tasto-unisciti`: Cambia se il tasto **\"Unisciti al Server d'Origine\"** appare sulle **Uova** ottenute in questo server.\n  - Parametro `visibile`: Vero o Falso.\n- `/configura scadenza-battaglie`: Cambia quanto tempo passa prima che le **battaglie** scadano.\n  - Parametro `minuti`: Quanti minuti dovrebbe durare una battaglia.\n- `/configura classificazione-canale`: Imposta la **classificazione predefinita** per le **Uova** create in un canale.\n  - Parametro `canale`: Il canale per cui impostare la classificazione.\n  - Parametro `classificazione`: La nuova classificazione predefinita per quel canale."
+                },
+                "filter": {
+                    "title": "Informazioni sul Filtrare Uova",
+                    "desc": "**Comandi**: `/filtra`\n\nCon questo comando, i Gestori dei Server possono **commutare lo stato del filtro** per un **Uovo**. È utile qualora un **Uovo** non infranga le regole *globali*, e perciò è permesso dai **Moderatori di Uova**, ma i moderatori *locali* del server trovano che sia inappropriato per i loro membri.\nSe un **Uovo** era **già stato filtrato**, utilizzare questo comando su di esso un'altra volta gli **toglierà il filtro**.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** per cui commutare lo stato del filtro."
+                }
             }
         },
         "log": {
@@ -267,7 +269,7 @@
                 "filtered": "**Filtrato** l'**Uovo n. {0}** con successo!\nOra **non potrà più apparire** in questo server."
             }
         },
-        "supporter": {
+        "premium": {
             "daily": {
                 "title": "Uovo Giornaliero n. {0}"
             },
@@ -292,8 +294,16 @@
             "safe": "Sicuro",
             "questionable": "Dubbio",
             "explicit": "Esplicito",
-            "success": "Classificazione dell'**Uovo n. {0}** cambiata a **{1}**.",
-            "invalid": "Classificazione sconosciuta. Scegli tra le opzioni suggerite."
+            "invalid": "Classificazione sconosciuta. Scegli tra le opzioni suggerite.",
+            "success": "Classificazione dell'**Uovo n. {0}** cambiata a **{1}**."
+        },
+        "lang": {
+            "title": "Cambia Lingua",
+            "lang": "Lingua",
+            "lang_desc": "In che lingua è il contenuto di questo Uovo?",
+            "lang_placeholder": "Seleziona la lingua...",
+            "invalid": "Lingua sconosciuta. Scegli tra le opzioni suggerite.",
+            "success": "Lingua dell'**Uovo #{0}** cambiata a **{1}**."
         },
         "common": {
             "show_extra_attachment": "Mostra Allegato Extra",
@@ -310,22 +320,8 @@
             "not_yours": "Solo l'**utente che ha eseguito il comando** può navigare il loop delle **Uova**.",
             "affirm": "Sì",
             "negate": "No"
-        },
-        "lang": {
-            "title": "Cambia Lingua",
-            "lang": "Lingua",
-            "lang_desc": "In che lingua è il contenuto di questo Uovo?",
-            "lang_placeholder": "Seleziona la lingua...",
-            "invalid": "Lingua sconosciuta. Scegli tra le opzioni suggerite.",
-            "success": "Lingua dell'**Uovo #{0}** cambiata a **{1}**."
         }
     },
-    "help": "aiuto",
-    "help_description": "Ottieni informazioni riguardanti Server Eggs o un comando.",
-    "help_about": "riguardo-a",
-    "help_about_description": "Il comando di cui ricevere informazioni a riguardo.",
-    "donate": "dona",
-    "donate_description": "Sostieni lo sviluppo di Server Eggs!",
     "battle": "battaglia",
     "battle_description": "Fai iniziare una battaglia casuale tra Uova.",
     "battle_a": "a",
@@ -405,6 +401,8 @@
     "create_rating_description": "La classificazione del contenuto dell'Uovo.",
     "create_secret": "segreto",
     "create_secret_description": "L'Uovo deve apparire solo casualmente.",
+    "create_lang": "lingua",
+    "create_lang_description": "La lingua usata nel contenuto dell'Uovo.",
     "lay": "deponi",
     "eggify": "Uov-izza",
     "rating_safe": "Per tutti",
@@ -435,6 +433,8 @@
     "edit_rating_description": "La classificazione del contenuto dell'Uovo.",
     "edit_secret": "segreto",
     "edit_secret_description": "L'Uovo deve apparire solo casualmente.",
+    "edit_lang": "lingua",
+    "edit_lang_description": "La lingua usata nel contenuto dell'Uovo.",
     "report": "segnala",
     "report_description": "Segnala un Uovo.",
     "report_id": "id",
@@ -474,14 +474,16 @@
     "leaderboard_battles_description": "Vedi quali Uova hanno vinto più battaglie.",
     "leaderboard_battlers": "combattenti",
     "leaderboard_battlers_description": "Vedi chi ha vinto più battaglie.",
+    "help": "aiuto",
+    "help_description": "Ottieni informazioni riguardanti Server Eggs o un comando.",
+    "help_about": "riguardo-a",
+    "help_about_description": "Il comando di cui ricevere informazioni a riguardo.",
+    "donate": "dona",
+    "donate_description": "Sostieni lo sviluppo di Server Eggs!",
     "filter": "filtra",
     "filter_description": "Vieta a un Uovo specifico di apparire in questo server.",
     "filter_id": "id",
     "filter_id_description": "L'ID dell'Uovo per cui commutare lo stato del filtro.",
     "ping": "ping",
-    "ping_description": "Ottiene il ritardo di connessione di Server Eggs.",
-    "create_lang": "lingua",
-    "create_lang_description": "La lingua usata nel contenuto dell'Uovo.",
-    "edit_lang": "lingua",
-    "edit_lang_description": "La lingua usata nel contenuto dell'Uovo."
+    "ping_description": "Ottiene il ritardo di connessione di Server Eggs."
 }
