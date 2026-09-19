@@ -29,6 +29,9 @@ class Presence(commands.Cog):
         ])
 
         self.update_presence.start()
+    
+    async def cog_unload(self):
+        self.update_presence.cancel()
 
     @tasks.loop(seconds=30)
     async def update_presence(self):
