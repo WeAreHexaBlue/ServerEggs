@@ -1,4 +1,5 @@
 {
+    "language_name": "Español",
     "lines": {
         "battles": {
             "battle": {
@@ -41,8 +42,8 @@
             "lang": {
                 "missing_perms": "Necesitas el permiso de **Gestionar Servidor** para ejecutar este comando aquí.\n\n-# Si quieres establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de idiomas externos, pero **siempre funcionará en MDs**.",
                 "no_default": "La opción \"Predeterminado del servidor\" es para usuarios, no para servidores.",
-                "success": "¡Se ha cambiado con éxito el idioma a \"**Español**\"!",
-                "invalid": "Idioma desconocido. Elige una de las opciones sugeridas."
+                "invalid": "Idioma desconocido. Elige una de las opciones sugeridas.",
+                "success": "¡Se ha cambiado con éxito el idioma a \"**Español**\"!"
             },
             "server-description": {
                 "success": "Se ha establecido exitosamente la descripcion del servidor a:"
@@ -79,6 +80,5 @@
                 "beg": "Hey **{0}**! Si te gusto **Server Eggs** y te gustaria que continue su desarrollo y  que sus servidores sigan en linea, considere [**comprar algo de nuestra Tienda de Discord**](https://discord.com/discovery/applications/886686500845138041/store) or [**donando a nuestro Ko-fi**](https://ko-fi.com/hexablue)! \nRecuerda que **Server Eggs** es un projecto de *software de fuente abierta*, y por lo tanto desarrollado por *voluntarios*. Sin ayuda de gente como *tu*, no podria existir..\n\n-# Has recibido este mensaje porque has creado varios **Huevo**s."
             }
         }
-    },
-    "language_name": "Español"
+    }
 }

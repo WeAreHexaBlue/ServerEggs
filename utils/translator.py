@@ -11,4 +11,4 @@ class UITranslator(app.Translator):
     async def translate(self, line: app.locale_str, locale: discord.Locale, ctx: app.TranslationContext) -> str | None:
         lines = pick_locale(self.bot.locales, locale.value)
 
-        return lines.get(line.message, self.bot.locales[FALLBACK_LANG].get(line.message))
+        return lines.get(line.message) or self.bot.locales[FALLBACK_LANG].get(line.message)

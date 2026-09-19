@@ -246,60 +246,62 @@
             "author": "",
             "footer": ""
         },
-        "help": {
-            "general": {
-                "title": "",
-                "desc": "",
-                "about": "",
-                "about_desc": "",
-                "how": "",
-                "how_desc": "",
-                "donate": "",
-                "donate_desc": "",
-                "credits": "",
-                "credits_desc": "",
-                "versions": "",
-                "versions_desc": ""
-            },
-            "create": {
-                "title": "",
-                "desc": ""
-            },
-            "get": {
-                "title": "",
-                "desc": ""
-            },
-            "edit": {
-                "title": "",
-                "desc": ""
-            },
-            "report": {
-                "title": "",
-                "desc": ""
-            },
-            "delete": {
-                "title": "",
-                "desc": ""
-            },
-            "eggify": {
-                "title": "",
-                "desc": ""
-            },
-            "collected": {
-                "title": "",
-                "desc": ""
-            },
-            "leaderboard": {
-                "title": "",
-                "desc": ""
-            },
-            "config": {
-                "title": "",
-                "desc": ""
-            },
-            "filter": {
-                "title": "",
-                "desc": ""
+        "misc": {
+            "help": {
+                "general": {
+                    "title": "",
+                    "desc": "",
+                    "about": "",
+                    "about_desc": "",
+                    "how": "",
+                    "how_desc": "",
+                    "donate": "",
+                    "donate_desc": "",
+                    "credits": "",
+                    "credits_desc": "",
+                    "versions": "",
+                    "versions_desc": ""
+                },
+                "create": {
+                    "title": "",
+                    "desc": ""
+                },
+                "get": {
+                    "title": "",
+                    "desc": ""
+                },
+                "edit": {
+                    "title": "",
+                    "desc": ""
+                },
+                "report": {
+                    "title": "",
+                    "desc": ""
+                },
+                "delete": {
+                    "title": "",
+                    "desc": ""
+                },
+                "eggify": {
+                    "title": "",
+                    "desc": ""
+                },
+                "collected": {
+                    "title": "",
+                    "desc": ""
+                },
+                "leaderboard": {
+                    "title": "",
+                    "desc": ""
+                },
+                "config": {
+                    "title": "",
+                    "desc": ""
+                },
+                "filter": {
+                    "title": "",
+                    "desc": ""
+                }
             }
         },
         "log": {
@@ -319,7 +321,7 @@
                 "filtered": ""
             }
         },
-        "supporter": {
+        "premium": {
             "daily": {
                 "title": ""
             },
@@ -372,12 +374,6 @@
             "negate": ""
         }
     },
-    "help": "",
-    "help_description": "",
-    "help_about": "",
-    "help_about_description": "",
-    "donate": "",
-    "donate_description": "",
     "battle": "",
     "battle_description": "",
     "battle_a": "",
@@ -530,6 +526,12 @@
     "leaderboard_battles_description": "",
     "leaderboard_battlers": "",
     "leaderboard_battlers_description": "",
+    "help": "",
+    "help_description": "",
+    "help_about": "",
+    "help_about_description": "",
+    "donate": "",
+    "donate_description": "",
     "filter": "",
     "filter_description": "",
     "filter_id": "",

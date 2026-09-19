@@ -2,7 +2,6 @@ import asyncio
 import datetime
 import os
 import re
-import sys
 import tomllib
 import traceback
 from importlib import metadata as importlib_metadata
@@ -188,52 +187,6 @@ async def app_command_error(ctx: discord.Interaction, error):
         await ctx.response.send_message(embed=e)
 
     traceback.print_exception(type(error), error, error.__traceback__)
-
-@bot.tree.command(name="help", description="help_description")
-@app.rename(about="help_about")
-@app.describe(about="help_about_description")
-@app.choices(about=[
-    app.Choice(name=app.locale_str("create"), value="create"),
-    app.Choice(name=app.locale_str("lay"), value="create"),
-    app.Choice(name=app.locale_str("get"), value="get"),
-    app.Choice(name=app.locale_str("egg"), value="get"),
-    app.Choice(name=app.locale_str("edit"), value="edit"),
-    app.Choice(name=app.locale_str("report"), value="report"),
-    app.Choice(name=app.locale_str("delete"), value="delete"),
-    app.Choice(name=app.locale_str("Eggify"), value="eggify"),
-    app.Choice(name=app.locale_str("collected"), value="collected"),
-    app.Choice(name=app.locale_str("leaderboard"), value="leaderboard"),
-    app.Choice(name=app.locale_str("config"), value="config"),
-    app.Choice(name=app.locale_str("filter"), value="filter")
-])
-@app.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@utils.ratelimit("read")
-async def help(ctx: discord.Interaction, about: str | None):
-    lines, myloc = await bot.get_section(ctx, "help")
-
-    myloc = myloc["general"] if about is None else myloc[about]
-
-    e = discord.Embed(title=myloc["title"], color=discord.Color.blurple(), description=myloc["desc"])
-
-    if about is None:
-        e.set_thumbnail(url="https://github.com/ActuallyFlamey/ServerEggs/blob/main/icons/seggs_bg.png?raw=true")
-
-        e.add_field(name=myloc["about"], value=myloc["about_desc"], inline=False)
-        e.add_field(name=myloc["how"], value=myloc["how_desc"], inline=False)
-        e.add_field(name=myloc["donate"], value=myloc["donate_desc"], inline=False)
-        e.add_field(name=myloc["credits"], value=myloc["credits_desc"], inline=False)
-        e.add_field(name=myloc["versions"], value=myloc["versions_desc"].format(VERSION, discord.__version__, ".".join(map(str, sys.version_info[:3]))), inline=False)
-
-    utils.brand_embed(e, lines)
-
-    await ctx.response.send_message(embed=e)
-
-@bot.tree.command(name="donate", description="donate_description")
-@app.allowed_contexts(guilds=True, dms=True, private_channels=True)
-@utils.ratelimit("read")
-async def donate(ctx: discord.Interaction):
-    _, myloc = await bot.get_section(ctx, "donate")
-    await ctx.response.send_message(myloc["both"] if not await utils.is_ctx_supporter(ctx) else myloc["kofi"])
 
 @bot.tree.context_menu(name="eggify")
 @app.allowed_contexts(guilds=True, dms=False, private_channels=False)

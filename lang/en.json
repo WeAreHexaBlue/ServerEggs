@@ -93,10 +93,6 @@
                 "success": "Successfully set the default rating for {0} to `{1}`."
             }
         },
-        "donate": {
-            "both": "To **support Server Eggs**, you can either [**buy something from our Discord Store**](https://discord.com/discovery/applications/886686500845138041/store) or [**donate to HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
-            "kofi": "To **support Server Eggs**, you can [**donate to HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!"
-        },
         "eggs": {
             "create_edit": {
                 "empty_create": "Cannot create an **empty Egg**.\nPlease try again and include some text, an attachment, or both.",
@@ -251,60 +247,78 @@
             "author": "Server Eggs",
             "footer": "Server Eggs by HexaBlue"
         },
-        "help": {
-            "general": {
-                "title": "About Server Eggs",
-                "desc": "**Server Eggs** is a Discord bot created by **HexaBlue**.\nIt is designed as a fun way to share content, from which someone may want to join its origin server.",
-                "about": "What are Eggs?",
-                "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible from any server with **Server Eggs**.",
-                "how": "How to use Server Eggs",
-                "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
-                "donate": "Support Server Eggs",
-                "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donate** to [**HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
-                "credits": "Credits",
-                "credits_desc": "**__Programming__**:\n- **Flamey** (actuallyflamey)\n**__Localization__**:\n- **Flamey** (actuallyflamey): *English*, *Italian*.",
-                "versions": "Versions",
-                "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
+        "misc": {
+            "contribute": {
+                "title": "Contribute to Server Eggs",
+                "desc": "Here's the ways in which you can **contribute to Server Eggs's development**!",
+                "code": "Contribute Code",
+                "code_desc": "**Fork** our [**GitHub repo**](https://github.com/WeAreHexaBlue/ServerEggs), then **open a pull request**! Remember to **read the `CONTRIBUTING.md` file**.",
+                "trans": "Contribute Translations",
+                "trans_desc": "Head over to our [**Weblate Project page**](https://hosted.weblate.org/projects/seggs), and start **localizing Server Eggs** for the languages you're fluent in!"
             },
-            "create": {
-                "title": "About Creating Eggs",
-                "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an Egg**. The **Egg** you create will then be available **anywhere that Server Eggs is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **Egg**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **Egg**, as a file.\n- `link`: [Optional] Add an **attachment** to the **Egg**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **Egg** as **Secret**!\n  - This means that it **won't be possible** to view this **Egg** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **Egg**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
+            "donate": {
+                "title": "Donate to Server Eggs",
+                "desc": "Here's the ways in which you can **monetarily support Server Eggs's development**!",
+                "sku": "Buy from the Store",
+                "sku_desc": "Visit our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily Egg** for your **collection**!\n  - **Higher chance** to get **secret Eggs**!\n  - **Nicer** rate-limits.",
+                "kofi": "Donate on Ko-fi",
+                "kofi_desc": "Visit our [**Ko-fi page**](https://ko-fi.com/hexablue) and **leave a tip**!"
             },
-            "get": {
-                "title": "About Obtaining Eggs",
-                "desc": "**Commands**: `/get`, `/egg`\n\nUsing these commands, you will **receive an Egg**. If the `id` parameter isn't specified, the **Egg** will be **picked randomly from the global pool** and **added to your collection** if you haven't seen it before.\n\n**Parameters**:\n- `id`: [Optional] View a specific **Egg** by searching for its ID."
-            },
-            "edit": {
-                "title": "About Editing Eggs",
-                "desc": "**Commands**: `/edit`\n\nUsing this command, you may **edit an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\nYou **only override the parameters you select here**, meaning that, if you made a text-only **Egg** and wanted to make it Secret, you would only need to set `secret` to `True` here, without touching `text`.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to edit.\n- Other parameters are the same as `/create`/`/lay`."
-            },
-            "report": {
-                "title": "About Reporting Eggs",
-                "desc": "**Commands**: `/report`\n\nUsing this command, or through the \"Report\" button when receiving an **Egg**, you can **report an Egg**. This will send it to the global **Egg Moderators**, who will decide what action to take. If you suspect that an **Egg** may be violating a rule, don't hesistate to report it!\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to report."
-            },
-            "delete": {
-                "title": "About Deleting Eggs",
-                "desc": "**Commands**: `/delete`\n\nUsing this command, you may **delete an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to delete."
-            },
-            "eggify": {
-                "title": "About Eggifying Messages",
-                "desc": "You may **turn a message into an Egg** by right-clicking it (or holding it, on mobile), going to the *Apps* menu, and choosing ***Eggify***.\nFrom there, you can **modify the text** (by default, it'll be the *original message's content*), set its **Secret** status, and choose its **rating**."
-            },
-            "collected": {
-                "title": "About Egg Collections",
-                "desc": "**Commands**: `/collected`\n\nUsing this command, you can **view your Egg collection**, which is comprised of all the **Egg**s you found randomly. Alternatively, you may also use the `check` parameter to see if you have collected a specific **Egg**.\n\n**Parameters**:\n- `check`: [Optional] The ID of an **Egg**, to see if you've collected it.\n- `rating`: [Optional] Filters your collection by a specific **rating**.\n- `only-secret`: [Optional] Filters your collection, and shows you only the **Secret Egg**s you've found."
-            },
-            "leaderboard": {
-                "title": "About Leaderboards",
-                "desc": "**Commands**: `/leaderboard collections`, `/leaderboard creations`, `/leaderboard battles`, `/leaderboard battlers`\n\nThe leaderboard commands allow you to view the **Top 15** of a certain category.\nThese categories are:\n- **Collections**: Users who have collected the most **Egg**s.\n- **Creations**: Users who have created the most **Egg**s.\n- **Battles**: **Egg**s that have won the most battles.\n- **Battlers**: Users who have won the most battles."
-            },
-            "config": {
-                "title": "About Configuring Server Eggs",
-                "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **Server Eggs** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **Egg**s created in it.\n    - **In DMs**: Allow anyone who **views one of your Eggs** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **Egg creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **Egg**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **Egg**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
-            },
-            "filter": {
-                "title": "About Filtering Eggs",
-                "desc": "**Commands**: `/filter`\n\nUsing this command, Server Managers can **toggle filtering** for an **Egg**. This is helpful when an **Egg** does not break the *global* rules, and therefore is allowed by the **Egg Moderators**, but *local* server moderators feel it's inappropriate for their members.\nIf an **Egg** was **already filtered**, running this command on it again will **unfilter it**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to toggle filters for."
+            "help": {
+                "general": {
+                    "title": "About Server Eggs",
+                    "desc": "**Server Eggs** is a Discord bot created by **HexaBlue**.\nIt is designed as a fun way to share content, from which someone may want to join its origin server.",
+                    "about": "What are Eggs?",
+                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible from any server with **Server Eggs**.",
+                    "how": "How to use Server Eggs",
+                    "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
+                    "donate": "Support Server Eggs",
+                    "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donate** to [**HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
+                    "credits": "Credits",
+                    "credits_desc": "**__Programming__**:\n- **Flamey** (actuallyflamey)\n**__Localization__**:\n- **Flamey** (actuallyflamey): *English*, *Italian*.",
+                    "versions": "Versions",
+                    "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
+                },
+                "create": {
+                    "title": "About Creating Eggs",
+                    "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an Egg**. The **Egg** you create will then be available **anywhere that Server Eggs is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **Egg**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **Egg**, as a file.\n- `link`: [Optional] Add an **attachment** to the **Egg**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **Egg** as **Secret**!\n  - This means that it **won't be possible** to view this **Egg** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **Egg**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
+                },
+                "get": {
+                    "title": "About Obtaining Eggs",
+                    "desc": "**Commands**: `/get`, `/egg`\n\nUsing these commands, you will **receive an Egg**. If the `id` parameter isn't specified, the **Egg** will be **picked randomly from the global pool** and **added to your collection** if you haven't seen it before.\n\n**Parameters**:\n- `id`: [Optional] View a specific **Egg** by searching for its ID."
+                },
+                "edit": {
+                    "title": "About Editing Eggs",
+                    "desc": "**Commands**: `/edit`\n\nUsing this command, you may **edit an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\nYou **only override the parameters you select here**, meaning that, if you made a text-only **Egg** and wanted to make it Secret, you would only need to set `secret` to `True` here, without touching `text`.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to edit.\n- Other parameters are the same as `/create`/`/lay`."
+                },
+                "report": {
+                    "title": "About Reporting Eggs",
+                    "desc": "**Commands**: `/report`\n\nUsing this command, or through the \"Report\" button when receiving an **Egg**, you can **report an Egg**. This will send it to the global **Egg Moderators**, who will decide what action to take. If you suspect that an **Egg** may be violating a rule, don't hesistate to report it!\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to report."
+                },
+                "delete": {
+                    "title": "About Deleting Eggs",
+                    "desc": "**Commands**: `/delete`\n\nUsing this command, you may **delete an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to delete."
+                },
+                "eggify": {
+                    "title": "About Eggifying Messages",
+                    "desc": "You may **turn a message into an Egg** by right-clicking it (or holding it, on mobile), going to the *Apps* menu, and choosing ***Eggify***.\nFrom there, you can **modify the text** (by default, it'll be the *original message's content*), set its **Secret** status, and choose its **rating**."
+                },
+                "collected": {
+                    "title": "About Egg Collections",
+                    "desc": "**Commands**: `/collected`\n\nUsing this command, you can **view your Egg collection**, which is comprised of all the **Egg**s you found randomly. Alternatively, you may also use the `check` parameter to see if you have collected a specific **Egg**.\n\n**Parameters**:\n- `check`: [Optional] The ID of an **Egg**, to see if you've collected it.\n- `rating`: [Optional] Filters your collection by a specific **rating**.\n- `only-secret`: [Optional] Filters your collection, and shows you only the **Secret Egg**s you've found."
+                },
+                "leaderboard": {
+                    "title": "About Leaderboards",
+                    "desc": "**Commands**: `/leaderboard collections`, `/leaderboard creations`, `/leaderboard battles`, `/leaderboard battlers`\n\nThe leaderboard commands allow you to view the **Top 15** of a certain category.\nThese categories are:\n- **Collections**: Users who have collected the most **Egg**s.\n- **Creations**: Users who have created the most **Egg**s.\n- **Battles**: **Egg**s that have won the most battles.\n- **Battlers**: Users who have won the most battles."
+                },
+                "config": {
+                    "title": "About Configuring Server Eggs",
+                    "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **Server Eggs** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **Egg**s created in it.\n    - **In DMs**: Allow anyone who **views one of your Eggs** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **Egg creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **Egg**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **Egg**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
+                },
+                "filter": {
+                    "title": "About Filtering Eggs",
+                    "desc": "**Commands**: `/filter`\n\nUsing this command, Server Managers can **toggle filtering** for an **Egg**. This is helpful when an **Egg** does not break the *global* rules, and therefore is allowed by the **Egg Moderators**, but *local* server moderators feel it's inappropriate for their members.\nIf an **Egg** was **already filtered**, running this command on it again will **unfilter it**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to toggle filters for."
+                }
             }
         },
         "log": {
@@ -324,7 +338,7 @@
                 "filtered": "Successfully **filtered** **Egg #{0}**.\nIt will **no longer appear** in this server."
             }
         },
-        "supporter": {
+        "premium": {
             "daily": {
                 "title": "Daily Egg #{0}"
             },
@@ -377,14 +391,6 @@
             "negate": "No"
         }
     },
-
-    "help": "help",
-    "help_description": "Get info about Server Eggs or a command.",
-    "help_about": "about",
-    "help_about_description": "The command to get information about.",
-
-    "donate": "donate",
-    "donate_description": "Support Server Eggs's development!",
 
     "battle": "battle",
     "battle_description": "Start an Egg battle and let everyone vote on the winner.",
@@ -571,6 +577,17 @@
 
     "leaderboard_battlers": "battlers",
     "leaderboard_battlers_description": "See who has won the most battles.",
+
+    "help": "help",
+    "help_description": "Get info about Server Eggs or a command.",
+    "help_about": "about",
+    "help_about_description": "The command to get information about.",
+
+    "donate": "donate",
+    "donate_description": "Support Server Eggs's development!",
+
+    "contribute": "contribute",
+    "contribute_description": "Help develop Server Eggs!",
 
     "filter": "filter",
     "filter_description": "Prevent a specific Egg from appearing in this server.",
