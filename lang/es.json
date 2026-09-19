@@ -3,53 +3,81 @@
     "lines": {
         "battles": {
             "battle": {
-                "no_egg": "No hay suficientes **Huevo**s para empezar una batalla!",
-                "same_egg": "Ambos luchadores no pueden ser el mismo **Huevo**!",
-                "begin_random": "## La batalla ha empezado!\n**__A__**: **Huevo #{0}**\n**__B__**: **Huevo #{1}**",
-                "begin_challenge": "## La batalla ha empezado!\n**__A__**: **Huevo #{0}**, luchando por {2}!\n**__B__**: **Huevo #{1}**, luchando por {3}!",
-                "eggn": "Huevo #{0} ({1})",
+                "no_egg": "¡No hay suficientes **Huevo**s para empezar una batalla!",
+                "same_egg": "¡Ambos luchadores no pueden ser el mismo **Huevo**!",
+                "begin_random": "## ¡El combate ha empezado!\n**__A__**: **Huevo #{0}**\n**__B__**: **Huevo #{1}**",
+                "begin_challenge": "## ¡El combate ha empezado!\n**__A__**: **Huevo #{0}**, luchando por {2}!\n**__B__**: **Huevo #{1}**, luchando por {3}!",
+                "eggn": "Huevo Nº{0} ({1})",
                 "vote": "Voto {0}",
-                "voted": "Tu voto fue contado! Puedes cambiar tu bando hasta que la batalla termine.",
-                "ended": "Esta batalla ya termino.",
+                "voted": "¡Tu voto se ha contado! Puedes cambiar de bando mientras dure el combate.",
+                "ended": "Este combate ya ha terminado.",
                 "show": "Mostrar Archivo para {0}",
-                "result_win_title": "El huevo #{0} gano!",
-                "result_win": "**El huevo #{0}** reclama la victoria con **{1}** votos contra **{2}**!",
-                "result_tie_title": "Empate!",
-                "result_tie": "La batalla terminó **{0} - {1}**. Ningun **Huevo** reclama la victoria.",
-                "finished": "**La batalla termino**!"
+                "result_win_title": "¡Huevo Nº{0} gana!",
+                "result_win": "**¡El huevo Nº{0}** se alza con la victoria con **{1}** votos contra **{2}**!",
+                "result_tie_title": "¡Empate!",
+                "result_tie": "El combate ha terminado **{0} - {1}**. Ningún **Huevo** se alza con la victoria.",
+                "finished": "¡**Fin del combate**!"
             },
             "challenge": {
-                "self": "No puedes desafiarte a ti mismo a una batalla!",
-                "bot": "No puedes desafiar un bot a la batalla!",
-                "not_your_egg": "El **Huevo#{0}** no fue creado ni coleccionado por ti, asi que no puede luchar por ti.",
-                "empty_pool": "No tienes ningun **Huevo** que pueda luchar! Crea o colecciona alguno primero.",
-                "prompt": "{0}, has sido desafiado a una **batalla de Huevos** por **{1}**!\nAcepta a continuacion, y elije cuales de tus **Huevo**s (creados o recolectados) lucharan, o deja que el azar decida.",
-                "sent": "Desafio enviado exitosamente.",
+                "self": "¡No puedes desafiarte a ti mismo a un combate!",
+                "bot": "¡No puedes desafiar a un bot a un combate!",
+                "not_your_egg": "El **Huevo Nº{0}** no fue creado ni obtenido por ti, asi que no puede luchar por ti.",
+                "empty_pool": "¡No tienes ningún **Huevo** que pueda luchar! Crea uno u obtén alguno primero.",
+                "prompt": "{0}, has sido desafiado a una **batalla de Huevos** por **{1}**!\nAcepta debajo, y elije cuales de tus **Huevo**s (creados u obtenidos) lucharán, o deja que el azar decida.",
+                "sent": "Desafío enviado con éxito.",
                 "accept": "Aceptar",
-                "decline": "Declinar",
-                "not_yours": "Solo el **usuario desafiado** puede responder a este desafio.",
-                "declined": "El desafio fue **rechazado**.",
-                "expired": "Este desafio ha expirado sin su respuesta.",
-                "modal_title": "Elije tu Huevo luchador.",
+                "decline": "Rechazar",
+                "not_yours": "Solo el **usuario desafiado** puede responder a este desafío.",
+                "declined": "El desafío fue **rechazado**.",
+                "expired": "Este desafío ha expirado sin responder.",
+                "modal_title": "Elije tu Huevo luchador",
                 "modal_id": "ID del Huevo",
-                "modal_id_placeholder": "Dejalo vacio para elegir un huevo al azar de tu reserva.",
-                "invalid_egg": "**\"{0}\"** no es una **ID valida de Huevos**.",
-                "same_egg": "Ese es el mismo **Huevo** que tu oponente lleva! Elije otro diferente.",
-                "accepted": "El desafio fue **aceptado**: que la batalla comienze!"
+                "modal_id_placeholder": "Déjalo vacío para elegir un Huevo aleatorio de tu reserva",
+                "invalid_egg": "**\"{0}\"** no es un **ID de Huevo** válido.",
+                "same_egg": "¡Ese es el mismo **Huevo** que trae tu oponente! Elije otro diferente.",
+                "accepted": "El desafío fue **aceptado**. ¡Que empiece el combate!"
             }
         },
         "config": {
             "lang": {
-                "missing_perms": "Necesitaras el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de lenguages de usuario, pero **siempre funcionara en MDs**.",
-                "no_default": "La opción \"Predeterminados del servidor\" es para usuarios, no para servidores.",
-                "success": "¡Se ha cambiado correctamente el idioma al \"**Español**\"!"
+                "missing_perms": "Necesitas el permiso de **Gestionar Servidor** para ejecutar este comando aquí.\n\n-# Si quieres establecer **tu propio idioma de respuesta**, usa`/config lang` en [mis MDs](<https://discord.com/users/886686500845138041>).\n-# **No todos los servers permiten** el uso de idiomas externos, pero **siempre funcionará en MDs**.",
+                "no_default": "La opción \"Predeterminado del servidor\" es para usuarios, no para servidores.",
+                "invalid": "Idioma desconocido. Elige una de las opciones sugeridas.",
+                "success": "¡Se ha cambiado con éxito el idioma a \"**Español**\"!"
             },
             "server-description": {
                 "success": "Se ha establecido exitosamente la descripcion del servidor a:"
             },
             "privacy": {
                 "missing_guild_perms": "Necesitas el permiso de **Gestionar Servidor** para ejecutar este comando aqui.\n\n-# Si quisiste cambiar **tu propia configuracion de privacidad**, ejecuta `/config privacy` en [mis MDs](<https://discord.com/users/886686500845138041>).",
-                "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion."
+                "missing_invite_perms": "A **Server Eggs** le falta el permiso para **Crear Invitaciones**, lo cual es necesario para esta operacion.",
+                "success": "La privacidad ha sido exitosamente cambiada a {0}.",
+                "public": "publico",
+                "private": "privado"
+            },
+            "log": {
+                "missing_perms": "No tengo permiso para escribir registros ahi!",
+                "success": "El canal de registros ha sido exitosamente cambiado a {0}."
+            },
+            "allowed-ratings": {
+                "no_changes": "No has especificado ningun cambio.",
+                "no_explicit_in_normal": "No permitiras **Huevo**s **Explicitos** en **Canales SFW**.",
+                "success": "Tus cambios han sido aplicados exitosamente."
+            },
+            "join-button": {
+                "success": "Se ha establecido correctamente la visibilidad del boton \"Unirse al servidor de Origen\" en `{0}`."
+            }
+        },
+        "eggs": {
+            "create_edit": {
+                "invalid_url": "El parametro `link` especificado *no* corresponde a ningun **formato multimedia compatible** (imagen, video o audio).",
+                "could_not_scan": "No se pudo recuperar la media para el analisis de contenido dañino.",
+                "processing": "Procesando tu **Huevo**...\n-# Esto tomara un momento! Solo estamos chequeando que no hayas puesto nada ilegal.",
+                "too_big": "Tu archivo es **muy grande**! El limite es **15 MB**.",
+                "convert_failed": "No se pudo convertir el **archivo** a un formato compatible. Es posible que este dañado o utilice un codec no soportado.",
+                "illegal": "**CONTENIDO ILEGAL DETECTADO**. Se te ha **prohibido* el crear **Huevo**s.",
+                "duplicate": "Un **Huevo** con esas especificaciones **ya existe**.\nMiralo con: `/get id:{0}`",
+                "beg": "Hey **{0}**! Si te gusto **Server Eggs** y te gustaria que continue su desarrollo y  que sus servidores sigan en linea, considere [**comprar algo de nuestra Tienda de Discord**](https://discord.com/discovery/applications/886686500845138041/store) or [**donando a nuestro Ko-fi**](https://ko-fi.com/hexablue)! \nRecuerda que **Server Eggs** es un projecto de *software de fuente abierta*, y por lo tanto desarrollado por *voluntarios*. Sin ayuda de gente como *tu*, no podria existir..\n\n-# Has recibido este mensaje porque has creado varios **Huevo**s."
             }
         }
     }

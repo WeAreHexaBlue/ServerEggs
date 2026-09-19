@@ -3,7 +3,7 @@
     "lines": {
         "battles": {
             "battle": {
-                "no_egg": "Er zijn niet genoeg **Eieren** om het gevecht te starten!",
+                "no_egg": "Er zijn niet genoeg **Ei**eren om het gevecht te starten!",
                 "same_egg": "Beide vechters kunnen niet hetzelfde **Ei** zijn!",
                 "begin_random": "## Gevecht Begonnen!\n**__A__**: **Ei #{0}**\n**__B__**: **Ei #{1}**",
                 "begin_challenge": "## Gevecht begonnen!\n**__A__**: **Ei #{0}**, vecht voor {2}!\n**__B__**: **Ei #{1}**, vecht voor {3}!",
@@ -75,6 +75,7 @@
     "leaderboard": "scorebord",
     "leaderboard_description": "Bekijk scoreboard voor verschillende stats.",
     "leaderboard_collections": "collecties",
+    "leaderboard_collections_description": "Zie wie de grootste Ei collectie heeft.",
     "leaderboard_creations": "creaties",
     "leaderboard_creations_description": "Zie wie de meeste Eieren heeft gecreëerd.",
     "leaderboard_battles": "gevechten",

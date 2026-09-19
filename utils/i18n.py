@@ -36,6 +36,8 @@ def deep_merge(base: dict, override: dict) -> dict:
     merged = copy.deepcopy(base)
 
     for key, value in override.items():
+        if value == "":
+            continue
         if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
             merged[key] = deep_merge(merged[key], value)
         else:
@@ -53,6 +55,8 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
             continue
 
         if not isinstance(override, dict) or key not in override:
+            missing.append(path)
+        elif override[key] == "":
             missing.append(path)
         elif isinstance(value, dict) and isinstance(override[key], dict):
             missing.extend(find_missing_paths(value, override[key], path))
