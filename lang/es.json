@@ -66,6 +66,15 @@
             },
             "join-button": {
                 "success": "Se ha establecido correctamente la visibilidad del boton \"Unirse al servidor de Origen\" en `{0}`."
+            },
+            "allow-ext-lang": {
+                "success": "Se ha modificado exitosamente la configuracion relativa al uso de lenguajes externos (`{0}`)!"
+            },
+            "battle-time": {
+                "success": "Se ha exitosamente configurado el tiempo de expiracion de batalla a `{0}` minutos."
+            },
+            "channel-rating": {
+                "success": "Se ha establecido exitosamente el rating predeterminado para {0} en `{1}`."
             }
         },
         "eggs": {
