@@ -90,7 +90,7 @@ class Eggs(commands.Cog):
             egg = await Egg.get_with_related(id)
 
             if not egg:
-                await ctx.followup.send(myloc["not_found"].format(id), ephemeral=True)
+                await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
                 return
 
             if not await self.manage_check(ctx, egg):
@@ -179,7 +179,7 @@ class Eggs(commands.Cog):
         if existing:
             utils.safe_remove(attach_path)
 
-            await processing.edit(content=myloc["duplicate"].format(existing.id))
+            await processing.edit(content=myloc["duplicate"].format(egg_id=existing.id))
             return
 
         if not id:
@@ -216,7 +216,7 @@ class Eggs(commands.Cog):
 
         container, resfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg,
-            title=utils.egg_title(egg, myloc["title"].format(egg.id, myloc["created"] if not id else myloc["edited"])),
+            title=utils.egg_title(egg, myloc["title"].format(egg_id=egg.id, action=myloc["created"] if not id else myloc["edited"])),
             created=not id
         )
 
@@ -289,23 +289,23 @@ class Eggs(commands.Cog):
             egg = await Egg.get_with_related(id)
 
             if not egg:
-                await ctx.followup.send(myloc["not_found"].format(id))
+                await ctx.followup.send(myloc["not_found"].format(egg_id=id))
                 return
 
             if egg.rating not in allowed:
-                await ctx.followup.send(myloc["id_rating_not_allowed"].format(id))
+                await ctx.followup.send(myloc["id_rating_not_allowed"].format(egg_id=id))
                 return
 
             if egg.secret:
-                await ctx.followup.send(myloc["secret"].format(id))
+                await ctx.followup.send(myloc["secret"].format(egg_id=id))
                 return
 
             if guild and await egg.filtered_in.filter(id=ctx.guild.id).exists():
-                await ctx.followup.send(myloc["filtered"].format(id, ctx.guild.name))
+                await ctx.followup.send(myloc["filtered"].format(egg_id=id, guild=ctx.guild.name))
                 return
             
             if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
-                await ctx.followup.send(myloc["lang_not_allowed"].format(id))
+                await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=id))
                 return
         else:
             if rating and rating not in allowed:
@@ -431,7 +431,7 @@ class Eggs(commands.Cog):
         egg = await Egg.get_with_related(id)
 
         if not egg:
-            await ctx.followup.send(myloc["not_found"].format(id), ephemeral=True)
+            await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
             return
 
         if check_manage and not await self.manage_check(ctx, egg):

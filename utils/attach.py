@@ -171,7 +171,7 @@ async def url_to_file(url: str) -> discord.File | None:
                 filename = os.path.basename(parsed_path) or "media.mp4"
 
                 return discord.File(io.BytesIO(filebytes), filename=filename)
-    except (aiohttp.ClientError, asyncio.TimeoutError):
+    except (TimeoutError, aiohttp.ClientError):
         pass
 
     return file
@@ -299,7 +299,7 @@ async def resolve_media_url(url: str) -> str | None:
 
                 return candidates["gif"] or candidates["video"] or candidates["audio"] or candidates["image"]
 
-        except (aiohttp.ClientError, asyncio.TimeoutError, UnicodeDecodeError) as e:
+        except (TimeoutError, aiohttp.ClientError, UnicodeDecodeError) as e:
             print(f"ERROR: Failed resolving {url}: {e}")
 
     return None

@@ -54,9 +54,7 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
         if isinstance(value, str) and value.startswith("$"):
             continue
 
-        if not isinstance(override, dict) or key not in override:
-            missing.append(path)
-        elif override[key] == "":
+        if not isinstance(override, dict) or key not in override or override[key] == "":
             missing.append(path)
         elif isinstance(value, dict) and isinstance(override[key], dict):
             missing.extend(find_missing_paths(value, override[key], path))

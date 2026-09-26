@@ -76,7 +76,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         await guild.save(update_fields=["allow_ext_lang"])
         self.bot.lang_cache[cache_key] = guild.allow_ext_lang
 
-        await ctx.followup.send(myloc["success"].format(allow), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(allow=allow), ephemeral=True)
 
     @app.command(name="server-description", description="server-description_description")
     @app.rename(desc="server-description_desc")
@@ -142,7 +142,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
             user.public = public
             await user.save(update_fields=["public"])
 
-        await ctx.followup.send(myloc["success"].format(myloc["public"] if public else myloc["private"]), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(state=myloc["public"] if public else myloc["private"]), ephemeral=True)
 
     @app.command(name="log", description="log_description")
     @app.rename(channel="log_channel")
@@ -165,7 +165,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         guild.logch = channel.id
         await guild.save(update_fields=["logch"])
 
-        await ctx.followup.send(myloc["success"].format(channel.mention), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(channel=channel.mention), ephemeral=True)
 
     allowed_ratings = app.Group(
         name="allowed-ratings",
@@ -246,7 +246,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         guild.view_join_button = viewable
         await guild.save(update_fields=["view_join_button"])
 
-        await ctx.followup.send(myloc["success"].format(viewable), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(viewable=viewable), ephemeral=True)
     
     @app.command(name="battle-time", description="battle-time_description")
     @app.rename(minutes="battle-time_minutes")
@@ -265,7 +265,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         guild.battle_time = newdelta
         await guild.save(update_fields=["battle_time"])
 
-        await ctx.followup.send(myloc["success"].format(minutes), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(minutes=minutes), ephemeral=True)
     
     @app.command(name="channel-rating", description="channel-rating_description")
     @app.rename(channel="channel-rating_channel", rating="channel-rating_rating")
@@ -293,7 +293,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         guild.channel_ratings[category].append(channel.id)
         await guild.save(update_fields=["channel_ratings"])
 
-        await ctx.followup.send(myloc["success"].format(channel.mention, rating), ephemeral=True)
+        await ctx.followup.send(myloc["success"].format(channel=channel.mention, rating=rating), ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Config(bot))

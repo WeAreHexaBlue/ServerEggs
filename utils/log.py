@@ -19,12 +19,12 @@ async def log_egg(bot: commands.Bot, lines: dict, guild, egg, creator: discord.U
         file=sfile or discord.utils.MISSING,
         view=views.ModLogActions(
             bot, lines, egg,
-            (
-                discord.utils.escape_markdown(actor.display_name),
-                discord.utils.escape_markdown(actor.name),
-                myloc["edited"] if edit else myloc["created"],
-                egg.id
-            ),
+            {
+                "actor": discord.utils.escape_markdown(actor.display_name),
+                "username": discord.utils.escape_markdown(actor.name),
+                "action": myloc["edited"] if edit else myloc["created"],
+                "egg_id": egg.id
+            },
             container, vfile, vlink
         )
     )

@@ -46,6 +46,6 @@ async def beg(myloc: dict, ctx: discord.Interaction, user: User):
     count = await user.eggs.all().count()
     if (is_supporter and count % 90 == 0) or (not is_supporter and count % 20 == 0):
         try:
-            await ctx.user.send(line.format(ctx.user.display_name))
+            await ctx.user.send(line.format(user=ctx.user.display_name))
         except discord.HTTPException:
             pass

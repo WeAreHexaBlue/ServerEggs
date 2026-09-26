@@ -23,7 +23,7 @@ class Mod(commands.Cog):
 
         egg = await Egg.get_or_none(id=id)
         if not egg:
-            await ctx.followup.send(myloc["not_found"].format(id), ephemeral=True)
+            await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
             return
 
         guild, _ = await Guild.get_or_create(id=ctx.guild.id)
@@ -32,10 +32,10 @@ class Mod(commands.Cog):
 
         if current_state:
             await guild.filtered.remove(egg)
-            await ctx.followup.send(myloc["unfiltered"].format(egg.id), ephemeral=True)
+            await ctx.followup.send(myloc["unfiltered"].format(egg_id=egg.id), ephemeral=True)
         else:
             await guild.filtered.add(egg)
-            await ctx.followup.send(myloc["filtered"].format(egg.id), ephemeral=True)
+            await ctx.followup.send(myloc["filtered"].format(egg_id=egg.id), ephemeral=True)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Mod(bot))

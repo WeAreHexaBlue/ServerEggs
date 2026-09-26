@@ -70,7 +70,7 @@ class EggSelectModal(discord.ui.Modal):
         setattr(self.egg, self.FIELD, value)
         await self.egg.save(update_fields=[self.FIELD])
 
-        await ctx.followup.send(self.myloc["success"].format(self.egg.id, display), ephemeral=True)
+        await ctx.followup.send(self.myloc["success"].format(egg_id=self.egg.id, value=display), ephemeral=True)
 
         if self.after_set:
             await self.after_set(ctx, self.egg, value)

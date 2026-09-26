@@ -271,7 +271,7 @@ class DeleteEgg(discord.ui.LayoutView):
 
         await utils.egg_delete(self.egg)
 
-        await ctx.response.edit_message(view=text_view(self.myloc["success"].format(eggid)))
+        await ctx.response.edit_message(view=text_view(self.myloc["success"].format(egg_id=eggid)))
 
     async def cancel(self, ctx: discord.Interaction):
         await ctx.response.edit_message(view=text_view(self.myloc["cancelled"]))
@@ -317,7 +317,7 @@ class ReportEgg(discord.ui.Modal):
         self.egg = egg
         self.from_report_command = from_report_command
 
-        super().__init__(title=self.myloc["title"].format(egg.id))
+        super().__init__(title=self.myloc["title"].format(egg_id=egg.id))
 
         self.reason = discord.ui.Label(
             text=self.myloc["rule"],
@@ -343,7 +343,7 @@ class ReportEgg(discord.ui.Modal):
         self.add_item(self.specify)
 
     async def finish(self, ctx: discord.Interaction, key: str):
-        content = self.myloc[key].format(self.egg.id)
+        content = self.myloc[key].format(egg_id=self.egg.id)
 
         if self.from_report_command:
             await ctx.edit_original_response(view=text_view(content))

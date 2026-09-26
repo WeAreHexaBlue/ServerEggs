@@ -5,25 +5,25 @@
             "battle": {
                 "no_egg": "Non ci sono abbastanza **Uova** per iniziare una battaglia!",
                 "same_egg": "Non puoi usare lo stesso **Uovo** per entrambi i combattenti!",
-                "begin_random": "## Inizia la battaglia!\n**__A__**: **Uovo n. {0}**\n**__B__**: **Uovo n. {1}**",
-                "begin_challenge": "## Inizia la battaglia!\n**__A__**: **Uovo n. {0}**, che combatte per {2}!\n**__B__**: **Uovo n. {1}**, che combatte per {3}!",
-                "eggn": "Uovo n. {0} ({1})",
-                "vote": "Vota {0}",
+                "begin_random": "## Inizia la battaglia!\n**__A__**: **Uovo n. {egg_a}**\n**__B__**: **Uovo n. {egg_b}**",
+                "begin_challenge": "## Inizia la battaglia!\n**__A__**: **Uovo n. {egg_a}**, che combatte per {user_a}!\n**__B__**: **Uovo n. {egg_b}**, che combatte per {user_b}!",
+                "eggn": "Uovo n. {egg_id} ({side})",
+                "vote": "Vota {side}",
                 "voted": "Il tuo voto è stato registrato! Puoi cambiarlo fino alla fine della battaglia.",
                 "ended": "Questa battaglia è già finita.",
-                "show": "Mostra Allegato per {0}",
-                "result_win_title": "Vince l'Uovo n. {0}!",
-                "result_win": "L'**Uovo n. {0}** canta vittoria con **{1}** voti contro **{2}**!",
+                "show": "Mostra Allegato per {side}",
+                "result_win_title": "Vince l'Uovo n. {egg_id}!",
+                "result_win": "L'**Uovo n. {egg_id}** canta vittoria con **{votes}** voti contro **{opponent_votes}**!",
                 "result_tie_title": "Pari!",
-                "result_tie": "La battaglia è finita **{0} - {1}**. Nessun **Uovo** canta vittoria.",
+                "result_tie": "La battaglia è finita **{votes_a} - {votes_b}**. Nessun **Uovo** canta vittoria.",
                 "finished": "**Battaglia conclusa**!"
             },
             "challenge": {
                 "self": "Non puoi sfidarti da solo!",
                 "bot": "Non puoi sfidare un bot!",
-                "not_your_egg": "Non hai né creato né collezionato l'**Uovo n. {0}**, quindi non puoi usarlo per combattere.",
+                "not_your_egg": "Non hai né creato né collezionato l'**Uovo n. {egg_id}**, quindi non puoi usarlo per combattere.",
                 "empty_pool": "Non hai alcun **Uovo** che possa combattere! Creane o collezionane.",
-                "prompt": "{0}, sei statə sfidatə a una **battaglia tra Uova** da **{1}**!\nAccetta qui sotto, e scegli quale delle tue **Uova** (create o collezionate) combatterà, oppure lascialo al caso.",
+                "prompt": "{challenged}, sei statə sfidatə a una **battaglia tra Uova** da **{challenger}**!\nAccetta qui sotto, e scegli quale delle tue **Uova** (create o collezionate) combatterà, oppure lascialo al caso.",
                 "sent": "Sfida inviata con successo.",
                 "accept": "Accetta",
                 "decline": "Rifiuta",
@@ -33,7 +33,7 @@
                 "modal_title": "Scegli il tuo Uovo combattente",
                 "modal_id": "ID Uovo",
                 "modal_id_placeholder": "Lascia questo spazio vuoto perché venga scelto casualmente",
-                "invalid_egg": "\"**{0}**\" non è un **ID Uovo** valido.",
+                "invalid_egg": "\"**{input}**\" non è un **ID Uovo** valido.",
                 "same_egg": "È lo stesso **Uovo** che ha scelto il tuo avversario! Scegline un altro.",
                 "accepted": "La sfida è stata **accettata**: che la battaglia abbia inizio!"
             }
@@ -46,7 +46,7 @@
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
             },
             "allow-ext-lang": {
-                "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{0}`)!"
+                "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{allow}`)!"
             },
             "server-description": {
                 "success": "Impostata la descrizione del server:"
@@ -54,13 +54,13 @@
             "privacy": {
                 "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/configura privacy` nei [miei DM](<https://discord.com/users/886686500845138041>).",
                 "missing_invite_perms": "A **Server Eggs** manca il permesso **Creare Invito**, che è necessario per questa operazione.",
-                "success": "Privacy impostata su {0} con successo.",
+                "success": "Privacy impostata su {state} con successo.",
                 "public": "pubblico",
                 "private": "privato"
             },
             "log": {
                 "missing_perms": "Non ho il permesso di scrivere i registri lì!",
-                "success": "Canale di registro Uova impostato su {0} con successo."
+                "success": "Canale di registro Uova impostato su {channel} con successo."
             },
             "allowed-ratings": {
                 "no_changes": "Non specificato alcuna modifica.",
@@ -68,13 +68,13 @@
                 "success": "Modifiche applicate con successo."
             },
             "join-button": {
-                "success": "Visibilità del tasto \"Unisciti al Server d'Origine\" impostata su `{0}` con successo."
+                "success": "Visibilità del tasto \"Unisciti al Server d'Origine\" impostata su `{viewable}` con successo."
             },
             "battle-time": {
-                "success": "Impostato il tempo di scadenza delle battaglie a `{0}` minuti con successo."
+                "success": "Impostato il tempo di scadenza delle battaglie a `{minutes}` minuti con successo."
             },
             "channel-rating": {
-                "success": "Impostata la classificazione predefinita per {0} su `{1}`."
+                "success": "Impostata la classificazione predefinita per {channel} su `{rating}`."
             }
         },
         "eggs": {
@@ -93,10 +93,10 @@
                 "too_big": "Il tuo allegato è **troppo grande**! Il limite è di **20 MB**.",
                 "convert_failed": "Non è stato possibile convertire il tuo **allegato** in un formato supportato. Potrebbe essere danneggiato o usare un codec non supportato.",
                 "illegal": "**RILEVATI CONTENUTI ILLEGALI**. Ti è appena stato **tolto il permesso** di creare o modificare **Uova**.",
-                "duplicate": "Un **Uovo** con queste specifiche **esiste già**.\nOsservalo con: `/ricevi id:{0}`",
-                "beg": "Ehi **{0}**! Se ti piace **Server Eggs** e vorresti che venga sviluppato continuamente e che non si spengano i server, considera l'idea di [**fare un acquisto sul nostro Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store) o di [**donare al nostro Ko-fi**](https://ko-fi.com/hexablue)!\nRicordati che **Server Eggs** è un *software open-source*, e perciò è sviluppato da *volontari*. Senza il supporto di gente come *te*, non esisterebbe.\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
-                "beg_supporter": "Ehi **{0}**! So che ci stai già **Sostenendo**, e perciò ricevi questo messaggio **meno spesso**, ma ci teniamo a farti presente che, in qualsiasi momento, puoi **donare di più** di quanto tu non stia già facendo (di cui siamo grati) sulla nostra [**pagina Ko-fi**](https://ko-fi.com/hexablue).\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
-                "title": "Uovo n. {0} {1}!",
+                "duplicate": "Un **Uovo** con queste specifiche **esiste già**.\nOsservalo con: `/ricevi id:{egg_id}`",
+                "beg": "Ehi **{user}**! Se ti piace **Server Eggs** e vorresti che venga sviluppato continuamente e che non si spengano i server, considera l'idea di [**fare un acquisto sul nostro Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store) o di [**donare al nostro Ko-fi**](https://ko-fi.com/hexablue)!\nRicordati che **Server Eggs** è un *software open-source*, e perciò è sviluppato da *volontari*. Senza il supporto di gente come *te*, non esisterebbe.\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
+                "beg_supporter": "Ehi **{user}**! So che ci stai già **Sostenendo**, e perciò ricevi questo messaggio **meno spesso**, ma ci teniamo a farti presente che, in qualsiasi momento, puoi **donare di più** di quanto tu non stia già facendo (di cui siamo grati) sulla nostra [**pagina Ko-fi**](https://ko-fi.com/hexablue).\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
+                "title": "Uovo n. {egg_id} {action}!",
                 "created": "creato",
                 "edited": "modificato"
             },
@@ -114,23 +114,23 @@
                 "continued": "Passato alla creazione dell'**Uovo** da questo messaggio."
             },
             "send": {
-                "not_found": "**Uovo n. {0}** non trovato.",
-                "id_rating_not_allowed": "Ho trovato l'**Uovo n. {0}**, ma la sua **classificazione** non è permessa in questo canale.",
-                "secret": "L'**Uovo n. {0}** è segreto!\nPuoi trovarlo solo casualmente...",
-                "filtered": "L'**Uovo n. {0}** esiste, ma i moderatori di **{1}** hanno deciso di **bloccarlo** dall'apparire qui.\nRiprova **altrove**, tipo un **server diverso** o **i miei DM**.",
-                "lang_not_allowed": "L'**Uovo n. {0}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**.",
+                "not_found": "**Uovo n. {egg_id}** non trovato.",
+                "id_rating_not_allowed": "Ho trovato l'**Uovo n. {egg_id}**, ma la sua **classificazione** non è permessa in questo canale.",
+                "secret": "L'**Uovo n. {egg_id}** è segreto!\nPuoi trovarlo solo casualmente...",
+                "filtered": "L'**Uovo n. {egg_id}** esiste, ma i moderatori di **{guild}** hanno deciso di **bloccarlo** dall'apparire qui.\nRiprova **altrove**, tipo un **server diverso** o **i miei DM**.",
+                "lang_not_allowed": "L'**Uovo n. {egg_id}** esiste, ma non è in **Italiano**, che è l'**unica lingua permessa** in **questo server**.",
                 "rating_not_allowed": "Non puoi cercare **Uova** con questa **classificazione** in questo canale.",
                 "no_egg": "Non è stato trovato nessun **Uovo**.",
                 "collection_status": "Stato Collezionamento",
-                "collected": "Hai **collezionato** l'**Uovo n. {0}**!\nOra è stato collezionato **{1} volte**.\n-# Guarda la tua collezione di **Uova** con `/collezione`!",
-                "collections": "L'**Uovo n. {0}** è stato collezionato **{1} volte**.",
+                "collected": "Hai **collezionato** l'**Uovo n. {egg_id}**!\nOra è stato collezionato **{count} volte**.\n-# Guarda la tua collezione di **Uova** con `/collezione`!",
+                "collections": "L'**Uovo n. {egg_id}** è stato collezionato **{count} volte**.",
                 "battle_wins": "Vittorie in Battaglia",
-                "wins": "L'**Uovo n. {0}** ha vinto **{1} battaglie**.",
-                "eggn": "Uovo n. {0}",
+                "wins": "L'**Uovo n. {egg_id}** ha vinto **{count} battaglie**.",
+                "eggn": "Uovo n. {egg_id}",
                 "creator": "Creato da",
-                "unknown_creator": "Utente Sconosciuto {0}",
+                "unknown_creator": "Utente Sconosciuto {user_id}",
                 "origin": "Nel server",
-                "unknown_origin": "Server Sconosciuto {0}",
+                "unknown_origin": "Server Sconosciuto {guild_id}",
                 "origin_name": "Nome",
                 "origin_desc": "Descrizione",
                 "button": {
@@ -140,16 +140,16 @@
             },
             "delete": {
                 "ready": {
-                    "title": "Elimina Uovo #{0}",
+                    "title": "Elimina Uovo #{egg_id}",
                     "question": "Sei sicuro di voler eliminare questo **Uovo**?"
                 },
                 "confirm": "Conferma Eliminazione",
-                "success": "L'**Uovo n. {0}** è stato eliminato con successo.",
+                "success": "L'**Uovo n. {egg_id}** è stato eliminato con successo.",
                 "cancelled": "Eliminazione annullata."
             },
             "report": {
                 "ready": {
-                    "title": "Segnala l'Uovo n. {0}",
+                    "title": "Segnala l'Uovo n. {egg_id}",
                     "question": "Sei sicuro di voler segnalare questo **Uovo**?"
                 },
                 "confirm": "Inizia Segnalazione",
@@ -167,21 +167,21 @@
                 },
                 "other": "Motivo Personalizzato della Segnalazione",
                 "other_placeholder": "Se hai scelto \"Altro\", specifica le tue motivazioni qui...",
-                "success": "L'**Uovo n. {0}** è stato segnalato con successo.",
+                "success": "L'**Uovo n. {egg_id}** è stato segnalato con successo.",
                 "already": "Hai già segnalato questo **Uovo**: aspetta che ne prendiamo atto..."
             }
         },
         "eggstras": {
             "loop": {
-                "not_collected": "Non hai collezionato l'**Uovo n. {0}**.",
-                "not_created": "Non hai creato tu l'**Uovo n. {0}**.",
-                "rating_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **classificazione** non è permessa in questo canale.",
-                "lang_not_allowed": "Hai l'**Uovo n. {0}**, ma la sua **lingua** non è permessa in questo server.",
+                "not_collected": "Non hai collezionato l'**Uovo n. {egg_id}**.",
+                "not_created": "Non hai creato tu l'**Uovo n. {egg_id}**.",
+                "rating_not_allowed": "Hai l'**Uovo n. {egg_id}**, ma la sua **classificazione** non è permessa in questo canale.",
+                "lang_not_allowed": "Hai l'**Uovo n. {egg_id}**, ma la sua **lingua** non è permessa in questo server.",
                 "rating_not_allowed_filter": "Non puoi filtrare per questa **classificazione** in questo canale.",
                 "empty": "Non ci sono **Uova** con questi criteri!"
             },
             "search": {
-                "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{0}\"**."
+                "empty": "Nessun **Uovo** corrisponde alla tua ricerca per **\"{query}\"**."
             },
             "leaderboard": {
                 "you": " **__[TU]__**",
@@ -193,7 +193,7 @@
         },
         "error": {
             "title": "Si è verificato un errore",
-            "ratelimited": "Sei **troppo veloce**! Riprova tra **{0}s**."
+            "ratelimited": "Sei **troppo veloce**! Riprova tra **{seconds}s**."
         },
         "embed": {
             "author": "Server Eggs",
@@ -213,7 +213,7 @@
                     "credits": "Riconoscimenti",
                     "credits_desc": "**__Programmazione__**\n- **Flamey** (actuallyflamey)\n**__Localizzazione__**:\n- **Flamey** (actuallyflamey): *Inglese*, *Italiano*.",
                     "versions": "Versioni",
-                    "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
+                    "versions_desc": "**__Server Eggs__**: {server_eggs}\n**__discord.py__**: {discord_py}\n**__Python__**: {python}"
                 },
                 "create": {
                     "title": "Informazioni sul Creare Uova",
@@ -258,20 +258,20 @@
             }
         },
         "log": {
-            "log": "**{0}** ({1}) ha {2} l'**Uovo n. {3}**",
-            "afterdel": "**{0}** ({1}) aveva {2} l'**Uovo n. {3}**, ma è stato eliminato.",
+            "log": "**{actor}** ({username}) ha {action} l'**Uovo n. {egg_id}**",
+            "afterdel": "**{actor}** ({username}) aveva {action} l'**Uovo n. {egg_id}**, ma è stato eliminato.",
             "delete": "Elimina",
-            "deleted": "Eliminato l'**Uovo n. {0}**."
+            "deleted": "Eliminato l'**Uovo n. {egg_id}**."
         },
         "mod": {
             "filter": {
-                "unfiltered": "**Rimossi i filtri** dall'**Uovo n. {0}** con successo!\nOra può **tornare ad apparire** in questo server.",
-                "filtered": "**Filtrato** l'**Uovo n. {0}** con successo!\nOra **non potrà più apparire** in questo server."
+                "unfiltered": "**Rimossi i filtri** dall'**Uovo n. {egg_id}** con successo!\nOra può **tornare ad apparire** in questo server.",
+                "filtered": "**Filtrato** l'**Uovo n. {egg_id}** con successo!\nOra **non potrà più apparire** in questo server."
             }
         },
         "premium": {
             "daily": {
-                "title": "Uovo Giornaliero n. {0}"
+                "title": "Uovo Giornaliero n. {egg_id}"
             },
             "consent": {
                 "prompt": "Come **Sostenitore**, hai il diritto ad un **nuovo Uovo** nei tuoi DM ogni giorno!\nMa, di default, le **Uova** con classificazione **Esplicita** non possono apparire. Vorresti **includerle** nelle tue **Uova** giornaliere?\n\n-# Dicendo \"*Sì*\", confermi di avere almeno 18 anni.",
@@ -295,7 +295,7 @@
             "questionable": "Dubbio",
             "explicit": "Esplicito",
             "invalid": "Classificazione sconosciuta. Scegli tra le opzioni suggerite.",
-            "success": "Classificazione dell'**Uovo n. {0}** cambiata a **{1}**."
+            "success": "Classificazione dell'**Uovo n. {egg_id}** cambiata a **{value}**."
         },
         "lang": {
             "title": "Cambia Lingua",
@@ -303,12 +303,12 @@
             "lang_desc": "In che lingua è il contenuto di questo Uovo?",
             "lang_placeholder": "Seleziona la lingua...",
             "invalid": "Lingua sconosciuta. Scegli tra le opzioni suggerite.",
-            "success": "Lingua dell'**Uovo #{0}** cambiata a **{1}**."
+            "success": "Lingua dell'**Uovo #{egg_id}** cambiata a **{value}**."
         },
         "common": {
             "show_extra_attachment": "Mostra Allegato Extra",
             "cancel": "Annulla",
-            "not_found": "L'**Uovo n. {0}** non esiste.",
+            "not_found": "L'**Uovo n. {egg_id}** non esiste.",
             "cannot": "Non sei autorizzato a gestire quest'**Uovo**.",
             "already": "L'impostazione è già giusta!",
             "report": "Segnala",

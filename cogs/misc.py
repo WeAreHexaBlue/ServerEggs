@@ -45,7 +45,7 @@ class Misc(commands.Cog):
             e.add_field(name=myloc["how"], value=myloc["how_desc"], inline=False)
             e.add_field(name=myloc["donate"], value=myloc["donate_desc"], inline=False)
             e.add_field(name=myloc["credits"], value=myloc["credits_desc"], inline=False)
-            e.add_field(name=myloc["versions"], value=myloc["versions_desc"].format(VERSION, discord.__version__, ".".join(map(str, sys.version_info[:3]))), inline=False)
+            e.add_field(name=myloc["versions"], value=myloc["versions_desc"].format(server_eggs=VERSION, discord_py=discord.__version__, python=".".join(map(str, sys.version_info[:3]))), inline=False)
 
         utils.brand_embed(e, lines)
 

@@ -21,15 +21,15 @@ class Battles(commands.Cog):
         egg = await Egg.get_or_none(id=egg_id)
 
         if egg is None:
-            await ctx.followup.send(myloc["not_found"].format(egg_id), ephemeral=True)
+            await ctx.followup.send(myloc["not_found"].format(egg_id=egg_id), ephemeral=True)
             return None
 
         if egg.rating not in utils.channel_ratings(guild, channel):
-            await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id), ephemeral=True)
+            await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id=egg_id), ephemeral=True)
             return None
 
         if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
-            await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id), ephemeral=True)
+            await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=egg_id), ephemeral=True)
             return None
 
         return egg
@@ -39,7 +39,7 @@ class Battles(commands.Cog):
             pool = await utils.fight_pool_ids(user)
 
             if egg_id not in pool:
-                await ctx.followup.send(myloc["not_your_egg"].format(egg_id), ephemeral=True)
+                await ctx.followup.send(myloc["not_your_egg"].format(egg_id=egg_id), ephemeral=True)
                 return None
 
             return await self.pool_fighter_egg(ctx, myloc, egg_id, guild=guild, channel=channel)
@@ -63,7 +63,7 @@ class Battles(commands.Cog):
             egg_b=egg_b,
             user_a=user_a,
             user_b=user_b,
-            ends_at=datetime.datetime.now(datetime.timezone.utc) + guild.battle_time
+            ends_at=datetime.datetime.now(datetime.UTC) + guild.battle_time
         )
 
         sides = await utils.build_battle_message(self.bot, lines, myloc, egg_a, egg_b)
@@ -74,7 +74,7 @@ class Battles(commands.Cog):
             fighters.append(await utils.get_or_fetch_user(self.bot, user_a.id))
             fighters.append(await utils.get_or_fetch_user(self.bot, user_b.id))
 
-        intro = myloc["begin_random"].format(egg_a.id, egg_b.id) if not fighters else myloc["begin_challenge"].format(egg_a.id, egg_b.id, f"**{discord.utils.escape_markdown(fighters[0].display_name)}** ({discord.utils.escape_markdown(fighters[0].name)})", f"**{discord.utils.escape_markdown(fighters[1].display_name)}** ({discord.utils.escape_markdown(fighters[1].name)})")
+        intro = myloc["begin_random"].format(egg_a=egg_a.id, egg_b=egg_b.id) if not fighters else myloc["begin_challenge"].format(egg_a=egg_a.id, egg_b=egg_b.id, user_a=f"**{discord.utils.escape_markdown(fighters[0].display_name)}** ({discord.utils.escape_markdown(fighters[0].name)})", user_b=f"**{discord.utils.escape_markdown(fighters[1].display_name)}** ({discord.utils.escape_markdown(fighters[1].name)})")
 
         message = await ctx.followup.send(
             files=files,
@@ -157,7 +157,7 @@ class Battles(commands.Cog):
         challenge_view = views.ChallengeView(self.bot, lines, None, ctx.user, against, egg_a)
 
         prompt = await ctx.channel.send(
-            content=myloc["prompt"].format(against.mention, ctx.user.mention),
+            content=myloc["prompt"].format(challenged=against.mention, challenger=ctx.user.mention),
             view=challenge_view
         )
 
@@ -183,7 +183,7 @@ class Battles(commands.Cog):
             try:
                 egg_id = int(raw)
             except ValueError:
-                await ctx.followup.send(myloc["invalid_egg"].format(raw), ephemeral=True)
+                await ctx.followup.send(myloc["invalid_egg"].format(input=raw), ephemeral=True)
                 return
 
             if egg_id == egg_a.id:

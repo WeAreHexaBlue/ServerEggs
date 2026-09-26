@@ -175,15 +175,15 @@ class Eggstras(commands.Cog):
             egg = await field.filter(id=check).prefetch_related("creator", "origin").first()
 
             if not egg:
-                await ctx.followup.send(myloc[f"not_{mode}"].format(check))
+                await ctx.followup.send(myloc[f"not_{mode}"].format(egg_id=check))
                 return
 
             if egg.rating not in allowed:
-                await ctx.followup.send(myloc["rating_not_allowed"].format(check))
+                await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id=check))
                 return
 
             if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
-                await ctx.followup.send(myloc["lang_not_allowed"].format(check))
+                await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=check))
                 return
 
             loop = [egg]
@@ -265,7 +265,7 @@ class Eggstras(commands.Cog):
         query = text.strip()
 
         if not query:
-            await ctx.followup.send(myloc["empty"].format(text))
+            await ctx.followup.send(myloc["empty"].format(query=text))
             return
 
         base = Egg.all().prefetch_related("creator", "origin")
@@ -310,7 +310,7 @@ class Eggstras(commands.Cog):
                 eggs = []
 
             if not eggs:
-                await ctx.followup.send(myloc["empty"].format(query))
+                await ctx.followup.send(myloc["empty"].format(query=query))
                 return
 
         loop = collections.deque(eggs)

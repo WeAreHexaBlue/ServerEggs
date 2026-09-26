@@ -46,7 +46,7 @@ async def battle_side(bot: commands.Bot, lines: dict, myloc: dict, egg, side: st
 
     media, sfile, extrafile, extralink = attach.get_media(egg)
 
-    header = embed.brand_header(lines, embed.egg_title(egg, myloc["eggn"].format(egg.id, side)))
+    header = embed.brand_header(lines, embed.egg_title(egg, myloc["eggn"].format(egg_id=egg.id, side=side)))
     footer = embed.brand_footer(lines)
 
     description = embed.fit_text(egg.text, header, footer)
@@ -56,7 +56,7 @@ async def battle_side(bot: commands.Bot, lines: dict, myloc: dict, egg, side: st
     if creator is not None:
         value = f"**{discord.utils.escape_markdown(creator.display_name)}** ({discord.utils.escape_markdown(creator.name)})"
     else:
-        value = myloc["unknown_creator"].format(egg.creator_id)
+        value = myloc["unknown_creator"].format(user_id=egg.creator_id)
 
     body.append(f"### {myloc["creator"]}\n{value}")
 
@@ -83,12 +83,12 @@ async def count_votes(battle) -> tuple[int, int]:
 def result_layout(lines: dict, myloc: dict, winner, count_a: int, count_b: int) -> discord.ui.LayoutView:
     if winner is not None:
         color = discord.Color.gold()
-        title = myloc["result_win_title"].format(winner.id)
-        description = myloc["result_win"].format(winner.id, max(count_a, count_b), min(count_a, count_b))
+        title = myloc["result_win_title"].format(egg_id=winner.id)
+        description = myloc["result_win"].format(egg_id=winner.id, votes=max(count_a, count_b), opponent_votes=min(count_a, count_b))
     else:
         color = discord.Color.blurple()
         title = myloc["result_tie_title"]
-        description = myloc["result_tie"].format(count_a, count_b)
+        description = myloc["result_tie"].format(votes_a=count_a, votes_b=count_b)
 
     body = [f"{embed.brand_header(lines, title)}\n\n{description}"]
 
@@ -141,7 +141,7 @@ async def finalize_battle(bot: commands.Bot, battle):
 FINALIZE_BATCH_LIMIT = 10
 
 async def finalize_due_battles(bot: commands.Bot):
-    due = await Battle.filter(status=BattleStatus.OPEN, ends_at__lte=datetime.datetime.now(datetime.timezone.utc)).limit(FINALIZE_BATCH_LIMIT + 1)
+    due = await Battle.filter(status=BattleStatus.OPEN, ends_at__lte=datetime.datetime.now(datetime.UTC)).limit(FINALIZE_BATCH_LIMIT + 1)
 
     if len(due) > FINALIZE_BATCH_LIMIT:
         print(f"WARN: {len(due)}+ battles due; finalizing first {FINALIZE_BATCH_LIMIT}, remainder next tick.")
