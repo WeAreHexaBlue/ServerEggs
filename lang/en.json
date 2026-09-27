@@ -277,7 +277,7 @@
                     "credits": "Credits",
                     "credits_desc": "**__Programming__**:\n- **Flamey** (actuallyflamey)\n**__Localization__**:\n- **Flamey** (actuallyflamey): *English*, *Italian*.",
                     "versions": "Versions",
-                    "versions_desc": "**__Server Eggs__**: {server_eggs}\n**__discord.py__**: {discord_py}\n**__Python__**: {python}"
+                    "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },
                 "create": {
                     "title": "About Creating Eggs",

@@ -213,7 +213,7 @@
                     "credits": "Riconoscimenti",
                     "credits_desc": "**__Programmazione__**\n- **Flamey** (actuallyflamey)\n**__Localizzazione__**:\n- **Flamey** (actuallyflamey): *Inglese*, *Italiano*.",
                     "versions": "Versioni",
-                    "versions_desc": "**__Server Eggs__**: {server_eggs}\n**__discord.py__**: {discord_py}\n**__Python__**: {python}"
+                    "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },
                 "create": {
                     "title": "Informazioni sul Creare Uova",
