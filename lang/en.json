@@ -267,9 +267,9 @@
             "help": {
                 "general": {
                     "title": "About Server Eggs",
-                    "desc": "**Server Eggs** is a Discord bot created by **HexaBlue**.\nIt is designed as a fun way to share content, from which someone may want to join its origin server.",
+                    "desc": "**Server Eggs** is a Discord bot created by **HexaBlue**.\nIt lets your community **create and share content** called \"**Egg**s\".\nUse it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!",
                     "about": "What are Eggs?",
-                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible from any server with **Server Eggs**.",
+                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible anywhere **Server Eggs** is available.\nIf the **Egg** was created in a **public server**, it contains an **invite** to where it was made!",
                     "how": "How to use Server Eggs",
                     "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
                     "donate": "Support Server Eggs",

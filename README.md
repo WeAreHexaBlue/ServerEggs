@@ -1,7 +1,8 @@
 # Server Eggs
 
-**Server Eggs** is a Discord bot relying on *User-Generated Content*, which is shared around for fun purposes.\
-The secondary purpose is to spread servers around through the **Egg**s.
+**Server Eggs** is a Discord bot created by **HexaBlue**.
+It lets your community **create and share content** called "**Egg**s".
+Use it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!
 
 [![Version](https://img.shields.io/github/v/tag/ActuallyFlamey/ServerEggs?sort=semver&label=Version&color=5865f2)]()
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Donate-ff5f5f?logo=kofi)](https://ko-fi.com/hexablue)

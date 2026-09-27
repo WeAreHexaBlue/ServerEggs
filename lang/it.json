@@ -203,9 +203,9 @@
             "help": {
                 "general": {
                     "title": "Informazioni su Server Eggs",
-                    "desc": "**Server Eggs** è un bot di Discord creato da **HexaBlue**.\nÈ un modo creativo di condividere contenuti attraverso i quali uno potrebbe decidere di unirsi al suo server d'origine.",
+                    "desc": "**Server Eggs** è un bot di Discord creato da **HexaBlue**.\nPermette alla tua community di **creare e condividere contenuti** chiamati \"**Uova**\".\nUsalo per **crescere il tuo server**, **trovare nuovi server**, e **divertirti** *collezionando **Uova*** o *sfidando i tuoi amici a delle battaglie*!",
                     "about": "Cosa sono le Uova?",
-                    "about_desc": "Un **Uovo** è un testo, un allegato (sotto forma di file o URL), or both.\nQuando viene creato un **Uovo**, è accessibile da qualunque server che abbia **Server Eggs**.",
+                    "about_desc": "Un **Uovo** è un testo, un allegato (sotto forma di file o URL), or both.\nQuando viene creato un **Uovo**, è accessibile ovunque ci sia **Server Eggs**.\nSe l'**Uovo** è stato creato in un **server pubblico**, contiene un **invito** a dov'è nato!",
                     "how": "Come usare Server Eggs",
                     "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un **Uovo**, usa `/ricevi`.",
                     "donate": "Sostieni Server Eggs",
