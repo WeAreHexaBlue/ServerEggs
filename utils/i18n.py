@@ -1,11 +1,21 @@
 import copy
 import json
 import os
+import re
 
 import discord
 from discord import app_commands as app
 
 FALLBACK_LANG = "en"
+
+LINK_TOKEN = re.compile(r"\{link_([a-z0-9_]+)\}")
+LINKS = {
+    "dm": "https://discord.com/users/886686500845138041",
+    "github": "https://github.com/WeAreHexaBlue/ServerEggs",
+    "kofi": "https://ko-fi.com/hexablue",
+    "store": "https://discord.com/discovery/applications/886686500845138041/store",
+    "weblate": "https://hosted.weblate.org/projects/seggs",
+}
 
 def resolve_lang_ref(value, root, seen):
     if not isinstance(value, str) or not value.startswith("$"):
@@ -61,6 +71,25 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
 
     return missing
 
+def substitute_links(value, unknown: set[str]):
+    if isinstance(value, dict):
+        return {key: substitute_links(val, unknown) for key, val in value.items()}
+    if isinstance(value, list):
+        return [substitute_links(val, unknown) for val in value]
+
+    if not isinstance(value, str) or "{link_" not in value:
+        return value
+
+    def replace(match: re.Match) -> str:
+        name = match.group(1)
+        if name not in LINKS:
+            unknown.add(name)
+            return match.group(0)
+
+        return LINKS[name]
+
+    return LINK_TOKEN.sub(replace, value)
+
 def load_locale_file(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as lines:
         data = json.load(lines)
@@ -94,6 +123,13 @@ def load_locales(lang_dir: str = "./lang") -> dict:
         merged = deep_merge(fallback_unresolved, data)
         merged["lines"] = resolve_lang_refs(merged.get("lines", {}), merged.get("lines", {}))
         locales[code] = merged
+
+    unknown: set[str] = set()
+    for code, data in locales.items():
+        locales[code] = substitute_links(data, unknown)
+
+    if unknown:
+        print(f"WARN: unknown link tokens, left unresolved: {', '.join(sorted('{link_' + name + '}' for name in unknown))}")
 
     return locales
 

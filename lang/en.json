@@ -49,7 +49,7 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to set **your own response language**, run `/config lang` in [my DMs](<https://discord.com/users/886686500845138041>).\n-# **Not all servers allow** usage of external languages, but it will **always work in DMs**.",
+                "missing_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to set **your own response language**, run `/config lang` in [my DMs](<{link_dm}>).\n-# **Not all servers allow** usage of external languages, but it will **always work in DMs**.",
                 "no_default": "The \"Server Default\" option is for users, not for servers.",
                 "invalid": "Unknown language. Pick one of the suggested options.",
                 "success": "Successfully switched language to \"**English**\"!"
@@ -63,7 +63,7 @@
             },
             "privacy": {
                 "already": "$common.already",
-                "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<https://discord.com/users/886686500845138041>).",
+                "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<{link_dm}>).",
                 "missing_invite_perms": "**Server Eggs** is missing the **Create Invite** permission, which is required for this operation.",
                 "success": "Privacy successfully set to {state}.",
                 "public": "public",
@@ -99,7 +99,7 @@
                 "empty_edit": "You didn't specify any edits.",
                 "rating_not_allowed": "Cannot create or edit an **Egg** with this **rating** in this channel.",
                 "toomanyattach": "You may not use both `file` and `link` at the same time.\nChoose between the two.",
-                "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to Server Eggs localization**, you can **add it** on [Weblate](https://hosted.weblate.org/projects/seggs)!",
+                "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to Server Eggs localization**, you can **add it** on [Weblate]({link_weblate})!",
                 "lang_not_allowed": "You **may not** use a language other than **English** in this server.",
                 "banned": "You are **banned** from creating and editing **Egg**s.\nAppealing is not possible *at this time*.",
                 "not_found": "$common.not_found",
@@ -112,8 +112,8 @@
                 "convert_failed": "Failed to convert your **attachment** to a supported format. It may be corrupted or use an unsupported codec.",
                 "illegal": "**ILLEGAL CONTENT DETECTED**. You have now been **banned** from creating **Egg**s.",
                 "duplicate": "An **Egg** with these specifics **already exists**.\nView it with: `/get id:{egg_id}`",
-                "beg": "Hey **{user}**! If you enjoy **Server Eggs** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**](https://discord.com/discovery/applications/886686500845138041/store) or [**donating to our Ko-fi**](https://ko-fi.com/hexablue)!\nRemember that **Server Eggs** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
-                "beg_supporter": "Hey **{user}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**](https://ko-fi.com/hexablue).\n\n-# You are receiving this message because you've created several **Egg**s.",
+                "beg": "Hey **{user}**! If you enjoy **Server Eggs** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**]({link_store}) or [**donating to our Ko-fi**]({link_kofi})!\nRemember that **Server Eggs** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
+                "beg_supporter": "Hey **{user}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**]({link_kofi}).\n\n-# You are receiving this message because you've created several **Egg**s.",
                 "title": "Egg #{egg_id} {action}!",
                 "created": "created",
                 "edited": "edited",
@@ -252,17 +252,17 @@
                 "title": "Contribute to Server Eggs",
                 "desc": "Here's the ways in which you can **contribute to Server Eggs's development**!",
                 "code": "Contribute Code",
-                "code_desc": "**Fork** our [**GitHub repo**](https://github.com/WeAreHexaBlue/ServerEggs), then **open a pull request**! Remember to **read the `CONTRIBUTING.md` file**.",
+                "code_desc": "**Fork** our [**GitHub repo**]({link_github}), then **open a pull request**! Remember to **read the `CONTRIBUTING.md` file**.",
                 "trans": "Contribute Translations",
-                "trans_desc": "Head over to our [**Weblate Project page**](https://hosted.weblate.org/projects/seggs), and start **localizing Server Eggs** for the languages you're fluent in!"
+                "trans_desc": "Head over to our [**Weblate Project page**]({link_weblate}), and start **localizing Server Eggs** for the languages you're fluent in!"
             },
             "donate": {
                 "title": "Donate to Server Eggs",
                 "desc": "Here's the ways in which you can **monetarily support Server Eggs's development**!",
                 "sku": "Buy from the Store",
-                "sku_desc": "Visit our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily Egg** for your **collection**!\n  - **Higher chance** to get **secret Eggs**!\n  - **Nicer** rate-limits.",
+                "sku_desc": "Visit our [**Discord Store**]({link_store}), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily Egg** for your **collection**!\n  - **Higher chance** to get **secret Eggs**!\n  - **Nicer** rate-limits.",
                 "kofi": "Donate on Ko-fi",
-                "kofi_desc": "Visit our [**Ko-fi page**](https://ko-fi.com/hexablue) and **leave a tip**!"
+                "kofi_desc": "Visit our [**Ko-fi page**]({link_kofi}) and **leave a tip**!"
             },
             "help": {
                 "general": {
@@ -273,9 +273,12 @@
                     "how": "How to use Server Eggs",
                     "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
                     "donate": "Support Server Eggs",
-                    "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donate** to [**HexaBlue's Ko-fi**](https://ko-fi.com/hexablue)!",
+                    "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**]({link_store})!\n- **Donate** to [**HexaBlue's Ko-fi**]({link_kofi})!",
                     "credits": "Credits",
-                    "credits_desc": "**__Programming__**:\n- **Flamey** (actuallyflamey)\n**__Localization__**:\n- **Flamey** (actuallyflamey): *English*, *Italian*.",
+                    "credits_roles": {
+                        "programming": "Programming",
+                        "localization": "Localization"
+                    },
                     "versions": "Versions",
                     "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },

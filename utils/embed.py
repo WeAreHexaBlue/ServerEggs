@@ -60,7 +60,6 @@ def brand_footer(lines: dict | None = None) -> str:
     return f"-# {HEXABLUE_EMOJI}  {footer}"
 
 def fit_text(description: str | None, *fixed: str) -> str | None:
-    """Truncates the description so every TextDisplay of a layout stays within the Components v2 limit."""
     if not description:
         return None
 

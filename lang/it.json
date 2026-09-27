@@ -40,7 +40,7 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<https://discord.com/users/886686500845138041>).\n-# **Non tutti i server permettono** l'uso delle lingue esterne, ma **nei DM funzionerà sempre**.",
+                "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<{link_dm}>).\n-# **Non tutti i server permettono** l'uso delle lingue esterne, ma **nei DM funzionerà sempre**.",
                 "no_default": "L'opzione \"Predefinita dal Server\" è per gli utenti, non per i server.",
                 "invalid": "Lingua sconosciuta. Scegli una delle opzioni suggerite.",
                 "success": "Impostata la lingua \"**Italiano**\" con successo!"
@@ -52,7 +52,7 @@
                 "success": "Impostata la descrizione del server:"
             },
             "privacy": {
-                "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/configura privacy` nei [miei DM](<https://discord.com/users/886686500845138041>).",
+                "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/configura privacy` nei [miei DM](<{link_dm}>).",
                 "missing_invite_perms": "A **Server Eggs** manca il permesso **Creare Invito**, che è necessario per questa operazione.",
                 "success": "Privacy impostata su {state} con successo.",
                 "public": "pubblico",
@@ -83,7 +83,7 @@
                 "empty_edit": "Non hai specificato alcuna modifica.",
                 "rating_not_allowed": "Non è possibile creare o modificare un **Uovo** con questa **classificazione** in questo canale.",
                 "toomanyattach": "Non puoi usare sia `file` che `link` allo stesso tempo.\nScegli tra i due.",
-                "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate](https://hosted.weblate.org/projects/seggs)!",
+                "bad_lang": "Questa lingua **non è supportata**.\nSe ti va di **contribuire alla traduzione di Server Eggs**, puoi **aggiungerla** su [Weblate]({link_weblate})!",
                 "lang_not_allowed": "**Non puoi** usare una lingua che non sia l'**Italiano** in questo server.",
                 "banned": "Ti è stato **tolto il permesso** di creare o modificare **Uova**.\n*Al momento* non è possibile fare ricorso.",
                 "supported_only": "Puoi **solo** allegare **immagini** (`gif`, `png`, `jpg`, `jpeg`, `webp`), **video** (`mp4`, `webm`), o **audio** (`mp3`, `ogg`, `wav`, `opus`, `m4a`).",
@@ -94,8 +94,8 @@
                 "convert_failed": "Non è stato possibile convertire il tuo **allegato** in un formato supportato. Potrebbe essere danneggiato o usare un codec non supportato.",
                 "illegal": "**RILEVATI CONTENUTI ILLEGALI**. Ti è appena stato **tolto il permesso** di creare o modificare **Uova**.",
                 "duplicate": "Un **Uovo** con queste specifiche **esiste già**.\nOsservalo con: `/ricevi id:{egg_id}`",
-                "beg": "Ehi **{user}**! Se ti piace **Server Eggs** e vorresti che venga sviluppato continuamente e che non si spengano i server, considera l'idea di [**fare un acquisto sul nostro Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store) o di [**donare al nostro Ko-fi**](https://ko-fi.com/hexablue)!\nRicordati che **Server Eggs** è un *software open-source*, e perciò è sviluppato da *volontari*. Senza il supporto di gente come *te*, non esisterebbe.\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
-                "beg_supporter": "Ehi **{user}**! So che ci stai già **Sostenendo**, e perciò ricevi questo messaggio **meno spesso**, ma ci teniamo a farti presente che, in qualsiasi momento, puoi **donare di più** di quanto tu non stia già facendo (di cui siamo grati) sulla nostra [**pagina Ko-fi**](https://ko-fi.com/hexablue).\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
+                "beg": "Ehi **{user}**! Se ti piace **Server Eggs** e vorresti che venga sviluppato continuamente e che non si spengano i server, considera l'idea di [**fare un acquisto sul nostro Store su Discord**]({link_store}) o di [**donare al nostro Ko-fi**]({link_kofi})!\nRicordati che **Server Eggs** è un *software open-source*, e perciò è sviluppato da *volontari*. Senza il supporto di gente come *te*, non esisterebbe.\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
+                "beg_supporter": "Ehi **{user}**! So che ci stai già **Sostenendo**, e perciò ricevi questo messaggio **meno spesso**, ma ci teniamo a farti presente che, in qualsiasi momento, puoi **donare di più** di quanto tu non stia già facendo (di cui siamo grati) sulla nostra [**pagina Ko-fi**]({link_kofi}).\n\n-# Stai ricevendo questo messaggio perché hai creato diverse **Uova**.",
                 "title": "Uovo n. {egg_id} {action}!",
                 "created": "creato",
                 "edited": "modificato"
@@ -209,9 +209,12 @@
                     "how": "Come usare Server Eggs",
                     "how_desc": "- Per **creare un Uovo**, usa `/crea` in un server.\n- Per **ricevere** un **Uovo**, usa `/ricevi`.",
                     "donate": "Sostieni Server Eggs",
-                    "donate_desc": "Puoi:\n- **Comprare qualcosa** nel nostro [**Store su Discord**](https://discord.com/discovery/applications/886686500845138041/store)!\n- **Donare** al [**Ko-fi di HexaBlue**](https://ko-fi.com/hexablue)!",
+                    "donate_desc": "Puoi:\n- **Comprare qualcosa** nel nostro [**Store su Discord**]({link_store})!\n- **Donare** al [**Ko-fi di HexaBlue**]({link_kofi})!",
                     "credits": "Riconoscimenti",
-                    "credits_desc": "**__Programmazione__**\n- **Flamey** (actuallyflamey)\n**__Localizzazione__**:\n- **Flamey** (actuallyflamey): *Inglese*, *Italiano*.",
+                    "credits_roles": {
+                        "programming": "Programmazione",
+                        "localization": "Localizzazione"
+                    },
                     "versions": "Versioni",
                     "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },
