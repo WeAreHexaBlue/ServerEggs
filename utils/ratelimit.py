@@ -102,7 +102,7 @@ async def send_ratelimited(ctx: discord.Interaction, retry_after: float) -> None
         template = None
 
     secs = max(1, math.ceil(retry_after))
-    content = template.format(secs) if template else ratelimit_message(retry_after)
+    content = template.format(seconds=secs) if template else ratelimit_message(retry_after)
 
     try:
         if ctx.response.is_done():

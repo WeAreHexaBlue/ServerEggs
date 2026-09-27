@@ -14,7 +14,7 @@ from .eggs import ReportEgg
 
 
 class ModLogActions(discord.ui.LayoutView):
-    def __init__(self, bot: commands.Bot, lines: dict, egg, formats: tuple, container: discord.ui.Container, file=None, link=None):
+    def __init__(self, bot: commands.Bot, lines: dict, egg, formats: dict, container: discord.ui.Container, file=None, link=None):
         super().__init__(timeout=None)
 
         self.bot = bot
@@ -23,7 +23,7 @@ class ModLogActions(discord.ui.LayoutView):
         self.egg = egg
         self.formats = formats
 
-        self.add_item(discord.ui.TextDisplay(self.myloc["log"].format(*self.formats)))
+        self.add_item(discord.ui.TextDisplay(self.myloc["log"].format(**self.formats)))
         self.add_item(container)
 
         if file or link:
@@ -50,9 +50,9 @@ class ModLogActions(discord.ui.LayoutView):
     async def delete(self, ctx: discord.Interaction):
         await ctx.response.defer(ephemeral=True)
 
-        await ctx.edit_original_response(attachments=[], view=text_view(self.myloc["afterdel"].format(*self.formats)))
+        await ctx.edit_original_response(attachments=[], view=text_view(self.myloc["afterdel"].format(**self.formats)))
 
-        await ctx.followup.send(self.myloc["deleted"].format(self.egg.id), ephemeral=True)
+        await ctx.followup.send(self.myloc["deleted"].format(egg_id=self.egg.id), ephemeral=True)
         await utils.egg_delete(self.egg)
 
     async def report(self, ctx: discord.Interaction):

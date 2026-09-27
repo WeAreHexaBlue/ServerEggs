@@ -92,13 +92,13 @@ def egg_creator_block(myloc: dict, egg, creator, *, public = False, include_id =
 
         value = f"**{discord.utils.escape_markdown(creator.display_name)}** {f"({detail})" if detail else ""}"
     else:
-        value = myloc["unknown_creator"].format(egg.creator.id)
+        value = myloc["unknown_creator"].format(user_id=egg.creator.id)
 
     return f"### {myloc["creator"]}\n{value}"
 
 def egg_origin_block(myloc: dict, egg, origin) -> str:
     if origin is None:
-        value = myloc["unknown_origin"].format(egg.origin.id)
+        value = myloc["unknown_origin"].format(guild_id=egg.origin.id)
     else:
         parts = [f"**{myloc["origin_name"]}**: {discord.utils.escape_markdown(origin.name)}"]
 
@@ -138,11 +138,11 @@ async def get_egg_layout(
 
     if not created:
         fields.append(egg_origin_block(myloc, egg, origin))
-        fields.append(f"### {myloc["collection_status"]}\n{myloc["collected"].format(egg.id, collections) if collected else myloc["collections"].format(egg.id, collections)}")
-        fields.append(f"### {myloc["battle_wins"]}\n{myloc["wins"].format(egg.id, wins)}")
+        fields.append(f"### {myloc["collection_status"]}\n{myloc["collected"].format(egg_id=egg.id, count=collections) if collected else myloc["collections"].format(egg_id=egg.id, count=collections)}")
+        fields.append(f"### {myloc["battle_wins"]}\n{myloc["wins"].format(egg_id=egg.id, count=wins)}")
 
     if title is None:
-        title = egg_title(egg, myloc["eggn"].format(egg.id))
+        title = egg_title(egg, myloc["eggn"].format(egg_id=egg.id))
 
     header = brand_header(lines, title)
     footer = brand_footer(lines)

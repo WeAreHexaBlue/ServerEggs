@@ -23,7 +23,7 @@ class BattleView(discord.ui.LayoutView):
 
             if side["vfile"] or side["vlink"]:
                 extras.append(ExtraAttachmentButton(
-                    self.myloc["show"].format(side_name),
+                    self.myloc["show"].format(side=side_name),
                     style=discord.ButtonStyle.secondary,
                     file=side["vfile"],
                     link=side["vlink"]
@@ -33,8 +33,8 @@ class BattleView(discord.ui.LayoutView):
         self.add_item(sides[0]["container"])
         self.add_item(sides[1]["container"])
 
-        self.vote_a_button = action_button(self.myloc["vote"].format("A"), discord.ButtonStyle.primary, self.vote_a)
-        self.vote_b_button = action_button(self.myloc["vote"].format("B"), discord.ButtonStyle.primary, self.vote_b)
+        self.vote_a_button = action_button(self.myloc["vote"].format(side="A"), discord.ButtonStyle.primary, self.vote_a)
+        self.vote_b_button = action_button(self.myloc["vote"].format(side="B"), discord.ButtonStyle.primary, self.vote_b)
 
         self.add_item(discord.ui.ActionRow(self.vote_a_button, self.vote_b_button))
 
@@ -62,8 +62,8 @@ class BattleView(discord.ui.LayoutView):
 
         count_a, count_b = await utils.count_votes(self.battle)
 
-        self.vote_a_button.label = f"{self.myloc["vote"].format("A")} ({count_a})"
-        self.vote_b_button.label = f"{self.myloc["vote"].format("B")} ({count_b})"
+        self.vote_a_button.label = f"{self.myloc["vote"].format(side="A")} ({count_a})"
+        self.vote_b_button.label = f"{self.myloc["vote"].format(side="B")} ({count_b})"
 
         await ctx.response.edit_message(view=self)
 

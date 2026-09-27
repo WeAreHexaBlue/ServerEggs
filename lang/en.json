@@ -9,30 +9,30 @@
                 "rating_not_allowed": "$eggstras.loop.rating_not_allowed",
                 "lang_not_allowed": "$eggstras.loop.lang_not_allowed",
                 "same_egg": "Both fighters can't be the same **Egg**!",
-                "begin_random": "## Battle started!\n**__A__**: **Egg #{0}**\n**__B__**: **Egg #{1}**",
-                "begin_challenge": "## Battle started!\n**__A__**: **Egg #{0}**, fighting for {2}!\n**__B__**: **Egg #{1}**, fighting for {3}!",
-                "eggn": "Egg #{0} ({1})",
+                "begin_random": "## Battle started!\n**__A__**: **Egg #{egg_a}**\n**__B__**: **Egg #{egg_b}**",
+                "begin_challenge": "## Battle started!\n**__A__**: **Egg #{egg_a}**, fighting for {user_a}!\n**__B__**: **Egg #{egg_b}**, fighting for {user_b}!",
+                "eggn": "Egg #{egg_id} ({side})",
                 "creator": "$eggs.send.creator",
                 "unknown_creator": "$eggs.send.unknown_creator",
-                "vote": "Vote {0}",
+                "vote": "Vote {side}",
                 "voted": "Your vote has been counted! You can switch sides until the battle ends.",
                 "ended": "This battle has already ended.",
-                "show": "Show Attachment for {0}",
-                "result_win_title": "Egg #{0} wins!",
-                "result_win": "**Egg #{0}** claims victory with **{1}** votes against **{2}**!",
+                "show": "Show Attachment for {side}",
+                "result_win_title": "Egg #{egg_id} wins!",
+                "result_win": "**Egg #{egg_id}** claims victory with **{votes}** votes against **{opponent_votes}**!",
                 "result_tie_title": "Tied!",
-                "result_tie": "The battle ended **{0} - {1}**. No **Egg** claims victory.",
+                "result_tie": "The battle ended **{votes_a} - {votes_b}**. No **Egg** claims victory.",
                 "finished": "**Battle finished**!"
             },
             "challenge": {
                 "self": "You cannot challenge yourself to a battle!",
                 "bot": "You cannot challenge bots to a battle!",
                 "not_found": "$common.not_found",
-                "not_your_egg": "**Egg #{0}** was neither created nor collected by you, so it can't fight for you.",
+                "not_your_egg": "**Egg #{egg_id}** was neither created nor collected by you, so it can't fight for you.",
                 "rating_not_allowed": "$eggstras.loop.rating_not_allowed",
                 "lang_not_allowed": "$eggstras.loop.lang_not_allowed",
                 "empty_pool": "You don't have any **Egg**s that can fight! Create or collect some first.",
-                "prompt": "{0}, you have been challenged to an **Egg battle** by **{1}**!\nAccept below, then choose which of your **Egg**s (created or collected) will fight, or leave it to chance.",
+                "prompt": "{challenged}, you have been challenged to an **Egg battle** by **{challenger}**!\nAccept below, then choose which of your **Egg**s (created or collected) will fight, or leave it to chance.",
                 "sent": "Challenge sent successfully.",
                 "accept": "Accept",
                 "decline": "Decline",
@@ -42,7 +42,7 @@
                 "modal_title": "Choose your fighter Egg",
                 "modal_id": "Egg ID",
                 "modal_id_placeholder": "Leave empty to pick a random Egg from your pool",
-                "invalid_egg": "**\"{0}\"** isn't a valid **Egg ID**.",
+                "invalid_egg": "**\"{input}\"** isn't a valid **Egg ID**.",
                 "same_egg": "That's the same **Egg** your opponent is bringing! Pick a different one.",
                 "accepted": "The challenge was **accepted**: let the battle begin!"
             }
@@ -56,7 +56,7 @@
             },
             "allow-ext-lang": {
                 "already": "$common.already",
-                "success": "Successfully modified the setting regarding usage of external languages (`{0}`)!"
+                "success": "Successfully modified the setting regarding usage of external languages (`{allow}`)!"
             },
             "server-description": {
                 "success": "Successfully set server description to:"
@@ -65,14 +65,14 @@
                 "already": "$common.already",
                 "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<https://discord.com/users/886686500845138041>).",
                 "missing_invite_perms": "**Server Eggs** is missing the **Create Invite** permission, which is required for this operation.",
-                "success": "Privacy successfully set to {0}.",
+                "success": "Privacy successfully set to {state}.",
                 "public": "public",
                 "private": "private"
             },
             "log": {
                 "already": "$common.already",
                 "missing_perms": "I don't have permission to write logs there!",
-                "success": "Log channel successfully set to {0}."
+                "success": "Log channel successfully set to {channel}."
             },
             "allowed-ratings": {
                 "already": "$common.already",
@@ -82,15 +82,15 @@
             },
             "join-button": {
                 "already": "$common.already",
-                "success": "Successfully set viewability of the \"Join Origin Server\" button to `{0}`."
+                "success": "Successfully set viewability of the \"Join Origin Server\" button to `{viewable}`."
             },
             "battle-time": {
                 "already": "$common.already",
-                "success": "Successfully set the battle expiration time to `{0}` minutes."
+                "success": "Successfully set the battle expiration time to `{minutes}` minutes."
             },
             "channel-rating": {
                 "already": "$common.already",
-                "success": "Successfully set the default rating for {0} to `{1}`."
+                "success": "Successfully set the default rating for {channel} to `{rating}`."
             }
         },
         "eggs": {
@@ -111,10 +111,10 @@
                 "too_big": "Your attachment is **too large**! The limit is **20 MB**.",
                 "convert_failed": "Failed to convert your **attachment** to a supported format. It may be corrupted or use an unsupported codec.",
                 "illegal": "**ILLEGAL CONTENT DETECTED**. You have now been **banned** from creating **Egg**s.",
-                "duplicate": "An **Egg** with these specifics **already exists**.\nView it with: `/get id:{0}`",
-                "beg": "Hey **{0}**! If you enjoy **Server Eggs** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**](https://discord.com/discovery/applications/886686500845138041/store) or [**donating to our Ko-fi**](https://ko-fi.com/hexablue)!\nRemember that **Server Eggs** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
-                "beg_supporter": "Hey **{0}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**](https://ko-fi.com/hexablue).\n\n-# You are receiving this message because you've created several **Egg**s.",
-                "title": "Egg #{0} {1}!",
+                "duplicate": "An **Egg** with these specifics **already exists**.\nView it with: `/get id:{egg_id}`",
+                "beg": "Hey **{user}**! If you enjoy **Server Eggs** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**](https://discord.com/discovery/applications/886686500845138041/store) or [**donating to our Ko-fi**](https://ko-fi.com/hexablue)!\nRemember that **Server Eggs** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
+                "beg_supporter": "Hey **{user}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**](https://ko-fi.com/hexablue).\n\n-# You are receiving this message because you've created several **Egg**s.",
+                "title": "Egg #{egg_id} {action}!",
                 "created": "created",
                 "edited": "edited",
                 "show_extra_attachment": "$common.show_extra_attachment"
@@ -142,23 +142,23 @@
                 "continued": "Continued to **Egg** creation from this message."
             },
             "send": {
-                "not_found": "**Egg #{0}** was not found.",
-                "id_rating_not_allowed": "**Egg #{0}** was found, but its **rating** isn't allowed in this channel.",
-                "secret": "**Egg #{0}** is secret!\nYou can only find it randomly...",
-                "filtered": "**Egg #{0}** exists, but **{1}**'s moderators have decided to **block it** from showing up here.\nTry again **somewhere else**, like a **different server** or **my DMs**.",
-                "lang_not_allowed": "**Egg #{0}** exists, but it's not in **English**, which is the **only language allowed** by **this server**.",
+                "not_found": "**Egg #{egg_id}** was not found.",
+                "id_rating_not_allowed": "**Egg #{egg_id}** was found, but its **rating** isn't allowed in this channel.",
+                "secret": "**Egg #{egg_id}** is secret!\nYou can only find it randomly...",
+                "filtered": "**Egg #{egg_id}** exists, but **{guild}**'s moderators have decided to **block it** from showing up here.\nTry again **somewhere else**, like a **different server** or **my DMs**.",
+                "lang_not_allowed": "**Egg #{egg_id}** exists, but it's not in **English**, which is the **only language allowed** by **this server**.",
                 "rating_not_allowed": "You may not search for **Egg**s with this **content rating** in this channel.",
                 "no_egg": "Could not find any **Egg**s.",
                 "collection_status": "Collection Status",
-                "collected": "You have **collected** **Egg #{0}**!\nIt has now been collected **{1} times**.\n-# Check your collected **Egg**s with `/collected`!",
-                "collections": "**Egg #{0}** was collected **{1} times**.",
+                "collected": "You have **collected** **Egg #{egg_id}**!\nIt has now been collected **{count} times**.\n-# Check your collected **Egg**s with `/collected`!",
+                "collections": "**Egg #{egg_id}** was collected **{count} times**.",
                 "battle_wins": "Battle Wins",
-                "wins": "**Egg #{0}** has won **{1} battles**.",
-                "eggn": "Egg #{0}",
+                "wins": "**Egg #{egg_id}** has won **{count} battles**.",
+                "eggn": "Egg #{egg_id}",
                 "creator": "Created by",
-                "unknown_creator": "Unknown User {0}",
+                "unknown_creator": "Unknown User {user_id}",
                 "origin": "In server",
-                "unknown_origin": "Unknown Server {0}",
+                "unknown_origin": "Unknown Server {guild_id}",
                 "origin_name": "Name",
                 "origin_desc": "Description",
                 "button": {
@@ -172,7 +172,7 @@
                 "not_found": "$common.not_found",
                 "cannot": "$common.cannot",
                 "ready": {
-                    "title": "Delete Egg #{0}",
+                    "title": "Delete Egg #{egg_id}",
                     "question": "Are you sure you want to delete this **Egg**?",
                     "content": "$common.ready.content",
                     "no_content": "$common.ready.no_content",
@@ -181,13 +181,13 @@
                 "confirm": "Confirm Deletion",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "cancel": "$common.cancel",
-                "success": "**Egg #{0}** was deleted successfully.",
+                "success": "**Egg #{egg_id}** was deleted successfully.",
                 "cancelled": "Deletion cancelled."
             },
             "report": {
                 "not_found": "$common.not_found",
                 "ready": {
-                    "title": "Report Egg #{0}",
+                    "title": "Report Egg #{egg_id}",
                     "question": "Are you sure you want to report this **Egg**?",
                     "content": "$common.ready.content",
                     "no_content": "$common.ready.no_content",
@@ -211,23 +211,23 @@
                 },
                 "other": "Custom Report Reason",
                 "other_placeholder": "If you chose \"Other\", specify your reason here...",
-                "success": "**Egg #{0}** was reported successfully.",
+                "success": "**Egg #{egg_id}** was reported successfully.",
                 "already": "You already reported this **Egg**: wait for us to take action..."
             }
         },
         "eggstras": {
             "loop": {
-                "not_collected": "You haven't collected **Egg #{0}**.",
-                "not_created": "You aren't the creator of **Egg #{0}**.",
-                "rating_not_allowed": "You have **Egg #{0}**, but its **rating** isn't allowed in this channel.",
-                "lang_not_allowed": "You have **Egg #{0}**, but its **language** isn't allowed in this server.",
+                "not_collected": "You haven't collected **Egg #{egg_id}**.",
+                "not_created": "You aren't the creator of **Egg #{egg_id}**.",
+                "rating_not_allowed": "You have **Egg #{egg_id}**, but its **rating** isn't allowed in this channel.",
+                "lang_not_allowed": "You have **Egg #{egg_id}**, but its **language** isn't allowed in this server.",
                 "rating_not_allowed_filter": "You can't filter by this **rating** in this channel.",
                 "empty": "No **Egg**s with this criteria!",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "not_yours": "$common.not_yours"
             },
             "search": {
-                "empty": "No **Egg**s match your search for **\"{0}\"**.",
+                "empty": "No **Egg**s match your search for **\"{query}\"**.",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "not_yours": "$common.not_yours"
             },
@@ -241,7 +241,7 @@
         },
         "error": {
             "title": "An error occurred",
-            "ratelimited": "You are being **rate-limited**. Try again in **{0}s**."
+            "ratelimited": "You are being **rate-limited**. Try again in **{seconds}s**."
         },
         "embed": {
             "author": "Server Eggs",
@@ -277,7 +277,7 @@
                     "credits": "Credits",
                     "credits_desc": "**__Programming__**:\n- **Flamey** (actuallyflamey)\n**__Localization__**:\n- **Flamey** (actuallyflamey): *English*, *Italian*.",
                     "versions": "Versions",
-                    "versions_desc": "**__Server Eggs__**: {0}\n**__discord.py__**: {1}\n**__Python__**: {2}"
+                    "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },
                 "create": {
                     "title": "About Creating Eggs",
@@ -322,25 +322,25 @@
             }
         },
         "log": {
-            "log": "**{0}** ({1}) {2} **Egg #{3}**",
-            "afterdel": "**{0}** ({1}) had {2} **Egg #{3}**, but it was deleted.",
+            "log": "**{actor}** ({username}) {action} **Egg #{egg_id}**",
+            "afterdel": "**{actor}** ({username}) had {action} **Egg #{egg_id}**, but it was deleted.",
             "show_extra_attachment": "$common.show_extra_attachment",
             "change_rating": "$rating.title",
             "change_lang": "$lang.title",
             "delete": "Delete",
             "report": "$common.report",
-            "deleted": "Deleted **Egg #{0}**."
+            "deleted": "Deleted **Egg #{egg_id}**."
         },
         "mod": {
             "filter": {
                 "not_found": "$common.not_found",
-                "unfiltered": "Successfully **unfiltered** **Egg #{0}**.\nIt can now **appear again** in this server.",
-                "filtered": "Successfully **filtered** **Egg #{0}**.\nIt will **no longer appear** in this server."
+                "unfiltered": "Successfully **unfiltered** **Egg #{egg_id}**.\nIt can now **appear again** in this server.",
+                "filtered": "Successfully **filtered** **Egg #{egg_id}**.\nIt will **no longer appear** in this server."
             }
         },
         "premium": {
             "daily": {
-                "title": "Daily Egg #{0}"
+                "title": "Daily Egg #{egg_id}"
             },
             "consent": {
                 "prompt": "As a **Supporter**, you get a **new Egg** in your DMs every day!\nBut, by default, **Explicit Eggs** are not part of the pool. Would you like to **include them** in your daily **Egg**s?\n\n-# By saying \"*Yes*\", you confirm that you are over 18.",
@@ -364,7 +364,7 @@
             "questionable": "Questionable",
             "explicit": "Explicit",
             "invalid": "Unknown rating. Pick one of the suggested options.",
-            "success": "Changed **Egg #{0}**'s rating to **{1}**."
+            "success": "Changed **Egg #{egg_id}**'s rating to **{value}**."
         },
         "lang": {
             "title": "Change Language",
@@ -372,12 +372,12 @@
             "lang_desc": "Which language is this Egg's content in?",
             "lang_placeholder": "Select the language...",
             "invalid": "Unknown language. Pick one of the suggested options.",
-            "success": "Changed **Egg #{0}**'s language to **{1}**."
+            "success": "Changed **Egg #{egg_id}**'s language to **{value}**."
         },
         "common": {
             "show_extra_attachment": "Show Extra Attachment",
             "cancel": "Cancel",
-            "not_found": "**Egg #{0}** does not exist.",
+            "not_found": "**Egg #{egg_id}** does not exist.",
             "cannot": "You don't have permission to manage this **Egg**.",
             "already": "The setting is already correct!",
             "report": "Report",
