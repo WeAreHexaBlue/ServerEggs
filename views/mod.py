@@ -14,20 +14,19 @@ from .base import (
 
 
 class ReportActions(discord.ui.LayoutView):
-    def __init__(self, bot: commands.Bot, report, reporter, intro: str, container: discord.ui.Container, file=None, link=None, lines: dict | None = None):
+    def __init__(self, bot: commands.Bot, report, reporter, intro: str, container: discord.ui.Container, file=None, link=None):
         super().__init__(timeout=None)
 
         self.bot = bot
         self.report = report
         self.reporter = reporter
-        self.lines = lines
 
         self.add_item(discord.ui.TextDisplay(intro))
         self.add_item(container)
 
         if file or link:
             self.add_item(discord.ui.ActionRow(ExtraAttachmentButton(
-                bot.get_lines("common", lines or {})["show_extra_attachment"] if lines else "Show Extra Attachment",
+                "Show Extra Attachment",
                 style=discord.ButtonStyle.primary,
                 file=file,
                 link=link
@@ -73,7 +72,9 @@ class ReportActions(discord.ui.LayoutView):
     async def change_rating(self, ctx: discord.Interaction):
         egg = await self.report.egg
 
-        await ctx.response.send_modal(RatingModal(self.bot.get_lines("rating", self.lines), egg, after_set=self.after_rating))
+        _, myloc = await self.bot.get_section(ctx, "rating")
+
+        await ctx.response.send_modal(RatingModal(myloc, egg, after_set=self.after_rating))
 
     async def after_rating(self, ctx: discord.Interaction, egg: Egg, rating):
         await self.delete_reports(ctx, f"Change Rating to `{rating.value}`", egg.id)
@@ -81,7 +82,9 @@ class ReportActions(discord.ui.LayoutView):
     async def change_language(self, ctx: discord.Interaction):
         egg = await self.report.egg
 
-        await ctx.response.send_modal(LangModal(self.bot, self.bot.get_lines("lang", self.lines), egg, after_set=self.after_language))
+        _, myloc = await self.bot.get_section(ctx, "lang")
+
+        await ctx.response.send_modal(LangModal(self.bot, myloc, egg, after_set=self.after_language))
 
     async def after_language(self, ctx: discord.Interaction, egg: Egg, lang):
         await self.delete_reports(ctx, f"Change Language to `{lang}`", egg.id)
