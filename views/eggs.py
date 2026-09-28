@@ -381,12 +381,17 @@ class ReportEgg(discord.ui.Modal):
                 view=ReportActions(
                     self.bot, report, reporter,
                     f"New report from **{ctx.user.name}** ({reporter.id}).\n**Reason**: {report.reason}",
-                    container, vfile, vlink, lines=self.lines
+                    container, vfile, vlink
                 )
             )
 
             report.log_message_id = msg.id
             await report.save(update_fields=["log_message_id"])
+
+            try:
+                await ctx.user.send(self.myloc["receipt"].format(egg_id=self.egg.id, reason=reason))
+            except discord.Forbidden:
+                pass
 
             await self.finish(ctx, "success")
         except IntegrityError:

@@ -211,6 +211,7 @@
                 },
                 "other": "Custom Report Reason",
                 "other_placeholder": "If you chose \"Other\", specify your reason here...",
+                "receipt": "We received your report about **Egg #{egg_id}**. You will be notified about our action.\nThank you for keeping **Server Eggs** a safer platform!\n\n**Reason**: {reason}",
                 "success": "**Egg #{egg_id}** was reported successfully.",
                 "already": "You already reported this **Egg**: wait for us to take action..."
             }
