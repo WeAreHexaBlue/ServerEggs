@@ -83,7 +83,7 @@ class Premium(commands.Cog):
 
         container, sfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg, creator, collected,
-            title=myloc["title"].format(egg_id=egg.id),
+            title=utils.egg_title(egg, myloc["title"].format(egg_id=egg.id)),
         )
 
         try:
