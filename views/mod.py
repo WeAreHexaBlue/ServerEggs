@@ -41,13 +41,25 @@ class ReportActions(discord.ui.LayoutView):
         ))
 
     async def delete_reports(self, ctx: discord.Interaction, action: str, egg: Egg | int):
-        all_reports = await egg.reports.all() if isinstance(egg, Egg) else await Report.filter(egg__id=egg).all()
+        egg_id = egg.id if isinstance(egg, Egg) else egg
+        all_reports = await Report.filter(egg__id=egg_id).all()
 
         for report in all_reports:
             try:
                 msg = ctx.channel.get_partial_message(report.log_message_id)
-                await msg.edit(view=text_view(self.resolved(action, egg)))
+                await msg.edit(view=text_view(self.resolved(action, egg_id)))
             except discord.HTTPException:
+                pass
+
+            reporter = await report.reporter
+            lines = utils.pick_locale(self.bot.locales, reporter.lang)["lines"]
+            myloc = self.bot.get_lines("eggs/report", lines)
+
+            user = await utils.get_or_fetch_user(self.bot, reporter.id)
+
+            try:
+                await user.send(myloc["result"].format(egg_id=egg_id, action=action))
+            except (AttributeError, discord.HTTPException):
                 pass
 
             await report.delete()
@@ -67,7 +79,7 @@ class ReportActions(discord.ui.LayoutView):
 
         egg = await self.report.egg
 
-        await self.delete_reports(ctx, "Ignore", egg.id)
+        await self.delete_reports(ctx, "Ignored", egg.id)
 
     async def change_rating(self, ctx: discord.Interaction):
         egg = await self.report.egg
@@ -77,7 +89,7 @@ class ReportActions(discord.ui.LayoutView):
         await ctx.response.send_modal(RatingModal(myloc, egg, after_set=self.after_rating))
 
     async def after_rating(self, ctx: discord.Interaction, egg: Egg, rating):
-        await self.delete_reports(ctx, f"Change Rating to `{rating.value}`", egg.id)
+        await self.delete_reports(ctx, f"Changed Rating to `{rating.value}`", egg.id)
 
     async def change_language(self, ctx: discord.Interaction):
         egg = await self.report.egg
@@ -87,14 +99,14 @@ class ReportActions(discord.ui.LayoutView):
         await ctx.response.send_modal(LangModal(self.bot, myloc, egg, after_set=self.after_language))
 
     async def after_language(self, ctx: discord.Interaction, egg: Egg, lang):
-        await self.delete_reports(ctx, f"Change Language to `{lang}`", egg.id)
+        await self.delete_reports(ctx, f"Changed Language to `{lang}`", egg.id)
 
     async def delete(self, ctx: discord.Interaction):
         await ctx.response.defer()
 
         egg = await self.report.egg
 
-        await self.delete_reports(ctx, "Delete", egg.id)
+        await self.delete_reports(ctx, "Deleted", egg.id)
         await utils.egg_delete(egg)
 
     async def delete_ban(self, ctx: discord.Interaction):
@@ -103,7 +115,7 @@ class ReportActions(discord.ui.LayoutView):
         egg = await self.report.egg
         creator = await egg.creator
 
-        action = f"Delete and Ban User `{creator.id}`"
+        action = f"Deleted and Banned User `{creator.id}`"
 
         creator.banned = True
         await creator.save(update_fields=["banned"])

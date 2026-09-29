@@ -390,7 +390,7 @@ class ReportEgg(discord.ui.Modal):
 
             try:
                 await ctx.user.send(self.myloc["receipt"].format(egg_id=self.egg.id, reason=reason))
-            except discord.Forbidden:
+            except discord.HTTPException:
                 pass
 
             await self.finish(ctx, "success")
