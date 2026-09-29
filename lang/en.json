@@ -289,7 +289,7 @@
                         "localization": "Localization"
                     },
                     "versions": "Versions",
-                    "versions_desc": "**__{brand_name}__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
+                    "versions_desc": "**{brand_name}**: {ver_eggs}\n**discord.py**: {ver_dpy}\n**Python**: {ver_py}"
                 },
                 "create": {
                     "title": "About Creating Eggs",
