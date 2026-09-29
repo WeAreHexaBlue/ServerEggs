@@ -98,7 +98,7 @@
                 "empty_edit": "",
                 "rating_not_allowed": "",
                 "toomanyattach": "",
-                "bad_lang": "Diese Sprache ist **nicht unterstützt**.\nWenn du **zu den Server Eggs Übersetzungen beitragen** möchtest, kannst du die Sprache auf [Weblate]({link_weblate}) hinzufügen!",
+                "bad_lang": "Diese Sprache ist **nicht unterstützt**.\nWenn du **zu den {brand_name} Übersetzungen beitragen** möchtest, kannst du die Sprache auf [Weblate]({link_weblate}) hinzufügen!",
                 "lang_not_allowed": "Dir ist es **nicht erlaubt**, eine andere Sprache außer **Deutsch** in diesem Server zu nutzen.",
                 "banned": "Du bist vom erstellen und bearbeiten von *Ei**ern **ausgeschlossen**.\nBerufung einlegen ist *momentan* nicht möglich.",
                 "not_found": "",

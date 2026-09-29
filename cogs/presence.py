@@ -3,6 +3,7 @@ import itertools
 import discord
 from discord.ext import commands, tasks
 
+import utils
 from schema import Egg
 
 
@@ -16,11 +17,11 @@ class Presence(commands.Cog):
             "Could I offer you an /egg in these trying times?",
             "Eggify any message by right-clicking or pressing it!",
             "Giving random Eggs in {guilds} servers!",
-            "Donate at ko-fi.com/hexablue",
+            f"Donate at {utils.LINKS["kofi"].removeprefix("https://")}",
             "Surprisingly not about DELTARUNE.",
             "I like my Eggs open-source.",
             "Well, there is a bot here.",
-            "Support at discord.gg/G9vfEZGZnT",
+            f"Support at {utils.LINKS["support"].removeprefix("https://")}",
             "Delivering {eggs} Eggs!",
             "Gambling without any stakes! So awesome!",
             "/challenge your friends to an Egg battle!",

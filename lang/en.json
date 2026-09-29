@@ -64,7 +64,7 @@
             "privacy": {
                 "already": "$common.already",
                 "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<{link_dm}>).",
-                "missing_invite_perms": "**Server Eggs** is missing the **Create Invite** permission, which is required for this operation.",
+                "missing_invite_perms": "**{brand_name}** is missing the **Create Invite** permission, which is required for this operation.",
                 "success": "Privacy successfully set to {state}.",
                 "public": "public",
                 "private": "private"
@@ -99,7 +99,7 @@
                 "empty_edit": "You didn't specify any edits.",
                 "rating_not_allowed": "Cannot create or edit an **Egg** with this **rating** in this channel.",
                 "toomanyattach": "You may not use both `file` and `link` at the same time.\nChoose between the two.",
-                "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to Server Eggs localization**, you can **add it** on [Weblate]({link_weblate})!",
+                "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to {brand_name} localization**, you can **add it** on [Weblate]({link_weblate})!",
                 "lang_not_allowed": "You **may not** use a language other than **English** in this server.",
                 "banned": "You are **banned** from creating and editing **Egg**s.\nAppealing is not possible *at this time*.",
                 "not_found": "$common.not_found",
@@ -112,7 +112,7 @@
                 "convert_failed": "Failed to convert your **attachment** to a supported format. It may be corrupted or use an unsupported codec.",
                 "illegal": "**ILLEGAL CONTENT DETECTED**. You have now been **banned** from creating **Egg**s.",
                 "duplicate": "An **Egg** with these specifics **already exists**.\nView it with: `/get id:{egg_id}`",
-                "beg": "Hey **{user}**! If you enjoy **Server Eggs** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**]({link_store}) or [**donating to our Ko-fi**]({link_kofi})!\nRemember that **Server Eggs** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
+                "beg": "Hey **{user}**! If you enjoy **{brand_name}** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**]({link_store}) or [**donating to our Ko-fi**]({link_kofi})!\nRemember that **{brand_name}** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
                 "beg_supporter": "Hey **{user}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**]({link_kofi}).\n\n-# You are receiving this message because you've created several **Egg**s.",
                 "title": "Egg #{egg_id} {action}!",
                 "created": "created",
@@ -211,7 +211,7 @@
                 },
                 "other": "Custom Report Reason",
                 "other_placeholder": "If you chose \"Other\", specify your reason here...",
-                "receipt": "We received your report about **Egg #{egg_id}**. You will be notified about our action.\nThank you for keeping **Server Eggs** a safer platform!\n\n**Reason**: {reason}",
+                "receipt": "We received your report about **Egg #{egg_id}**. You will be notified about our action.\nThank you for keeping **{brand_name}** a safer platform!\n\n**Reason**: {reason}",
                 "success": "**Egg #{egg_id}** was reported successfully.",
                 "already": "You already reported this **Egg**: wait for us to take action...",
                 "actions": {
@@ -253,21 +253,21 @@
             "ratelimited": "You are being **rate-limited**. Try again in **{seconds}s**."
         },
         "embed": {
-            "author": "Server Eggs",
-            "footer": "Server Eggs by HexaBlue"
+            "author": "{brand_name}",
+            "footer": "{brand_name} by {brand_owner}"
         },
         "misc": {
             "contribute": {
-                "title": "Contribute to Server Eggs",
-                "desc": "Here's the ways in which you can **contribute to Server Eggs's development**!",
+                "title": "Contribute to {brand_name}",
+                "desc": "Here's the ways in which you can **contribute to {brand_name}'s development**!",
                 "code": "Contribute Code",
                 "code_desc": "**Fork** our [**GitHub repo**]({link_github}), then **open a pull request**! Remember to **read the `CONTRIBUTING.md` file**.",
                 "trans": "Contribute Translations",
-                "trans_desc": "Head over to our [**Weblate Project page**]({link_weblate}), and start **localizing Server Eggs** for the languages you're fluent in!"
+                "trans_desc": "Head over to our [**Weblate Project page**]({link_weblate}), and start **localizing {brand_name}** for the languages you're fluent in!"
             },
             "donate": {
-                "title": "Donate to Server Eggs",
-                "desc": "Here's the ways in which you can **monetarily support Server Eggs's development**!",
+                "title": "Donate to {brand_name}",
+                "desc": "Here's the ways in which you can **monetarily support {brand_name}'s development**!",
                 "sku": "Buy from the Store",
                 "sku_desc": "Visit our [**Discord Store**]({link_store}), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily Egg** for your **collection**!\n  - **Higher chance** to get **secret Eggs**!\n  - **Nicer** rate-limits.",
                 "kofi": "Donate on Ko-fi",
@@ -275,25 +275,25 @@
             },
             "help": {
                 "general": {
-                    "title": "About Server Eggs",
-                    "desc": "**Server Eggs** is a Discord bot created by **HexaBlue**.\nIt lets your community **create and share content** called \"**Egg**s\".\nUse it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!",
+                    "title": "About {brand_name}",
+                    "desc": "**{brand_name}** is a Discord bot created by **{brand_owner}**.\nIt lets your community **create and share content** called \"**Egg**s\".\nUse it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!",
                     "about": "What are Eggs?",
-                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible anywhere **Server Eggs** is available.\nIf the **Egg** was created in a **public server**, it contains an **invite** to where it was made!",
-                    "how": "How to use Server Eggs",
+                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible anywhere **{brand_name}** is available.\nIf the **Egg** was created in a **public server**, it contains an **invite** to where it was made!",
+                    "how": "How to use {brand_name}",
                     "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
-                    "donate": "Support Server Eggs",
-                    "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**]({link_store})!\n- **Donate** to [**HexaBlue's Ko-fi**]({link_kofi})!",
+                    "donate": "Support {brand_name}",
+                    "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**]({link_store})!\n- **Donate** to [**{brand_owner}'s Ko-fi**]({link_kofi})!",
                     "credits": "Credits",
                     "credits_roles": {
                         "programming": "Programming",
                         "localization": "Localization"
                     },
                     "versions": "Versions",
-                    "versions_desc": "**__Server Eggs__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
+                    "versions_desc": "**__{brand_name}__**: {ver_eggs}\n**__discord.py__**: {ver_dpy}\n**__Python__**: {ver_py}"
                 },
                 "create": {
                     "title": "About Creating Eggs",
-                    "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an Egg**. The **Egg** you create will then be available **anywhere that Server Eggs is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **Egg**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **Egg**, as a file.\n- `link`: [Optional] Add an **attachment** to the **Egg**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **Egg** as **Secret**!\n  - This means that it **won't be possible** to view this **Egg** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **Egg**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
+                    "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an Egg**. The **Egg** you create will then be available **anywhere that {brand_name} is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **Egg**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **Egg**, as a file.\n- `link`: [Optional] Add an **attachment** to the **Egg**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **Egg** as **Secret**!\n  - This means that it **won't be possible** to view this **Egg** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **Egg**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
                 },
                 "get": {
                     "title": "About Obtaining Eggs",
@@ -324,8 +324,8 @@
                     "desc": "**Commands**: `/leaderboard collections`, `/leaderboard creations`, `/leaderboard battles`, `/leaderboard battlers`\n\nThe leaderboard commands allow you to view the **Top 15** of a certain category.\nThese categories are:\n- **Collections**: Users who have collected the most **Egg**s.\n- **Creations**: Users who have created the most **Egg**s.\n- **Battles**: **Egg**s that have won the most battles.\n- **Battlers**: Users who have won the most battles."
                 },
                 "config": {
-                    "title": "About Configuring Server Eggs",
-                    "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **Server Eggs** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **Egg**s created in it.\n    - **In DMs**: Allow anyone who **views one of your Eggs** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **Egg creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **Egg**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **Egg**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
+                    "title": "About Configuring {brand_name}",
+                    "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **{brand_name}** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **Egg**s created in it.\n    - **In DMs**: Allow anyone who **views one of your Eggs** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **Egg creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **Egg**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **Egg**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
                 },
                 "filter": {
                     "title": "About Filtering Eggs",
@@ -591,15 +591,15 @@
     "leaderboard_battlers_description": "See who has won the most battles.",
 
     "help": "help",
-    "help_description": "Get info about Server Eggs or a command.",
+    "help_description": "Get info about {brand_name} or a command.",
     "help_about": "about",
     "help_about_description": "The command to get information about.",
 
     "donate": "donate",
-    "donate_description": "Support Server Eggs's development!",
+    "donate_description": "Support {brand_name}'s development!",
 
     "contribute": "contribute",
-    "contribute_description": "Help develop Server Eggs!",
+    "contribute_description": "Help develop {brand_name}!",
 
     "filter": "filter",
     "filter_description": "Prevent a specific Egg from appearing in this server.",
@@ -607,5 +607,5 @@
     "filter_id_description": "The ID of the Egg to toggle filters on.",
 
     "ping": "ping",
-    "ping_description": "Gets Server Eggs's latency."
+    "ping_description": "Gets {brand_name}'s latency."
 }

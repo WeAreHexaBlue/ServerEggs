@@ -88,5 +88,5 @@
     "filter_id": "id",
     "filter_id_description": "Het ID van het Egg waarop de filters moeten worden ingeschakeld.",
     "ping": "ping",
-    "ping_description": "Haal de latency van Server Eggs."
+    "ping_description": "Haal de latency van {brand_name}."
 }

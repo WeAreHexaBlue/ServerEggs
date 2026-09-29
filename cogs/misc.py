@@ -39,7 +39,7 @@ class Misc(commands.Cog):
         e = discord.Embed(title=myloc["title"], color=discord.Color.blurple(), description=myloc["desc"])
 
         if about is None:
-            e.set_thumbnail(url="https://github.com/ActuallyFlamey/ServerEggs/blob/main/icons/seggs_bg.png?raw=true")
+            e.set_thumbnail(url=utils.icon_url("icon"))
 
             e.add_field(name=myloc["about"], value=myloc["about_desc"], inline=False)
             e.add_field(name=myloc["how"], value=myloc["how_desc"], inline=False)

@@ -20,7 +20,7 @@ async def credit_name(bot: commands.Bot, uid: int) -> str | None:
     if user is None:
         return None
 
-    return discord.utils.escape_markdown(f"**{user.display_name}** ({user.name})")
+    return f"**{discord.utils.escape_markdown(user.display_name)}** ({discord.utils.escape_markdown(user.name)})"
 
 async def render_credits(bot: commands.Bot, roles: dict, locales: dict) -> str:
     sections = []

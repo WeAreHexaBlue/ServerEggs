@@ -4,9 +4,10 @@ from discord.ext import commands
 from schema import Rating
 
 from . import attach, misc
+from .i18n import BRAND, brand_values, icon_url
 
-EGG_EMOJI = "<:egg:1535645170400370729>"
-HEXABLUE_EMOJI = "<:HexaBlue:1544850025375465512>"
+HEADER_EMOJI = BRAND["emojis"]["header"]
+FOOTER_EMOJI = BRAND["emojis"]["footer"]
 
 CV2_TEXT_LIMIT = 4000
 
@@ -24,16 +25,13 @@ def brand_embed(e: discord.Embed, lines: dict | None = None):
     if lines is None:
         lines = {
             "embed": {
-                "author": "Server Eggs",
-                "footer": "Server Eggs by HexaBlue"
+                "author": BRAND["name"],
+                "footer": brand_values()["footer"]
             }
         }
 
-    seggs = "https://github.com/ActuallyFlamey/ServerEggs/blob/main/icons/seggs.png?raw=true"
-    hexablue = "https://github.com/ActuallyFlamey/ServerEggs/blob/main/icons/hexablue.png?raw=true"
-
-    e.set_author(name=lines["embed"]["author"], icon_url=seggs)
-    e.set_footer(text=lines["embed"]["footer"], icon_url=hexablue)
+    e.set_author(name=lines["embed"]["author"], icon_url=icon_url("author"))
+    e.set_footer(text=lines["embed"]["footer"], icon_url=icon_url("footer"))
 
 def get_egg_color(egg):
     color = discord.Color.blurple()
@@ -50,14 +48,17 @@ def get_egg_color(egg):
     return color
 
 def brand_header(lines: dict | None = None, title: str = "") -> str:
-    author = lines["embed"]["author"] if lines else "Server Eggs"
+    author = lines["embed"]["author"] if lines else BRAND["name"]
 
-    header = f"{EGG_EMOJI} **{author}**"
+    prefix = f"{HEADER_EMOJI} " if HEADER_EMOJI else ""
+    header = f"{prefix}**{author}**"
     return f"{header}\n# {title}" if title else header
 
 def brand_footer(lines: dict | None = None) -> str:
-    footer = lines["embed"]["footer"] if lines else "Server Eggs by Flamey"
-    return f"-# {HEXABLUE_EMOJI}  {footer}"
+    footer = lines["embed"]["footer"] if lines else brand_values()["footer"]
+
+    prefix = f"{FOOTER_EMOJI}  " if FOOTER_EMOJI else ""
+    return f"-# {prefix}{footer}"
 
 def fit_text(description: str | None, *fixed: str) -> str | None:
     if not description:

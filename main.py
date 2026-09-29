@@ -112,7 +112,7 @@ async def on_ready():
     bot.launch_time = datetime.datetime.now(tz=datetime.UTC)
 
     logch = bot.get_channel(int(os.getenv("DEVELOPER_LOG_CHANNEL")))
-    await logch.send(f"**Server Eggs** has started on **discord.py {discord.__version__}**")
+    await logch.send(f"**{utils.BRAND['name']}** has started on **discord.py {discord.__version__}**")
 
     await utils.grant_dev_entitlements(bot)
 
@@ -128,9 +128,9 @@ async def on_guild_join(guild: discord.Guild):
     await Guild.update_or_create(defaults={ "invite": invite_url }, id=guild.id)
 
     e = discord.Embed(
-        title="Server Eggs",
+        title=utils.BRAND["name"],
         color=discord.Color.blurple(),
-        description=f"**Server Eggs** has joined **{guild.name}**!"
+        description=f"**{utils.BRAND['name']}** has joined **{guild.name}**!"
     )
     e.add_field(
         name="What to do now",
@@ -145,7 +145,7 @@ async def on_guild_join(guild: discord.Guild):
     if invite_url is None:
         e.add_field(
             name="WARNING: No Invite Permission",
-            value="**Server Eggs** was invited without **Create Invite** permissions. This means your server is now considered private.\nIf you do not want this, **grant the permission** and run `/config privacy public:True`.",
+            value=f"**{utils.BRAND['name']}** was invited without **Create Invite** permissions. This means your server is now considered private.\nIf you do not want this, **grant the permission** and run `/config privacy public:True`.",
             inline=False
         )
     utils.brand_embed(e)
