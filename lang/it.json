@@ -168,7 +168,8 @@
                 "other": "Motivo Personalizzato della Segnalazione",
                 "other_placeholder": "Se hai scelto \"Altro\", specifica le tue motivazioni qui...",
                 "success": "L'**Uovo n. {egg_id}** è stato segnalato con successo.",
-                "already": "Hai già segnalato questo **Uovo**: aspetta che ne prendiamo atto..."
+                "already": "Hai già segnalato questo **Uovo**: aspetta che ne prendiamo atto...",
+                "receipt": "Abbiamo ricevuto la tua segnalazione riguardante l'**Uovo n. {egg_id}**. Verrai informato se e come ne prenderemo atto.\nTi ringraziamo per il tuo contributo verso una piattaforma **Server Eggs** più sicura!\n\n**Motivo**: {reason}"
             }
         },
         "eggstras": {
@@ -258,6 +259,22 @@
                     "title": "Informazioni sul Filtrare Uova",
                     "desc": "**Comandi**: `/filtra`\n\nCon questo comando, i Gestori dei Server possono **commutare lo stato del filtro** per un **Uovo**. È utile qualora un **Uovo** non infranga le regole *globali*, e perciò è permesso dai **Moderatori di Uova**, ma i moderatori *locali* del server trovano che sia inappropriato per i loro membri.\nSe un **Uovo** era **già stato filtrato**, utilizzare questo comando su di esso un'altra volta gli **toglierà il filtro**.\n\n**Parametri**:\n- `id`: L'ID dell'**Uovo** per cui commutare lo stato del filtro."
                 }
+            },
+            "contribute": {
+                "title": "Contribuisci a Server Eggs",
+                "desc": "Ecco i modi in cui puoi **contribuire allo sviluppo di Server Eggs**!",
+                "code": "Contribuisci Codice",
+                "code_desc": "Fai una **fork** della nostra [**repo GitHub**]({link_github}) e crea una **pull request**! Ricordati di **leggere il file `CONTRIBUTING.md`**.",
+                "trans": "Contribuisci Traduzioni",
+                "trans_desc": "Visita la nostra [**pagina Weblate**]({link_weblate}) e inizia a **tradurre Server Eggs** nelle lingue che conosci!"
+            },
+            "donate": {
+                "title": "Sostieni Server Eggs",
+                "desc": "Ecco i modi in cui puoi **sostenere economicamente lo sviluppo di Server Eggs**!",
+                "sku": "Acquista nello Store",
+                "sku_desc": "Visita il nostro [**store su Discord**]({link_store}), dove puoi **acquistare**:\n- **Supporter** (Abbonamento Utente per 1,78 EUR/mese)\n  - Un **Uovo Giornaliero** per la tua **collezionate**!\n  - **Più possibilità** di ottenere **Uova segrete**!\n  - Limiti **più rilassati**.",
+                "kofi": "Dona su Ko-fi",
+                "kofi_desc": "Visita la nostra [**pagina Ko-fi**]({link_kofi}) e **lascia una mancia**!"
             }
         },
         "log": {
@@ -488,5 +505,7 @@
     "filter_id": "id",
     "filter_id_description": "L'ID dell'Uovo per cui commutare lo stato del filtro.",
     "ping": "ping",
-    "ping_description": "Ottiene il ritardo di connessione di Server Eggs."
+    "ping_description": "Ottiene il ritardo di connessione di Server Eggs.",
+    "contribute": "contribuisci",
+    "contribute_description": "Aiuta a sviluppare Server Eggs!"
 }
