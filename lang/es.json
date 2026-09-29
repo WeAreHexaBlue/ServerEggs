@@ -86,7 +86,7 @@
                 "convert_failed": "No se pudo convertir el **archivo** a un formato compatible. Es posible que este dañado o utilice un codec no soportado.",
                 "illegal": "**CONTENIDO ILEGAL DETECTADO**. Se te ha **prohibido* el crear **Huevo**s.",
                 "duplicate": "Un **Huevo** con esas especificaciones **ya existe**.\nMiralo con: `/get id:{egg_id}`",
-                "beg": "Hey **{user}**! Si te gusto **{brand_name}** y te gustaria que continue su desarrollo y  que sus servidores sigan en linea, considere [**comprar algo de nuestra Tienda de Discord**]({link_store}) or [**donando a nuestro Ko-fi**]({link_kofi})! \nRecuerda que **{brand_name}** es un projecto de *software de fuente abierta*, y por lo tanto desarrollado por *voluntarios*. Sin ayuda de gente como *tu*, no podria existir..\n\n-# Has recibido este mensaje porque has creado varios **Huevo**s."
+                "beg": "Hey **{user}**! Si te gusto **{brand_name}** y te gustaria que continue su desarrollo y que sus servidores sigan en linea, considere [**comprar algo de nuestra Tienda de Discord**]({link_store}) or [**donando a nuestro Ko-fi**]({link_kofi})! \nRecuerda que **{brand_name}** es un projecto de *software de fuente abierta*, y por lo tanto desarrollado por *voluntarios*. Sin ayuda de gente como *tu*, no podria existir.\n\n-# Has recibido este mensaje porque has creado varios **Huevo**s."
             }
         }
     }
