@@ -169,7 +169,15 @@
                 "other_placeholder": "Se hai scelto \"Altro\", specifica le tue motivazioni qui...",
                 "success": "L'**Uovo n. {egg_id}** è stato segnalato con successo.",
                 "already": "Hai già segnalato questo **Uovo**: aspetta che ne prendiamo atto...",
-                "receipt": "Abbiamo ricevuto la tua segnalazione riguardante l'**Uovo n. {egg_id}**. Verrai informato se e come ne prenderemo atto.\nTi ringraziamo per il tuo contributo verso una piattaforma **Server Eggs** più sicura!\n\n**Motivo**: {reason}"
+                "receipt": "Abbiamo ricevuto la tua segnalazione riguardante l'**Uovo n. {egg_id}**. Verrai informato se e come ne prenderemo atto.\nTi ringraziamo per il tuo contributo verso una piattaforma **{brand_name}** più sicura!\n\n**Motivo**: {reason}",
+                "actions": {
+                    "ignore": "Ignorato",
+                    "rating": "Cambiata la Classificazione a `{rating}`",
+                    "lang": "Cambiata la Lingua a `{lang}`",
+                    "delete": "Eliminato",
+                    "delete_ban": "Eliminato, bannato il creatore (`{user_id}`)"
+                },
+                "result": "Abbiamo agito sulla tua segnalazione per l'**Uovo n. {egg_id}**.\n**Risultato**: {action}"
             }
         },
         "eggstras": {
@@ -261,16 +269,16 @@
                 }
             },
             "contribute": {
-                "title": "Contribuisci a Server Eggs",
-                "desc": "Ecco i modi in cui puoi **contribuire allo sviluppo di Server Eggs**!",
+                "title": "Contribuisci a {brand_name}",
+                "desc": "Ecco i modi in cui puoi **contribuire allo sviluppo di {brand_name}**!",
                 "code": "Contribuisci Codice",
                 "code_desc": "Fai una **fork** della nostra [**repo GitHub**]({link_github}) e crea una **pull request**! Ricordati di **leggere il file `CONTRIBUTING.md`**.",
                 "trans": "Contribuisci Traduzioni",
-                "trans_desc": "Visita la nostra [**pagina Weblate**]({link_weblate}) e inizia a **tradurre Server Eggs** nelle lingue che conosci!"
+                "trans_desc": "Visita la nostra [**pagina Weblate**]({link_weblate}) e inizia a **tradurre {brand_name}** nelle lingue che conosci!"
             },
             "donate": {
-                "title": "Sostieni Server Eggs",
-                "desc": "Ecco i modi in cui puoi **sostenere economicamente lo sviluppo di Server Eggs**!",
+                "title": "Sostieni {brand_name} Economicamente",
+                "desc": "Ecco i modi in cui puoi **sostenere economicamente lo sviluppo di {brand_name}**!",
                 "sku": "Acquista nello Store",
                 "sku_desc": "Visita il nostro [**store su Discord**]({link_store}), dove puoi **acquistare**:\n- **Supporter** (Abbonamento Utente per 1,78 EUR/mese)\n  - Un **Uovo Giornaliero** per la tua **collezionate**!\n  - **Più possibilità** di ottenere **Uova segrete**!\n  - Limiti **più rilassati**.",
                 "kofi": "Dona su Ko-fi",
@@ -507,5 +515,5 @@
     "ping": "ping",
     "ping_description": "Ottiene il ritardo di connessione di {brand_name}.",
     "contribute": "contribuisci",
-    "contribute_description": "Aiuta a sviluppare Server Eggs!"
+    "contribute_description": "Aiuta a sviluppare {brand_name}!"
 }
