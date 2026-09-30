@@ -109,7 +109,7 @@ Nothing in these Terms limits liability that cannot be limited under applicable 
 
 *   **Email:** [flamey@hexa.blue](mailto:flamey@hexa.blue) — legal notices, copyright, bans, privacy
 *   **Discord:** [actuallyflamey](https://discord.com/users/450678229192278036)
-*   **GitHub:** https://github.com/ActuallyFlamey/ServerEggs
+*   **GitHub:** https://github.com/WeAreHexaBlue/ServerEggs
 
 ## 11. Acceptance, Changes, and Termination
 
@@ -121,4 +121,4 @@ Nothing in these Terms limits liability that cannot be limited under applicable 
 
 ---
 
-See also: [**Privacy Policy**](PRIVACY.md) · [Source Code (GPL-3.0)](https://github.com/ActuallyFlamey/ServerEggs) · [Discord Terms](https://discord.com/terms) · [Discord Community Guidelines](https://discord.com/guidelines)
+See also: [**Privacy Policy**](PRIVACY.md) · [Source Code (GPL-3.0)](https://github.com/WeAreHexaBlue/ServerEggs) · [Discord Terms](https://discord.com/terms) · [Discord Community Guidelines](https://discord.com/guidelines)

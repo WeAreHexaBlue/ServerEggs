@@ -180,7 +180,7 @@ In the event of a personal data breach likely to result in a risk to your rights
 
 ## 11. Open Source and Database
 
-The Bot's source code is public under the [GPL-3.0 license](https://github.com/ActuallyFlamey/ServerEggs). **The code being public does not make the database public** — the PostgreSQL database and the stored media files are private and secured by the developers. Self-hosting the code gives you your own, separate database.
+The Bot's source code is public under the [GPL-3.0 license](https://github.com/WeAreHexaBlue/ServerEggs). **The code being public does not make the database public** — the PostgreSQL database and the stored media files are private and secured by the developers. Self-hosting the code gives you your own, separate database.
 
 ## 12. Contact Us
 
@@ -188,7 +188,7 @@ For privacy questions, data-subject rights requests, deletion requests, or anyth
 
 *   **Email:** [flamey@hexa.blue](mailto:flamey@hexa.blue) — preferred for legal and rights requests, since it leaves a record.
 *   **Discord:** [actuallyflamey](https://discord.com/users/450678229192278036)
-*   **GitHub:** https://github.com/ActuallyFlamey/ServerEggs
+*   **GitHub:** https://github.com/WeAreHexaBlue/ServerEggs
 
 ## 13. Changes to This Policy
 
@@ -196,4 +196,4 @@ We may update this policy to reflect changes in the code. The "Last Updated" dat
 
 ---
 
-See also: [**Terms of Service**](TERMS.md) · [Source Code (GPL-3.0)](https://github.com/ActuallyFlamey/ServerEggs)
+See also: [**Terms of Service**](TERMS.md) · [Source Code (GPL-3.0)](https://github.com/WeAreHexaBlue/ServerEggs)
