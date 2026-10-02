@@ -79,7 +79,7 @@ class Premium(commands.Cog):
         lines = self.lines_for(dbuser)
         myloc = self.bot.get_lines("premium/daily", lines)
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator.id)
+        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
 
         container, sfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg, creator, collected,

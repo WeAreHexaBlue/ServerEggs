@@ -13,8 +13,8 @@ class Eggs(commands.Cog):
         self.bot = bot
 
     async def manage_check(self, ctx: discord.Interaction, egg):
-        creatorchk = ctx.user.id == egg.creator.id
-        modchk = ctx.guild and ctx.permissions.manage_guild and egg.origin.id == ctx.guild.id
+        creatorchk = ctx.user.id == egg.creator_id
+        modchk = ctx.guild and ctx.permissions.manage_guild and egg.origin_id == ctx.guild.id
         globalmodchk = await utils.is_global_mod(self.bot, ctx.user.id)
 
         return creatorchk or modchk or globalmodchk
@@ -211,7 +211,7 @@ class Eggs(commands.Cog):
 
             await egg.save()
 
-        creator = self.bot.get_user(egg.creator.id)
+        creator = self.bot.get_user(egg.creator_id)
         if ctx.guild: await utils.log_egg(self.bot, lines, guild, egg, creator, ctx.user, bool(id))
 
         container, resfile, vfile, vlink = await utils.get_egg_layout(
@@ -324,7 +324,7 @@ class Eggs(commands.Cog):
                 await user.collected.add(egg)
                 collected = True
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator.id)
+        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
 
         container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, lines, egg, creator, collected)
 
@@ -389,7 +389,7 @@ class Eggs(commands.Cog):
             await ctx.followup.send(myloc["no_egg"])
             return
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator.id)
+        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
 
         container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, lines, egg, creator)
 

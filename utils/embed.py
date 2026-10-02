@@ -92,13 +92,13 @@ def egg_creator_block(myloc: dict, egg, creator, *, public = False, include_id =
 
         value = f"**{discord.utils.escape_markdown(creator.display_name)}** {f"({detail})" if detail else ""}"
     else:
-        value = myloc["unknown_creator"].format(user_id=egg.creator.id)
+        value = myloc["unknown_creator"].format(user_id=egg.creator_id or "")
 
     return f"### {myloc["creator"]}\n{value}"
 
 def egg_origin_block(myloc: dict, egg, origin) -> str:
     if origin is None:
-        value = myloc["unknown_origin"].format(guild_id=egg.origin.id)
+        value = myloc["unknown_origin"].format(guild_id=egg.origin_id or "")
     else:
         parts = [f"**{myloc["origin_name"]}**: {discord.utils.escape_markdown(origin.name)}"]
 
@@ -123,9 +123,9 @@ async def get_egg_layout(
     myloc = bot.get_lines("eggs/send", lines)
 
     if creator is None:
-        creator = await misc.get_or_fetch_user(bot, egg.creator.id)
+        creator = await misc.get_or_fetch_user(bot, egg.creator_id)
 
-    origin = bot.get_guild(egg.origin.id)
+    origin = bot.get_guild(egg.origin_id) if egg.origin_id else None
 
     media, sfile, extrafile, extralink = attach.get_media(egg)
 
@@ -133,7 +133,7 @@ async def get_egg_layout(
     wins = await egg.battle_wins.all().count()
 
     fields = [
-        egg_creator_block(myloc, egg, creator, public=egg.creator.public, include_id=include_id)
+        egg_creator_block(myloc, egg, creator, public=egg.creator_id is not None and egg.creator.public, include_id=include_id)
     ]
 
     if not created:

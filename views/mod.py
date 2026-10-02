@@ -116,8 +116,9 @@ class ReportActions(discord.ui.LayoutView):
         egg = await self.report.egg
         creator = await egg.creator
 
-        creator.banned = True
-        await creator.save(update_fields=["banned"])
+        if creator is not None:
+            creator.banned = True
+            await creator.save(update_fields=["banned"])
 
-        await self.delete_reports(ctx, "delete_ban", egg.id, user_id=creator.id)
+        await self.delete_reports(ctx, "delete_ban", egg.id, user_id=creator.id if creator else "unknown")
         await utils.egg_delete(egg)
