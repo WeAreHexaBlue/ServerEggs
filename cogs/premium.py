@@ -79,7 +79,7 @@ class Premium(commands.Cog):
         lines = self.lines_for(dbuser)
         myloc = self.bot.get_lines("premium/daily", lines)
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator.id)
+        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
 
         container, sfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg, creator, collected,
@@ -88,11 +88,14 @@ class Premium(commands.Cog):
 
         try:
             await user.send(file=sfile or discord.utils.MISSING, view=views.GetEgg(self.bot, lines, egg, None, creator, container, vfile, vlink))
-
-            if first and not dbuser.allow_explicit_dms:
-                await user.send(view=views.ExplicitConsentView(self.bot, lines))
         except discord.HTTPException:
             pass
+        else:
+            if first and not dbuser.allow_explicit_dms:
+                try:
+                    await user.send(view=views.ExplicitConsentView(self.bot, lines))
+                except Exception as e:  # noqa: BLE001
+                    print(f"ERROR: Explicit consent view failed for {dbuser.id}: {e}")
 
         dbuser.last_daily_at = now
         await dbuser.save(update_fields=["last_daily_at"])

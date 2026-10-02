@@ -9,6 +9,7 @@
                 "rating_not_allowed": "$eggstras.loop.rating_not_allowed",
                 "lang_not_allowed": "$eggstras.loop.lang_not_allowed",
                 "same_egg": "Both fighters can't be the same **Egg**!",
+                "banned": "You are **banned** from voting on battles.\nAppealing is not possible *at this time*.",
                 "begin_random": "## Battle started!\n**__A__**: **Egg #{egg_a}**\n**__B__**: **Egg #{egg_b}**",
                 "begin_challenge": "## Battle started!\n**__A__**: **Egg #{egg_a}**, fighting for {user_a}!\n**__B__**: **Egg #{egg_b}**, fighting for {user_b}!",
                 "eggn": "Egg #{egg_id} ({side})",
@@ -186,6 +187,7 @@
             },
             "report": {
                 "not_found": "$common.not_found",
+                "cannot": "$common.cannot",
                 "ready": {
                     "title": "Report Egg #{egg_id}",
                     "question": "Are you sure you want to report this **Egg**?",

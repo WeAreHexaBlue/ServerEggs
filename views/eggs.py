@@ -145,13 +145,15 @@ class GetEgg(discord.ui.LayoutView):
 
         buttons.append(action_button(self.myloc["button"]["report"], discord.ButtonStyle.danger, self.report))
 
-        if egg.origin.invite is not None and (guild.view_join_button if guild else True):
+        origin_invite = egg.origin.invite if egg.origin_id else None
+
+        if origin_invite is not None and (guild.view_join_button if guild else True):
             buttons.append(discord.ui.Button(
                 label=self.myloc["button"]["origin"],
-                url=egg.origin.invite
+                url=origin_invite
             ))
 
-        if creator is not None and egg.creator.public:
+        if creator is not None and egg.creator_id is not None and egg.creator.public:
             buttons.append(discord.ui.Button(
                 label=self.myloc["button"]["creator"],
                 url=f"https://discord.com/users/{creator.id}"

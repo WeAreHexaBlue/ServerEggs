@@ -27,7 +27,10 @@ def channel_ratings(guild, channel) -> list[Rating]:
 
     return stored.get(key, default[key])
 
-async def get_or_fetch_user(bot: commands.Bot, user_id: int):
+async def get_or_fetch_user(bot: commands.Bot, user_id: int | None):
+    if not user_id:
+        return None
+
     user = bot.get_user(user_id)
 
     if user is not None:

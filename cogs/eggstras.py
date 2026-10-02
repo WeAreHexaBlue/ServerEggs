@@ -214,11 +214,8 @@ class Eggstras(commands.Cog):
         eggs = collections.deque(loop)
         eggs.rotate(random.randint(0, len(eggs)))
 
-        view = discord.utils.MISSING
-        sfile = discord.utils.MISSING
-        if not check:
-            view = await views.EggLoop.create(self.bot, lines, myloc, ctx.user, eggs)
-            sfile = view.sfile or discord.utils.MISSING
+        view = await views.EggLoop.create(self.bot, lines, myloc, ctx.user, eggs)
+        sfile = view.sfile or discord.utils.MISSING
 
         await ctx.followup.send(file=sfile, view=view)
 
