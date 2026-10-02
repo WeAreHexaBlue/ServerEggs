@@ -104,7 +104,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         if ctx.guild:
             if not ctx.permissions.manage_guild:
-                await ctx.followup.send(myloc["no_permissions"], ephemeral=True)
+                await ctx.followup.send(myloc["missing_guild_perms"], ephemeral=True)
                 return
 
             guild, _ = await Guild.get_or_create(id=ctx.guild.id)
