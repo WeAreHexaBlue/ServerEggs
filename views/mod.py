@@ -80,7 +80,7 @@ class ReportActions(discord.ui.LayoutView):
 
         egg = await self.report.egg
 
-        await self.delete_reports(ctx, "ignored", egg.id)
+        await self.delete_reports(ctx, "ignore", egg.id)
 
     async def change_rating(self, ctx: discord.Interaction):
         egg = await self.report.egg
@@ -107,7 +107,7 @@ class ReportActions(discord.ui.LayoutView):
 
         egg = await self.report.egg
 
-        await self.delete_reports(ctx, "deleted", egg.id)
+        await self.delete_reports(ctx, "delete", egg.id)
         await utils.egg_delete(egg)
 
     async def delete_ban(self, ctx: discord.Interaction):
