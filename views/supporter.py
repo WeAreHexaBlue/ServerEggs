@@ -12,7 +12,7 @@ class ExplicitConsentView(discord.ui.LayoutView):
         super().__init__(timeout=None)
 
         self.bot = bot
-        self.myloc = bot.get_lines("supporter/consent", lines)
+        self.myloc = bot.get_lines("premium/consent", lines)
 
         self.add_item(discord.ui.TextDisplay(self.myloc["prompt"]))
 

@@ -88,11 +88,14 @@ class Premium(commands.Cog):
 
         try:
             await user.send(file=sfile or discord.utils.MISSING, view=views.GetEgg(self.bot, lines, egg, None, creator, container, vfile, vlink))
-
-            if first and not dbuser.allow_explicit_dms:
-                await user.send(view=views.ExplicitConsentView(self.bot, lines))
         except discord.HTTPException:
             pass
+        else:
+            if first and not dbuser.allow_explicit_dms:
+                try:
+                    await user.send(view=views.ExplicitConsentView(self.bot, lines))
+                except Exception as e:  # noqa: BLE001
+                    print(f"ERROR: Explicit consent view failed for {dbuser.id}: {e}")
 
         dbuser.last_daily_at = now
         await dbuser.save(update_fields=["last_daily_at"])
