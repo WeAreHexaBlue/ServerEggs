@@ -16,7 +16,8 @@
                 "result_win": "L'**Uovo n. {egg_id}** canta vittoria con **{votes}** voti contro **{opponent_votes}**!",
                 "result_tie_title": "Pari!",
                 "result_tie": "La battaglia è finita **{votes_a} - {votes_b}**. Nessun **Uovo** canta vittoria.",
-                "finished": "**Battaglia conclusa**!"
+                "finished": "**Battaglia conclusa**!",
+                "banned": "Ti è stato **tolto il permesso** di votare nelle battaglie.\n*Al momento* non è possibile fare ricorso."
             },
             "challenge": {
                 "self": "Non puoi sfidarti da solo!",
