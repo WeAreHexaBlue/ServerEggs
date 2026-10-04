@@ -43,6 +43,7 @@ class ServerEggs(commands.Bot):
 
         self.locales = {}
         self.lang_cache = TTLCache(10000, ttl=3600)
+        self.startup_announced = False
 
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
@@ -109,12 +110,20 @@ bot = ServerEggs(intents=discord.Intents.default())
 
 @bot.event
 async def on_ready():
+    if bot.startup_announced:
+        return
+
     bot.launch_time = datetime.datetime.now(tz=datetime.UTC)
 
-    logch = bot.get_channel(int(os.getenv("DEVELOPER_LOG_CHANNEL")))
-    await logch.send(f"**{utils.BRAND['name']}** has started on **discord.py {discord.__version__}**")
+    logch_id = int(os.getenv("DEVELOPER_LOG_CHANNEL") or 0)
+    logch = bot.get_channel(logch_id) if logch_id else None
+
+    if logch is not None:
+        await logch.send(f"**{utils.BRAND['name']}** has started on **discord.py {discord.__version__}**")
 
     await utils.grant_dev_entitlements(bot)
+
+    bot.startup_announced = True
 
 @bot.event
 async def on_guild_join(guild: discord.Guild):
