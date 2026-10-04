@@ -238,6 +238,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     @app.command(name="join-button", description="join-button_description")
     @app.rename(viewable="join-button_viewable")
     @app.describe(viewable="join-button_viewable_description")
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def join_button(self, ctx: discord.Interaction, viewable: bool):
@@ -255,6 +256,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     @app.command(name="battle-time", description="battle-time_description")
     @app.rename(minutes="battle-time_minutes")
     @app.describe(minutes="battle-time_minutes_description")
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def battle_time(self, ctx: discord.Interaction, minutes: app.Range[int, 1, None]):
@@ -279,6 +281,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
         app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
     ])
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def channel_rating(self, ctx: discord.Interaction, channel: discord.TextChannel, rating: Rating):
