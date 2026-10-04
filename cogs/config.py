@@ -54,7 +54,11 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         _, myloc = await self.bot.get_section(ctx, "config/lang")
 
-        await ctx.followup.send(myloc["success"], ephemeral=True)
+        language = (self.bot.locales.get(code) or {}).get("language_name")
+        if language is None:
+            language = utils.pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+
+        await ctx.followup.send(myloc["success"].format(language=language), ephemeral=True)
 
     @app.command(name="allow-ext-lang", description="allow-ext-lang_description")
     @app.rename(allow="allow-ext-lang_allow")

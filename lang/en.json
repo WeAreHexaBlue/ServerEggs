@@ -53,7 +53,7 @@
                 "missing_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to set **your own response language**, run `/config lang` in [my DMs](<{link_dm}>).\n-# **Not all servers allow** usage of external languages, but it will **always work in DMs**.",
                 "no_default": "The \"Server Default\" option is for users, not for servers.",
                 "invalid": "Unknown language. Pick one of the suggested options.",
-                "success": "Successfully switched language to \"**English**\"!"
+                "success": "Successfully switched language to \"**{language}**\"!"
             },
             "allow-ext-lang": {
                 "already": "$common.already",
