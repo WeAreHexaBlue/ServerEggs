@@ -119,7 +119,7 @@ async def on_ready():
     logch = bot.get_channel(logch_id) if logch_id else None
 
     if logch is not None:
-        await logch.send(f"**{utils.BRAND['name']}** has started on **discord.py {discord.__version__}**")
+        await logch.send(f"**{utils.BRAND["name"]}** has started on **discord.py {discord.__version__}**")
 
     await utils.grant_dev_entitlements(bot)
 
@@ -139,7 +139,7 @@ async def on_guild_join(guild: discord.Guild):
     e = discord.Embed(
         title=utils.BRAND["name"],
         color=discord.Color.blurple(),
-        description=f"**{utils.BRAND['name']}** has joined **{guild.name}**!"
+        description=f"**{utils.BRAND["name"]}** has joined **{guild.name}**!"
     )
     e.add_field(
         name="What to do now",
@@ -154,7 +154,7 @@ async def on_guild_join(guild: discord.Guild):
     if invite_url is None:
         e.add_field(
             name="WARNING: No Invite Permission",
-            value=f"**{utils.BRAND['name']}** was invited without **Create Invite** permissions. This means your server is now considered private.\nIf you do not want this, **grant the permission** and run `/config privacy public:True`.",
+            value=f"**{utils.BRAND["name"]}** was invited without **Create Invite** permissions. This means your server is now considered private.\nIf you do not want this, **grant the permission** and run `/config privacy public:True`.",
             inline=False
         )
     utils.brand_embed(e)
