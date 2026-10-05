@@ -43,7 +43,7 @@ class ModLogActions(discord.ui.LayoutView):
 
     async def interaction_check(self, ctx: discord.Interaction):
         if not ctx.permissions.manage_guild:
-            await ctx.response.send_message("Not allowed.", ephemeral=True)
+            await ctx.response.send_message(self.myloc["not_allowed"], ephemeral=True)
             return False
 
         return True

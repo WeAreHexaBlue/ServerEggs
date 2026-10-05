@@ -338,6 +338,7 @@
         "log": {
             "log": "**{actor}** ({username}) {action} **Egg #{egg_id}**",
             "afterdel": "**{actor}** ({username}) had {action} **Egg #{egg_id}**, but it was deleted.",
+            "not_allowed": "Only **Server Managers** can execute actions.",
             "show_extra_attachment": "$common.show_extra_attachment",
             "change_rating": "$rating.title",
             "change_lang": "$lang.title",
