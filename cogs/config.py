@@ -91,10 +91,11 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     async def server_description(self, ctx: discord.Interaction, desc: str):
         myloc, guild = await self.guild_setting(ctx, "server-description")
 
-        guild.description = utils.truncate(desc, 300)
+        guild.description = utils.truncate(desc, 300) or None
         await guild.save(update_fields=["description"])
 
-        await ctx.followup.send(myloc["success"] + "\n" + guild.description, ephemeral=True)
+        echo = "\n" + guild.description if guild.description else ""
+        await ctx.followup.send(myloc["success"] + echo, ephemeral=True)
 
     @app.command(name="privacy", description="privacy_description")
     @app.rename(public="privacy_public")

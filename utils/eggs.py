@@ -16,7 +16,7 @@ def safe_remove(path: str | None) -> None:
         print(f"log: failed to delete file {path}")
 
 def truncate(text: str | None, limit: int) -> str | None:
-    if not text:
+    if text is None:
         return None
 
     return text[:limit] + ("…" if len(text) > limit else "")
