@@ -226,10 +226,10 @@ class EggLoop(discord.ui.LayoutView):
         return True
 
     async def respond(self, ctx: discord.Interaction):
-        await ctx.response.defer()
-
         if not await utils.ensure_not_ratelimited(ctx, "interact"):
             return
+
+        await ctx.response.defer()
 
         sfile = await self.refresh()
 
