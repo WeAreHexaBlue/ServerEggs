@@ -16,7 +16,7 @@ async def is_global_mod(bot, user_id: int) -> bool:
 
     try:
         member = await devguild.fetch_member(user_id)
-    except discord.NotFound:
+    except (discord.NotFound, discord.Forbidden, discord.HTTPException):
         return False
 
     return any(role.id == modrole.id for role in member.roles)
