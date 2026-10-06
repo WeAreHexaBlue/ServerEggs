@@ -93,19 +93,19 @@ class Battle(models.Model):
 
     guild = fields.ForeignKeyField("eggs.Guild", "battles")
 
-    egg_a = fields.ForeignKeyField("eggs.Egg", "battles_as_a")
-    egg_b = fields.ForeignKeyField("eggs.Egg", "battles_as_b")
+    egg_a = fields.ForeignKeyField("eggs.Egg", "battles_as_a", null=True, on_delete=OnDelete.SET_NULL)
+    egg_b = fields.ForeignKeyField("eggs.Egg", "battles_as_b", null=True, on_delete=OnDelete.SET_NULL)
 
-    user_a = fields.ForeignKeyField("eggs.User", "challenges_sent", null=True)
-    user_b = fields.ForeignKeyField("eggs.User", "challenges_received", null=True)
+    user_a = fields.ForeignKeyField("eggs.User", "challenges_sent", null=True, on_delete=OnDelete.SET_NULL)
+    user_b = fields.ForeignKeyField("eggs.User", "challenges_received", null=True, on_delete=OnDelete.SET_NULL)
 
     channel_id = fields.BigIntField(null=True)
     message_id = fields.BigIntField(null=True)
 
     ends_at = fields.DatetimeField(db_index=True)
     status = fields.CharEnumField(enum_type=BattleStatus, default=BattleStatus.OPEN, max_length=10)
-    winner = fields.ForeignKeyField("eggs.Egg", "battle_wins", null=True)
-    winner_user = fields.ForeignKeyField("eggs.User", "user_battle_wins", null=True)
+    winner = fields.ForeignKeyField("eggs.Egg", "battle_wins", null=True, on_delete=OnDelete.SET_NULL)
+    winner_user = fields.ForeignKeyField("eggs.User", "user_battle_wins", null=True, on_delete=OnDelete.SET_NULL)
 
     class Meta:
         table = "battle"
