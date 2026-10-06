@@ -20,10 +20,10 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
     content_type = get_content_type(file.filename)
 
     if content_type in {"audio", "video"} and len(scanbytes) > UPLOAD_LIMIT:
-            print(f"ERROR: Rejected upload: media size {round(len(scanbytes) / 1024 / 1024, 1)}MB exceeds limit of {UPLOAD_LIMIT // 1024 // 1024}MB")
-            return False, True, scanbytes
+        print(f"ERROR: Rejected upload: media size {round(len(scanbytes) / 1024 / 1024, 1)}MB exceeds limit of {UPLOAD_LIMIT // 1024 // 1024}MB")
+        return False, True, scanbytes
 
-    if content_type in {"audio"}:
+    if content_type == "audio":
         return False, False, scanbytes
 
     api_user = os.getenv("ARACHNID_USER")
@@ -35,9 +35,8 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
 
     endpoint = "https://shield.projectarachnid.com/v1/media"
     auth = aiohttp.BasicAuth(api_user, api_password)
-    headers = {"Content-Type": content_type or "application/octet-stream"}
 
-    if content_type in {"video"}:
+    if content_type == "video":
         hashes = await extract_video_pdq_hashes(scanbytes)
         if not hashes:
             print("WARN: Could not extract frame hashes from video.")
@@ -48,20 +47,20 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
 
         try:
             async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, json=payload, timeout=900) as response:
-                    if response.status == 200:
-                        data = await response.json()
+                if response.status == 200:
+                    data = await response.json()
 
-                        for match in data.get("scanned_hashes", {}).values():
-                            classification = match.get("classification", "")
+                    for match in data.get("scanned_hashes", {}).values():
+                        classification = match.get("classification", "")
 
-                            if classification in ["csam", "harmful-abusive-material"]:
-                                print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
-                                return True, False, None
+                        if classification in ["csam", "harmful-abusive-material"]:
+                            print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
+                            return True, False, None
 
-                        return False, False, scanbytes
-                    else:
-                        print(f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
-                        return False, False, scanbytes
+                    return False, False, scanbytes
+                else:
+                    print(f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
+                    return False, False, scanbytes
         except (TimeoutError, aiohttp.ClientError) as e:
             print(f"ERROR: Arachnid Shield connection error: {e}")
             return False, False, scanbytes
@@ -72,18 +71,18 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
 
     try:
         async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, data=scanbytes, headers=headers, timeout=20) as response:
-                if response.status == 200:
-                    data = await response.json()
+            if response.status == 200:
+                data = await response.json()
 
-                    classification = data.get("classification", "")
-                    if classification in ["csam", "harmful-abusive-material"]:
-                        print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
-                        return True, False, None
+                classification = data.get("classification", "")
+                if classification in ["csam", "harmful-abusive-material"]:
+                    print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
+                    return True, False, None
 
-                    return False, False, scanbytes
-                else:
-                    print(f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
-                    return False, False, scanbytes
+                return False, False, scanbytes
+            else:
+                print(f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
+                return False, False, scanbytes
     except (TimeoutError, aiohttp.ClientError) as e:
         print(f"ERROR: Arachnid Shield connection error: {e}")
         return False, False, scanbytes
