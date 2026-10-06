@@ -108,11 +108,10 @@ async def process_attachment(attach: discord.Attachment, prebytes: bytes | None)
 
     content_type = get_content_type(attach)
     if not content_type:
-        return None
+        return None, None
 
     match content_type:
         case "image":
-            file_hash = []
             file_path = f"{media_dir}/{attach.id}.webp"
 
             def save():
