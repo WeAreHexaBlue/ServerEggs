@@ -114,8 +114,9 @@ async def finalize_battle(bot: commands.Bot, battle):
         winner = await Egg.get_or_none(id=winner_id)
 
     winner_user_id = None
-    if winner_id == battle.egg_a_id: winner_user_id = battle.user_a_id
-    elif winner_id == battle.egg_b_id: winner_user_id = battle.user_b_id
+    if winner_id is not None:
+        if winner_id == battle.egg_a_id: winner_user_id = battle.user_a_id
+        elif winner_id == battle.egg_b_id: winner_user_id = battle.user_b_id
 
     battle.winner_id = winner_id
     battle.winner_user_id = winner_user_id

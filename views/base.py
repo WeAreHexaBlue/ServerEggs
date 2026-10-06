@@ -6,7 +6,7 @@ from schema import Rating
 
 class ExtraAttachmentButton(discord.ui.Button):
     def __init__(self, label: str, *, style=discord.ButtonStyle.primary, file=None, link=None):
-        super().__init__(label=label, style=style, custom_id="servereggs:extra_attachment")
+        super().__init__(label=label, style=style)
 
         self.extrafile = file
         self.extralink = link

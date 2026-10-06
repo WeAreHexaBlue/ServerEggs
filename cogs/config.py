@@ -54,7 +54,11 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
 
         _, myloc = await self.bot.get_section(ctx, "config/lang")
 
-        await ctx.followup.send(myloc["success"], ephemeral=True)
+        language = (self.bot.locales.get(code) or {}).get("language_name")
+        if language is None:
+            language = utils.pick_locale(self.bot.locales, ctx.locale.value).get("lang_default", "Server Default")
+
+        await ctx.followup.send(myloc["success"].format(language=language), ephemeral=True)
 
     @app.command(name="allow-ext-lang", description="allow-ext-lang_description")
     @app.rename(allow="allow-ext-lang_allow")
@@ -234,6 +238,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     @app.command(name="join-button", description="join-button_description")
     @app.rename(viewable="join-button_viewable")
     @app.describe(viewable="join-button_viewable_description")
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def join_button(self, ctx: discord.Interaction, viewable: bool):
@@ -251,6 +256,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     @app.command(name="battle-time", description="battle-time_description")
     @app.rename(minutes="battle-time_minutes")
     @app.describe(minutes="battle-time_minutes_description")
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def battle_time(self, ctx: discord.Interaction, minutes: app.Range[int, 1, None]):
@@ -275,6 +281,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
         app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
     ])
+    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
     async def channel_rating(self, ctx: discord.Interaction, channel: discord.TextChannel, rating: Rating):

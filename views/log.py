@@ -41,6 +41,13 @@ class ModLogActions(discord.ui.LayoutView):
             action_button(self.myloc["report"], discord.ButtonStyle.danger, self.report),
         ))
 
+    async def interaction_check(self, ctx: discord.Interaction):
+        if not ctx.permissions.manage_guild:
+            await ctx.response.send_message(self.myloc["not_allowed"], ephemeral=True)
+            return False
+
+        return True
+
     async def change_rating(self, ctx: discord.Interaction):
         await ctx.response.send_modal(RatingModal(self.bot.get_lines("rating", self.lines), self.egg))
 
