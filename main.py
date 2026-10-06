@@ -38,7 +38,7 @@ VERSION = get_version()
 DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 
 class ServerEggs(commands.Bot):
-    def __init__(self, *, intents: discord.Intents):
+    def __init__(self):
         super().__init__(commands.when_mentioned, intents=discord.Intents.default())
 
         self.locales = {}
@@ -106,7 +106,7 @@ class ServerEggs(commands.Bot):
         await Tortoise.close_connections()
         await super().close()
 
-bot = ServerEggs(intents=discord.Intents.default())
+bot = ServerEggs()
 
 @bot.event
 async def on_ready():
