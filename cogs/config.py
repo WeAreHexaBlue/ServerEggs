@@ -140,7 +140,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         else:
             user, _ = await User.get_or_create(id=ctx.user.id)
 
-            if user.public and public:
+            if user.public == public:
                 await ctx.followup.send(myloc["already"], ephemeral=True)
                 return
 
