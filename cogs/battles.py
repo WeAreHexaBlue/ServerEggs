@@ -74,7 +74,13 @@ class Battles(commands.Cog):
             fighters.append(await utils.get_or_fetch_user(self.bot, user_a.id))
             fighters.append(await utils.get_or_fetch_user(self.bot, user_b.id))
 
-        intro = myloc["begin_random"].format(egg_a=egg_a.id, egg_b=egg_b.id) if not fighters else myloc["begin_challenge"].format(egg_a=egg_a.id, egg_b=egg_b.id, user_a=f"**{discord.utils.escape_markdown(fighters[0].display_name)}** ({discord.utils.escape_markdown(fighters[0].name)})", user_b=f"**{discord.utils.escape_markdown(fighters[1].display_name)}** ({discord.utils.escape_markdown(fighters[1].name)})")
+        def fighter_label(fighter, uid: int) -> str:
+            if fighter is None:
+                return myloc["unknown_creator"].format(user_id=uid)
+
+            return f"**{discord.utils.escape_markdown(fighter.display_name)}** ({discord.utils.escape_markdown(fighter.name)})"
+
+        intro = myloc["begin_random"].format(egg_a=egg_a.id, egg_b=egg_b.id) if not fighters else myloc["begin_challenge"].format(egg_a=egg_a.id, egg_b=egg_b.id, user_a=fighter_label(fighters[0], user_a.id), user_b=fighter_label(fighters[1], user_b.id))
 
         message = await ctx.followup.send(
             files=files,

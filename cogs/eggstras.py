@@ -351,7 +351,8 @@ class Eggstras(commands.Cog):
             return f"User `{user_id}`"
 
         addon = ""
-        if (await User.get_or_none(id=user_id)).public:
+        dbuser = await User.get_or_none(id=user_id)
+        if dbuser and dbuser.public:
             addon = f" ({discord.utils.escape_markdown(user.name)})"
 
         return f"**{user.display_name}**{addon}"
