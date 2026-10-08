@@ -198,6 +198,7 @@ async def app_command_error(ctx: discord.Interaction, error):
     traceback.print_exception(type(error), error, error.__traceback__)
 
 @bot.tree.context_menu(name="eggify")
+@app.allowed_installs(guilds=True, users=False)
 @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
 @utils.ratelimit("create")
 async def eggify(ctx: discord.Interaction, message: discord.Message):
