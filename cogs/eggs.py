@@ -90,11 +90,11 @@ class Eggs(commands.Cog):
             egg = await Egg.get_with_related(id)
 
             if not egg:
-                await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
+                await ctx.followup.send(myloc["not_found"].format(egg_id=id))
                 return
 
             if not await self.manage_check(ctx, egg):
-                await ctx.followup.send(myloc["cannot"], ephemeral=True)
+                await ctx.followup.send(myloc["cannot"])
                 return
 
         trimtext = None
