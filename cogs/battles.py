@@ -107,7 +107,7 @@ class Battles(commands.Cog):
         guild = await Guild.get_or_none(id=ctx.guild.id)
 
         if a is not None and b is not None and a == b:
-            await ctx.followup.send(myloc["same_egg"], ephemeral=True)
+            await ctx.followup.send(myloc["same_egg"])
             return
 
         egg_a = await self.pool_fighter_egg(ctx, myloc, a, guild=guild, channel=ctx.channel) if a is not None else None

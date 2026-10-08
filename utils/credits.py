@@ -1,4 +1,3 @@
-import discord
 from discord.ext import commands
 
 from . import misc
@@ -20,7 +19,7 @@ async def credit_name(bot: commands.Bot, uid: int) -> str | None:
     if user is None:
         return None
 
-    return f"**{discord.utils.escape_markdown(user.display_name)}** ({discord.utils.escape_markdown(user.name)})"
+    return misc.format_user_display(user, username=user.name)
 
 async def render_credits(bot: commands.Bot, roles: dict, locales: dict) -> str:
     sections = []

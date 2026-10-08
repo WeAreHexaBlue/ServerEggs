@@ -92,7 +92,7 @@ class ServerEggs(commands.Bot):
     async def fetch_lines(self, ctx: discord.Interaction):
         lang = await self.get_lang(ctx)
 
-        return self.locales.get(lang, self.locales["en"])["lines"]
+        return utils.pick_locale(self.locales, lang)["lines"]
 
     def get_lines(self, path: str, lines: dict):
         return utils.recursive_find(path, lines)
@@ -131,7 +131,7 @@ async def on_guild_join(guild: discord.Guild):
     try:
         invite = await guild.rules_channel.create_invite() if guild.rules_channel else await guild.text_channels[0].create_invite()
         invite_url = invite.url
-    except discord.errors.Forbidden:
+    except discord.Forbidden:
         pass
 
     await Guild.update_or_create(defaults={ "invite": invite_url }, id=guild.id)
@@ -198,6 +198,7 @@ async def app_command_error(ctx: discord.Interaction, error):
     traceback.print_exception(type(error), error, error.__traceback__)
 
 @bot.tree.context_menu(name="eggify")
+@app.allowed_installs(guilds=True, users=False)
 @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
 @utils.ratelimit("create")
 async def eggify(ctx: discord.Interaction, message: discord.Message):

@@ -350,12 +350,12 @@ class Eggstras(commands.Cog):
         if user is None:
             return f"User `{user_id}`"
 
-        addon = ""
+        username = None
         dbuser = await User.get_or_none(id=user_id)
         if dbuser and dbuser.public:
-            addon = f" ({discord.utils.escape_markdown(user.name)})"
+            username = user.name
 
-        return f"**{user.display_name}**{addon}"
+        return utils.format_user_display(user, username=username)
 
     @leaderboard.command(name="leaderboard_collections", description="leaderboard_collections_description")
     async def lb_collections(self, ctx: discord.Interaction):

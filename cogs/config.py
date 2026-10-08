@@ -80,7 +80,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         await guild.save(update_fields=["allow_ext_lang"])
         self.bot.lang_cache[cache_key] = guild.allow_ext_lang
 
-        await ctx.followup.send(myloc["success"].format(allow=allow), ephemeral=True)
+        await ctx.followup.send(myloc["success_enabled"] if allow else myloc["success_disabled"], ephemeral=True)
 
     @app.command(name="server-description", description="server-description_description")
     @app.rename(desc="server-description_desc")
@@ -131,7 +131,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
                 try:
                     inviteobj = await base_channel.create_invite()
                     invite = inviteobj.url
-                except discord.errors.Forbidden:
+                except discord.Forbidden:
                     await ctx.followup.send(myloc["missing_invite_perms"], ephemeral=True)
                     return
 

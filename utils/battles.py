@@ -54,7 +54,7 @@ async def battle_side(bot: commands.Bot, lines: dict, myloc: dict, egg, side: st
     body = [f"{header}\n\n{description}" if description else header]
 
     if creator is not None:
-        value = f"**{discord.utils.escape_markdown(creator.display_name)}** ({discord.utils.escape_markdown(creator.name)})"
+        value = misc.format_user_display(creator, username=creator.name)
     else:
         value = myloc["unknown_creator"].format(user_id=egg.creator_id)
 

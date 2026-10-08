@@ -57,7 +57,8 @@
             },
             "allow-ext-lang": {
                 "already": "$common.already",
-                "success": "Successfully modified the setting regarding usage of external languages (`{allow}`)!"
+                "success_enabled": "External languages are now allowed in this server!",
+                "success_disabled": "External languages are no longer allowed in this server!"
             },
             "server-description": {
                 "success": "Successfully set server description to:"
@@ -174,10 +175,7 @@
                 "cannot": "$common.cannot",
                 "ready": {
                     "title": "Delete Egg #{egg_id}",
-                    "question": "Are you sure you want to delete this **Egg**?",
-                    "content": "$common.ready.content",
-                    "no_content": "$common.ready.no_content",
-                    "link": "$common.ready.link"
+                    "question": "Are you sure you want to delete this **Egg**?"
                 },
                 "confirm": "Confirm Deletion",
                 "show_extra_attachment": "$common.show_extra_attachment",
@@ -190,10 +188,7 @@
                 "cannot": "$common.cannot",
                 "ready": {
                     "title": "Report Egg #{egg_id}",
-                    "question": "Are you sure you want to report this **Egg**?",
-                    "content": "$common.ready.content",
-                    "no_content": "$common.ready.no_content",
-                    "link": "$common.ready.link"
+                    "question": "Are you sure you want to report this **Egg**?"
                 },
                 "confirm": "Start Report",
                 "show_extra_attachment": "$common.show_extra_attachment",

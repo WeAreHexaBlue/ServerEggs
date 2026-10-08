@@ -4,7 +4,7 @@
 It lets your community **create and share content** called "**Egg**s".
 Use it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!
 
-[![Version](https://img.shields.io/github/v/tag/ActuallyFlamey/ServerEggs?sort=semver&label=Version&color=5865f2)]()
+[![Version](https://img.shields.io/github/v/tag/WeAreHexaBlue/ServerEggs?sort=semver&label=Version&color=5865f2)]()
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Donate-ff5f5f?logo=kofi)](https://ko-fi.com/hexablue)
 [![Support](https://img.shields.io/badge/Support%20Discord-Join-5865f2)](https://discord.gg/G9vfEZGZnT)
 
@@ -32,7 +32,7 @@ The following guide assumes **Git**, **Python** (>=3.12, 3.14 recommended) and *
 
 - **Clone** the repository and enter it.
     ```sh
-    git clone https://github.com/ActuallyFlamey/ServerEggs.git
+    git clone https://github.com/WeAreHexaBlue/ServerEggs.git
     cd ServerEggs
     ```
 - Create a **Python Virtual Environment**
@@ -71,7 +71,7 @@ The following guide assumes **Git**, **Python** (>=3.12, 3.14 recommended) and *
     ```
 - Set the **environment variables**.
     - **Create a file** called `.env` in the root of the folder.
-    - **Use [.env.example](https://github.com/ActuallyFlamey/ServerEggs/blob/main/.env.example)** as a guide to the **secret strings** you have to put in it.
+    - **Use [.env.example](https://github.com/WeAreHexaBlue/ServerEggs/blob/main/.env.example)** as a guide to the **secret strings** you have to put in it.
 - Run the **Tortoise Migrations** to set up the database schema.
     ```sh
     tortoise migrate

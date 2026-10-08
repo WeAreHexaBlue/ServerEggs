@@ -266,7 +266,7 @@ class DeleteEgg(discord.ui.LayoutView):
         self.add_item(discord.ui.ActionRow(*buttons))
 
     async def confirm(self, ctx: discord.Interaction):
-        if not await utils.ensure_not_ratelimited(ctx, "report"):
+        if not await utils.ensure_not_ratelimited(ctx, "interact"):
             return
 
         eggid = self.egg.id

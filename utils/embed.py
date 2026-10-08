@@ -86,11 +86,7 @@ def egg_container(color: discord.Color, body: list[str], media=None, lines: dict
 
 def egg_creator_block(myloc: dict, egg, creator, *, public = False, include_id = False) -> str:
     if creator is not None:
-        detail = discord.utils.escape_markdown(creator.name) if public or include_id else ""
-        if include_id:
-            detail += f", {creator.id}"
-
-        value = f"**{discord.utils.escape_markdown(creator.display_name)}** {f"({detail})" if detail else ""}"
+        value = misc.format_user_display(creator, username=creator.name if public or include_id else None, user_id=creator.id if include_id else None)
     else:
         value = myloc["unknown_creator"].format(user_id=egg.creator_id or "")
 

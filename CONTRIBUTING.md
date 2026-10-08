@@ -2,7 +2,7 @@
 
 ## Contributing Code
 
-To **contribute code** to **Server Eggs**, simply open a [Pull Request](https://github.com/ActuallyFlamey/ServerEggs/pulls)!
+To **contribute code** to **Server Eggs**, simply open a [Pull Request](https://github.com/WeAreHexaBlue/ServerEggs/pulls)!
 
 We ask that you generally **adhere** to the same **coding style** as the other contributions.
 
