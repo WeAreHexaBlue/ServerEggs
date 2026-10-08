@@ -131,7 +131,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
                 try:
                     inviteobj = await base_channel.create_invite()
                     invite = inviteobj.url
-                except discord.errors.Forbidden:
+                except discord.Forbidden:
                     await ctx.followup.send(myloc["missing_invite_perms"], ephemeral=True)
                     return
 
