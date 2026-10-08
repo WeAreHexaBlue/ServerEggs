@@ -53,28 +53,35 @@
                 "missing_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to set **your own response language**, run `/config lang` in [my DMs](<{link_dm}>).\n-# **Not all servers allow** usage of external languages, but it will **always work in DMs**.",
                 "no_default": "The \"Server Default\" option is for users, not for servers.",
                 "invalid": "Unknown language. Pick one of the suggested options.",
-                "success": "Successfully switched language to \"**{language}**\"!"
+                "success": "Great, from now on I'll reply in **{language}**!"
             },
             "allow-ext-lang": {
                 "already": "$common.already",
-                "success_enabled": "External languages are now allowed in this server!",
-                "success_disabled": "External languages are no longer allowed in this server!"
+                "success_enabled": "**External languages** are now **allowed** in this server!",
+                "success_disabled": "**External languages** are **no longer allowed** in this server!"
             },
             "server-description": {
-                "success": "Successfully set server description to:"
+                "success": "Successfully set **server description** to:"
             },
             "privacy": {
                 "already": "$common.already",
                 "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<{link_dm}>).",
                 "missing_invite_perms": "**{brand_name}** is missing the **Create Invite** permission, which is required for this operation.",
-                "success": "Privacy successfully set to {state}.",
-                "public": "public",
-                "private": "private"
+                "success": {
+                    "public": {
+                        "guild": "This server is now **public**: anyone can **join it** from **Egg**s created here.",
+                        "user": "Your profile is now **public**: anyone can **see your username** on your **Egg**s and on **leaderboards**."
+                    },
+                    "private": {
+                        "guild": "This server is now **private**: **Egg**s created here **won't provide others** with an invite **anymore**.",
+                        "user": "Your profile is now **private**: **only** your **display name** will be shown on your **Egg**s and on **leaderboards**."
+                    }
+                }
             },
             "log": {
                 "already": "$common.already",
                 "missing_perms": "I don't have permission to write logs there!",
-                "success": "Log channel successfully set to {channel}."
+                "success": "{channel} is now the **Egg log** for this server."
             },
             "allowed-ratings": {
                 "already": "$common.already",
@@ -84,7 +91,8 @@
             },
             "join-button": {
                 "already": "$common.already",
-                "success": "Successfully set viewability of the \"Join Origin Server\" button to `{viewable}`."
+                "success_enabled": "The \"Join Origin Server\" button on **Egg**s is now **visible**.",
+                "success_disabled": "The \"Join Origin Server\" button on **Egg**s is **no longer visible**."
             },
             "battle-time": {
                 "already": "$common.already",

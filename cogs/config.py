@@ -147,7 +147,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
             user.public = public
             await user.save(update_fields=["public"])
 
-        await ctx.followup.send(myloc["success"].format(state=myloc["public"] if public else myloc["private"]), ephemeral=True)
+        await ctx.followup.send(myloc["success"]["public" if public else "private"]["guild" if ctx.guild else "user"], ephemeral=True)
 
     @app.command(name="log", description="log_description")
     @app.rename(channel="log_channel")
@@ -252,7 +252,7 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
         guild.view_join_button = viewable
         await guild.save(update_fields=["view_join_button"])
 
-        await ctx.followup.send(myloc["success"].format(viewable=viewable), ephemeral=True)
+        await ctx.followup.send(myloc["success_enabled"] if viewable else myloc["success_disabled"], ephemeral=True)
     
     @app.command(name="battle-time", description="battle-time_description")
     @app.rename(minutes="battle-time_minutes")
