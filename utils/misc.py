@@ -41,6 +41,15 @@ async def get_or_fetch_user(bot: commands.Bot, user_id: int | None):
     except (discord.NotFound, discord.HTTPException):
         return None
 
+def format_user_display(user, *, username: str | None = None, user_id: int | None = None) -> str:
+    base = f"**{discord.utils.escape_markdown(user.display_name)}**"
+
+    detail = discord.utils.escape_markdown(username) if username else ""
+    if user_id is not None:
+        detail = f"{detail}, {user_id}" if detail else str(user_id)
+
+    return f"{base} ({detail})" if detail else base
+
 async def beg(myloc: dict, ctx: discord.Interaction, user: User):
     is_supporter = await sku.is_ctx_supporter(ctx)
 
