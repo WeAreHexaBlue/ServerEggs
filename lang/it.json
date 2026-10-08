@@ -44,24 +44,35 @@
                 "missing_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi impostare la **tua lingua di risposta personale**, esegui `/configura lingua` nei [miei DM](<{link_dm}>).\n-# **Non tutti i server permettono** l'uso delle lingue esterne, ma **nei DM funzionerà sempre**.",
                 "no_default": "L'opzione \"Predefinita dal Server\" è per gli utenti, non per i server.",
                 "invalid": "Lingua sconosciuta. Scegli una delle opzioni suggerite.",
-                "success": "Impostata la lingua \"**Italiano**\" con successo!"
+                "success": "Ottimo, d'ora in poi risponderò in **{language}**!"
             },
             "allow-ext-lang": {
-                "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{allow}`)!"
+                "success": "Modificato il permesso di utilizzare le lingue esterne con successo (`{allow}`)!",
+                "success_enabled": "L'utilizzo delle **lingue esterne** è ora **permesso** all'interno di questo server!",
+                "success_disabled": "L'utilizzo delle **lingue esterne** **non è più permesso** all'interno di questo server!"
             },
             "server-description": {
-                "success": "Impostata la descrizione del server:"
+                "success": "Impostata la **descrizione del server** come:"
             },
             "privacy": {
                 "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/configura privacy` nei [miei DM](<{link_dm}>).",
                 "missing_invite_perms": "A **{brand_name}** manca il permesso **Creare Invito**, che è necessario per questa operazione.",
-                "success": "Privacy impostata su {state} con successo.",
+                "success": {
+                    "public": {
+                        "guild": "Ora questo server è **pubblico**: chiunque può **unircisi** dalle **Uova** create qui.",
+                        "user": "Ora il tuo profilo è **pubblico**: chiunque può **vedere il tuo username** dalle tue **Uova** e sulle **classifiche**."
+                    },
+                    "private": {
+                        "guild": "Ora questo server è **privato**: le **Uova** create qui **non saranno più munite** di un invito a questo server.",
+                        "user": "Ora il tuo profilo è **privato**: **solo** il tuo **nickname** sarà visibile dalle tue **Uova** e sulle **classifiche**."
+                    }
+                },
                 "public": "pubblico",
                 "private": "privato"
             },
             "log": {
                 "missing_perms": "Non ho il permesso di scrivere i registri lì!",
-                "success": "Canale di registro Uova impostato su {channel} con successo."
+                "success": "Ora {channel} è il **registro delle Uova** per questo server."
             },
             "allowed-ratings": {
                 "no_changes": "Non specificato alcuna modifica.",
@@ -69,7 +80,9 @@
                 "success": "Modifiche applicate con successo."
             },
             "join-button": {
-                "success": "Visibilità del tasto \"Unisciti al Server d'Origine\" impostata su `{viewable}` con successo."
+                "success": "Visibilità del tasto \"Unisciti al Server d'Origine\" impostata su `{viewable}` con successo.",
+                "success_enabled": "Il tasto \"Unisciti al Server d'Origine\" sulle **Uova** è ora **visibile**.",
+                "success_disabled": "Il tasto \"Unisciti al Server d'Origine\" sulle **Uova** **non è più visibile**."
             },
             "battle-time": {
                 "success": "Impostato il tempo di scadenza delle battaglie a `{minutes}` minuti con successo."
@@ -290,7 +303,8 @@
             "log": "**{actor}** ({username}) ha {action} l'**Uovo n. {egg_id}**",
             "afterdel": "**{actor}** ({username}) aveva {action} l'**Uovo n. {egg_id}**, ma è stato eliminato.",
             "delete": "Elimina",
-            "deleted": "Eliminato l'**Uovo n. {egg_id}**."
+            "deleted": "Eliminato l'**Uovo n. {egg_id}**.",
+            "not_allowed": "Solo i **Gestori del Server** possono eseguire le azioni."
         },
         "mod": {
             "filter": {
