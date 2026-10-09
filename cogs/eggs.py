@@ -12,13 +12,13 @@ RATING_CHOICES = utils.RATING_CHOICES
 CREATE_RENAMES = {"text": "create_text", "file": "create_file", "link": "create_link", "rating": "create_rating", "secret": "create_secret", "lang": "create_lang"}
 CREATE_DESCRIBES = {"text": "create_text_description", "file": "create_file_description", "link": "create_link_description", "rating": "create_rating_description", "secret": "create_secret_description", "lang": "create_lang_description"}
 
-LOOKUP_RENAMES = {"id": "get_id", "rating": "get_rating"}
-LOOKUP_DESCRIBES = {"id": "get_id_description", "rating": "get_rating_description"}
+SEND_RENAMES = {"id": "get_id", "rating": "get_rating"}
+SEND_DESCRIBES = {"id": "get_id_description", "rating": "get_rating_description"}
 
 DELETE_RENAMES = {"id": "delete_id"}
 DELETE_DESCRIBES = {"id": "delete_id_description"}
 
-def _create_command(name: str):
+def create_command(name: str):
     def apply(fn):
         fn = app.allowed_contexts(guilds=True, dms=False, private_channels=False)(fn)
         fn = app.allowed_installs(guilds=True, users=False)(fn)
@@ -27,25 +27,27 @@ def _create_command(name: str):
         fn = app.describe(**CREATE_DESCRIBES)(fn)
         fn = app.rename(**CREATE_RENAMES)(fn)
         return app.command(name=name, description="create_description")(fn)
+
     return apply
 
-def _lookup_command(name: str):
+def send_command(name: str):
     def apply(fn):
         fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
         fn = app.choices(rating=list(RATING_CHOICES))(fn)
-        fn = app.describe(**LOOKUP_DESCRIBES)(fn)
-        fn = app.rename(**LOOKUP_RENAMES)(fn)
+        fn = app.describe(**SEND_DESCRIBES)(fn)
+        fn = app.rename(**SEND_RENAMES)(fn)
         return app.command(name=name, description="get_description")(fn)
+
     return apply
 
-def _delete_command(name: str):
+def delete_command(name: str):
     def apply(fn):
         fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
         fn = app.describe(**DELETE_DESCRIBES)(fn)
         fn = app.rename(**DELETE_RENAMES)(fn)
         return app.command(name=name, description="delete_description")(fn)
-    return apply
 
+    return apply
 
 class Eggs(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -265,7 +267,7 @@ class Eggs(commands.Cog):
             view=views.CreateEgg(myloc, container, vfile, vlink)
         )
 
-    @_create_command("create")
+    @create_command("create")
     async def create(
         self,
         ctx: discord.Interaction,
@@ -278,7 +280,7 @@ class Eggs(commands.Cog):
     ):
         await self.create_or_edit(ctx, None, text, file, link, rating, secret, lang)
 
-    @_create_command("lay")
+    @create_command("lay")
     async def lay(
         self,
         ctx: discord.Interaction,
@@ -355,11 +357,11 @@ class Eggs(commands.Cog):
 
         await self.send_egg(ctx, lines, egg, guild, collected=collected)
 
-    @_lookup_command("get")
+    @send_command("get")
     async def get(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         await self.send(ctx, id, rating)
 
-    @_lookup_command("egg")
+    @send_command("egg")
     async def egg(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         await self.send(ctx, id, rating)
 
@@ -448,11 +450,11 @@ class Eggs(commands.Cog):
     async def report(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/report", id, views.PreReportEgg)
 
-    @_delete_command("delete")
+    @delete_command("delete")
     async def delete(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/delete", id, views.DeleteEgg, check_manage=True)
     
-    @_delete_command("crack")
+    @delete_command("crack")
     async def crack(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/delete", id, views.DeleteEgg, check_manage=True)
 
