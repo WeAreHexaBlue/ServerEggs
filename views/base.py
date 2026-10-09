@@ -7,8 +7,6 @@ from schema import Rating
 
 
 class LoopView(discord.ui.LayoutView):
-    """Shared prev/next pager for single-message loops (EggLoop, GuildLoop)."""
-
     def __init__(self, user: discord.User, items: collections.deque, not_yours: str):
         super().__init__(timeout=None)
         self.user = user
@@ -55,7 +53,6 @@ class LoopView(discord.ui.LayoutView):
 
     async def respond(self, ctx: discord.Interaction):
         raise NotImplementedError
-
 
 class ExtraAttachmentButton(discord.ui.Button):
     def __init__(self, label: str, *, style=discord.ButtonStyle.primary, file=None, link=None):
