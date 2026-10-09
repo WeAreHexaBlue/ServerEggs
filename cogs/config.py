@@ -88,14 +88,13 @@ class Config(commands.GroupCog, group_name="config", group_description="config_d
     @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
     @app.checks.has_permissions(manage_guild=True)
     @utils.ratelimit("read")
-    async def server_description(self, ctx: discord.Interaction, desc: str):
+    async def server_description(self, ctx: discord.Interaction, desc: str | None):
         myloc, guild = await self.guild_setting(ctx, "server-description")
 
         guild.description = utils.truncate(desc, 300) or None
         await guild.save(update_fields=["description"])
 
-        echo = "\n" + guild.description if guild.description else ""
-        await ctx.followup.send(myloc["success"] + echo, ephemeral=True)
+        await ctx.followup.send(myloc["success"] + "\n" + guild.description if guild.description else myloc["cleared"], ephemeral=True)
 
     @app.command(name="privacy", description="privacy_description")
     @app.rename(public="privacy_public")

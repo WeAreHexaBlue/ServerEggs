@@ -61,7 +61,8 @@
                 "success_disabled": "**External languages** are **no longer allowed** in this server!"
             },
             "server-description": {
-                "success": "Successfully set **server description** to:"
+                "success": "Successfully **set server description** to:",
+                "cleared": "Successfully **cleared server description**."
             },
             "privacy": {
                 "already": "$common.already",
