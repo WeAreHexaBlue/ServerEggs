@@ -7,6 +7,49 @@ import utils
 import views
 from schema import Egg, Guild, Rating, User
 
+RATING_CHOICES = [
+    app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
+    app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
+    app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
+]
+
+CREATE_RENAMES = {"text": "create_text", "file": "create_file", "link": "create_link", "rating": "create_rating", "secret": "create_secret", "lang": "create_lang"}
+CREATE_DESCRIBES = {"text": "create_text_description", "file": "create_file_description", "link": "create_link_description", "rating": "create_rating_description", "secret": "create_secret_description", "lang": "create_lang_description"}
+
+LOOKUP_RENAMES = {"id": "get_id", "rating": "get_rating"}
+LOOKUP_DESCRIBES = {"id": "get_id_description", "rating": "get_rating_description"}
+
+DELETE_RENAMES = {"id": "delete_id"}
+DELETE_DESCRIBES = {"id": "delete_id_description"}
+
+def _create_command(name: str):
+    def apply(fn):
+        fn = app.allowed_contexts(guilds=True, dms=False, private_channels=False)(fn)
+        fn = app.allowed_installs(guilds=True, users=False)(fn)
+        fn = app.autocomplete(lang=utils.lang_autocomplete)(fn)
+        fn = app.choices(rating=list(RATING_CHOICES))(fn)
+        fn = app.describe(**CREATE_DESCRIBES)(fn)
+        fn = app.rename(**CREATE_RENAMES)(fn)
+        return app.command(name=name, description="create_description")(fn)
+    return apply
+
+def _lookup_command(name: str):
+    def apply(fn):
+        fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
+        fn = app.choices(rating=list(RATING_CHOICES))(fn)
+        fn = app.describe(**LOOKUP_DESCRIBES)(fn)
+        fn = app.rename(**LOOKUP_RENAMES)(fn)
+        return app.command(name=name, description="get_description")(fn)
+    return apply
+
+def _delete_command(name: str):
+    def apply(fn):
+        fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
+        fn = app.describe(**DELETE_DESCRIBES)(fn)
+        fn = app.rename(**DELETE_RENAMES)(fn)
+        return app.command(name=name, description="delete_description")(fn)
+    return apply
+
 
 class Eggs(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -226,17 +269,7 @@ class Eggs(commands.Cog):
             view=views.CreateEgg(myloc, container, vfile, vlink)
         )
 
-    @app.command(name="create", description="create_description")
-    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating", secret="create_secret", lang="create_lang")
-    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description", secret="create_secret_description", lang="create_lang_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.autocomplete(lang=utils.lang_autocomplete)
-    @app.allowed_installs(guilds=True, users=False)
-    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
+    @_create_command("create")
     async def create(
         self,
         ctx: discord.Interaction,
@@ -249,17 +282,7 @@ class Eggs(commands.Cog):
     ):
         await self.create_or_edit(ctx, None, text, file, link, rating, secret, lang)
 
-    @app.command(name="lay", description="create_description")
-    @app.rename(text="create_text", file="create_file", link="create_link", rating="create_rating", secret="create_secret", lang="create_lang")
-    @app.describe(text="create_text_description", file="create_file_description", link="create_link_description", rating="create_rating_description", secret="create_secret_description", lang="create_lang_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.autocomplete(lang=utils.lang_autocomplete)
-    @app.allowed_installs(guilds=True, users=False)
-    @app.allowed_contexts(guilds=True, dms=False, private_channels=False)
+    @_create_command("lay")
     async def lay(
         self,
         ctx: discord.Interaction,
@@ -333,27 +356,11 @@ class Eggs(commands.Cog):
             view=views.GetEgg(self.bot, lines, egg, guild, creator, container, vfile, vlink)
         )
 
-    @app.command(name="get", description="get_description")
-    @app.rename(id="get_id", rating="get_rating")
-    @app.describe(id="get_id_description", rating="get_rating_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_lookup_command("get")
     async def get(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         await self.send(ctx, id, rating)
 
-    @app.command(name="egg", description="get_description")
-    @app.rename(id="get_id", rating="get_rating")
-    @app.describe(id="get_id_description", rating="get_rating_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_lookup_command("egg")
     async def egg(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         await self.send(ctx, id, rating)
 
@@ -401,11 +408,7 @@ class Eggs(commands.Cog):
     @app.command(name="edit", description="edit_description")
     @app.rename(id="edit_id", text="edit_text", file="edit_file", link="edit_link", rating="edit_rating", secret="edit_secret", lang="edit_lang")
     @app.describe(id="edit_id_description", text="edit_text_description", file="edit_file_description", link="edit_link_description", rating="edit_rating_description", secret="edit_secret_description", lang="edit_lang_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
+    @app.choices(rating=list(RATING_CHOICES))
     @app.autocomplete(lang=utils.lang_autocomplete)
     @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
     async def edit(
@@ -453,17 +456,11 @@ class Eggs(commands.Cog):
     async def report(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/report", id, views.PreReportEgg)
 
-    @app.command(name="delete", description="delete_description")
-    @app.rename(id="delete_id")
-    @app.describe(id="delete_id_description")
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_delete_command("delete")
     async def delete(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/delete", id, views.DeleteEgg, check_manage=True)
     
-    @app.command(name="crack", description="delete_description")
-    @app.rename(id="delete_id")
-    @app.describe(id="delete_id_description")
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_delete_command("crack")
     async def crack(self, ctx: discord.Interaction, id: int):
         await self.confirm_flow(ctx, "eggs/delete", id, views.DeleteEgg, check_manage=True)
 
