@@ -112,12 +112,15 @@ async def send_ratelimited(ctx: discord.Interaction, retry_after: float) -> None
     except discord.HTTPException:
         pass
 
-async def ensure_not_ratelimited(ctx: discord.Interaction, tier: str) -> bool:
+async def consume(ctx: discord.Interaction, tier: str) -> tuple[bool, float, str]:
     if await is_bypassed(ctx.client, ctx.user.id):
-        return True
+        return True, 0.0, ""
 
     guild_id = ctx.guild.id if ctx.guild else None
-    allowed, retry_after, _ = check_and_consume(ctx.user.id, guild_id, tier, is_supporter=await sku.is_ctx_supporter(ctx))
+    return check_and_consume(ctx.user.id, guild_id, tier, is_supporter=await sku.is_ctx_supporter(ctx))
+
+async def ensure_not_ratelimited(ctx: discord.Interaction, tier: str) -> bool:
+    allowed, retry_after, _ = await consume(ctx, tier)
 
     if not allowed:
         await send_ratelimited(ctx, retry_after)
@@ -127,11 +130,7 @@ async def ensure_not_ratelimited(ctx: discord.Interaction, tier: str) -> bool:
 
 def ratelimit(tier: str):
     async def predicate(ctx: discord.Interaction) -> bool:
-        if await is_bypassed(ctx.client, ctx.user.id):
-            return True
-
-        guild_id = ctx.guild.id if ctx.guild else None
-        allowed, retry_after, scope = check_and_consume(ctx.user.id, guild_id, tier, is_supporter=await sku.is_ctx_supporter(ctx))
+        allowed, retry_after, scope = await consume(ctx, tier)
 
         if not allowed:
             raise RateLimited(retry_after, scope, tier)
