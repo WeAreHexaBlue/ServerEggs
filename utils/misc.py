@@ -1,9 +1,16 @@
 import discord
+from discord import app_commands as app
 from discord.ext import commands
 
 from schema import Rating, User, default_ratings
 
 from . import sku
+
+RATING_CHOICES = [
+    app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
+    app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
+    app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
+]
 
 
 def channel_is_nsfw(channel) -> bool:

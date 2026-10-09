@@ -7,11 +7,7 @@ import utils
 import views
 from schema import Egg, Guild, Rating, User
 
-RATING_CHOICES = [
-    app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-    app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-    app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-]
+RATING_CHOICES = utils.RATING_CHOICES
 
 CREATE_RENAMES = {"text": "create_text", "file": "create_file", "link": "create_link", "rating": "create_rating", "secret": "create_secret", "lang": "create_lang"}
 CREATE_DESCRIBES = {"text": "create_text_description", "file": "create_file_description", "link": "create_link_description", "rating": "create_rating_description", "secret": "create_secret_description", "lang": "create_lang_description"}
