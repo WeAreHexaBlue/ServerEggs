@@ -116,7 +116,7 @@ class Eggs(commands.Cog):
 
             scanfile = await file.to_file()
         elif link:
-            attach_link = await utils.resolve_media_url(link)
+            attach_link = await utils.resolve_media_url(link, self.bot)
             if attach_link is None:
                 await ctx.followup.send(myloc["invalid_url"])
                 return
@@ -146,7 +146,7 @@ class Eggs(commands.Cog):
 
         if file:
             try:
-                attach_path, attach_hash = await utils.process_attachment(file, attach_bytes)
+                attach_path, attach_hash = await utils.process_attachment(file, attach_bytes, self.bot)
             except utils.UnsupportedMedia:
                 await processing.edit(content=myloc["supported_only"])
                 return

@@ -15,6 +15,8 @@ import dotenv
 import imagehash
 from PIL import Image
 
+from . import log
+
 dotenv.load_dotenv()
 
 SUPPORTED_FILETYPE_REGEX = r'\.(gif|png|jpg|jpeg|webp|mp4|webm|mp3|ogg|wav|opus|m4a)(?:[?#].*)?$'
@@ -44,7 +46,7 @@ def get_content_type(file: discord.Attachment | str) -> str | None:
 
     return content_type.split("/")[0]
 
-async def get_stream_info(filebytes: bytes) -> list[dict]:
+async def get_stream_info(filebytes: bytes, bot=None) -> list[dict]:
     with tempfile.NamedTemporaryFile(suffix=".tmp", delete=False) as tmp:
         tmp.write(filebytes)
         tmp_path = tmp.name
@@ -69,9 +71,9 @@ async def get_stream_info(filebytes: bytes) -> list[dict]:
             data = json.loads(stdout.decode(errors="ignore"))
             return data.get("streams", [])
         else:
-            print(f"ERROR: ffprobe failed: {stderr.decode(errors='replace')}")
+            await log.log_error(bot, f"ERROR: ffprobe failed: {stderr.decode(errors='replace')}")
     except (FileNotFoundError, OSError, ValueError, TypeError) as e:
-        print(f"ERROR: Failed to probe media streams: {e}")
+        await log.log_error(bot, f"ERROR: Failed to probe media streams: {e}")
     finally:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
@@ -101,7 +103,7 @@ def supported_media_ext(attach: discord.Attachment, content_type: str, streams: 
 
     return ext
 
-async def process_attachment(attach: discord.Attachment, prebytes: bytes | None):
+async def process_attachment(attach: discord.Attachment, prebytes: bytes | None, bot=None):
     attach_bytes = prebytes if prebytes else await attach.read()
 
     media_dir = os.getenv('MEDIA_PATH')
@@ -138,9 +140,9 @@ async def process_attachment(attach: discord.Attachment, prebytes: bytes | None)
             if len(attach_bytes) > UPLOAD_LIMIT:
                 raise UnsupportedMedia
 
-            streams = await get_stream_info(attach_bytes)
+            streams = await get_stream_info(attach_bytes, bot)
             if not streams:
-                print("ERROR: Could not probe attachment, aborting")
+                await log.log_error(bot, "ERROR: Could not probe attachment, aborting")
                 return None, None
 
             ext = supported_media_ext(attach, content_type, streams)
@@ -235,7 +237,7 @@ def is_native_embed(url: str) -> bool:
     except ValueError:
         return False
 
-async def resolve_media_url(url: str) -> str | None:
+async def resolve_media_url(url: str, bot=None) -> str | None:
     if not url.startswith(("http://", "https://")):
         return None
 
@@ -299,6 +301,6 @@ async def resolve_media_url(url: str) -> str | None:
                 return candidates["gif"] or candidates["video"] or candidates["audio"] or candidates["image"]
 
         except (TimeoutError, aiohttp.ClientError, UnicodeDecodeError) as e:
-            print(f"ERROR: Failed resolving {url}: {e}")
+            await log.log_error(bot, f"ERROR: Failed resolving {url}: {e}")
 
     return None
