@@ -291,6 +291,16 @@ class Eggs(commands.Cog):
     ):
         await self.create_or_edit(ctx, None, text, file, link, rating, secret, lang)
 
+    async def send_egg(self, ctx: discord.Interaction, lines: dict, egg, guild, *, collected: bool = False):
+        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
+
+        container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, lines, egg, creator, collected)
+
+        await ctx.followup.send(
+            file=sfile or discord.utils.MISSING,
+            view=views.GetEgg(self.bot, lines, egg, guild, creator, container, vfile, vlink)
+        )
+
     async def send(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
         if not await utils.ensure_not_ratelimited(ctx, "read"):
             return
@@ -343,14 +353,7 @@ class Eggs(commands.Cog):
                 await user.collected.add(egg)
                 collected = True
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
-
-        container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, lines, egg, creator, collected)
-
-        await ctx.followup.send(
-            file=sfile or discord.utils.MISSING,
-            view=views.GetEgg(self.bot, lines, egg, guild, creator, container, vfile, vlink)
-        )
+        await self.send_egg(ctx, lines, egg, guild, collected=collected)
 
     @_lookup_command("get")
     async def get(self, ctx: discord.Interaction, id: int | None, rating: Rating | None):
@@ -392,14 +395,7 @@ class Eggs(commands.Cog):
             await ctx.followup.send(myloc["no_egg"])
             return
 
-        creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
-
-        container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, lines, egg, creator)
-
-        await ctx.followup.send(
-            file=sfile or discord.utils.MISSING,
-            view=views.GetEgg(self.bot, lines, egg, guild, creator, container, vfile, vlink)
-        )
+        await self.send_egg(ctx, lines, egg, guild)
 
     @app.command(name="edit", description="edit_description")
     @app.rename(id="edit_id", text="edit_text", file="edit_file", link="edit_link", rating="edit_rating", secret="edit_secret", lang="edit_lang")
