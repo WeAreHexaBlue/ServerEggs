@@ -132,7 +132,7 @@ async def on_ready():
         await logch.send(f"**{utils.BRAND["name"]}** has started on **discord.py {discord.__version__}**")
 
         for warning in getattr(bot, "locale_warnings", []):
-            await utils.log_error(bot, warning)
+            await utils.log_long(bot, warning)
 
     bot.locale_warnings = []
 

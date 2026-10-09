@@ -124,7 +124,7 @@ class Dev(commands.GroupCog):
 
         self.bot.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
         for warning in warnings:
-            await utils.log_error(self.bot, warning)
+            await utils.log_long(self.bot, warning)
 
         display_locales = [f"`{locale}`" for locale in self.bot.locales]
         await ctx.followup.send(f"Reloaded locales {", ".join(display_locales)} successfully.")

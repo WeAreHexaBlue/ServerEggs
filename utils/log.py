@@ -30,6 +30,15 @@ async def log_error(bot: commands.Bot | None, message: str) -> None:
     except discord.HTTPException:
         pass
 
+async def log_long(bot: commands.Bot | None, message: str, *, limit: int = 1900) -> None:
+    print(message)
+
+    if len(message) <= limit:
+        await log_error(bot, message)
+        return
+
+    await log_error(bot, message[:limit] + f"\n… ({len(message) - limit} more characters, see console)")
+
 
 async def log_egg(bot: commands.Bot, lines: dict, guild, egg, creator: discord.User, actor: discord.User, edit: bool = False):
     myloc = bot.get_lines("eggs/create_edit", lines)
