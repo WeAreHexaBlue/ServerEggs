@@ -6,7 +6,7 @@ from discord.ext import commands
 
 from schema import Battle, BattleStatus, BattleVote, Egg, Guild, User
 
-from . import attach, embed, misc
+from . import attach, embed, log, misc
 
 
 async def fight_pool_ids(user: User) -> list[int]:
@@ -145,7 +145,7 @@ async def finalize_due_battles(bot: commands.Bot):
     due = await Battle.filter(status=BattleStatus.OPEN, ends_at__lte=datetime.datetime.now(datetime.UTC)).limit(FINALIZE_BATCH_LIMIT + 1)
 
     if len(due) > FINALIZE_BATCH_LIMIT:
-        print(f"WARN: {len(due)}+ battles due; finalizing first {FINALIZE_BATCH_LIMIT}, remainder next tick.")
+        await log.log_error(bot, f"{len(due)}+ battles due; finalizing first {FINALIZE_BATCH_LIMIT}, remainder next tick.")
         due = due[:FINALIZE_BATCH_LIMIT]
 
     for battle in due:
