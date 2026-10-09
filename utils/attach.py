@@ -163,8 +163,7 @@ async def process_attachment(attach: discord.Attachment, prebytes: bytes | None,
 async def url_to_file(url: str, bot=None) -> discord.File | None:
     file = None
 
-    session = misc.http_session(bot) if bot is not None else aiohttp.ClientSession()
-    own_session = bot is None
+    session = misc.http_session(bot)
 
     try:
         async with session.get(url, timeout=10) as res:
@@ -177,9 +176,6 @@ async def url_to_file(url: str, bot=None) -> discord.File | None:
                 return discord.File(io.BytesIO(filebytes), filename=filename)
     except (TimeoutError, aiohttp.ClientError):
         pass
-    finally:
-        if own_session:
-            await session.close()
 
     return file
 
@@ -224,7 +220,6 @@ EMBEDDABLE_MEDIA_HOSTS = (
     "twitter.com", "x.com",
     "fxtwitter.com", "fixupx.com", "fxbsky.app",
     "vxtwitter.com", "fixvx.com",
-    "girlcockx.com",
     "instagram.com", "kkinstagram.com",
     "tiktok.com",
     "twitch.tv",
