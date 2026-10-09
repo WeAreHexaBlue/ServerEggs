@@ -138,7 +138,8 @@ def substitute_tokens(value, unknown: set[str]):
 
     return map_strings(value, substitute)
 
-def load_locales(lang_dir: str = "./lang") -> dict[str, dict]:
+def load_locales(lang_dir: str = "./lang") -> tuple[dict[str, dict], list[str]]:
+    warnings: list[str] = []
     raw = {}
 
     for file in sorted(os.listdir(lang_dir)):
@@ -158,7 +159,7 @@ def load_locales(lang_dir: str = "./lang") -> dict[str, dict]:
 
         missing = find_missing_paths(fallback, data)
         if missing:
-            print(f"WARN: locale `{code}` missing {len(missing)} keys, fell back to `{FALLBACK_LANG}`: {", ".join(missing)}")
+            warnings.append(f"Locale `{code}` missing {len(missing)} keys, fell back to `{FALLBACK_LANG}`: {", ".join(missing)}")
 
         locales[code] = resolve_lines(deep_merge(fallback, data))
 
@@ -167,9 +168,9 @@ def load_locales(lang_dir: str = "./lang") -> dict[str, dict]:
         locales[code] = substitute_tokens(data, unknown)
 
     if unknown:
-        print(f"WARN: unknown tokens, left unresolved: {", ".join(sorted("{" + name + "}" for name in unknown))}")
+        warnings.append(f"Unknown tokens, left unresolved: {", ".join(sorted("{" + name + "}" for name in unknown))}")
 
-    return locales
+    return locales, warnings
 
 def pick_locale(locales: dict, code: str | None) -> dict:
     if code and code in locales:

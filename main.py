@@ -48,7 +48,9 @@ class ServerEggs(commands.Bot):
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
 
-        self.locales = await asyncio.to_thread(utils.load_locales, "./lang")
+        self.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
+        for warning in warnings:
+            await utils.log_error(self, warning)
 
         await self.tree.set_translator(utils.UITranslator(self))
 

@@ -125,7 +125,9 @@ class Dev(commands.GroupCog):
     async def reload_locales(self, ctx: discord.Interaction):
         await ctx.response.defer()
 
-        self.bot.locales = await asyncio.to_thread(utils.load_locales, "./lang")
+        self.bot.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
+        for warning in warnings:
+            await utils.log_error(self.bot, warning)
 
         display_locales = [f"`{locale}`" for locale in self.bot.locales]
         await ctx.followup.send(f"Reloaded locales {", ".join(display_locales)} successfully.")
