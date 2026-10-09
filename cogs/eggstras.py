@@ -151,6 +151,16 @@ class Eggstras(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    @staticmethod
+    def _loop_command(name: str, prefix: str):
+        def apply(fn):
+            fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
+            fn = app.choices(rating=list(utils.RATING_CHOICES))(fn)
+            fn = app.describe(**{key: f"{prefix}_{key}_description" for key in ("check", "rating", "secret")})(fn)
+            fn = app.rename(**{key: f"{prefix}_{key}" for key in ("check", "rating", "secret")})(fn)
+            return app.command(name=name, description=f"{prefix}_description")(fn)
+        return apply
+
     async def egg_loop(self, ctx: discord.Interaction, mode: str, check: int | None, rating: Rating | None, secret: bool | None):
         if not await utils.ensure_not_ratelimited(ctx, "read"):
             return
@@ -219,27 +229,11 @@ class Eggstras(commands.Cog):
 
         await ctx.followup.send(file=sfile, view=view)
 
-    @app.command(name="collected", description="collected_description")
-    @app.rename(check="collected_check", rating="collected_rating", secret="collected_secret")
-    @app.describe(check="collected_check_description", rating="collected_rating_description", secret="collected_secret_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_loop_command("collected", "collected")
     async def collected(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "collected", check, rating, secret)
 
-    @app.command(name="my-eggs", description="my-eggs_description")
-    @app.rename(check="my-eggs_check", rating="my-eggs_rating", secret="my-eggs_secret")
-    @app.describe(check="my-eggs_check_description", rating="my-eggs_rating_description", secret="my-eggs_secret_description")
-    @app.choices(rating=[
-        app.Choice(name=app.locale_str("rating_safe"), value=Rating.SAFE),
-        app.Choice(name=app.locale_str("rating_questionable"), value=Rating.QUESTIONABLE),
-        app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
-    ])
-    @app.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @_loop_command("my-eggs", "my-eggs")
     async def my_eggs(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "created", check, rating, secret)
 

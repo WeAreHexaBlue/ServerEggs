@@ -95,7 +95,7 @@ class Premium(commands.Cog):
                 try:
                     await user.send(view=views.ExplicitConsentView(self.bot, lines))
                 except Exception as e:  # noqa: BLE001
-                    print(f"ERROR: Explicit consent view failed for {dbuser.id}: {e}")
+                    await utils.log_error(self.bot, f"Explicit consent view failed for {dbuser.id}: {e}")
 
         dbuser.last_daily_at = now
         await dbuser.save(update_fields=["last_daily_at"])
@@ -109,7 +109,7 @@ class Premium(commands.Cog):
             try:
                 supporter_ids = await utils.fetch_supporter_ids(self.bot)
             except (discord.HTTPException, discord.Forbidden) as e:
-                print(f"ERROR: Supporter entitlement fetch failed: {e}")
+                await utils.log_error(self.bot, f"Supporter entitlement fetch failed: {e}")
                 return
 
             if not supporter_ids:
@@ -132,11 +132,11 @@ class Premium(commands.Cog):
                 try:
                     await self.send_daily_egg(dbuser, now)
                 except Exception as e:  # noqa: BLE001
-                    print(f"ERROR: Daily Egg failed for {dbuser.id}: {e}")
+                    await utils.log_error(self.bot, f"Daily Egg failed for {dbuser.id}: {e}")
 
                 await asyncio.sleep(random.uniform(1.0, 5.0))
         except Exception as e:  # noqa: BLE001
-            print(f"ERROR: Daily Egg loop failed: {e}")
+            await utils.log_error(self.bot, f"Daily Egg loop failed: {e}")
 
     @send_daily_eggs.before_loop
     async def before_send_daily_eggs(self):

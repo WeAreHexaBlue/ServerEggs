@@ -7,6 +7,7 @@ import traceback
 from importlib import metadata as importlib_metadata
 from pathlib import Path
 
+import aiohttp
 import discord
 import dotenv
 from cachetools import TTLCache
@@ -35,8 +36,6 @@ def get_version() -> str:
 
 VERSION = get_version()
 
-DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
-
 class ServerEggs(commands.Bot):
     def __init__(self):
         super().__init__(commands.when_mentioned, intents=discord.Intents.default())
@@ -44,11 +43,15 @@ class ServerEggs(commands.Bot):
         self.locales = {}
         self.lang_cache = TTLCache(10000, ttl=3600)
         self.startup_announced = False
+        self.locale_warnings = []
 
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
 
-        self.locales = await asyncio.to_thread(utils.load_locales, "./lang")
+        self.http_session = aiohttp.ClientSession()
+
+        self.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
+        self.locale_warnings = warnings
 
         await self.tree.set_translator(utils.UITranslator(self))
 
@@ -58,7 +61,10 @@ class ServerEggs(commands.Bot):
         await self.load_extension("jishaku")
 
         await self.tree.sync()
-        await self.tree.sync(guild=DEVELOPER_GUILD)
+
+        dev_guild = utils.developer_guild()
+        if dev_guild is not None:
+            await self.tree.sync(guild=dev_guild)
 
     async def get_lang(self, ctx: discord.Interaction) -> str:
         if not ctx.guild:
@@ -103,6 +109,10 @@ class ServerEggs(commands.Bot):
         return lines, self.get_lines(path, lines)
 
     async def close(self):
+        session = getattr(self, "http_session", None)
+        if session is not None and not session.closed:
+            await session.close()
+
         await Tortoise.close_connections()
         await super().close()
 
@@ -120,6 +130,11 @@ async def on_ready():
 
     if logch is not None:
         await logch.send(f"**{utils.BRAND["name"]}** has started on **discord.py {discord.__version__}**")
+
+        for warning in getattr(bot, "locale_warnings", []):
+            await utils.log_long(bot, warning)
+
+    bot.locale_warnings = []
 
     await utils.grant_dev_entitlements(bot)
 

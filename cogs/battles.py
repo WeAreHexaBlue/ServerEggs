@@ -216,7 +216,7 @@ class Battles(commands.Cog):
         try:
             await utils.finalize_due_battles(self.bot)
         except Exception as e:  # noqa: BLE001
-            print(f"ERROR: Battle finalization failed: {e}")
+            await utils.log_error(self.bot, f"Battle finalization failed: {e}")
 
     @finalize_battles.before_loop
     async def before_finalize_battles(self):

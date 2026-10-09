@@ -1,8 +1,58 @@
+import collections
+
 import discord
 
 import utils
 from schema import Rating
 
+
+class LoopView(discord.ui.LayoutView):
+    def __init__(self, user: discord.User, items: collections.deque, not_yours: str):
+        super().__init__(timeout=None)
+        self.user = user
+        self.items = items
+        self.total = len(items)
+        self.index = 0
+        self.not_yours = not_yours
+
+    def reset_children(self) -> None:
+        for child in list(self.children):
+            self.remove_item(child)
+
+    def pager_buttons(self) -> tuple[discord.ui.Button, discord.ui.Button]:
+        disabled = len(self.items) <= 1
+
+        prev = discord.ui.Button(label="◀️", style=discord.ButtonStyle.primary, disabled=disabled)
+        prev.callback = self.prev_page
+
+        next = discord.ui.Button(label="▶️", style=discord.ButtonStyle.primary, disabled=disabled)
+        next.callback = self.next_page
+
+        return prev, next
+
+    def position_label(self) -> str | None:
+        return f"{self.index + 1} / {self.total}" if self.total > 1 else None
+
+    async def interaction_check(self, ctx: discord.Interaction) -> bool:
+        if ctx.user.id != self.user.id:
+            await ctx.response.send_message(self.not_yours, ephemeral=True)
+            return False
+
+        return True
+
+    async def turn(self, ctx: discord.Interaction, delta: int):
+        self.items.rotate(delta)
+        self.index = (self.index - delta) % self.total if self.total else 0
+        await self.respond(ctx)
+
+    async def prev_page(self, ctx: discord.Interaction):
+        await self.turn(ctx, 1)
+
+    async def next_page(self, ctx: discord.Interaction):
+        await self.turn(ctx, -1)
+
+    async def respond(self, ctx: discord.Interaction):
+        raise NotImplementedError
 
 class ExtraAttachmentButton(discord.ui.Button):
     def __init__(self, label: str, *, style=discord.ButtonStyle.primary, file=None, link=None):
