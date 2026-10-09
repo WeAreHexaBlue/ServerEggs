@@ -13,6 +13,27 @@ from PIL import Image
 from . import log
 from .attach import UPLOAD_LIMIT, get_content_type
 
+HARMFUL_CLASSIFICATIONS = ("csam", "harmful-abusive-material")
+
+async def _post_scan(endpoint: str, auth: aiohttp.BasicAuth, bot, scanbytes: bytes, label: str, get_classifications, *, timeout, json=None, data=None, headers=None) -> (bool, bool, bytes | None):
+    try:
+        async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, json=json, data=data, headers=headers, timeout=timeout) as response:
+            if response.status == 200:
+                payload = await response.json()
+
+                for classification in get_classifications(payload):
+                    if classification in HARMFUL_CLASSIFICATIONS:
+                        await log.log_error(bot, f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
+                        return True, False, None
+
+                return False, False, scanbytes
+            else:
+                await log.log_error(bot, f"ERROR: Arachnid Shield {label} Error: HTTP {response.status} {await response.text()}")
+                return False, False, scanbytes
+    except (TimeoutError, aiohttp.ClientError) as e:
+        await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
+        return False, False, scanbytes
+
 
 async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
     scanbytes = file.fp.read()
@@ -46,47 +67,21 @@ async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
         endpoint = "https://shield.projectarachnid.com/v1/pdq"
         payload = {"hashes": hashes}
 
-        try:
-            async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, json=payload, timeout=900) as response:
-                if response.status == 200:
-                    data = await response.json()
-
-                    for match in data.get("scanned_hashes", {}).values():
-                        classification = match.get("classification", "")
-
-                        if classification in ["csam", "harmful-abusive-material"]:
-                            await log.log_error(bot, f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
-                            return True, False, None
-
-                    return False, False, scanbytes
-                else:
-                    await log.log_error(bot, f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
-                    return False, False, scanbytes
-        except (TimeoutError, aiohttp.ClientError) as e:
-            await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
-            return False, False, scanbytes
+        return await _post_scan(
+            endpoint, auth, bot, scanbytes, "PDQ",
+            lambda data: [match.get("classification", "") for match in data.get("scanned_hashes", {}).values()],
+            timeout=900, json=payload,
+        )
 
     endpoint = "https://shield.projectarachnid.com/v1/media"
     guessed_mime, _ = mimetypes.guess_type(file.filename)
     headers = {"Content-Type": guessed_mime or "application/octet-stream"}
 
-    try:
-        async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, data=scanbytes, headers=headers, timeout=20) as response:
-            if response.status == 200:
-                data = await response.json()
-
-                classification = data.get("classification", "")
-                if classification in ["csam", "harmful-abusive-material"]:
-                    await log.log_error(bot, f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
-                    return True, False, None
-
-                return False, False, scanbytes
-            else:
-                await log.log_error(bot, f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
-                return False, False, scanbytes
-    except (TimeoutError, aiohttp.ClientError) as e:
-        await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
-        return False, False, scanbytes
+    return await _post_scan(
+        endpoint, auth, bot, scanbytes, "Media",
+        lambda data: [data.get("classification", "")],
+        timeout=20, data=scanbytes, headers=headers,
+    )
 
 async def extract_video_pdq_hashes(vidbytes: bytes, bot=None) -> list[str]:
     with tempfile.NamedTemporaryFile(suffix=".tmp", delete=False) as tmp:
