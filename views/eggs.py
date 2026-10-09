@@ -2,7 +2,6 @@ import collections
 import os
 
 import discord
-import dotenv
 from discord.ext import commands
 from tortoise.exceptions import IntegrityError
 
@@ -12,7 +11,6 @@ from schema import Rating, Report, User
 from .base import ExtraAttachmentButton, LoopView, action_button, text_view
 from .mod import ReportActions
 
-dotenv.load_dotenv()
 
 class CreateEgg(discord.ui.LayoutView):
     def __init__(self, myloc: dict, container: discord.ui.Container, file=None, link=None):

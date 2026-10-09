@@ -35,8 +35,6 @@ def get_version() -> str:
 
 VERSION = get_version()
 
-DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
-
 class ServerEggs(commands.Bot):
     def __init__(self):
         super().__init__(commands.when_mentioned, intents=discord.Intents.default())
@@ -60,7 +58,10 @@ class ServerEggs(commands.Bot):
         await self.load_extension("jishaku")
 
         await self.tree.sync()
-        await self.tree.sync(guild=DEVELOPER_GUILD)
+
+        dev_guild = utils.developer_guild()
+        if dev_guild is not None:
+            await self.tree.sync(guild=dev_guild)
 
     async def get_lang(self, ctx: discord.Interaction) -> str:
         if not ctx.guild:

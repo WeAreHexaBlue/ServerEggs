@@ -3,7 +3,6 @@ import collections
 import os
 
 import discord
-import dotenv
 from discord import app_commands as app
 from discord.ext import commands
 
@@ -11,12 +10,10 @@ import utils
 import views
 from schema import Guild, Report, User
 
-dotenv.load_dotenv()
-
-DEVELOPER_GUILD = discord.Object(id=int(os.getenv("DEVELOPER_GUILD_ID")))
 
 def is_dev(ctx: discord.Interaction):
-    if not ctx.guild or ctx.guild.id != DEVELOPER_GUILD.id: return False
+    dev_guild = utils.developer_guild()
+    if dev_guild is None or not ctx.guild or ctx.guild.id != dev_guild.id: return False
 
     return ctx.guild.get_role(int(os.getenv("DEVELOPER_ROLE_ID"))) in ctx.user.roles
 
@@ -138,13 +135,18 @@ class Dev(commands.GroupCog):
     async def sync(self, ctx: discord.Interaction, devguildonly: bool = False):
         await ctx.response.defer()
 
+        dev_guild = utils.developer_guild()
+        if dev_guild is None:
+            await ctx.followup.send("Developer guild not configured.")
+            return
+
         if devguildonly:
-            synced = await self.bot.tree.sync(guild=DEVELOPER_GUILD)
+            synced = await self.bot.tree.sync(guild=dev_guild)
             await ctx.followup.send(f"Synced {len(synced)} guild command(s).")
         else:
             synced_global = await self.bot.tree.sync()
-            synced_guild = await self.bot.tree.sync(guild=DEVELOPER_GUILD)
+            synced_guild = await self.bot.tree.sync(guild=dev_guild)
             await ctx.followup.send(f"Synced {len(synced_global)} global and {len(synced_guild)} guild command(s).")
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(Dev(bot), guild=DEVELOPER_GUILD)
+    await bot.add_cog(Dev(bot), guild=utils.developer_guild())
