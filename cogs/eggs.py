@@ -163,7 +163,7 @@ class Eggs(commands.Cog):
                 return
 
             if not utils.is_native_embed(attach_link):
-                scanfile = await utils.url_to_file(attach_link)
+                scanfile = await utils.url_to_file(attach_link, self.bot)
                 if not scanfile:
                     await ctx.followup.send(myloc["could_not_scan"])
                     return

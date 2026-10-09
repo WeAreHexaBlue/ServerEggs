@@ -15,7 +15,7 @@ import dotenv
 import imagehash
 from PIL import Image
 
-from . import log
+from . import log, misc
 
 dotenv.load_dotenv()
 
@@ -160,11 +160,14 @@ async def process_attachment(attach: discord.Attachment, prebytes: bytes | None,
 
     return file_path, file_hash
 
-async def url_to_file(url: str) -> discord.File | None:
+async def url_to_file(url: str, bot=None) -> discord.File | None:
     file = None
 
+    session = misc.http_session(bot) if bot is not None else aiohttp.ClientSession()
+    own_session = bot is None
+
     try:
-        async with aiohttp.ClientSession() as session, session.get(url, timeout=10) as res:
+        async with session.get(url, timeout=10) as res:
             if res.status == 200:
                 filebytes = await res.read()
 
@@ -174,6 +177,9 @@ async def url_to_file(url: str) -> discord.File | None:
                 return discord.File(io.BytesIO(filebytes), filename=filename)
     except (TimeoutError, aiohttp.ClientError):
         pass
+    finally:
+        if own_session:
+            await session.close()
 
     return file
 
@@ -237,7 +243,7 @@ def is_native_embed(url: str) -> bool:
     except ValueError:
         return False
 
-async def resolve_media_url(url: str, bot=None) -> str | None:
+async def resolve_media_url(url: str, bot) -> str | None:
     if not url.startswith(("http://", "https://")):
         return None
 
@@ -256,51 +262,52 @@ async def resolve_media_url(url: str, bot=None) -> str | None:
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     }
 
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(url, headers=headers, timeout=20) as response:
-                if response.status != 200:
-                    return None
+    session = misc.http_session(bot)
 
-                html_text = await response.text()
+    try:
+        async with session.get(url, headers=headers, timeout=20) as response:
+            if response.status != 200:
+                return None
 
-                candidates = {"video": None, "audio": None, "image": None, "gif": None}
+            html_text = await response.text()
 
-                for tag in re.findall(r"<meta[^>]+>", html_text, re.IGNORECASE):
-                    prop_match = re.search(r'(?:property|name|itemprop)=[\'"]([^\'"]+)[\'"]', tag, re.IGNORECASE)
-                    cont_match = re.search(r'content=[\'"]([^\'"]+)[\'"]', tag, re.IGNORECASE)
+            candidates = {"video": None, "audio": None, "image": None, "gif": None}
 
-                    if not prop_match or not cont_match:
-                        continue
+            for tag in re.findall(r"<meta[^>]+>", html_text, re.IGNORECASE):
+                prop_match = re.search(r'(?:property|name|itemprop)=[\'"]([^\'"]+)[\'"]', tag, re.IGNORECASE)
+                cont_match = re.search(r'content=[\'"]([^\'"]+)[\'"]', tag, re.IGNORECASE)
 
-                    prop = prop_match.group(1).lower()
-                    media_link = html.unescape(cont_match.group(1).strip())
+                if not prop_match or not cont_match:
+                    continue
 
-                    if "tenor.com" in media_link.lower():
-                        m = re.search(r"tenor\.com/(?:m/)?([a-zA-Z0-9_-]+)/", media_link)
-                        if m:
-                            media_link = f"https://c.tenor.com/{m.group(1)}/tenor.gif"
+                prop = prop_match.group(1).lower()
+                media_link = html.unescape(cont_match.group(1).strip())
 
-                    if not re.search(SUPPORTED_FILETYPE_REGEX, media_link, re.IGNORECASE):
-                        continue
+                if "tenor.com" in media_link.lower():
+                    m = re.search(r"tenor\.com/(?:m/)?([a-zA-Z0-9_-]+)/", media_link)
+                    if m:
+                        media_link = f"https://c.tenor.com/{m.group(1)}/tenor.gif"
 
-                    if prop in ("og:video", "og:video:url", "og:video:secure_url", "twitter:player:stream"):
-                        if not candidates["video"]:
-                            candidates["video"] = media_link
+                if not re.search(SUPPORTED_FILETYPE_REGEX, media_link, re.IGNORECASE):
+                    continue
 
-                    elif prop in ("og:audio", "og:audio:url", "og:audio:secure_url"):
-                        if not candidates["audio"]:
-                            candidates["audio"] = media_link
+                if prop in ("og:video", "og:video:url", "og:video:secure_url", "twitter:player:stream"):
+                    if not candidates["video"]:
+                        candidates["video"] = media_link
 
-                    elif prop in ("og:image", "og:image:url", "og:image:secure_url", "twitter:image", "twitter:image:src"):
-                        if not candidates["image"]:
-                            candidates["image"] = media_link
-                        if not candidates["gif"] and re.search(r"\.gif(?:[?#].*)?$", media_link, re.IGNORECASE):
-                            candidates["gif"] = media_link
+                elif prop in ("og:audio", "og:audio:url", "og:audio:secure_url"):
+                    if not candidates["audio"]:
+                        candidates["audio"] = media_link
 
-                return candidates["gif"] or candidates["video"] or candidates["audio"] or candidates["image"]
+                elif prop in ("og:image", "og:image:url", "og:image:secure_url", "twitter:image", "twitter:image:src"):
+                    if not candidates["image"]:
+                        candidates["image"] = media_link
+                    if not candidates["gif"] and re.search(r"\.gif(?:[?#].*)?$", media_link, re.IGNORECASE):
+                        candidates["gif"] = media_link
 
-        except (TimeoutError, aiohttp.ClientError, UnicodeDecodeError) as e:
+            return candidates["gif"] or candidates["video"] or candidates["audio"] or candidates["image"]
+
+    except (TimeoutError, aiohttp.ClientError, UnicodeDecodeError) as e:
             await log.log_error(bot, f"ERROR: Failed resolving {url}: {e}")
 
     return None

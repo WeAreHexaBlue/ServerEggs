@@ -1,3 +1,4 @@
+import aiohttp
 import discord
 from discord import app_commands as app
 from discord.ext import commands
@@ -47,6 +48,15 @@ async def get_or_fetch_user(bot: commands.Bot, user_id: int | None):
         return await bot.fetch_user(user_id)
     except (discord.NotFound, discord.HTTPException):
         return None
+
+def http_session(bot: commands.Bot) -> aiohttp.ClientSession:
+    session = getattr(bot, "http_session", None)
+
+    if session is None or session.closed:
+        session = aiohttp.ClientSession()
+        bot.http_session = session
+
+    return session
 
 def format_user_display(user, *, username: str | None = None, user_id: int | None = None) -> str:
     base = f"**{discord.utils.escape_markdown(user.display_name)}**"

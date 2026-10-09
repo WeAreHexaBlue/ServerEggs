@@ -10,14 +10,16 @@ import numpy
 import pdqhash
 from PIL import Image
 
-from . import log
+from . import log, misc
 from .attach import UPLOAD_LIMIT, get_content_type
 
 HARMFUL_CLASSIFICATIONS = ("csam", "harmful-abusive-material")
 
 async def run_csam_scan(endpoint: str, auth: aiohttp.BasicAuth, bot, scanbytes: bytes, label: str, get_classifications, *, timeout, json=None, data=None, headers=None) -> (bool, bool, bytes | None):
+    session = misc.http_session(bot)
+
     try:
-        async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, json=json, data=data, headers=headers, timeout=timeout) as response:
+        async with session.post(endpoint, auth=auth, json=json, data=data, headers=headers, timeout=timeout) as response:
             if response.status == 200:
                 payload = await response.json()
 

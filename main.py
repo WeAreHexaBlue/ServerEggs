@@ -7,6 +7,7 @@ import traceback
 from importlib import metadata as importlib_metadata
 from pathlib import Path
 
+import aiohttp
 import discord
 import dotenv
 from cachetools import TTLCache
@@ -45,6 +46,8 @@ class ServerEggs(commands.Bot):
 
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
+
+        self.http_session = aiohttp.ClientSession()
 
         self.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
         for warning in warnings:
@@ -106,6 +109,10 @@ class ServerEggs(commands.Bot):
         return lines, self.get_lines(path, lines)
 
     async def close(self):
+        session = getattr(self, "http_session", None)
+        if session is not None and not session.closed:
+            await session.close()
+
         await Tortoise.close_connections()
         await super().close()
 
