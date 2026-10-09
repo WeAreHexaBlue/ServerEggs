@@ -43,6 +43,7 @@ class ServerEggs(commands.Bot):
         self.locales = {}
         self.lang_cache = TTLCache(10000, ttl=3600)
         self.startup_announced = False
+        self.locale_warnings = []
 
     async def setup_hook(self):
         await Tortoise.init(config=TORTOISE_ORM)
@@ -50,8 +51,7 @@ class ServerEggs(commands.Bot):
         self.http_session = aiohttp.ClientSession()
 
         self.locales, warnings = await asyncio.to_thread(utils.load_locales, "./lang")
-        for warning in warnings:
-            await utils.log_error(self, warning)
+        self.locale_warnings = warnings
 
         await self.tree.set_translator(utils.UITranslator(self))
 
@@ -130,6 +130,11 @@ async def on_ready():
 
     if logch is not None:
         await logch.send(f"**{utils.BRAND["name"]}** has started on **discord.py {discord.__version__}**")
+
+        for warning in getattr(bot, "locale_warnings", []):
+            await utils.log_error(bot, warning)
+
+    bot.locale_warnings = []
 
     await utils.grant_dev_entitlements(bot)
 
