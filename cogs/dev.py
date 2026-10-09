@@ -71,10 +71,10 @@ class Dev(commands.GroupCog):
         view = await views.GuildLoop.create(self.bot, ctx.user, collections.deque(guilds))
         await ctx.followup.send(view=view)
 
-    @app.command(name="unban", description="Unban a User from creating Eggs.")
-    @app.describe(user="The User to unban.")
+    @app.command(name="ban", description="Ban or unban a User from creating Eggs (toggle).")
+    @app.describe(user="The User to toggle ban status for.")
     @app.check(is_dev)
-    async def unban(self, ctx: discord.Interaction, user: discord.User):
+    async def ban(self, ctx: discord.Interaction, user: discord.User):
         await ctx.response.defer()
 
         db_user = await User.get_or_none(id=user.id)
@@ -83,14 +83,10 @@ class Dev(commands.GroupCog):
             await ctx.followup.send(content="User not found.")
             return
 
-        if not db_user.banned:
-            await ctx.followup.send(content="User is not banned.")
-            return
-
-        db_user.banned = False
+        db_user.banned = not db_user.banned
         await db_user.save(update_fields=["banned"])
 
-        await ctx.followup.send(content=f"Unbanned user {db_user.id}.")
+        await ctx.followup.send(content=f"{"Banned" if db_user.banned else "Unbanned"} user `{db_user.id}`.")
 
     @app.command(name="new-reports", description="Link to the top of the report queue.")
     @app.check(is_dev)
