@@ -10,17 +10,18 @@ import numpy
 import pdqhash
 from PIL import Image
 
+from . import log
 from .attach import UPLOAD_LIMIT, get_content_type
 
 
-async def scan_csam(file: discord.File) -> (bool, bool, bytes):
+async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
     scanbytes = file.fp.read()
     file.fp.seek(0)
 
     content_type = get_content_type(file.filename)
 
     if content_type in {"audio", "video"} and len(scanbytes) > UPLOAD_LIMIT:
-        print(f"ERROR: Rejected upload: media size {round(len(scanbytes) / 1024 / 1024, 1)}MB exceeds limit of {UPLOAD_LIMIT // 1024 // 1024}MB")
+        await log.log_error(bot, f"ERROR: Rejected upload: media size {round(len(scanbytes) / 1024 / 1024, 1)}MB exceeds limit of {UPLOAD_LIMIT // 1024 // 1024}MB")
         return False, True, scanbytes
 
     if content_type == "audio":
@@ -30,16 +31,16 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
     api_password = os.getenv("ARACHNID_PASSWORD")
 
     if not api_user or not api_password:
-        print("[Warning] Arachnid Shield credentials missing. Skipping CSAM scan.")
+        await log.log_error(bot, "[Warning] Arachnid Shield credentials missing. Skipping CSAM scan.")
         return False, False, scanbytes
 
     endpoint = "https://shield.projectarachnid.com/v1/media"
     auth = aiohttp.BasicAuth(api_user, api_password)
 
     if content_type == "video":
-        hashes = await extract_video_pdq_hashes(scanbytes)
+        hashes = await extract_video_pdq_hashes(scanbytes, bot)
         if not hashes:
-            print("WARN: Could not extract frame hashes from video.")
+            await log.log_error(bot, "WARN: Could not extract frame hashes from video.")
             return False, False, scanbytes
 
         endpoint = "https://shield.projectarachnid.com/v1/pdq"
@@ -54,15 +55,15 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
                         classification = match.get("classification", "")
 
                         if classification in ["csam", "harmful-abusive-material"]:
-                            print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
+                            await log.log_error(bot, f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
                             return True, False, None
 
                     return False, False, scanbytes
                 else:
-                    print(f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
+                    await log.log_error(bot, f"ERROR: Arachnid Shield PDQ Error: HTTP {response.status} {await response.text()}")
                     return False, False, scanbytes
         except (TimeoutError, aiohttp.ClientError) as e:
-            print(f"ERROR: Arachnid Shield connection error: {e}")
+            await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
             return False, False, scanbytes
 
     endpoint = "https://shield.projectarachnid.com/v1/media"
@@ -76,18 +77,18 @@ async def scan_csam(file: discord.File) -> (bool, bool, bytes):
 
                 classification = data.get("classification", "")
                 if classification in ["csam", "harmful-abusive-material"]:
-                    print(f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
+                    await log.log_error(bot, f"CRITICAL: HARMFUL CONTENT DETECTED: {classification}")
                     return True, False, None
 
                 return False, False, scanbytes
             else:
-                print(f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
+                await log.log_error(bot, f"ERROR: Arachnid Shield Media Error: HTTP {response.status} {await response.text()}")
                 return False, False, scanbytes
     except (TimeoutError, aiohttp.ClientError) as e:
-        print(f"ERROR: Arachnid Shield connection error: {e}")
+        await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
         return False, False, scanbytes
 
-async def extract_video_pdq_hashes(vidbytes: bytes) -> list[str]:
+async def extract_video_pdq_hashes(vidbytes: bytes, bot=None) -> list[str]:
     with tempfile.NamedTemporaryFile(suffix=".tmp", delete=False) as tmp:
         tmp.write(vidbytes)
         tmp_path = tmp.name
@@ -112,7 +113,7 @@ async def extract_video_pdq_hashes(vidbytes: bytes) -> list[str]:
         _, stderr = await proc.communicate()
 
         if proc.returncode != 0:
-            print(f"ERROR: FFmpeg extraction failed: {stderr.decode(errors='replace')}")
+            await log.log_error(bot, f"ERROR: FFmpeg extraction failed: {stderr.decode(errors='replace')}")
             return []
 
         dir_name = os.path.dirname(tmp_path)
@@ -140,7 +141,7 @@ async def extract_video_pdq_hashes(vidbytes: bytes) -> list[str]:
                     if os.path.exists(frame_path):
                         os.remove(frame_path)
     except (FileNotFoundError, OSError, ValueError, TypeError) as e:
-        print(f"ERROR: Failed extracting PDQ hashes: {e}")
+        await log.log_error(bot, f"ERROR: Failed extracting PDQ hashes: {e}")
     finally:
         if os.path.exists(tmp_path):
             os.remove(tmp_path)

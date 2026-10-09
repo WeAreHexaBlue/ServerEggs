@@ -130,7 +130,7 @@ class Eggs(commands.Cog):
         processing = await ctx.followup.send(myloc["processing"])
 
         if scanfile:
-            scan, too_long, attach_bytes = await utils.scan_csam(scanfile)
+            scan, too_long, attach_bytes = await utils.scan_csam(scanfile, self.bot)
 
             if too_long:
                 await processing.edit(content=myloc["too_big"])
