@@ -15,7 +15,7 @@ from .attach import UPLOAD_LIMIT, get_content_type
 
 HARMFUL_CLASSIFICATIONS = ("csam", "harmful-abusive-material")
 
-async def _post_scan(endpoint: str, auth: aiohttp.BasicAuth, bot, scanbytes: bytes, label: str, get_classifications, *, timeout, json=None, data=None, headers=None) -> (bool, bool, bytes | None):
+async def run_csam_scan(endpoint: str, auth: aiohttp.BasicAuth, bot, scanbytes: bytes, label: str, get_classifications, *, timeout, json=None, data=None, headers=None) -> (bool, bool, bytes | None):
     try:
         async with aiohttp.ClientSession() as session, session.post(endpoint, auth=auth, json=json, data=data, headers=headers, timeout=timeout) as response:
             if response.status == 200:
@@ -33,7 +33,6 @@ async def _post_scan(endpoint: str, auth: aiohttp.BasicAuth, bot, scanbytes: byt
     except (TimeoutError, aiohttp.ClientError) as e:
         await log.log_error(bot, f"ERROR: Arachnid Shield connection error: {e}")
         return False, False, scanbytes
-
 
 async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
     scanbytes = file.fp.read()
@@ -67,7 +66,7 @@ async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
         endpoint = "https://shield.projectarachnid.com/v1/pdq"
         payload = {"hashes": hashes}
 
-        return await _post_scan(
+        return await run_csam_scan(
             endpoint, auth, bot, scanbytes, "PDQ",
             lambda data: [match.get("classification", "") for match in data.get("scanned_hashes", {}).values()],
             timeout=900, json=payload,
@@ -77,7 +76,7 @@ async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
     guessed_mime, _ = mimetypes.guess_type(file.filename)
     headers = {"Content-Type": guessed_mime or "application/octet-stream"}
 
-    return await _post_scan(
+    return await run_csam_scan(
         endpoint, auth, bot, scanbytes, "Media",
         lambda data: [data.get("classification", "")],
         timeout=20, data=scanbytes, headers=headers,
