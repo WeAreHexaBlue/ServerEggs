@@ -47,15 +47,14 @@ async def guild_container(bot: commands.Bot, guild: discord.Guild | None, dbguil
 
     return container
 
-class GuildLoop(discord.ui.LayoutView):
+from .base import LoopView
+
+
+class GuildLoop(LoopView):
     def __init__(self, bot: commands.Bot, user: discord.User, guilds: collections.deque):
-        super().__init__(timeout=None)
+        super().__init__(user, guilds, "This view is not yours.")
 
         self.bot = bot
-        self.user = user
-        self.guilds = guilds
-        self.total = len(guilds)
-        self.index = 0
 
     @classmethod
     async def create(cls, bot: commands.Bot, user: discord.User, guilds: collections.deque):
@@ -64,48 +63,23 @@ class GuildLoop(discord.ui.LayoutView):
         return self
 
     async def refresh(self):
-        guild = self.guilds[0]
+        guild = self.items[0]
         dbguild = await Guild.get_or_none(id=guild.id)
 
-        for child in list(self.children):
-            self.remove_item(child)
+        self.reset_children()
 
-        disabled = len(self.guilds) <= 1
-
-        prev = discord.ui.Button(label="◀️", style=discord.ButtonStyle.primary, disabled=disabled)
-        prev.callback = self.prev_page
-
-        next = discord.ui.Button(label="▶️", style=discord.ButtonStyle.primary, disabled=disabled)
-        next.callback = self.next_page
-
+        prev, next = self.pager_buttons()
         buttons = [prev, next]
 
         if dbguild and dbguild.invite:
             buttons.append(discord.ui.Button(label="Invite", url=dbguild.invite))
 
-        position = f"{self.index + 1} / {self.total}" if self.total > 1 else None
+        position = self.position_label()
         self.add_item(await guild_container(self.bot, guild, dbguild, position=position))
         self.add_item(discord.ui.ActionRow(*buttons))
-
-    async def interaction_check(self, ctx: discord.Interaction):
-        if ctx.user.id != self.user.id:
-            await ctx.response.send_message("This view is not yours.", ephemeral=True)
-            return False
-
-        return True
 
     async def respond(self, ctx: discord.Interaction):
         await ctx.response.defer()
 
         await self.refresh()
         await ctx.edit_original_response(view=self)
-
-    async def prev_page(self, ctx: discord.Interaction):
-        self.guilds.rotate(1)
-        self.index = (self.index - 1) % self.total
-        await self.respond(ctx)
-
-    async def next_page(self, ctx: discord.Interaction):
-        self.guilds.rotate(-1)
-        self.index = (self.index + 1) % self.total
-        await self.respond(ctx)

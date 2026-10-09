@@ -9,7 +9,7 @@ from tortoise.exceptions import IntegrityError
 import utils
 from schema import Rating, Report, User
 
-from .base import ExtraAttachmentButton, action_button, text_view
+from .base import ExtraAttachmentButton, LoopView, action_button, text_view
 from .mod import ReportActions
 
 dotenv.load_dotenv()
@@ -168,15 +168,13 @@ class GetEgg(discord.ui.LayoutView):
 
         await ctx.response.send_modal(ReportEgg(self.bot, self.lines, self.egg, False))
 
-class EggLoop(discord.ui.LayoutView):
+class EggLoop(LoopView):
     def __init__(self, bot: commands.Bot, lines: dict, myloc: dict, user: discord.User, eggs: collections.deque):
-        super().__init__(timeout=None)
+        super().__init__(user, eggs, myloc["not_yours"])
 
         self.bot = bot
         self.lines = lines
         self.myloc = myloc
-        self.user = user
-        self.eggs = eggs
         self.sfile = None
 
     @classmethod
@@ -186,21 +184,13 @@ class EggLoop(discord.ui.LayoutView):
         return self
 
     async def refresh(self) -> discord.File | None:
-        container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, self.lines, self.eggs[0])
+        container, sfile, vfile, vlink = await utils.get_egg_layout(self.bot, self.lines, self.items[0])
 
         self.sfile = sfile
 
-        for child in list(self.children):
-            self.remove_item(child)
+        self.reset_children()
 
-        disabled = len(self.eggs) <= 1
-
-        prev = discord.ui.Button(label="◀️", style=discord.ButtonStyle.primary, disabled=disabled)
-        prev.callback = self.prev_page
-
-        next = discord.ui.Button(label="▶️", style=discord.ButtonStyle.primary, disabled=disabled)
-        next.callback = self.next_page
-
+        prev, next = self.pager_buttons()
         buttons = [prev]
 
         if vfile or vlink:
@@ -218,13 +208,6 @@ class EggLoop(discord.ui.LayoutView):
 
         return sfile
 
-    async def interaction_check(self, ctx: discord.Interaction):
-        if ctx.user.id != self.user.id:
-            await ctx.response.send_message(self.myloc["not_yours"], ephemeral=True)
-            return False
-
-        return True
-
     async def respond(self, ctx: discord.Interaction):
         if not await utils.ensure_not_ratelimited(ctx, "interact"):
             return
@@ -234,14 +217,6 @@ class EggLoop(discord.ui.LayoutView):
         sfile = await self.refresh()
 
         await ctx.edit_original_response(view=self, attachments=[sfile] if sfile else [])
-
-    async def prev_page(self, ctx: discord.Interaction):
-        self.eggs.rotate(1)
-        await self.respond(ctx)
-
-    async def next_page(self, ctx: discord.Interaction):
-        self.eggs.rotate(-1)
-        await self.respond(ctx)
 
 class DeleteEgg(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, lines: dict, egg, container: discord.ui.Container, file=None, link=None):
