@@ -20,7 +20,7 @@ class Battles(commands.Cog):
     async def pool_fighter_egg(self, ctx: discord.Interaction, myloc: dict, egg_id: int, *, guild: Guild | None = None, channel=None):
         egg = await Egg.get_or_none(id=egg_id)
 
-        if egg is None:
+        if egg is None or egg.pending_scan:
             await ctx.followup.send(myloc["not_found"].format(egg_id=egg_id), ephemeral=True)
             return None
 
