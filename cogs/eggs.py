@@ -319,7 +319,7 @@ class Eggs(commands.Cog):
         if id is not None:
             egg = await Egg.get_with_related(id)
 
-            if not egg:
+            if not egg or egg.pending_scan:
                 await ctx.followup.send(myloc["not_found"].format(egg_id=id))
                 return
 
@@ -386,7 +386,7 @@ class Eggs(commands.Cog):
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
 
-        query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False)
+        query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False, pending_scan=False)
 
         if guild and not guild.allow_ext_lang:
             query = query.filter(lang=guild.lang)
@@ -428,6 +428,10 @@ class Eggs(commands.Cog):
         egg = await Egg.get_with_related(id)
 
         if not egg:
+            await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
+            return
+
+        if egg.pending_scan and not check_manage:
             await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
             return
 
