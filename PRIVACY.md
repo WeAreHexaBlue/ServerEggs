@@ -61,7 +61,7 @@ When the Bot is added to a server, and whenever an admin runs `/config`:
 ### 2.6 Temporary technical data
 *   **Rate limiting:** we keep an in-memory counter of recent commands per user and per server. This lives in RAM only, is not written to disk, and is wiped whenever the Bot restarts.
 *   **Language cache:** a short-lived in-memory cache of language preferences, also wiped on restart.
-*   **Media processing:** attachments are written to temporary files for scanning and are deleted immediately afterwards.
+*   **Media processing:** attachments are written to temporary files for scanning and are deleted immediately afterwards. Uploaded media is stored in quarantine, invisible to other users, until the safety scan clears.
 
 ## 3. Why We Process Your Data (Legal Bases)
 
@@ -87,7 +87,7 @@ Where we rely on **Art. 6(1)(f)**, we have assessed that your interest in using 
 This is the part most policies hide. Here is exactly what leaves our server:
 
 *   **Discord.** Everything you see in the Bot happens through Discord's API. Discord, Inc. is established outside the EEA; transfers are covered by Discord's own safeguards (including the EU–U.S. Data Privacy Framework where applicable) and its [Privacy Policy](https://discord.com/privacy).
-*   **Arachnid Shield (`shield.projectarachnid.com`).** Before any uploaded media is stored, it is sent to this third-party safety service so that child sexual abuse material and other prohibited content can be detected. **Your raw media bytes are transmitted to them for this check.** The operator is established outside the EEA; the transfer is necessary for compliance with legal obligations and for reasons of substantial public interest. If a match is found, your account is banned from creating **Egg**s. See [Project Arachnid](https://projectarachnid.com/).
+*   **Arachnid Shield (`shield.projectarachnid.com`).** Uploaded media is stored in a quarantined state, invisible to other users, and sent to this third-party safety service so that child sexual abuse material and other prohibited content can be detected. **Your raw media bytes are transmitted to them for this check.** The operator is established outside the EEA; the transfer is necessary for compliance with legal obligations and for reasons of substantial public interest. If a match is found, the **Egg** is deleted and your account is banned from creating **Egg**s. See [Project Arachnid](https://projectarachnid.com/).
 *   **Outbound URL fetches.** When you submit a link, we fetch that URL (and sometimes its Open Graph metadata) to resolve the embeddable media. The owner of that site sees a normal HTTP request from our server.
 *   **Tenor, GitHub, Weblate, Ko-fi.** Used only for GIF URL normalization, loading our own branding images, community translations, and the donation page respectively. We do not send your user ID to these services in connection with your content.
 
@@ -158,7 +158,7 @@ To exercise any of these, email [flamey@hexa.blue](mailto:flamey@hexa.blue). We 
 
 ### 8.3 Automated decision-making
 
-One decision is made with significant automated assistance: if the safety scan matches your upload against known child sexual abuse material, you are **automatically banned** from creating **Egg**s, without a human reviewing the upload first.
+One decision is made with significant automated assistance: if the safety scan matches your upload against known child sexual abuse material, your **Egg** is **automatically deleted** and you are **automatically banned** from creating **Egg**s, without a human reviewing the upload first.
 
 This is not a decision made purely by machine with no recourse. **Human review is always available:** moderators and the developer can inspect a ban and reverse it (`/dev unban`), and every user report is reviewed by a human before any action. You may request human review of a ban through any contact channel in Section 12, and you may contest the decision and express your point of view.
 
@@ -174,7 +174,7 @@ We take reasonable technical and organisational measures appropriate to the risk
 
 *   The database and stored media live on private infrastructure and are **not** part of the public source repository; credentials are held in environment variables excluded from version control.
 *   Access is limited to the developers.
-*   Media is scanned *before* storage rather than after, so prohibited material is not persisted.
+*   Media is stored in quarantine, invisible to other users, until the safety scan clears, so prohibited material is never distributed.
 
 In the event of a personal data breach likely to result in a risk to your rights, we will notify the competent supervisory authority within 72 hours (**Art. 33**) and, where the risk is high, notify you without undue delay (**Art. 34**).
 

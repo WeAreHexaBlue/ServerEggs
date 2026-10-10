@@ -31,7 +31,7 @@ You are solely responsible for everything you create through the Bot. By creatin
 
 ### 3.1 Automated safety scanning
 
-Every uploaded attachment is scanned by a third-party safety service (**Arachnid Shield**) before it is stored, to detect child sexual abuse material and other prohibited content. By uploading media to the Bot, you consent to that media being transmitted to this service for scanning. A match results in an immediate ban from creating **Egg**s, subject to human review on request (Section 4).
+Every uploaded attachment is scanned by a third-party safety service (**Arachnid Shield**) to detect child sexual abuse material and other prohibited content. By uploading media to the Bot, you consent to that media being transmitted to this service for scanning. **Egg**s with unscanned media are stored in quarantine and stay invisible to other users until the scan clears. A match results in deletion of the **Egg** and an immediate ban from creating **Egg**s, subject to human review on request (Section 4).
 
 ### 3.2 Who is responsible for uploaded content
 
