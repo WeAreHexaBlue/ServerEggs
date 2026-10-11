@@ -273,7 +273,7 @@ class Eggs(commands.Cog):
         )
 
         await processing.edit(
-            content=myloc["pending"] if egg.pending_scan else None,
+            content=None,
             attachments=[resfile] if resfile else [],
             view=views.CreateEgg(myloc, container, vfile, vlink)
         )
