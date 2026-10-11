@@ -40,6 +40,8 @@ class Egg(models.Model):
 
     secret = fields.BooleanField(default=False)
 
+    pending_scan = fields.BooleanField(default=False)
+
     reports = fields.ReverseRelation["Report"]
 
     creator = fields.ForeignKeyField("eggs.User", "eggs", null=True, on_delete=OnDelete.SET_NULL)

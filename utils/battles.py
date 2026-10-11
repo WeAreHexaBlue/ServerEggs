@@ -26,6 +26,8 @@ async def random_fight_egg(user: User, guild: Guild | None = None, channel=None,
 
     query = Egg.filter(id__in=ids).filter(rating__in=misc.channel_ratings(guild, channel))
 
+    query = query.filter(pending_scan=False)
+
     if guild:
         filtered = await Egg.filter(filtered_in__id=guild.id).values_list("id", flat=True)
         if filtered:

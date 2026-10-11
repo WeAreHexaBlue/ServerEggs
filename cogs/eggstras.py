@@ -124,7 +124,7 @@ FUZZY_LIMIT = 50
 FUZZY_THRESHOLD = 0.2
 
 async def fuzzy_ids(query: str, guild_id: int | None = None, allowed_ratings: list[Rating] | None = None, lang: str | None = None) -> list[int]:
-    where = ["secret = false"]
+    where = ["secret = false", "pending_scan = false"]
 
     if allowed_ratings:
         values = ", ".join(f"'{rating.value if hasattr(rating, 'value') else rating}'" for rating in allowed_ratings)
@@ -184,7 +184,7 @@ class Eggstras(commands.Cog):
         if check is not None:
             egg = await field.filter(id=check).prefetch_related("creator", "origin").first()
 
-            if not egg:
+            if not egg or egg.pending_scan:
                 await ctx.followup.send(myloc[f"not_{mode}"].format(egg_id=check))
                 return
 
@@ -199,6 +199,8 @@ class Eggstras(commands.Cog):
             loop = [egg]
         else:
             query = field.all().prefetch_related("creator", "origin")
+
+            query = query.filter(pending_scan=False)
 
             if rating is not None and rating not in allowed:
                 await ctx.followup.send(myloc["rating_not_allowed_filter"])
@@ -261,6 +263,7 @@ class Eggstras(commands.Cog):
 
         base = Egg.all().prefetch_related("creator", "origin")
         base = base.filter(secret=False)
+        base = base.filter(pending_scan=False)
         base = base.filter(rating__in=allowed)
 
         if guild and not guild.allow_ext_lang:

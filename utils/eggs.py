@@ -34,6 +34,8 @@ async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exc
     def build_query(secret: bool):
         query = Egg.all()
 
+        query = query.filter(pending_scan=False)
+
         if guild:
             if filtered_ids:
                 query = query.filter(id__not_in=filtered_ids)
