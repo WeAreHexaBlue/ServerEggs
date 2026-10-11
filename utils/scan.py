@@ -85,16 +85,13 @@ async def scan_csam(file: discord.File, bot=None) -> (bool, bool, bytes):
         timeout=20, data=scanbytes, headers=headers,
     )
 
-def csam_scan_configured() -> bool:
-    return bool(os.getenv("ARACHNID_USER") and os.getenv("ARACHNID_PASSWORD"))
-
 def csam_scan_needed(filename: str | None) -> bool:
-    if not filename or not csam_scan_configured():
+    if not filename or not (os.getenv("ARACHNID_USER") and os.getenv("ARACHNID_PASSWORD")):
         return False
 
     return get_content_type(filename) in {"image", "video"}
 
-async def _notify_uploader(bot, egg, key: str) -> None:
+async def notify_scan_uploader(bot, egg, key: str) -> None:
     from schema import Guild, User
 
     from .i18n import pick_locale
@@ -112,37 +109,11 @@ async def _notify_uploader(bot, egg, key: str) -> None:
     except (AttributeError, discord.HTTPException):
         pass
 
-async def _log_cleared_egg(bot, egg, guild_id: int | None, actor_id: int | None, is_edit: bool) -> None:
-    from schema import Guild
-
-    from .i18n import pick_locale
-
-    if guild_id is None:
-        return
-
-    guild = await Guild.get_or_none(id=guild_id)
-    if guild is None:
-        return
-
-    lines = pick_locale(bot.locales, guild.lang)["lines"]
-    creator = await misc.get_or_fetch_user(bot, egg.creator_id)
-    actor = await misc.get_or_fetch_user(bot, actor_id)
-
-    await log.log_egg(bot, lines, guild, egg, creator, actor, is_edit)
-
-def _still_same_upload(egg, expected_hash: str | None, expected_link: str | None) -> bool:
-    if expected_hash is not None:
-        return egg.attach_hash == expected_hash
-
-    if expected_link is not None:
-        return egg.attach_link == expected_link
-
-    return False
-
-async def _finish_csam_scan(bot, egg_id: int, scanbytes: bytes, filename: str, *, expected_hash: str | None = None, expected_link: str | None = None, guild_id: int | None = None, actor_id: int | None = None, is_edit: bool = False) -> None:
-    from schema import Egg, User
+async def finish_csam_scan(bot, egg_id: int, scanbytes: bytes, filename: str, *, expected_hash: str | None = None, expected_link: str | None = None, guild_id: int | None = None, actor_id: int | None = None, is_edit: bool = False) -> None:
+    from schema import Egg, Guild, User
 
     from .eggs import egg_delete
+    from .i18n import pick_locale
 
     try:
         scan, too_long, _ = await scan_csam(discord.File(io.BytesIO(scanbytes), filename=filename), bot)
@@ -151,7 +122,14 @@ async def _finish_csam_scan(bot, egg_id: int, scanbytes: bytes, filename: str, *
         return
 
     egg = await Egg.get_or_none(id=egg_id)
-    if egg is None or not egg.pending_scan or not _still_same_upload(egg, expected_hash, expected_link):
+
+    if egg is None or not egg.pending_scan:
+        return
+
+    if expected_hash is not None and egg.attach_hash != expected_hash:
+        return
+
+    if expected_link is not None and egg.attach_link != expected_link:
         return
 
     if scan or too_long:
@@ -163,16 +141,23 @@ async def _finish_csam_scan(bot, egg_id: int, scanbytes: bytes, filename: str, *
                 creator.banned = True
                 await creator.save(update_fields=["banned"])
 
-        await _notify_uploader(bot, egg, "illegal" if scan else "too_big")
+        await notify_scan_uploader(bot, egg, "illegal" if scan else "too_big")
         return
 
     egg.pending_scan = False
     await egg.save(update_fields=["pending_scan"])
 
-    await _log_cleared_egg(bot, egg, guild_id, actor_id, is_edit)
+    if guild_id is not None:
+        guild = await Guild.get_or_none(id=guild_id)
+        if guild is not None:
+            await log.log_egg(
+                bot, pick_locale(bot.locales, guild.lang)["lines"], guild, egg,
+                await misc.get_or_fetch_user(bot, egg.creator_id),
+                await misc.get_or_fetch_user(bot, actor_id), is_edit,
+            )
 
 def schedule_csam_scan(bot, egg_id: int, scanbytes: bytes, filename: str, **kwargs) -> asyncio.Task:
-    return asyncio.create_task(_finish_csam_scan(bot, egg_id, scanbytes, filename, **kwargs), name=f"csam-scan-{egg_id}")
+    return asyncio.create_task(finish_csam_scan(bot, egg_id, scanbytes, filename, **kwargs), name=f"csam-scan-{egg_id}")
 
 async def resume_pending_scans(bot) -> None:
     from schema import Egg
@@ -183,24 +168,26 @@ async def resume_pending_scans(bot) -> None:
 
     for egg in await Egg.filter(pending_scan=True).all():
         try:
-            scanbytes = None
-            filename = "media"
+            scanbytes, filename = None, "media"
 
             if egg.attach_path and os.path.exists(egg.attach_path):
                 filename = os.path.basename(egg.attach_path)
-                with open(egg.attach_path, "rb") as handle:
-                    scanbytes = handle.read()
+
+                def read_stored(path=egg.attach_path):
+                    with open(path, "rb") as handle:
+                        return handle.read()
+
+                scanbytes = await asyncio.to_thread(read_stored)
             elif egg.attach_link:
                 scanned = await url_to_file(egg.attach_link, bot)
                 if scanned is not None:
-                    filename = scanned.filename
-                    scanbytes = scanned.fp.read()
+                    filename, scanbytes = scanned.filename, scanned.fp.read()
 
             if scanbytes is None:
                 await log.log_error(bot, f"ERROR: Could not resume CSAM scan for Egg #{egg.id}: no media available")
                 continue
 
-            await _finish_csam_scan(
+            await finish_csam_scan(
                 bot, egg.id, scanbytes, filename,
                 expected_hash=egg.attach_hash, expected_link=egg.attach_link,
                 guild_id=egg.origin_id, actor_id=egg.creator_id, is_edit=False,

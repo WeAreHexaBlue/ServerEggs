@@ -176,10 +176,8 @@ class Eggs(commands.Cog):
         processing = await ctx.followup.send(myloc["processing"])
 
         if scanfile:
-            scanbytes = scanfile.fp.read()
-            scanfile.fp.seek(0)
+            scanbytes = attach_bytes = scanfile.fp.read()
             scan_filename = scanfile.filename
-            attach_bytes = scanbytes
 
             if len(scanbytes) > utils.UPLOAD_LIMIT:
                 await processing.edit(content=myloc["too_big"])
