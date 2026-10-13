@@ -111,7 +111,7 @@
                 "rating_not_allowed": "Cannot create or edit an **Egg** with this **rating** in this channel.",
                 "toomanyattach": "You may not use both `file` and `link` at the same time.\nChoose between the two.",
                 "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to {brand_name} localization**, you can **add it** on [Weblate]({link_weblate})!",
-                "lang_not_allowed": "You **may not** use a language other than **English** in this server.",
+                "lang_not_allowed": "You **may not** use a language other than **{language}** in this server.",
                 "banned": "You are **banned** from creating and editing **Egg**s.\nAppealing is not possible *at this time*.",
                 "not_found": "$common.not_found",
                 "cannot": "$common.cannot",

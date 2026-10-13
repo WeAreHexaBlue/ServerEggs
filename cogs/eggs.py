@@ -123,7 +123,8 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["bad_lang"])
                 return
             if guild and not guild.allow_ext_lang and utils.lang_base(lang) != utils.lang_base(guild.lang):
-                await ctx.followup.send(myloc["lang_not_allowed"])
+                language = self.bot.locales.get(utils.lang_base(guild.lang)).get("language_name")
+                await ctx.followup.send(myloc["lang_not_allowed"].format(language=language))
                 return
 
         user, _ = await User.get_or_create(id=ctx.user.id)
