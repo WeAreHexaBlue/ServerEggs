@@ -330,8 +330,12 @@ class Eggs(commands.Cog):
         if id is not None:
             egg = await Egg.get_with_related(id)
 
-            if not egg or egg.pending_scan:
+            if not egg:
                 await ctx.followup.send(myloc["not_found"].format(egg_id=id))
+                return
+            
+            if egg.pending_scan:
+                await ctx.followup.send(myloc["pending_scan"].format(egg_id=id))
                 return
 
             if egg.rating not in allowed:

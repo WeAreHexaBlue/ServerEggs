@@ -154,6 +154,7 @@
             },
             "send": {
                 "not_found": "**Egg #{egg_id}** was not found.",
+                "pending_scan": "**Egg #{egg_id}** exists, but it was created very recently, and the **content scans** have **not finished yet**. Try again later.",
                 "id_rating_not_allowed": "**Egg #{egg_id}** was found, but its **rating** isn't allowed in this channel.",
                 "secret": "**Egg #{egg_id}** is secret!\nYou can only find it randomly...",
                 "filtered": "**Egg #{egg_id}** exists, but **{guild}**'s moderators have decided to **block it** from showing up here.\nTry again **somewhere else**, like a **different server** or **my DMs**.",
