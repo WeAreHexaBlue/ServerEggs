@@ -92,8 +92,8 @@
             },
             "join-button": {
                 "already": "$common.already",
-                "success_enabled": "ALL [[Pipis]] HAS BEEN [[Equip]]PED WITH THE [[\"Join Origin Server\"]] BUTTON.",
-                "success_disabled": "[[Pipis]] UN[[Equip]]PED [[\"Join Origin Server\"]] BUTTON."
+                "success_enabled": "ALL **[[Pipis]]** HAS BEEN [[Equip]]PED WITH THE [[\"Join Origin Server\"]] BUTTON.",
+                "success_disabled": "**[[Pipis]]** UN[[Equip]]PED [[\"Join Origin Server\"]] BUTTON."
             },
             "battle-time": {
                 "already": "$common.already",
@@ -106,10 +106,10 @@
         },
         "eggs": {
             "create_edit": {
-                "empty_create": "Cannot create an **empty Egg**.\nPlease try again and include some text, an attachment, or both.",
-                "empty_edit": "You didn't specify any edits.",
-                "rating_not_allowed": "Cannot create or edit an **Egg** with this **rating** in this channel.",
-                "toomanyattach": "You may not use both `file` and `link` at the same time.\nChoose between the two.",
+                "empty_create": "YOUR **[[Pipis]]** HAS **[[No added flavors!]]**!\n[[Give it another go]] WITH [[Text, attachment, or both]]!",
+                "empty_edit": "YOU [[**Nothing changed**. Because a Noelle is just a Noelle.]]",
+                "rating_not_allowed": "THIS KIND OF **[[Pipis]]** IS [[Too spicy?]] FOR THIS CHANNEL!",
+                "toomanyattach": "YOU CAN'T USE [[`file`]] AND [[`link`]] AT [[The same time]]!\nONLY DO [[One!]]",
                 "bad_lang": "This language is **not supported**.\nIf you would like to **contribute to {brand_name} localization**, you can **add it** on [Weblate]({link_weblate})!",
                 "lang_not_allowed": "You **may not** use a language other than **English** in this server.",
                 "banned": "You are **banned** from creating and editing **Egg**s.\nAppealing is not possible *at this time*.",
