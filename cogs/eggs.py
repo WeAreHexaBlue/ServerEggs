@@ -122,7 +122,7 @@ class Eggs(commands.Cog):
             if lang not in self.bot.locales:
                 await ctx.followup.send(myloc["bad_lang"])
                 return
-            if guild and not guild.allow_ext_lang and lang != guild.lang:
+            if guild and not guild.allow_ext_lang and utils.lang_base(lang) != utils.lang_base(guild.lang):
                 await ctx.followup.send(myloc["lang_not_allowed"])
                 return
 
@@ -231,7 +231,7 @@ class Eggs(commands.Cog):
                 attach_path=attach_path,
                 attach_hash=attach_hash,
                 attach_link=attach_link,
-                lang=lang or (guild.lang if guild else "en"),
+                lang=utils.lang_base(lang) if lang else utils.lang_base(guild.lang if guild else "en"),
                 rating=rating,
                 secret=secret or False,
                 pending_scan=needs_scan,
@@ -252,8 +252,7 @@ class Eggs(commands.Cog):
                 egg.pending_scan = needs_scan
             if rating is not None: egg.rating = rating
             if secret is not None: egg.secret = secret
-            if lang is not None: egg.lang = lang
-
+            if lang is not None: egg.lang = utils.lang_base(lang)
             await egg.save()
 
         if needs_scan:
@@ -350,7 +349,7 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["filtered"].format(egg_id=id, guild=ctx.guild.name))
                 return
             
-            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+            if guild and not guild.allow_ext_lang and utils.lang_base(egg.lang) != utils.lang_base(guild.lang):
                 await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=id))
                 return
         else:
@@ -404,8 +403,7 @@ class Eggs(commands.Cog):
         query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False, pending_scan=False)
 
         if guild and not guild.allow_ext_lang:
-            query = query.filter(lang=guild.lang)
-
+            query = query.filter(lang=utils.lang_base(guild.lang))
         egg = await query.order_by("-created_at").prefetch_related("creator", "origin").first()
 
         if egg is None:

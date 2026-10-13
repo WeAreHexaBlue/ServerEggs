@@ -192,7 +192,7 @@ class Eggstras(commands.Cog):
                 await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id=check))
                 return
 
-            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+            if guild and not guild.allow_ext_lang and utils.lang_base(egg.lang) != utils.lang_base(guild.lang):
                 await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=check))
                 return
 
@@ -215,8 +215,7 @@ class Eggstras(commands.Cog):
                 query = query.filter(secret=True)
 
             if guild and not guild.allow_ext_lang:
-                query = query.filter(lang=guild.lang)
-
+                query = query.filter(lang=utils.lang_base(guild.lang))
             loop = await query
 
             if not loop:
@@ -267,8 +266,7 @@ class Eggstras(commands.Cog):
         base = base.filter(rating__in=allowed)
 
         if guild and not guild.allow_ext_lang:
-            base = base.filter(lang=guild.lang)
-
+            base = base.filter(lang=utils.lang_base(guild.lang))
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
             if filtered:
@@ -290,7 +288,7 @@ class Eggstras(commands.Cog):
                 egg.id,
             ))
         else:
-            lang_filter = guild.lang if (guild and not guild.allow_ext_lang) else None
+            lang_filter = utils.lang_base(guild.lang) if (guild and not guild.allow_ext_lang) else None
             ids = await fuzzy_ids(query, ctx.guild.id if ctx.guild else None, allowed, lang_filter)
 
             if ids:

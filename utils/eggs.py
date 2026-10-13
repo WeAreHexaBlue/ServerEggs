@@ -3,7 +3,7 @@ import random
 
 from schema import Egg, Guild, Rating
 
-from . import misc
+from . import i18n, misc
 
 
 def safe_remove(path: str | None) -> None:
@@ -41,7 +41,7 @@ async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exc
                 query = query.filter(id__not_in=filtered_ids)
 
             if not guild.allow_ext_lang:
-                query = query.filter(lang=guild.lang)
+                query = query.filter(lang=i18n.lang_base(guild.lang))
 
         allowed = allowed_ratings if allowed_ratings is not None else misc.channel_ratings(guild, channel)
 

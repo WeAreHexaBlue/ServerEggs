@@ -6,7 +6,7 @@ from discord.ext import commands
 
 from schema import Battle, BattleStatus, BattleVote, Egg, Guild, User
 
-from . import attach, embed, log, misc
+from . import attach, embed, i18n, log, misc
 
 
 async def fight_pool_ids(user: User) -> list[int]:
@@ -34,8 +34,7 @@ async def random_fight_egg(user: User, guild: Guild | None = None, channel=None,
             query = query.exclude(id__in=filtered)
 
         if not guild.allow_ext_lang:
-            query = query.filter(lang=guild.lang)
-
+            query = query.filter(lang=i18n.lang_base(guild.lang))
     count = await query.count()
 
     if count == 0:
