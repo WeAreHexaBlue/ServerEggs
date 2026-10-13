@@ -50,58 +50,58 @@
         },
         "config": {
             "lang": {
-                "missing_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to set **your own response language**, run `/config lang` in [my DMs](<{link_dm}>).\n-# **Not all servers allow** usage of external languages, but it will **always work in DMs**.",
-                "no_default": "The \"Server Default\" option is for users, not for servers.",
-                "invalid": "Unknown language. Pick one of the suggested options.",
-                "success": "Great, from now on I'll reply in **{language}**!"
+                "missing_perms": "YOU'RE A [[Little sponge]] WHO NEEDS **[[Manage Server]]** PERMISSIONS!\n\n-# BUT IF YOU WANTED TO **[[Change your language]]**, YOU HAVE TO [[`/config lang`]] IN [[[Slide in my DMs for an Epic Deal!]]](<{link_dm}>).\n-# **NOT ALL PLACES** WILL LET YOU [[Do that]], BUT **[[My DMs are always awesome!]]**.",
+                "no_default": "[[Think With Your Own Head!]]! THE [[\"Server Default\"]] IS FOR USERS!",
+                "invalid": "WHAT THE [[$#&%]] ARE YOU SAYING!",
+                "success": "**{language}** TRANSFER [[Has begun]]!"
             },
             "allow-ext-lang": {
                 "already": "$common.already",
-                "success_enabled": "**External languages** are now **allowed** in this server!",
-                "success_disabled": "**External languages** are **no longer allowed** in this server!"
+                "success_enabled": "**EXTERNAL [[Learn a new language today!]]** ARE NOW **[[Allowed]]**!",
+                "success_disabled": "**EXTERNAL [[Lingos]]** ARE **[[No longer allowed]]**!"
             },
             "server-description": {
-                "success": "Successfully **set server description** to:",
-                "cleared": "Successfully **cleared server description**."
+                "success": "THIS [[Awesome place]] IS NOW **DESCRIBED** AS:",
+                "cleared": "NO MORE [[Description]]."
             },
             "privacy": {
                 "already": "$common.already",
-                "missing_guild_perms": "You need the **Manage Server** permission to run this command here.\n\n-# If you meant to change **your own privacy setting**, run `/config privacy` in [my DMs](<{link_dm}>).",
-                "missing_invite_perms": "**{brand_name}** is missing the **Create Invite** permission, which is required for this operation.",
+                "missing_guild_perms": "YOU'RE A [[Little sponge]] WHO NEEDS **[[Manage Server]]** PERMISSIONS!\n\n-# BUT IF YOU WANTED TO **[[Change your privacy settings]]**, YOU HAVE TO [[`/config privacy`]] IN [[[Slide in my DMs for an Epic Deal!]]](<{link_dm}>).\n-# [[Warning: You Agree to Me Selling All Your Data and Your Family's Organs]]",
+                "missing_invite_perms": "YOU DIDN'T LET **[[{brand_name}]]** HAVE **[[Create Invite]]** PERMISSIONS!? WHAT ARE YOU, A [[Cat]] WHO LIKES TO [[Hoard all the **Egg**s!]]?",
                 "success": {
                     "public": {
-                        "guild": "This server is now **public**: anyone can **join it** from **Egg**s created here.",
-                        "user": "Your profile is now **public**: anyone can **see your username** on your **Egg**s and on **leaderboards**."
+                        "guild": "THIS PLACE IS NOW **[[Public]]**: ANY [[Cats]] CAN **[[findher.ogg]] YOUR SERVER**.",
+                        "user": "YOUR PROFILE IS NOW **[[Public]]**: YOUR **[[Username]] IS EVERYWHERE**."
                     },
                     "private": {
-                        "guild": "This server is now **private**: **Egg**s created here **won't provide others** with an invite **anymore**.",
-                        "user": "Your profile is now **private**: **only** your **display name** will be shown on your **Egg**s and on **leaderboards**."
+                        "guild": "THIS PLACE IS NOW **[[Private]]**: YOU ARE [[Safe]] WITH [[All the protein]]...",
+                        "user": "YOUR PROFILE IS NOW **[[Private]]**: ONLY [[Me]] WILL [[Steal your identity]] NOW! EAHEAHEAHEAH"
                     }
                 }
             },
             "log": {
                 "already": "$common.already",
-                "missing_perms": "I don't have permission to write logs there!",
-                "success": "{channel} is now the **Egg log** for this server."
+                "missing_perms": "CANNOT [[List All the Great Deals]] OVER THERE!",
+                "success": "{channel} IS NOW THE **[[Pipis log]]**."
             },
             "allowed-ratings": {
                 "already": "$common.already",
-                "no_changes": "You didn't specify any changes.",
-                "no_explicit_in_normal": "You may not allow **Explicit** **Egg**s in **SFW channels**.",
-                "success": "Applied your changes successfully."
+                "no_changes": "YOU [[Can't say anything? Try my alternative medicine!]].",
+                "no_explicit_in_normal": "YOU CAN'T LET **[[Awesome Pink DELTARUNE Rule 34 Free]]** SHOW UP IN **[[Places with Minors]]**!",
+                "success": "THERE! I DID WHAT YOU ASKED! NOW [[One second, I have to pick up the phone...]]"
             },
             "join-button": {
                 "already": "$common.already",
-                "success_enabled": "The \"Join Origin Server\" button on **Egg**s is now **visible**.",
-                "success_disabled": "The \"Join Origin Server\" button on **Egg**s is **no longer visible**."
+                "success_enabled": "ALL [[Pipis]] HAS BEEN [[Equip]]PED WITH THE [[\"Join Origin Server\"]] BUTTON.",
+                "success_disabled": "[[Pipis]] UN[[Equip]]PED [[\"Join Origin Server\"]] BUTTON."
             },
             "battle-time": {
                 "already": "$common.already",
-                "success": "Successfully set the battle expiration time to `{minutes}` minutes."
+                "success": "THE [[Time to fight!]] IS NOW `{minutes}` MINUTES. REMEMBER [[Time is Money!]]"
             },
             "channel-rating": {
                 "already": "$common.already",
-                "success": "Successfully set the default rating for {channel} to `{rating}`."
+                "success": "[[Pipis]] FROM {channel} IS NOW [[`{rating}`]] BY DEFAULT."
             }
         },
         "eggs": {
