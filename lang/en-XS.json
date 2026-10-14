@@ -123,11 +123,11 @@
                 "convert_failed": "CONVERSION FAILED. MAYBE IT'S [[Corrupted]]. BUT LOOK AT ME, I'M [[Both corrupted and corrupt]]!",
                 "illegal": "**ILLEGAL CONTENT DETECTED**. YOU **CAN'T TOUCH** MY **[[Pipis]]** IF YOU TOUCH THE [[Children]].",
                 "duplicate": "**[[I've played these games before!]]**.\nSEE THE [[Existing **Pipis**]]: [[`/get id:{egg_id}`]]",
-                "beg": "Hey **{user}**! If you enjoy **{brand_name}** and would like to see its development continue and its servers to stay up, consider [**making a purchase on our Discord Store**]({link_store}) or [**donating to our Ko-fi**]({link_kofi})!\nRemember that **{brand_name}** is *open-source software*, and therefore developed by *volunteers*. Without help from people like *you*, it couldn't exist.\n\n-# You are receiving this message because you've created several **Egg**s.",
-                "beg_supporter": "Hey **{user}**! I know you're already **Support**ing us, and that's why you're receiving this message **less often**, but we just want to remind you that, at any time, you may **donate more** than you already are (which we're grateful for) on our [**Ko-fi page**]({link_kofi}).\n\n-# You are receiving this message because you've created several **Egg**s.",
-                "title": "Egg #{egg_id} {action}!",
-                "created": "created",
-                "edited": "edited",
+                "beg": "HEY     **{user}**  ! DO YOU LIKE **[[{brand_name}]]**? IF YOU WANT IT TO [[Keep existing]], YOU NEED TO [**[[BUY NOW]]**]({link_store}) OR [**[[BUYMORE]]**]({link_kofi})!\nREMEMBER! **[[{brand_name}]]** IS *[[Free and open-source software]]*, MADE BY *[[Unpaid idiots]]*. WITHOUT HELP FROM [[BIG SHOTs]] LIKE *[[You]]*, IT WOULD [[Blow up into smithereens]].\n\n-# YOU ARE [[Message received]] THIS BECAUSE YOU ARE A [[Real **Pipis** Person]]",
+                "beg_supporter": "HEY     **{user}**  ! I WANT TO [[Remind you]] THAT EVEN THOUGH YOU **[[BUY! BUY! BUY!]] ALREADY**, [[And we thank you so much for that!]], YOU CAN STILL [**[[BUYMORE]]**]({link_kofi}).\n\n-# YOU ARE [[Message received]] THIS BECAUSE YOU ARE A [[Real **Pipis** Person]]",
+                "title": "[[Pipis]] #{egg_id} {action}!",
+                "created": "CREATED",
+                "edited": "EDITED",
                 "show_extra_attachment": "$common.show_extra_attachment"
             },
             "eggify": {
