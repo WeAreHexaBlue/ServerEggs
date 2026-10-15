@@ -131,16 +131,16 @@
                 "show_extra_attachment": "$common.show_extra_attachment"
             },
             "eggify": {
-                "no_attach": "You may not **Eggify** a message without an **attachment** or **link**.",
-                "ready": "Create an **Egg** from this message?",
+                "no_attach": "YOU CAN'T **[[Make Pipis]]** IF THERE'S NO **[[Hyperlink Blocked]]**.",
+                "ready": "MAKE **[[Pipis]]** FROM THIS MESSAGE?",
                 "confirm": "$common.affirm",
                 "cancel": "$common.negate",
-                "cancelled": "Creation cancelled.",
-                "title": "Create Egg from Message",
-                "text": "Egg Text (optional)",
-                "text_placeholder": "Insert the Egg text here...",
-                "secret": "Mark as Secret",
-                "secret_desc": "Make this Egg only obtainable randomly?",
+                "cancelled": "[[Transaction failed]].",
+                "title": "MAKE [[Pipis]] FROM MESSAGE",
+                "text": "[[Pipis]] TEXT [[(optional)]]",
+                "text_placeholder": "WRITE YOUR [[Poetic Pipis Prayers]] HERE...",
+                "secret": "[[Mike]] AS [[Secret]]!",
+                "secret_desc": "IS THIS A [[Secret Pipis]] FOR [[Lucky Customers]]?",
                 "rating": "$rating.rating",
                 "rating_desc": "$rating.rating_desc",
                 "rating_placeholder": "$rating.rating_placeholder",
@@ -150,23 +150,23 @@
                 "lang": "$lang.lang",
                 "lang_desc": "$lang.lang_desc",
                 "lang_placeholder": "$lang.lang_placeholder",
-                "continued": "Continued to **Egg** creation from this message."
+                "continued": "**[[Pipis]]** IS BEING CREATED FROM [[That message over there]]."
             },
             "send": {
-                "not_found": "**Egg #{egg_id}** was not found.",
-                "pending_scan": "**Egg #{egg_id}** exists, but it was created very recently, and the **content scans** have **not finished yet**. Try again later.",
-                "id_rating_not_allowed": "**Egg #{egg_id}** was found, but its **rating** isn't allowed in this channel.",
-                "secret": "**Egg #{egg_id}** is secret!\nYou can only find it randomly...",
-                "filtered": "**Egg #{egg_id}** exists, but **{guild}**'s moderators have decided to **block it** from showing up here.\nTry again **somewhere else**, like a **different server** or **my DMs**.",
-                "lang_not_allowed": "**Egg #{egg_id}** exists, but it's not in **English**, which is the **only language allowed** by **this server**.",
-                "rating_not_allowed": "You may not search for **Egg**s with this **content rating** in this channel.",
-                "no_egg": "Could not find any **Egg**s.",
+                "not_found": "**[[Pipis]] #{egg_id}** IS [[Lost]].",
+                "pending_scan": "**[[Pipis]] #{egg_id}** EXISTS, BUT [[It snew]] SO **[[Epstein-adjacency Calculation]]** IS **[[In progress...]]**. COME BACK [[In the near future]].",
+                "id_rating_not_allowed": "**[[Pipis]] #{egg_id}** was found, but its **rating** isn't allowed in this channel.",
+                "secret": "**[[Pipis]] #{egg_id}** is secret!\nYou can only find it randomly...",
+                "filtered": "**[[Pipis]] #{egg_id}** exists, but **{guild}**'s moderators have decided to **block it** from showing up here.\nTry again **somewhere else**, like a **different server** or **my DMs**.",
+                "lang_not_allowed": "**[[Pipis]] #{egg_id}** exists, but it's not in **English**, which is the **only language allowed** by **this server**.",
+                "rating_not_allowed": "You may not search for **[[Pipis]]** with this **content rating** in this channel.",
+                "no_egg": "Could not find any **[[Pipis]]**.",
                 "collection_status": "Collection Status",
-                "collected": "You have **collected** **Egg #{egg_id}**!\nIt has now been collected **{count} times**.\n-# Check your collected **Egg**s with `/collected`!",
-                "collections": "**Egg #{egg_id}** was collected **{count} times**.",
+                "collected": "You have **collected** **[[Pipis]] #{egg_id}**!\nIt has now been collected **{count} times**.\n-# Check your collected **[[Pipis]]** with `/collected`!",
+                "collections": "**[[Pipis]] #{egg_id}** was collected **{count} times**.",
                 "battle_wins": "Battle Wins",
-                "wins": "**Egg #{egg_id}** has won **{count} battles**.",
-                "eggn": "Egg #{egg_id}",
+                "wins": "**[[Pipis]] #{egg_id}** has won **{count} battles**.",
+                "eggn": "[[Pipis]] #{egg_id}",
                 "creator": "Created by",
                 "unknown_creator": "Unknown User {user_id}",
                 "origin": "In server",
@@ -184,21 +184,21 @@
                 "not_found": "$common.not_found",
                 "cannot": "$common.cannot",
                 "ready": {
-                    "title": "Delete Egg #{egg_id}",
-                    "question": "Are you sure you want to delete this **Egg**?"
+                    "title": "Delete [[Pipis]] #{egg_id}",
+                    "question": "Are you sure you want to delete this **[[Pipis]]**?"
                 },
                 "confirm": "Confirm Deletion",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "cancel": "$common.cancel",
-                "success": "**Egg #{egg_id}** was deleted successfully.",
+                "success": "**[[Pipis]] #{egg_id}** was deleted successfully.",
                 "cancelled": "Deletion cancelled."
             },
             "report": {
                 "not_found": "$common.not_found",
                 "cannot": "$common.cannot",
                 "ready": {
-                    "title": "Report Egg #{egg_id}",
-                    "question": "Are you sure you want to report this **Egg**?"
+                    "title": "Report [[Pipis]] #{egg_id}",
+                    "question": "Are you sure you want to report this **[[Pipis]]**?"
                 },
                 "confirm": "Start Report",
                 "show_extra_attachment": "$common.show_extra_attachment",
@@ -206,21 +206,21 @@
                 "cancelled": "Report cancelled.",
                 "title": "$eggs.report.ready.title",
                 "rule": "Report Reason",
-                "rule_desc": "Which rule is this Egg breaking?",
+                "rule_desc": "Which rule is this [[Pipis]] breaking?",
                 "rule_placeholder": "Select the report reason...",
                 "rules": {
                     "bad_rating": "Wrong Content Rating",
-                    "bad_rating_desc": "This Egg's content rating (Safe/Questionable/Explicit) is incorrect.",
+                    "bad_rating_desc": "This [[Pipis]]'s content rating (Safe/Questionable/Explicit) is incorrect.",
                     "hateful": "Hateful/Violent Speech",
-                    "hateful_desc": "This Egg promotes hatred towards any marginalized group.",
+                    "hateful_desc": "This [[Pipis]] promotes hatred towards any marginalized group.",
                     "other": "Other (specify)",
-                    "other_desc": "You are reporting this Egg for a different reason. Write why below."
+                    "other_desc": "You are reporting this [[Pipis]] for a different reason. Write why below."
                 },
                 "other": "Custom Report Reason",
                 "other_placeholder": "If you chose \"Other\", specify your reason here...",
-                "receipt": "We received your report about **Egg #{egg_id}**. You will be notified about our action.\nThank you for keeping **{brand_name}** a safer platform!\n\n**Reason**: {reason}",
-                "success": "**Egg #{egg_id}** was reported successfully.",
-                "already": "You already reported this **Egg**: wait for us to take action...",
+                "receipt": "We received your report about **[[Pipis]] #{egg_id}**. You will be notified about our action.\nThank you for keeping **{brand_name}** a safer platform!\n\n**Reason**: {reason}",
+                "success": "**[[Pipis]] #{egg_id}** was reported successfully.",
+                "already": "You already reported this **[[Pipis]]**: wait for us to take action...",
                 "actions": {
                     "ignore": "Ignored",
                     "rating": "Changed Rating to `{rating}`",
@@ -228,30 +228,30 @@
                     "delete": "Deleted",
                     "delete_ban": "Deleted, creator (`{user_id}`) banned"
                 },
-                "result": "We have taken action on your report for **Egg #{egg_id}**.\n**Result**: {action}"
+                "result": "We have taken action on your report for **[[Pipis]] #{egg_id}**.\n**Result**: {action}"
             }
         },
         "eggstras": {
             "loop": {
-                "not_collected": "You haven't collected **Egg #{egg_id}**.",
-                "not_created": "You aren't the creator of **Egg #{egg_id}**.",
-                "rating_not_allowed": "You have **Egg #{egg_id}**, but its **rating** isn't allowed in this channel.",
-                "lang_not_allowed": "You have **Egg #{egg_id}**, but its **language** isn't allowed in this server.",
+                "not_collected": "You haven't collected **[[Pipis]] #{egg_id}**.",
+                "not_created": "You aren't the creator of **[[Pipis]] #{egg_id}**.",
+                "rating_not_allowed": "You have **[[Pipis]] #{egg_id}**, but its **rating** isn't allowed in this channel.",
+                "lang_not_allowed": "You have **[[Pipis]] #{egg_id}**, but its **language** isn't allowed in this server.",
                 "rating_not_allowed_filter": "You can't filter by this **rating** in this channel.",
-                "empty": "No **Egg**s with this criteria!",
+                "empty": "No **[[Pipis]]**s with this criteria!",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "not_yours": "$common.not_yours"
             },
             "search": {
-                "empty": "No **Egg**s match your search for **\"{query}\"**.",
+                "empty": "No **[[Pipis]]**s match your search for **\"{query}\"**.",
                 "show_extra_attachment": "$common.show_extra_attachment",
                 "not_yours": "$common.not_yours"
             },
             "leaderboard": {
                 "you": " **__[YOU]__**",
-                "collections": "Egg Collectors' Leaderboard",
-                "creations": "Egg Creators' Leaderboard",
-                "battles": "Most Winning Eggs' Leaderboard",
+                "collections": "[[Pipis]] Collectors' Leaderboard",
+                "creations": "[[Pipis]] Creators' Leaderboard",
+                "battles": "Most Winning [[Pipis]]' Leaderboard",
                 "battlers": "Most Winning Battlers' Leaderboard"
             }
         },
@@ -276,18 +276,18 @@
                 "title": "Donate to {brand_name}",
                 "desc": "Here's the ways in which you can **monetarily support {brand_name}'s development**!",
                 "sku": "Buy from the Store",
-                "sku_desc": "Visit our [**Discord Store**]({link_store}), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily Egg** for your **collection**!\n  - **Higher chance** to get **secret Eggs**!\n  - **Nicer** rate-limits.",
+                "sku_desc": "Visit our [**Discord Store**]({link_store}), where you can **buy**:\n- **Supporter** (User Subscription for 2 USD/mo)\n  - **Daily [[Pipis]]** for your **collection**!\n  - **Higher chance** to get **secret [[Pipis]]**!\n  - **Nicer** rate-limits.",
                 "kofi": "Donate on Ko-fi",
                 "kofi_desc": "Visit our [**Ko-fi page**]({link_kofi}) and **leave a tip**!"
             },
             "help": {
                 "general": {
                     "title": "About {brand_name}",
-                    "desc": "**{brand_name}** is a Discord bot created by **{brand_owner}**.\nIt lets your community **create and share content** called \"**Egg**s\".\nUse it to **grow your server**, **find new servers**, and **have fun** by *collecting **Egg**s* and *battling your friends*!",
-                    "about": "What are Eggs?",
-                    "about_desc": "An **Egg** is some text, an attachment (through file or URL), or both.\nWhen an **Egg** is created, it is accessible anywhere **{brand_name}** is available.\nIf the **Egg** was created in a **public server**, it contains an **invite** to where it was made!",
+                    "desc": "**{brand_name}** is a Discord bot created by **{brand_owner}**.\nIt lets your community **create and share content** called \"**[[Pipis]]**s\".\nUse it to **grow your server**, **find new servers**, and **have fun** by *collecting **[[Pipis]]**s* and *battling your friends*!",
+                    "about": "What are [[Pipis]]?",
+                    "about_desc": "An **[[Pipis]]** is some text, an attachment (through file or URL), or both.\nWhen an **[[Pipis]]** is created, it is accessible anywhere **{brand_name}** is available.\nIf the **[[Pipis]]** was created in a **public server**, it contains an **invite** to where it was made!",
                     "how": "How to use {brand_name}",
-                    "how_desc": "- To **create an Egg**, use `/create` in a server.\n- To **receive** an **Egg**, use `/get`.",
+                    "how_desc": "- To **create an [[Pipis]]**, use `/create` in a server.\n- To **receive** an **[[Pipis]]**, use `/get`.",
                     "donate": "Support {brand_name}",
                     "donate_desc": "You can:\n- **Buy something** from our [**Discord Store**]({link_store})!\n- **Donate** to [**{brand_owner}'s Ko-fi**]({link_kofi})!",
                     "credits": "Credits",
@@ -299,75 +299,75 @@
                     "versions_desc": "**{brand_name}**: {ver_eggs}\n**discord.py**: {ver_dpy}\n**Python**: {ver_py}"
                 },
                 "create": {
-                    "title": "About Creating Eggs",
-                    "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an Egg**. The **Egg** you create will then be available **anywhere that {brand_name} is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **Egg**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **Egg**, as a file.\n- `link`: [Optional] Add an **attachment** to the **Egg**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **Egg** as **Secret**!\n  - This means that it **won't be possible** to view this **Egg** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **Egg**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
+                    "title": "About Creating [[Pipis]]",
+                    "desc": "**Commands**: `/create`, `/lay`\n\nUsing these commands, you may **create an [[Pipis]]**. The **[[Pipis]]** you create will then be available **anywhere that {brand_name} is**.\n\n**Parameters**:\n- `text`: [Optional] Add **text** to the **[[Pipis]]**.\n  - It will appear as the description of the Embed.\n- `file`: [Optional] Add an **attachment** to the **[[Pipis]]**, as a file.\n- `link`: [Optional] Add an **attachment** to the **[[Pipis]]**, as a URL.\n  - Useful if you want to use GIF providers such as Klipy.\n  - ***Note**: You may not use both `file` and `link` at the same time.*\n- `secret`: [Optional] Mark an **[[Pipis]]** as **Secret**!\n  - This means that it **won't be possible** to view this **[[Pipis]]** by ID: only randomly!\n- `rating`: [Optional] The **content rating** of the **[[Pipis]]**.\n  - `Safe`, `Questionable`, or `Explicit`.\n    - **More explicit ratings** are only allowed in **NSFW channels**. It depends on the server's settings."
                 },
                 "get": {
-                    "title": "About Obtaining Eggs",
-                    "desc": "**Commands**: `/get`, `/egg`\n\nUsing these commands, you will **receive an Egg**. If the `id` parameter isn't specified, the **Egg** will be **picked randomly from the global pool** and **added to your collection** if you haven't seen it before.\n\n**Parameters**:\n- `id`: [Optional] View a specific **Egg** by searching for its ID."
+                    "title": "About Obtaining [[Pipis]]",
+                    "desc": "**Commands**: `/get`, `/[[Pipis]]`\n\nUsing these commands, you will **receive an [[Pipis]]**. If the `id` parameter isn't specified, the **[[Pipis]]** will be **picked randomly from the global pool** and **added to your collection** if you haven't seen it before.\n\n**Parameters**:\n- `id`: [Optional] View a specific **[[Pipis]]** by searching for its ID."
                 },
                 "edit": {
-                    "title": "About Editing Eggs",
-                    "desc": "**Commands**: `/edit`\n\nUsing this command, you may **edit an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\nYou **only override the parameters you select here**, meaning that, if you made a text-only **Egg** and wanted to make it Secret, you would only need to set `secret` to `True` here, without touching `text`.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to edit.\n- Other parameters are the same as `/create`/`/lay`."
+                    "title": "About Editing [[Pipis]]",
+                    "desc": "**Commands**: `/edit`\n\nUsing this command, you may **edit an [[Pipis]]**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\nYou **only override the parameters you select here**, meaning that, if you made a text-only **[[Pipis]]** and wanted to make it Secret, you would only need to set `secret` to `True` here, without touching `text`.\n\n**Parameters**:\n- `id`: The ID of the **[[Pipis]]** you want to edit.\n- Other parameters are the same as `/create`/`/lay`."
                 },
                 "report": {
-                    "title": "About Reporting Eggs",
-                    "desc": "**Commands**: `/report`\n\nUsing this command, or through the \"Report\" button when receiving an **Egg**, you can **report an Egg**. This will send it to the global **Egg Moderators**, who will decide what action to take. If you suspect that an **Egg** may be violating a rule, don't hesistate to report it!\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to report."
+                    "title": "About Reporting [[Pipis]]",
+                    "desc": "**Commands**: `/report`\n\nUsing this command, or through the \"Report\" button when receiving an **[[Pipis]]**, you can **report an [[Pipis]]**. This will send it to the global **[[Pipis]] Moderators**, who will decide what action to take. If you suspect that an **[[Pipis]]** may be violating a rule, don't hesistate to report it!\n\n**Parameters**:\n- `id`: The ID of the **[[Pipis]]** you want to report."
                 },
                 "delete": {
-                    "title": "About Deleting Eggs",
-                    "desc": "**Commands**: `/delete`\n\nUsing this command, you may **delete an Egg**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to delete."
+                    "title": "About Deleting [[Pipis]]",
+                    "desc": "**Commands**: `/delete`\n\nUsing this command, you may **delete an [[Pipis]]**. You must have permission to manage it: so you must either **be its creator** or **be a Server Manager where it was created**.\n\n**Parameters**:\n- `id`: The ID of the **[[Pipis]]** you want to delete."
                 },
                 "eggify": {
                     "title": "About Eggifying Messages",
-                    "desc": "You may **turn a message into an Egg** by right-clicking it (or holding it, on mobile), going to the *Apps* menu, and choosing ***Eggify***.\nFrom there, you can **modify the text** (by default, it'll be the *original message's content*), set its **Secret** status, and choose its **rating**."
+                    "desc": "You may **turn a message into an [[Pipis]]** by right-clicking it (or holding it, on mobile), going to the *Apps* menu, and choosing ***Eggify***.\nFrom there, you can **modify the text** (by default, it'll be the *original message's content*), set its **Secret** status, and choose its **rating**."
                 },
                 "collected": {
-                    "title": "About Egg Collections",
-                    "desc": "**Commands**: `/collected`\n\nUsing this command, you can **view your Egg collection**, which is comprised of all the **Egg**s you found randomly. Alternatively, you may also use the `check` parameter to see if you have collected a specific **Egg**.\n\n**Parameters**:\n- `check`: [Optional] The ID of an **Egg**, to see if you've collected it.\n- `rating`: [Optional] Filters your collection by a specific **rating**.\n- `only-secret`: [Optional] Filters your collection, and shows you only the **Secret Egg**s you've found."
+                    "title": "About [[Pipis]] Collections",
+                    "desc": "**Commands**: `/collected`\n\nUsing this command, you can **view your [[Pipis]] collection**, which is comprised of all the **[[Pipis]]**s you found randomly. Alternatively, you may also use the `check` parameter to see if you have collected a specific **[[Pipis]]**.\n\n**Parameters**:\n- `check`: [Optional] The ID of an **[[Pipis]]**, to see if you've collected it.\n- `rating`: [Optional] Filters your collection by a specific **rating**.\n- `only-secret`: [Optional] Filters your collection, and shows you only the **Secret [[Pipis]]**s you've found."
                 },
                 "leaderboard": {
                     "title": "About Leaderboards",
-                    "desc": "**Commands**: `/leaderboard collections`, `/leaderboard creations`, `/leaderboard battles`, `/leaderboard battlers`\n\nThe leaderboard commands allow you to view the **Top 15** of a certain category.\nThese categories are:\n- **Collections**: Users who have collected the most **Egg**s.\n- **Creations**: Users who have created the most **Egg**s.\n- **Battles**: **Egg**s that have won the most battles.\n- **Battlers**: Users who have won the most battles."
+                    "desc": "**Commands**: `/leaderboard collections`, `/leaderboard creations`, `/leaderboard battles`, `/leaderboard battlers`\n\nThe leaderboard commands allow you to view the **Top 15** of a certain category.\nThese categories are:\n- **Collections**: Users who have collected the most **[[Pipis]]**s.\n- **Creations**: Users who have created the most **[[Pipis]]**s.\n- **Battles**: **[[Pipis]]**s that have won the most battles.\n- **Battlers**: Users who have won the most battles."
                 },
                 "config": {
                     "title": "About Configuring {brand_name}",
-                    "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **{brand_name}** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **Egg**s created in it.\n    - **In DMs**: Allow anyone who **views one of your Eggs** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **Egg creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **Egg**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **Egg**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
+                    "desc": "**Commands**: `/config lang`, `/config allow-ext-lang`, `/config privacy`, `/config log`, `/config allowed-ratings`, `/config join-button`, `/config battle-time`, `/config channel-rating`\n\nThe configuration commands allow Server Managers to set up **{brand_name}** the way they see fit.\n\n- `/config lang`: Sets the bot's **response language** in this server (or for a user, if ran in DMs).\n  - `lang` parameter: The language to set.\n- `/config allow-ext-lang`: Permit usage of **user-specified languages** in this server.\n  - `allow` parameter: True or False.\n- `/config privacy`: Change the **privacy setting** for this server (or for a user, if ran in DMs).\n  - `public` parameter: True or False.\n    - **In servers**: Allow **anyone** to **join this server** through **[[Pipis]]**s created in it.\n    - **In DMs**: Allow anyone who **views one of your [[Pipis]]** to see your **username** and **profile**.\n- `/config log`: Set a **log channel** for **[[Pipis]] creations and edits** that happen in this server.\n  - `channel` parameter: The log channel to use.\n- `/config allowed-ratings normal`: Change which **ratings** are allowed in **SFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config allowed-ratings nsfw`: Change which **ratings** are allowed in **NSFW channels**.\n  - `safe`, `questionable`, `explicit` parameters: Whether each rating is allowed. Omitted ones keep their current value.\n- `/config join-button`: Change whether the **\"Join Origin Server\"** button appears on **[[Pipis]]**s gotten here.\n  - `viewable` parameter: True or False.\n- `/config battle-time`: Change how **long battles** last before they expire.\n  - `minutes` parameter: How many minutes a battle should last.\n- `/config channel-rating`: Set the **default rating** for **[[Pipis]]**s created in a channel.\n  - `channel` parameter: The channel to set the rating for.\n  - `rating` parameter: The new default rating for that channel."
                 },
                 "filter": {
-                    "title": "About Filtering Eggs",
-                    "desc": "**Commands**: `/filter`\n\nUsing this command, Server Managers can **toggle filtering** for an **Egg**. This is helpful when an **Egg** does not break the *global* rules, and therefore is allowed by the **Egg Moderators**, but *local* server moderators feel it's inappropriate for their members.\nIf an **Egg** was **already filtered**, running this command on it again will **unfilter it**.\n\n**Parameters**:\n- `id`: The ID of the **Egg** you want to toggle filters for."
+                    "title": "About Filtering [[Pipis]]",
+                    "desc": "**Commands**: `/filter`\n\nUsing this command, Server Managers can **toggle filtering** for an **[[Pipis]]**. This is helpful when an **[[Pipis]]** does not break the *global* rules, and therefore is allowed by the **[[Pipis]] Moderators**, but *local* server moderators feel it's inappropriate for their members.\nIf an **[[Pipis]]** was **already filtered**, running this command on it again will **unfilter it**.\n\n**Parameters**:\n- `id`: The ID of the **[[Pipis]]** you want to toggle filters for."
                 }
             }
         },
         "log": {
-            "log": "**{actor}** ({username}) {action} **Egg #{egg_id}**",
-            "afterdel": "**{actor}** ({username}) had {action} **Egg #{egg_id}**, but it was deleted.",
+            "log": "**{actor}** ({username}) {action} **[[Pipis]] #{egg_id}**",
+            "afterdel": "**{actor}** ({username}) had {action} **[[Pipis]] #{egg_id}**, but it was deleted.",
             "not_allowed": "Only **Server Managers** can execute actions.",
             "show_extra_attachment": "$common.show_extra_attachment",
             "change_rating": "$rating.title",
             "change_lang": "$lang.title",
             "delete": "Delete",
             "report": "$common.report",
-            "deleted": "Deleted **Egg #{egg_id}**."
+            "deleted": "Deleted **[[Pipis]] #{egg_id}**."
         },
         "mod": {
             "filter": {
                 "not_found": "$common.not_found",
-                "unfiltered": "Successfully **unfiltered** **Egg #{egg_id}**.\nIt can now **appear again** in this server.",
-                "filtered": "Successfully **filtered** **Egg #{egg_id}**.\nIt will **no longer appear** in this server."
+                "unfiltered": "Successfully **unfiltered** **[[Pipis]] #{egg_id}**.\nIt can now **appear again** in this server.",
+                "filtered": "Successfully **filtered** **[[Pipis]] #{egg_id}**.\nIt will **no longer appear** in this server."
             }
         },
         "premium": {
             "daily": {
-                "title": "Daily Egg #{egg_id}"
+                "title": "Daily [[Pipis]] #{egg_id}"
             },
             "consent": {
-                "prompt": "As a **Supporter**, you get a **new Egg** in your DMs every day!\nBut, by default, **Explicit Eggs** are not part of the pool. Would you like to **include them** in your daily **Egg**s?\n\n-# By saying \"*Yes*\", you confirm that you are over 18.",
+                "prompt": "As a **Supporter**, you get a **new [[Pipis]]** in your DMs every day!\nBut, by default, **Explicit [[Pipis]]** are not part of the pool. Would you like to **include them** in your daily **[[Pipis]]**s?\n\n-# By saying \"*Yes*\", you confirm that you are over 18.",
                 "allow": "$common.affirm",
                 "decline": "$common.negate",
-                "allowed": "Got it! **Explicit Eggs** may now show up in your daily **Egg**s.",
-                "declined": "Got it! Your daily **Egg**s will never feature **Explicit Eggs**."
+                "allowed": "Got it! **Explicit [[Pipis]]** may now show up in your daily **[[Pipis]]**s.",
+                "declined": "Got it! Your daily **[[Pipis]]**s will never feature **Explicit [[Pipis]]**."
             }
         },
         "utility": {
@@ -378,27 +378,27 @@
         "rating": {
             "title": "Change Rating",
             "rating": "Rating",
-            "rating_desc": "Which content rating should this Egg have? Failing to label correctly will result in punishment.",
+            "rating_desc": "Which content rating should this [[Pipis]] have? Failing to label correctly will result in punishment.",
             "rating_placeholder": "Select the rating...",
             "safe": "Safe",
             "questionable": "Questionable",
             "explicit": "Explicit",
             "invalid": "Unknown rating. Pick one of the suggested options.",
-            "success": "Changed **Egg #{egg_id}**'s rating to **{value}**."
+            "success": "Changed **[[Pipis]] #{egg_id}**'s rating to **{value}**."
         },
         "lang": {
             "title": "Change Language",
             "lang": "Language",
-            "lang_desc": "Which language is this Egg's content in?",
+            "lang_desc": "Which language is this [[Pipis]]'s content in?",
             "lang_placeholder": "Select the language...",
             "invalid": "Unknown language. Pick one of the suggested options.",
-            "success": "Changed **Egg #{egg_id}**'s language to **{value}**."
+            "success": "Changed **[[Pipis]] #{egg_id}**'s language to **{value}**."
         },
         "common": {
             "show_extra_attachment": "Show Extra Attachment",
             "cancel": "Cancel",
-            "not_found": "**Egg #{egg_id}** does not exist.",
-            "cannot": "You don't have permission to manage this **Egg**.",
+            "not_found": "**[[Pipis]] #{egg_id}** does not exist.",
+            "cannot": "You don't have permission to manage this **[[Pipis]]**.",
             "already": "The setting is already correct!",
             "report": "Report",
             "ready": {
@@ -406,7 +406,7 @@
                 "no_content": "[No content]",
                 "link": "Link Attachment"
             },
-            "not_yours": "Only the **original command user** can read through the **Egg** loop.",
+            "not_yours": "Only the **original command user** can read through the **[[Pipis]]** loop.",
             "affirm": "Yes",
             "negate": "No"
         }
