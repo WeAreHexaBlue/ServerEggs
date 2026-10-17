@@ -360,7 +360,8 @@
         },
         "premium": {
             "daily": {
-                "title": "Daily Egg #{egg_id}"
+                "text": "Here's your **Daily Egg** for today (*{date}*). Thanks for **supporting {brand_name}**!",
+                "title": "$eggs.send.eggn"
             },
             "consent": {
                 "prompt": "As a **Supporter**, you get a **new Egg** in your DMs every day!\nBut, by default, **Explicit Eggs** are not part of the pool. Would you like to **include them** in your daily **Egg**s?\n\n-# By saying \"*Yes*\", you confirm that you are over 18.",

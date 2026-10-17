@@ -87,7 +87,11 @@ class Premium(commands.Cog):
         )
 
         try:
-            await user.send(file=sfile or discord.utils.MISSING, view=views.GetEgg(self.bot, lines, egg, None, creator, container, vfile, vlink))
+            await user.send(
+                myloc["text"].format(date=now.strftime("%d/%m/%Y")),
+                file=sfile or discord.utils.MISSING,
+                view=views.GetEgg(self.bot, lines, egg, None, creator, container, vfile, vlink)
+            )
         except discord.HTTPException:
             pass
         else:
