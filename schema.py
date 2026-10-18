@@ -109,9 +109,6 @@ class Battle(models.Model):
     winner = fields.ForeignKeyField("eggs.Egg", "battle_wins", null=True, on_delete=OnDelete.SET_NULL)
     winner_user = fields.ForeignKeyField("eggs.User", "user_battle_wins", null=True, on_delete=OnDelete.SET_NULL)
 
-    class Meta:
-        table = "battle"
-
 class BattleVote(models.Model):
     id = fields.BigIntField(primary_key=True)
 
