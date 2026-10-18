@@ -146,3 +146,10 @@ class Presence(models.Model):
     info = fields.TextField(null=True)
 
     created_at = fields.DatetimeField(auto_now_add=True)
+
+class EmbedHost(models.Model):
+    id = fields.BigIntField(primary_key=True)
+
+    host = fields.CharField(max_length=253, unique=True)
+
+    created_at = fields.DatetimeField(auto_now_add=True)
