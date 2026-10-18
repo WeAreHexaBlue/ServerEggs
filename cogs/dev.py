@@ -8,7 +8,7 @@ from discord.ext import commands
 
 import utils
 import views
-from schema import Guild
+from schema import Guild, Presence
 
 
 def is_dev(ctx: discord.Interaction):
@@ -91,6 +91,31 @@ class Dev(commands.GroupCog):
 
         display_locales = [f"`{locale}`" for locale in self.bot.locales]
         await ctx.followup.send(f"Reloaded locales {", ".join(display_locales)} successfully.")
+
+    presence = app.Group(
+        name="presence",
+        description="Presence-related commands."
+    )
+    
+    @presence.command(name="add", description="Add a Presence.")
+    @app.check(is_dev)
+    async def presence_add(self, ctx: discord.Interaction):
+        await ctx.response.send_modal(views.CreatePresence(self.bot))
+    
+    @presence.command(name="remove", description="Remove a presence.")
+    @app.describe(id="The Presence ID.")
+    @app.check(is_dev)
+    async def presence_remove(self, ctx: discord.Interaction, id: int):
+        await ctx.response.defer()
+
+        presence = await Presence.get_or_none(id=id)
+        if presence is None:
+            await ctx.followup.send(f"Presence `{id}` does not exist.")
+            return
+        
+        await presence.delete()
+
+        await ctx.followup.send("Presence deleted.")
 
     @app.command(name="sync", description="Sync the Command Tree.")
     @app.describe(devguildonly="Only sync for the DEVELOPER_GUILD.")

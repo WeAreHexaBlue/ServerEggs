@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 import utils
-from schema import Egg, Guild
+from schema import Egg, Guild, Presence
 
 
 async def guild_container(bot: commands.Bot, guild: discord.Guild | None, dbguild: Guild | None, *, position: str | None = None) -> discord.ui.Container:
@@ -83,3 +83,72 @@ class GuildLoop(LoopView):
 
         await self.refresh()
         await ctx.edit_original_response(view=self)
+
+
+class CreatePresence(discord.ui.Modal):
+    def __init__(self, bot: commands.Bot):
+        super().__init__(title="Add a Presence")
+
+        self.bot = bot
+
+        self.text = discord.ui.Label(
+            text="Text",
+            description="Shown on its own, and as the fallback if the code fails.",
+            component=discord.ui.TextInput(
+                style=discord.TextStyle.paragraph,
+                max_length=128,
+            ),
+        )
+        self.code = discord.ui.Label(
+            text="Code (optional)",
+            description='Return the string to show, e.g. return f"{await Egg.all().count()} Eggs!"',
+            component=discord.ui.TextInput(
+                style=discord.TextStyle.paragraph,
+                required=False,
+                max_length=4000,
+            ),
+        )
+        self.info = discord.ui.Label(
+            text="Info (optional)",
+            description="A note for the presence info command.",
+            component=discord.ui.TextInput(
+                required=False,
+                max_length=1000,
+            ),
+        )
+
+        self.add_item(self.text)
+        self.add_item(self.code)
+        self.add_item(self.info)
+
+    async def on_submit(self, ctx: discord.Interaction):
+        await ctx.response.defer()
+
+        text = self.text.component.value.strip()
+        code = self.code.component.value.strip() or None
+        info = self.info.component.value.strip() or None
+
+        if code:
+            try:
+                utils.validate_presence(code)
+            except SyntaxError as error:
+                await ctx.followup.send(f"Code does not compile.\n```py\n{error}\n```")
+                return
+
+            try:
+                preview = await utils.run_code(self.bot, code)
+            except Exception as e:  # noqa: BLE001
+                await ctx.followup.send(f"Code raised an exception:\n```py\n{type(e).__name__}: {e}\n```")
+                return
+        else:
+            preview = text
+
+        try:
+            presence = await Presence.create(text=text, code=code, info=info)
+        except Exception as e:  # noqa: BLE001
+            await ctx.followup.send(f"Could not save the Presence: `{e}`")
+            return
+
+        await self.bot.refresh_presences()
+
+        await ctx.followup.send(f"Added Presence `{presence.id}`\n**Preview:** {preview}")

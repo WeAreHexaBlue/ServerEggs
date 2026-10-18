@@ -9,6 +9,7 @@ from .leaderboard import *
 from .log import *
 from .misc import *
 from .mod import *
+from .presence import *
 from .ratelimit import *
 from .scan import *
 from .sku import *

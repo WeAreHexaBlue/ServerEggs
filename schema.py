@@ -141,6 +141,8 @@ class Presence(models.Model):
     id = fields.BigIntField(primary_key=True)
 
     text = fields.TextField()
+    code = fields.TextField(null=True)
+
     info = fields.TextField(null=True)
 
     created_at = fields.DatetimeField(auto_now_add=True)
