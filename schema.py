@@ -136,3 +136,20 @@ class Report(models.Model):
 
     class Meta:
         unique_together = (("egg", "reporter"),)
+
+class Presence(models.Model):
+    id = fields.BigIntField(primary_key=True)
+
+    text = fields.TextField()
+    code = fields.TextField(null=True)
+
+    info = fields.TextField(null=True)
+
+    created_at = fields.DatetimeField(auto_now_add=True)
+
+class EmbedHost(models.Model):
+    id = fields.BigIntField(primary_key=True)
+
+    host = fields.CharField(max_length=253, unique=True)
+
+    created_at = fields.DatetimeField(auto_now_add=True)

@@ -215,34 +215,44 @@ async def send_extra(ctx: discord.Interaction, file, link):
 
     await ctx.response.send_message(link, file=extra or discord.utils.MISSING, ephemeral=True)
 
-EMBEDDABLE_MEDIA_HOSTS = (
-    "youtube.com", "youtu.be",
-    "twitter.com", "x.com",
-    "fxtwitter.com", "fixupx.com", "fxbsky.app",
-    "vxtwitter.com", "fixvx.com",
-    "instagram.com", "kkinstagram.com",
-    "tiktok.com",
-    "twitch.tv",
-    "bsky.app",
-    "vimeo.com",
-    "streamable.com",
-    "soundcloud.com",
-    "spotify.com",
-    "bandcamp.com",
-)
+# LEGACY HARDCODED EMBEDDABLE HOSTS:
+#     "youtube.com", "youtu.be",
+#     "twitter.com", "x.com",
+#     "fxtwitter.com", "fixupx.com", "fxbsky.app",
+#     "vxtwitter.com", "fixvx.com",
+#     "instagram.com", "kkinstagram.com",
+#     "tiktok.com",
+#     "twitch.tv",
+#     "bsky.app",
+#     "vimeo.com",
+#     "streamable.com",
+#     "soundcloud.com",
+#     "spotify.com",
+#     "bandcamp.com",
 
-def is_native_embed(url: str) -> bool:
+def normalize_host(value: str) -> str:
+    value = value.strip().lower()
+
+    if "//" in value:
+        value = urlparse(value).netloc
+    else:
+        value = value.split("/")[0]
+
+    return value.split(":")[0].strip(".").removeprefix("www.")
+
+def is_native_embed(url: str, bot) -> bool:
     try:
         netloc = urlparse(url).netloc.lower()
-        return any(netloc == host or netloc.endswith(f".{host}") for host in EMBEDDABLE_MEDIA_HOSTS)
     except ValueError:
         return False
+
+    return any(netloc == host.host or netloc.endswith(f".{host.host}") for host in bot.embed_hosts)
 
 async def resolve_media_url(url: str, bot) -> str | None:
     if not url.startswith(("http://", "https://")):
         return None
 
-    if is_native_embed(url):
+    if is_native_embed(url, bot):
         return url
 
     if re.search(SUPPORTED_FILETYPE_REGEX, url, re.IGNORECASE):

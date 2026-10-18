@@ -17,7 +17,7 @@ from tortoise import Tortoise
 
 import utils
 import views
-from schema import Guild, User
+from schema import EmbedHost, Guild, Presence, User
 from tortoise_config import TORTOISE_ORM
 
 dotenv.load_dotenv()
@@ -42,6 +42,10 @@ class ServerEggs(commands.Bot):
 
         self.locales = {}
         self.lang_cache = TTLCache(10000, ttl=3600)
+
+        self.presences = []
+        self.embed_hosts = []
+
         self.startup_announced = False
         self.locale_warnings = []
 
@@ -65,6 +69,26 @@ class ServerEggs(commands.Bot):
         dev_guild = utils.developer_guild()
         if dev_guild is not None:
             await self.tree.sync(guild=dev_guild)
+        
+        await self.refresh_presences()
+        await self.refresh_embed_hosts()
+
+    async def refresh_presences(self) -> list[Presence]:
+        presences = await Presence.all()
+
+        for presence in presences:
+            presence.current = False
+
+        self.presences[:] = presences
+
+        return self.presences
+
+    async def refresh_embed_hosts(self) -> list[EmbedHost]:
+        embed_hosts = await EmbedHost.all()
+
+        self.embed_hosts[:] = embed_hosts
+
+        return self.embed_hosts
 
     async def get_lang(self, ctx: discord.Interaction) -> str:
         if not ctx.guild:

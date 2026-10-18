@@ -152,7 +152,7 @@ class Eggstras(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    def _loop_command(name: str, prefix: str):
+    def loop_command(name: str, prefix: str):
         def apply(fn):
             fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
             fn = app.choices(rating=list(utils.RATING_CHOICES))(fn)
@@ -230,11 +230,11 @@ class Eggstras(commands.Cog):
 
         await ctx.followup.send(file=sfile, view=view)
 
-    @_loop_command("collected", "collected")
+    @loop_command("collected", "collected")
     async def collected(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "collected", check, rating, secret)
 
-    @_loop_command("my-eggs", "my-eggs")
+    @loop_command("my-eggs", "my-eggs")
     async def my_eggs(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "created", check, rating, secret)
 
