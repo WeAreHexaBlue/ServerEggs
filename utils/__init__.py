@@ -1,7 +1,6 @@
 from .attach import *
 from .battles import *
 from .credits import *
-from .dictfind import *
 from .eggs import *
 from .embed import *
 from .i18n import *
