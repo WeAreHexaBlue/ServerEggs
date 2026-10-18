@@ -1,10 +1,18 @@
+import os
+
 import discord
 from discord import app_commands as app
 from discord.ext import commands
 
 import utils
-from schema import Egg, Guild
+from schema import Egg, Guild, Report, User
 
+
+def is_global_mod(ctx: discord.Interaction):
+    dev_guild = utils.developer_guild()
+    if dev_guild is None or not ctx.guild or ctx.guild.id != dev_guild.id: return False
+
+    return ctx.guild.get_role(int(os.getenv("MOD_ROLE_ID"))) in ctx.user.roles
 
 class Mod(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -36,6 +44,45 @@ class Mod(commands.Cog):
         else:
             await guild.filtered.add(egg)
             await ctx.followup.send(myloc["filtered"].format(egg_id=egg.id), ephemeral=True)
+
+    globalmod = app.Group(
+        name="mod",
+        description="Global Egg Moderator commands.",
+        guild_ids=[utils.developer_guild().id]
+    )
+
+    @globalmod.command(name="ban", description="Ban or unban a User from creating Eggs (toggle).")
+    @app.describe(user="The User to toggle ban status for.")
+    @app.check(is_global_mod)
+    async def ban(self, ctx: discord.Interaction, user: discord.User):
+        await ctx.response.defer()
+
+        db_user = await User.get_or_none(id=user.id)
+
+        if db_user is None:
+            await ctx.followup.send(content="User not found.")
+            return
+
+        db_user.banned = not db_user.banned
+        await db_user.save(update_fields=["banned"])
+
+        await ctx.followup.send(content=f"{"Banned" if db_user.banned else "Unbanned"} user `{db_user.id}`.")
+
+    @globalmod.command(name="new-reports", description="Link to the top of the report queue.")
+    @app.check(is_global_mod)
+    async def new_reports(self, ctx: discord.Interaction):
+        await ctx.response.defer()
+
+        oldest_report = await Report.all().order_by("created_at").first()
+
+        if oldest_report is None:
+            await ctx.followup.send(content="Queue clear!")
+            return
+
+        reportch = self.bot.get_channel(int(os.getenv("REPORT_CHANNEL")))
+        message = reportch.get_partial_message(oldest_report.log_message_id)
+
+        await ctx.followup.send(content=message.jump_url)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Mod(bot))

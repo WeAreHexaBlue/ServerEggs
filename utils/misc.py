@@ -13,6 +13,15 @@ RATING_CHOICES = [
     app.Choice(name=app.locale_str("rating_explicit"), value=Rating.EXPLICIT),
 ]
 
+def recursive_find(path: str, dictionary: dict):
+    deconstructed_path = path.split("/", 1)
+
+    inner = dictionary[deconstructed_path[0]]
+
+    if len(deconstructed_path) == 1:
+        return inner
+
+    return recursive_find(deconstructed_path[1], inner)
 
 def channel_is_nsfw(channel) -> bool:
     return bool(channel and hasattr(channel, "is_nsfw") and channel.is_nsfw())

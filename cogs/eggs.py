@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 from discord import app_commands as app
 from discord.ext import commands
@@ -52,6 +54,9 @@ def delete_command(name: str):
 class Eggs(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+
+    async def cog_load(self):
+        asyncio.create_task(utils.resume_pending_scans(self.bot), name="csam-scan-resume")
 
     async def manage_check(self, ctx: discord.Interaction, egg):
         creatorchk = ctx.user.id == egg.creator_id
@@ -117,8 +122,9 @@ class Eggs(commands.Cog):
             if lang not in self.bot.locales:
                 await ctx.followup.send(myloc["bad_lang"])
                 return
-            if guild and not guild.allow_ext_lang and lang != guild.lang:
-                await ctx.followup.send(myloc["lang_not_allowed"])
+            if guild and not guild.allow_ext_lang and utils.lang_base(lang) != utils.lang_base(guild.lang):
+                language = self.bot.locales.get(utils.lang_base(guild.lang)).get("language_name")
+                await ctx.followup.send(myloc["lang_not_allowed"].format(language=language))
                 return
 
         user, _ = await User.get_or_create(id=ctx.user.id)
@@ -143,7 +149,7 @@ class Eggs(commands.Cog):
             text = text.strip() or None
             trimtext = utils.truncate(text, 4000)
 
-        attach_path = attach_hash = attach_link = scanfile = attach_bytes = None
+        attach_path = attach_hash = attach_link = scanfile = attach_bytes = scanbytes = scan_filename = None
         if file:
             content_type = utils.get_content_type(file)
 
@@ -162,7 +168,7 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["invalid_url"])
                 return
 
-            if not utils.is_native_embed(attach_link):
+            if not utils.is_native_embed(attach_link, self.bot):
                 scanfile = await utils.url_to_file(attach_link, self.bot)
                 if not scanfile:
                     await ctx.followup.send(myloc["could_not_scan"])
@@ -171,19 +177,16 @@ class Eggs(commands.Cog):
         processing = await ctx.followup.send(myloc["processing"])
 
         if scanfile:
-            scan, too_long, attach_bytes = await utils.scan_csam(scanfile, self.bot)
+            scanbytes = attach_bytes = scanfile.fp.read()
+            scan_filename = scanfile.filename
 
-            if too_long:
+            if len(scanbytes) > utils.UPLOAD_LIMIT:
                 await processing.edit(content=myloc["too_big"])
                 return
 
-            if scan:
-                await processing.edit(content=myloc["illegal"])
-
-                user.banned = True
-                await user.save()
-
-                return
+            needs_scan = utils.csam_scan_needed(scan_filename)
+        else:
+            needs_scan = False
 
         if file:
             try:
@@ -215,7 +218,7 @@ class Eggs(commands.Cog):
                 combined |= cond
 
             query = Egg.exclude(id=id) if id else Egg.all()
-            existing = await query.filter(combined).first()
+            existing = await query.filter(combined, pending_scan=False).first()
 
         if existing:
             utils.safe_remove(attach_path)
@@ -229,9 +232,10 @@ class Eggs(commands.Cog):
                 attach_path=attach_path,
                 attach_hash=attach_hash,
                 attach_link=attach_link,
-                lang=lang or (guild.lang if guild else "en"),
+                lang=utils.lang_base(lang) if lang else utils.lang_base(guild.lang if guild else "en"),
                 rating=rating,
                 secret=secret or False,
+                pending_scan=needs_scan,
                 creator=user,
                 origin=guild
             )
@@ -246,14 +250,21 @@ class Eggs(commands.Cog):
                 egg.attach_path = attach_path
                 egg.attach_hash = attach_hash
                 egg.attach_link = attach_link
+                egg.pending_scan = needs_scan
             if rating is not None: egg.rating = rating
             if secret is not None: egg.secret = secret
-            if lang is not None: egg.lang = lang
-
+            if lang is not None: egg.lang = utils.lang_base(lang)
             await egg.save()
 
+        if needs_scan:
+            utils.schedule_csam_scan(
+                self.bot, egg.id, scanbytes, scan_filename,
+                expected_hash=egg.attach_hash, expected_link=egg.attach_link,
+                guild_id=ctx.guild.id if ctx.guild else None, actor_id=ctx.user.id, is_edit=bool(id),
+            )
+
         creator = self.bot.get_user(egg.creator_id)
-        if ctx.guild: await utils.log_egg(self.bot, lines, guild, egg, creator, ctx.user, bool(id))
+        if ctx.guild and not egg.pending_scan: await utils.log_egg(self.bot, lines, guild, egg, creator, ctx.user, bool(id))
 
         container, resfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg,
@@ -322,6 +333,10 @@ class Eggs(commands.Cog):
             if not egg:
                 await ctx.followup.send(myloc["not_found"].format(egg_id=id))
                 return
+            
+            if egg.pending_scan:
+                await ctx.followup.send(myloc["pending_scan"].format(egg_id=id))
+                return
 
             if egg.rating not in allowed:
                 await ctx.followup.send(myloc["id_rating_not_allowed"].format(egg_id=id))
@@ -335,7 +350,7 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["filtered"].format(egg_id=id, guild=ctx.guild.name))
                 return
             
-            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+            if guild and not guild.allow_ext_lang and utils.lang_base(egg.lang) != utils.lang_base(guild.lang):
                 await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=id))
                 return
         else:
@@ -386,11 +401,10 @@ class Eggs(commands.Cog):
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
 
-        query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False)
+        query = Egg.filter(rating__in=allowed, id__not_in=filtered, secret=False, pending_scan=False)
 
         if guild and not guild.allow_ext_lang:
-            query = query.filter(lang=guild.lang)
-
+            query = query.filter(lang=utils.lang_base(guild.lang))
         egg = await query.order_by("-created_at").prefetch_related("creator", "origin").first()
 
         if egg is None:
@@ -428,6 +442,10 @@ class Eggs(commands.Cog):
         egg = await Egg.get_with_related(id)
 
         if not egg:
+            await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
+            return
+
+        if egg.pending_scan and not check_manage:
             await ctx.followup.send(myloc["not_found"].format(egg_id=id), ephemeral=True)
             return
 

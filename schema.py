@@ -40,6 +40,8 @@ class Egg(models.Model):
 
     secret = fields.BooleanField(default=False)
 
+    pending_scan = fields.BooleanField(default=False)
+
     reports = fields.ReverseRelation["Report"]
 
     creator = fields.ForeignKeyField("eggs.User", "eggs", null=True, on_delete=OnDelete.SET_NULL)
@@ -107,9 +109,6 @@ class Battle(models.Model):
     winner = fields.ForeignKeyField("eggs.Egg", "battle_wins", null=True, on_delete=OnDelete.SET_NULL)
     winner_user = fields.ForeignKeyField("eggs.User", "user_battle_wins", null=True, on_delete=OnDelete.SET_NULL)
 
-    class Meta:
-        table = "battle"
-
 class BattleVote(models.Model):
     id = fields.BigIntField(primary_key=True)
 
@@ -134,3 +133,20 @@ class Report(models.Model):
 
     class Meta:
         unique_together = (("egg", "reporter"),)
+
+class Presence(models.Model):
+    id = fields.BigIntField(primary_key=True)
+
+    text = fields.TextField()
+    code = fields.TextField(null=True)
+
+    info = fields.TextField(null=True)
+
+    created_at = fields.DatetimeField(auto_now_add=True)
+
+class EmbedHost(models.Model):
+    id = fields.BigIntField(primary_key=True)
+
+    host = fields.CharField(max_length=253, unique=True)
+
+    created_at = fields.DatetimeField(auto_now_add=True)

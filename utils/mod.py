@@ -14,7 +14,6 @@ def developer_guild() -> discord.Object | None:
     except ValueError:
         return None
 
-
 async def is_global_mod(bot, user_id: int) -> bool:
     devguild = bot.get_guild(int(os.getenv("DEVELOPER_GUILD_ID")))
 

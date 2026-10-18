@@ -174,4 +174,4 @@ class LangModal(EggSelectModal):
     def parse(self, raw: str):
         if raw not in self.bot.locales:
             raise ValueError(f"Unknown language: {raw}")
-        return raw, self.bot.locales[raw].get("language_name", raw)
+        return utils.lang_base(raw), self.bot.locales[raw].get("language_name", raw)

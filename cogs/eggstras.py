@@ -124,7 +124,7 @@ FUZZY_LIMIT = 50
 FUZZY_THRESHOLD = 0.2
 
 async def fuzzy_ids(query: str, guild_id: int | None = None, allowed_ratings: list[Rating] | None = None, lang: str | None = None) -> list[int]:
-    where = ["secret = false"]
+    where = ["secret = false", "pending_scan = false"]
 
     if allowed_ratings:
         values = ", ".join(f"'{rating.value if hasattr(rating, 'value') else rating}'" for rating in allowed_ratings)
@@ -152,7 +152,7 @@ class Eggstras(commands.Cog):
         self.bot = bot
 
     @staticmethod
-    def _loop_command(name: str, prefix: str):
+    def loop_command(name: str, prefix: str):
         def apply(fn):
             fn = app.allowed_contexts(guilds=True, dms=True, private_channels=True)(fn)
             fn = app.choices(rating=list(utils.RATING_CHOICES))(fn)
@@ -184,7 +184,7 @@ class Eggstras(commands.Cog):
         if check is not None:
             egg = await field.filter(id=check).prefetch_related("creator", "origin").first()
 
-            if not egg:
+            if not egg or egg.pending_scan:
                 await ctx.followup.send(myloc[f"not_{mode}"].format(egg_id=check))
                 return
 
@@ -192,13 +192,15 @@ class Eggstras(commands.Cog):
                 await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id=check))
                 return
 
-            if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+            if guild and not guild.allow_ext_lang and utils.lang_base(egg.lang) != utils.lang_base(guild.lang):
                 await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=check))
                 return
 
             loop = [egg]
         else:
             query = field.all().prefetch_related("creator", "origin")
+
+            query = query.filter(pending_scan=False)
 
             if rating is not None and rating not in allowed:
                 await ctx.followup.send(myloc["rating_not_allowed_filter"])
@@ -213,8 +215,7 @@ class Eggstras(commands.Cog):
                 query = query.filter(secret=True)
 
             if guild and not guild.allow_ext_lang:
-                query = query.filter(lang=guild.lang)
-
+                query = query.filter(lang=utils.lang_base(guild.lang))
             loop = await query
 
             if not loop:
@@ -229,11 +230,11 @@ class Eggstras(commands.Cog):
 
         await ctx.followup.send(file=sfile, view=view)
 
-    @_loop_command("collected", "collected")
+    @loop_command("collected", "collected")
     async def collected(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "collected", check, rating, secret)
 
-    @_loop_command("my-eggs", "my-eggs")
+    @loop_command("my-eggs", "my-eggs")
     async def my_eggs(self, ctx: discord.Interaction, check: int | None, rating: Rating | None, secret: bool | None):
         await self.egg_loop(ctx, "created", check, rating, secret)
 
@@ -261,11 +262,11 @@ class Eggstras(commands.Cog):
 
         base = Egg.all().prefetch_related("creator", "origin")
         base = base.filter(secret=False)
+        base = base.filter(pending_scan=False)
         base = base.filter(rating__in=allowed)
 
         if guild and not guild.allow_ext_lang:
-            base = base.filter(lang=guild.lang)
-
+            base = base.filter(lang=utils.lang_base(guild.lang))
         if ctx.guild:
             filtered = await Egg.filter(filtered_in__id=ctx.guild.id).values_list("id", flat=True)
             if filtered:
@@ -287,7 +288,7 @@ class Eggstras(commands.Cog):
                 egg.id,
             ))
         else:
-            lang_filter = guild.lang if (guild and not guild.allow_ext_lang) else None
+            lang_filter = utils.lang_base(guild.lang) if (guild and not guild.allow_ext_lang) else None
             ids = await fuzzy_ids(query, ctx.guild.id if ctx.guild else None, allowed, lang_filter)
 
             if ids:

@@ -172,6 +172,11 @@ def load_locales(lang_dir: str = "./lang") -> tuple[dict[str, dict], list[str]]:
 
     return locales, warnings
 
+def lang_base(code: str | None) -> str | None:
+    if not code:        return code
+
+    return str(code).split("-", 1)[0]
+
 def pick_locale(locales: dict, code: str | None) -> dict:
     if code and code in locales:
         return locales[code]

@@ -1,7 +1,6 @@
 from .attach import *
 from .battles import *
 from .credits import *
-from .dictfind import *
 from .eggs import *
 from .embed import *
 from .i18n import *
@@ -9,6 +8,7 @@ from .leaderboard import *
 from .log import *
 from .misc import *
 from .mod import *
+from .presence import *
 from .ratelimit import *
 from .scan import *
 from .sku import *

@@ -20,7 +20,7 @@ class Battles(commands.Cog):
     async def pool_fighter_egg(self, ctx: discord.Interaction, myloc: dict, egg_id: int, *, guild: Guild | None = None, channel=None):
         egg = await Egg.get_or_none(id=egg_id)
 
-        if egg is None:
+        if egg is None or egg.pending_scan:
             await ctx.followup.send(myloc["not_found"].format(egg_id=egg_id), ephemeral=True)
             return None
 
@@ -28,10 +28,9 @@ class Battles(commands.Cog):
             await ctx.followup.send(myloc["rating_not_allowed"].format(egg_id=egg_id), ephemeral=True)
             return None
 
-        if guild and not guild.allow_ext_lang and egg.lang != guild.lang:
+        if guild and not guild.allow_ext_lang and utils.lang_base(egg.lang) != utils.lang_base(guild.lang):
             await ctx.followup.send(myloc["lang_not_allowed"].format(egg_id=egg_id), ephemeral=True)
             return None
-
         return egg
 
     async def owned_fighter_egg(self, ctx: discord.Interaction, myloc: dict, user: User, egg_id: int | None, *, guild: Guild | None = None, channel=None, exclude_ids=None):
