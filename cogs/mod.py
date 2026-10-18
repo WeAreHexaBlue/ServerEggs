@@ -44,13 +44,13 @@ class Mod(commands.Cog):
         else:
             await guild.filtered.add(egg)
             await ctx.followup.send(myloc["filtered"].format(egg_id=egg.id), ephemeral=True)
-    
+
     globalmod = app.Group(
         name="mod",
         description="Global Egg Moderator commands.",
-        guild_ids=[utils.developer_guild()]
+        guild_ids=[utils.developer_guild().id]
     )
-    
+
     @globalmod.command(name="ban", description="Ban or unban a User from creating Eggs (toggle).")
     @app.describe(user="The User to toggle ban status for.")
     @app.check(is_global_mod)
