@@ -8,7 +8,7 @@ from discord.ext import commands
 
 import utils
 import views
-from schema import Guild
+from schema import EmbedHost, Guild, Presence
 
 
 def is_dev(ctx: discord.Interaction):
@@ -91,6 +91,74 @@ class Dev(commands.GroupCog):
 
         display_locales = [f"`{locale}`" for locale in self.bot.locales]
         await ctx.followup.send(f"Reloaded locales {", ".join(display_locales)} successfully.")
+
+    presence = app.Group(
+        name="presence",
+        description="Presence-related commands."
+    )
+    
+    @presence.command(name="add", description="Add a presence.")
+    @app.check(is_dev)
+    async def presence_add(self, ctx: discord.Interaction):
+        await ctx.response.send_modal(views.CreatePresence(self.bot))
+    
+    @presence.command(name="remove", description="Remove a presence.")
+    @app.describe(id="The Presence ID.")
+    @app.check(is_dev)
+    async def presence_remove(self, ctx: discord.Interaction, id: int):
+        await ctx.response.defer()
+
+        presence = await Presence.get_or_none(id=id)
+        if presence is None:
+            await ctx.followup.send(f"Presence `{id}` does not exist.")
+            return
+        
+        await presence.delete()
+        await self.bot.refresh_presences()
+
+        await ctx.followup.send("Presence deleted.")
+
+    embedhost = app.Group(
+        name="embedhost",
+        description="Embeddable host-related commands."
+    )
+
+    @embedhost.command(name="add", description="Add an embeddable host.")
+    @app.describe(host="The host URL or domain.")
+    @app.check(is_dev)
+    async def embedhost_add(self, ctx: discord.Interaction, host: str):
+        await ctx.response.defer()
+
+        host = utils.normalize_host(host)
+
+        if not host:
+            await ctx.followup.send("That is not a valid host.")
+            return
+
+        embedhost, created = await EmbedHost.get_or_create(host=host)
+        if not created:
+            await ctx.followup.send(f"`{embedhost.host}` is already an embeddable host.")
+            return
+
+        await self.bot.refresh_embed_hosts()
+
+        await ctx.followup.send(f"Added embeddable host `{embedhost.host}`.")
+
+    @embedhost.command(name="remove", description="Remove an embeddable host.")
+    @app.describe(host="The host URL or domain.")
+    @app.check(is_dev)
+    async def embedhost_remove(self, ctx: discord.Interaction, host: str):
+        await ctx.response.defer()
+
+        embedhost = await EmbedHost.get_or_none(host=utils.normalize_host(host))
+        if embedhost is None:
+            await ctx.followup.send(f"`{host}` is not an embeddable host.")
+            return
+
+        await embedhost.delete()
+        await self.bot.refresh_embed_hosts()
+
+        await ctx.followup.send(f"Removed embeddable host `{embedhost.host}`.")
 
     @app.command(name="sync", description="Sync the Command Tree.")
     @app.describe(devguildonly="Only sync for the DEVELOPER_GUILD.")

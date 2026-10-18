@@ -47,7 +47,7 @@ class Mod(commands.Cog):
     
     @app.command(name="ban", description="Ban or unban a User from creating Eggs (toggle).")
     @app.describe(user="The User to toggle ban status for.")
-    @app.guilds([utils.developer_guild()])
+    @app.guilds(utils.developer_guild())
     @app.check(is_global_mod)
     async def ban(self, ctx: discord.Interaction, user: discord.User):
         await ctx.response.defer()
@@ -64,7 +64,7 @@ class Mod(commands.Cog):
         await ctx.followup.send(content=f"{"Banned" if db_user.banned else "Unbanned"} user `{db_user.id}`.")
 
     @app.command(name="new-reports", description="Link to the top of the report queue.")
-    @app.guilds([utils.developer_guild()])
+    @app.guilds(utils.developer_guild())
     @app.check(is_global_mod)
     async def new_reports(self, ctx: discord.Interaction):
         await ctx.response.defer()

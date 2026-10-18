@@ -168,7 +168,7 @@ class Eggs(commands.Cog):
                 await ctx.followup.send(myloc["invalid_url"])
                 return
 
-            if not utils.is_native_embed(attach_link):
+            if not utils.is_native_embed(attach_link, self.bot):
                 scanfile = await utils.url_to_file(attach_link, self.bot)
                 if not scanfile:
                     await ctx.followup.send(myloc["could_not_scan"])
