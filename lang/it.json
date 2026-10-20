@@ -52,7 +52,8 @@
                 "success_disabled": "L'utilizzo delle **lingue esterne** **non è più permesso** all'interno di questo server!"
             },
             "server-description": {
-                "success": "Impostata la **descrizione del server** come:"
+                "success": "Impostata la **descrizione del server** come:",
+                "cleared": "**Eliminata** la **descrizione del server** con successo."
             },
             "privacy": {
                 "missing_guild_perms": "È necessario il permesso **Gestisci Server** per eseguire questo comando qui.\n\n-# Se intendevi cambiare la **tua impostazione della privacy**, esegui `/{command_config} {command_privacy}` nei [miei DM](<{link_dm}>).",
