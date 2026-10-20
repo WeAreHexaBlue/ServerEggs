@@ -130,6 +130,8 @@ class ServerEggs(commands.Bot):
     async def get_section(self, ctx: discord.Interaction, path: str):
         lines = await self.fetch_lines(ctx)
 
+        lines = utils.resolve_tokens(lines, utils.token_resolvers(self.locales, ctx.locale.value))
+
         return lines, self.get_lines(path, lines)
 
     async def close(self):

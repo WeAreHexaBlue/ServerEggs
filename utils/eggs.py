@@ -5,6 +5,7 @@ from schema import Egg, Guild, Rating
 
 from . import i18n, misc
 
+deleted_egg_ids = set()
 
 def safe_remove(path: str | None) -> None:
     if not path or not os.path.exists(path):
@@ -25,6 +26,10 @@ async def egg_delete(egg):
     safe_remove(egg.attach_path)
 
     await egg.delete()
+    deleted_egg_ids.add(egg.id)
+
+def egg_is_deleted(id: int):
+    return id in deleted_egg_ids
 
 async def random_egg(guild: Guild | None, channel, *, rating: Rating = None, exclude_ids = None, secret_chance: float = 0.0, allowed_ratings: list[Rating] | None = None):
     filtered_ids: list[int] = []
