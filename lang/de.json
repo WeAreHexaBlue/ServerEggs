@@ -106,7 +106,7 @@
                 "supported_only": "Du kannst **nur Bilder** (`gif`, `png`, `jpg`, `jpeg`, `webp`), **Videos** (`mp4`, `webm`), oder **Audio** (`mp3`, `ogg`, `wav`, `opus`, `m4a`) anhängen.",
                 "invalid_url": "Der angegebene `{param_create_link}`-Parameter zeigt *nicht* auf ein **unterstütztes Medien-Format** (Bild, Video, Audio).",
                 "could_not_scan": "",
-                "processing": "Dein **Ei** wird verarbeitet...\n-# Dies kann eine Weile dauern! Wir überprüfen nur, dass du nichts illegales angehängt hast.",
+                "processing": "Dein **Ei** wird verarbeitet...",
                 "too_big": "Dein Anhang ist **zu groß**! Das Limit beträgt **20 MB**.",
                 "convert_failed": "Dein **Anhang** konnte nicht in ein unterstütztes Format umgewandelt werden. Es könnte sich um eine beschädigte Datei oder einen nicht unterstützten Codec handeln.",
                 "illegal": "**ILLEGALE INHALTE ERKANNT**. Du wurdest hiermit von dem Erstellen von **Ei**ern **ausgeschlossen**.",
