@@ -119,6 +119,7 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
     return missing
 
 TOKEN = re.compile(r"\{(?P<prefix>[a-z][a-z0-9]*)_(?P<name>[a-z0-9][a-z0-9_-]*)\}")
+LOCALE_TOKEN_PREFIXES = ("command", "param", "choice")
 
 TokenResolver = Callable[[str], str | None]
 
@@ -129,7 +130,9 @@ def token_resolvers(locales: dict | None = None, locale: str | None = None) -> d
     }
 
     if locales is not None and locale is not None:
-        resolvers["command"] = pick_locale(locales, locale).get
+        locale_data = pick_locale(locales, locale)
+        for prefix in LOCALE_TOKEN_PREFIXES:
+            resolvers[prefix] = locale_data.get
 
     return resolvers
 
@@ -207,13 +210,14 @@ def load_locales(lang_dir: str = "./lang") -> tuple[dict[str, dict], list[str]]:
     if unknown:
         warnings.append(f"Unknown tokens, left unresolved: {", ".join(sorted("{" + name + "}" for name in unknown))}")
 
-    command_keys = set(fallback) - { "language_name", "lines" }
-    unknown_commands: set[str] = set()
-    for data in raw.values():
-        unknown_commands.update(token_names(data, "command") - command_keys)
+    name_keys = set(fallback) - { "language_name", "lines" }
+    for prefix in LOCALE_TOKEN_PREFIXES:
+        unknown_names: set[str] = set()
+        for data in raw.values():
+            unknown_names.update(token_names(data, prefix) - name_keys)
 
-    if unknown_commands:
-        warnings.append(f"Unknown command tokens: {", ".join(sorted("{" + name + "}" for name in unknown_commands))}")
+        if unknown_names:
+            warnings.append(f"Unknown {prefix} tokens: {", ".join(sorted("{" + name + "}" for name in unknown_names))}")
 
     return locales, warnings
 

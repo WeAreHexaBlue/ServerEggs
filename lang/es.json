@@ -79,7 +79,7 @@
         },
         "eggs": {
             "create_edit": {
-                "invalid_url": "El parametro `link` especificado *no* corresponde a ningun **formato multimedia compatible** (imagen, video o audio).",
+                "invalid_url": "El parametro `{param_create_link}` especificado *no* corresponde a ningun **formato multimedia compatible** (imagen, video o audio).",
                 "could_not_scan": "No se pudo recuperar la media para el analisis de contenido dañino.",
                 "processing": "Procesando tu **Huevo**...\n-# Esto tomara un momento! Solo estamos chequeando que no hayas puesto nada ilegal.",
                 "too_big": "Tu archivo es **muy grande**! El limite es **15 MB**.",

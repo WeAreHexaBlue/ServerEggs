@@ -104,7 +104,7 @@
                 "not_found": "",
                 "cannot": "",
                 "supported_only": "Du kannst **nur Bilder** (`gif`, `png`, `jpg`, `jpeg`, `webp`), **Videos** (`mp4`, `webm`), oder **Audio** (`mp3`, `ogg`, `wav`, `opus`, `m4a`) anhängen.",
-                "invalid_url": "Der angegebene `link`-Parameter zeigt *nicht* auf ein **unterstütztes Medien-Format** (Bild, Video, Audio).",
+                "invalid_url": "Der angegebene `{param_create_link}`-Parameter zeigt *nicht* auf ein **unterstütztes Medien-Format** (Bild, Video, Audio).",
                 "could_not_scan": "",
                 "processing": "Dein **Ei** wird verarbeitet...\n-# Dies kann eine Weile dauern! Wir überprüfen nur, dass du nichts illegales angehängt hast.",
                 "too_big": "Dein Anhang ist **zu groß**! Das Limit beträgt **20 MB**.",
