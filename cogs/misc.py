@@ -23,7 +23,7 @@ class Misc(commands.Cog):
         app.Choice(name=app.locale_str("edit"), value="edit"),
         app.Choice(name=app.locale_str("report"), value="report"),
         app.Choice(name=app.locale_str("delete"), value="delete"),
-        app.Choice(name=app.locale_str("Eggify"), value="eggify"),
+        app.Choice(name=app.locale_str("eggify"), value="eggify"),
         app.Choice(name=app.locale_str("collected"), value="collected"),
         app.Choice(name=app.locale_str("leaderboard"), value="leaderboard"),
         app.Choice(name=app.locale_str("config"), value="config"),
