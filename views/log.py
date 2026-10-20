@@ -46,6 +46,10 @@ class ModLogActions(discord.ui.LayoutView):
             await ctx.response.send_message(self.myloc["not_allowed"], ephemeral=True)
             return False
 
+        if utils.egg_is_deleted(self.egg.id):
+            await ctx.response.edit_message(attachments=[], view=text_view(self.myloc["afterdel"].format(**self.formats)))
+            return False
+
         return True
 
     async def change_rating(self, ctx: discord.Interaction):

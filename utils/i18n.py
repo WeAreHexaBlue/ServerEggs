@@ -2,6 +2,7 @@ import copy
 import json
 import os
 import re
+from collections.abc import Callable
 
 import discord
 from discord import app_commands as app
@@ -117,18 +118,53 @@ def find_missing_paths(base: dict, override: dict, prefix: str = "") -> list[str
 
     return missing
 
-TOKEN = re.compile(r"\{(link|brand)_([a-z0-9_]+)\}")
+TOKEN = re.compile(r"\{(?P<prefix>[a-z][a-z0-9]*)_(?P<name>[a-z0-9][a-z0-9_-]*)\}")
 
-def substitute_tokens(value, unknown: set[str]):
+TokenResolver = Callable[[str], str | None]
+
+def token_resolvers(locales: dict | None = None, locale: str | None = None) -> dict[str, TokenResolver]:
+    resolvers: dict[str, TokenResolver] = {
+        "brand": brand_values().get,
+        "link": LINKS.get,
+    }
+
+    if locales is not None and locale is not None:
+        resolvers["command"] = pick_locale(locales, locale).get
+
+    return resolvers
+
+def token_names(value, prefix: str) -> set[str]:
+    names: set[str] = set()
+
+    def walk(node):
+        if isinstance(node, dict):
+            for child in node.values():
+                walk(child)
+        elif isinstance(node, list):
+            for child in node:
+                walk(child)
+        elif isinstance(node, str):
+            names.update(match.group("name") for match in TOKEN.finditer(node) if match.group("prefix") == prefix)
+
+    walk(value)
+
+    return names
+
+def resolve_tokens(value, resolvers: dict[str, TokenResolver], unknown: set[str] | None = None):
     def replace(match: re.Match) -> str:
-        prefix, name = match.group(1), match.group(2)
-        table = LINKS if prefix == "link" else brand_values()
+        prefix, name = match.group("prefix"), match.group("name")
+        resolver = resolvers.get(prefix)
 
-        if name not in table:
-            unknown.add(f"{prefix}_{name}")
+        if resolver is None:
             return match.group(0)
 
-        return table[name]
+        resolved = resolver(name)
+        if resolved is None:
+            if unknown is not None:
+                unknown.add(f"{prefix}_{name}")
+            return match.group(0)
+
+        return resolved
 
     def substitute(text):
         if not isinstance(text, str) or "{" not in text:
@@ -164,11 +200,20 @@ def load_locales(lang_dir: str = "./lang") -> tuple[dict[str, dict], list[str]]:
         locales[code] = resolve_lines(deep_merge(fallback, data))
 
     unknown: set[str] = set()
+    resolvers = token_resolvers()
     for code, data in locales.items():
-        locales[code] = substitute_tokens(data, unknown)
+        locales[code] = resolve_tokens(data, resolvers, unknown)
 
     if unknown:
         warnings.append(f"Unknown tokens, left unresolved: {", ".join(sorted("{" + name + "}" for name in unknown))}")
+
+    command_keys = set(fallback) - { "language_name", "lines" }
+    unknown_commands: set[str] = set()
+    for data in raw.values():
+        unknown_commands.update(token_names(data, "command") - command_keys)
+
+    if unknown_commands:
+        warnings.append(f"Unknown command tokens: {", ".join(sorted("{" + name + "}" for name in unknown_commands))}")
 
     return locales, warnings
 

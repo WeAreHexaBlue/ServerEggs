@@ -149,7 +149,7 @@
                 "rating_not_allowed": "",
                 "no_egg": "Konnte keine **Ei**er finden.",
                 "collection_status": "",
-                "collected": "Du hast **Ei #{egg_id} gesammelt**!\nEs wurde nun **{count} mal** gesammelt.\n-# Du kannst deine gesammelten **Ei**er mit `/collected` sehen!",
+                "collected": "Du hast **Ei #{egg_id} gesammelt**!\nEs wurde nun **{count} mal** gesammelt.\n-# Du kannst deine gesammelten **Ei**er mit `/{command_collected}` sehen!",
                 "collections": "**Ei #{egg_id}** wurde **{count} mal** gesammelt.",
                 "battle_wins": "",
                 "wins": "**Ei #{egg_id}** hat **{count} Kämpfe** gewonnen.",
