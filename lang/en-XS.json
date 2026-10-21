@@ -1,6 +1,5 @@
 {
     "language_name": "[[KROMER]]",
-
     "lines": {
         "battles": {
             "battle": {
@@ -135,14 +134,28 @@
                 "collected": "You have **collected** **[[Pipis]] #{egg_id}**!\nIt has now been collected **{count} times**.\n-# Check your collected **[[Pipis]]** with `/{command_collected}`!",
                 "collections": "**[[Pipis]] #{egg_id}** was collected **{count} times**.",
                 "wins": "**[[Pipis]] #{egg_id}** has won **{count} battles**.",
-                "eggn": "[[Pipis]] #{egg_id}"
+                "eggn": "[[Pipis]] #{egg_id}",
+                "collection_status": "[[Pipis People]] COUNTER",
+                "battle_wins": "IS IT A GOOD [[Choose your fighter!]]?",
+                "creator": "[[Pipis Person]]",
+                "unknown_creator": "LOST USER [[{user_id}]]",
+                "origin": "[[Pipisland]]",
+                "unknown_origin": "LOST LAND [[{guild_id}]]",
+                "origin_name": "NAME",
+                "origin_desc": "[[Information]]",
+                "button": {
+                    "origin": "HAVE A [[Pipis Communion]]",
+                    "creator": "GATHER [[Personal Info]]"
+                }
             },
             "delete": {
                 "ready": {
                     "title": "Delete [[Pipis]] #{egg_id}",
                     "question": "Are you sure you want to delete this **[[Pipis]]**?"
                 },
-                "success": "**[[Pipis]] #{egg_id}** was deleted successfully."
+                "success": "**[[Pipis]] #{egg_id}** was deleted successfully.",
+                "confirm": "[[Grind]] THIS [[Pipis]]?",
+                "cancelled": "THE [[Pipis]] IS [[Safe at last]]."
             },
             "report": {
                 "ready": {
@@ -158,7 +171,11 @@
                 "receipt": "We received your report about **[[Pipis]] #{egg_id}**. You will be notified about our action.\nThank you for keeping **{brand_name}** a safer platform!\n\n**Reason**: {reason}",
                 "success": "**[[Pipis]] #{egg_id}** was reported successfully.",
                 "already": "You already reported this **[[Pipis]]**: wait for us to take action...",
-                "result": "We have taken action on your report for **[[Pipis]] #{egg_id}**.\n**Result**: {action}"
+                "result": "We have taken action on your report for **[[Pipis]] #{egg_id}**.\n**Result**: {action}",
+                "confirm": "[[Snitch]] ON THIS [[Pipis]]?",
+                "cancelled": "[[Pipis]] NOT [[Snitches get stitches!]].",
+                "rule": "[[Allegations]]",
+                "rule_placeholder": "[[Expose]] THE [[Allegations]]..."
             }
         },
         "eggstras": {
