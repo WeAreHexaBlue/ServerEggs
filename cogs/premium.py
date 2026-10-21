@@ -76,7 +76,7 @@ class Premium(commands.Cog):
             await dbuser.collected.add(egg)
             collected = True
 
-        lines = self.lines_for(dbuser)
+        lines = utils.resolve_tokens(self.lines_for(dbuser), utils.token_resolvers(self.bot.locales, dbuser.lang or "en"))
         myloc = self.bot.get_lines("premium/daily", lines)
 
         creator = await utils.get_or_fetch_user(self.bot, egg.creator_id)
