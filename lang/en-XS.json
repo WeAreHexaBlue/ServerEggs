@@ -166,7 +166,10 @@
                 "rules": {
                     "bad_rating_desc": "This [[Pipis]]'s content rating (Safe/Questionable/Explicit) is incorrect.",
                     "hateful_desc": "This [[Pipis]] promotes hatred towards any marginalized group.",
-                    "other_desc": "You are reporting this [[Pipis]] for a different reason. Write why below."
+                    "other_desc": "You are reporting this [[Pipis]] for a different reason. Write why below.",
+                    "bad_rating": "THE [[Safety Firewall is configured incorrectly!]]",
+                    "hateful": "[[Little Sponge]] FROM THE [[1930s]] BEHAVIOR",
+                    "other": "OTHER [[(Please, tell me about it!)]]"
                 },
                 "receipt": "We received your report about **[[Pipis]] #{egg_id}**. You will be notified about our action.\nThank you for keeping **{brand_name}** a safer platform!\n\n**Reason**: {reason}",
                 "success": "**[[Pipis]] #{egg_id}** was reported successfully.",
@@ -175,7 +178,16 @@
                 "confirm": "[[Snitch]] ON THIS [[Pipis]]?",
                 "cancelled": "[[Pipis]] NOT [[Snitches get stitches!]].",
                 "rule": "[[Allegations]]",
-                "rule_placeholder": "[[Expose]] THE [[Allegations]]..."
+                "rule_placeholder": "[[Expose]] THE [[Allegations]]...",
+                "other": "[[Lengthy]] WORDS FOR [[Snitching]]",
+                "other_placeholder": "GO AND [[Tell me all about it...]] RIGHT HERE...",
+                "actions": {
+                    "ignore": "I DO NOT GIVE A [[$#!%]]!",
+                    "rating": "THE [[Spice-meter]] IS NOW [[`{rating}`]]",
+                    "lang": "THE [[Words]] GOT LABELLED AS [[`{lang}`]]",
+                    "delete": "[[Blew up]]",
+                    "delete_ban": "[[Blew up]] AND [[Killed]] [[`{user_id}`]] WHILE DOING SO"
+                }
             }
         },
         "eggstras": {
@@ -184,7 +196,8 @@
                 "not_created": "You aren't the creator of **[[Pipis]] #{egg_id}**.",
                 "rating_not_allowed": "You have **[[Pipis]] #{egg_id}**, but its **rating** isn't allowed in this channel.",
                 "lang_not_allowed": "You have **[[Pipis]] #{egg_id}**, but its **language** isn't allowed in this server.",
-                "empty": "No **[[Pipis]]**s with this criteria!"
+                "empty": "No **[[Pipis]]**s with this criteria!",
+                "rating_not_allowed_filter": "THIS **[[Spiciness level]]** CANNOT BE [[Fathomed]] IN THIS CHANNEL!"
             },
             "search": {
                 "empty": "No **[[Pipis]]**s match your search for **\"{query}\"**."
@@ -192,7 +205,9 @@
             "leaderboard": {
                 "collections": "[[Pipis]] Collectors' Leaderboard",
                 "creations": "[[Pipis]] Creators' Leaderboard",
-                "battles": "Most Winning [[Pipis]]' Leaderboard"
+                "battles": "Most Winning [[Pipis]]' Leaderboard",
+                "you": " **__[YOU]__**",
+                "battlers": "LEADERBOARD OF [[Glorious Fighters]]"
             }
         },
         "misc": {
@@ -243,6 +258,9 @@
                     "title": "About Filtering [[Pipis]]",
                     "desc": "**Commands**: `/{command_filter}`\n\nUsing this command, Server Managers can **toggle filtering** for an **[[Pipis]]**. This is helpful when an **[[Pipis]]** does not break the *global* rules, and therefore is allowed by the **[[Pipis]] Moderators**, but *local* server moderators feel it's inappropriate for their members.\nIf an **[[Pipis]]** was **already filtered**, running this command on it again will **unfilter it**.\n\n**Parameters**:\n- `{param_filter_id}`: The ID of the **[[Pipis]]** you want to toggle filters for."
                 }
+            },
+            "contribute": {
+                "title": "[[Help]] WORK ON [[{brand_name}]]"
             }
         },
         "log": {
@@ -278,6 +296,13 @@
             "not_found": "**[[Pipis]] #{egg_id}** does not exist.",
             "cannot": "You don't have permission to manage this **[[Pipis]]**.",
             "not_yours": "Only the **original command user** can read through the **[[Pipis]]** loop."
+        },
+        "error": {
+            "title": "[[Virus detected]]! PAY [[1997 KROMER]] NOW TO FIX!",
+            "ratelimited": "YOU ARE **[[One of the Fast Little Boys]]**! PLEASE WAIT **[[{seconds}]]** SECONDS."
+        },
+        "embed": {
+            "footer": "{brand_name} BY {brand_owner}"
         }
     }
 }
