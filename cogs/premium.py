@@ -84,16 +84,22 @@ class Premium(commands.Cog):
         container, sfile, vfile, vlink = await utils.get_egg_layout(
             self.bot, lines, egg, creator, collected,
             title=utils.egg_title(egg, myloc["title"].format(egg_id=egg.id)),
+            intro=myloc["text"].format(date=now.strftime("%d/%m/%Y")),
         )
 
         try:
             await user.send(
-                myloc["text"].format(date=now.strftime("%d/%m/%Y")),
                 file=sfile or discord.utils.MISSING,
                 view=views.GetEgg(self.bot, lines, egg, None, creator, container, vfile, vlink)
             )
-        except discord.HTTPException:
-            pass
+        except discord.Forbidden as e:
+            dbuser.last_daily_at = now
+            await dbuser.save(update_fields=["last_daily_at"])
+            await utils.log_error(self.bot, f"Daily Egg DM forbidden for {dbuser.id}: {e} (code {getattr(e, 'code', '?')})")
+            return
+        except discord.HTTPException as e:
+            await utils.log_error(self.bot, f"Daily Egg DM failed for {dbuser.id}: {e} (code {getattr(e, 'code', '?')})")
+            return
         else:
             if first and not dbuser.allow_explicit_dms:
                 try:

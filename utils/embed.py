@@ -114,7 +114,8 @@ async def get_egg_layout(
     include_id = False,
     *,
     title: str | None = None,
-    created: bool = False
+    created: bool = False,
+    intro: str | None = None
 ) -> tuple[discord.ui.Container, discord.File | None, str | None, str | None]:
     myloc = bot.get_lines("eggs/send", lines)
 
@@ -145,8 +146,9 @@ async def get_egg_layout(
     header = brand_header(lines, title)
     footer = brand_footer(lines)
 
-    description = fit_text(egg.text, header, footer, *fields)
+    description = fit_text(egg.text, header, footer, *([intro] if intro else []), *fields)
 
-    body = [f"{header}\n\n{description}" if description else header, *fields]
+    body = [intro] if intro else []
+    body += [f"{header}\n\n{description}" if description else header, *fields]
 
     return egg_container(get_egg_color(egg), body, media, lines=lines), sfile, extrafile, extralink
